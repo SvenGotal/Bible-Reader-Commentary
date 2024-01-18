@@ -1,7 +1,14 @@
 package com.java.crv.domain;
 
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String email;
