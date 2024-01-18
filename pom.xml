@@ -8,11 +8,11 @@
 		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>Bible-Reader-Commentary</groupId>
+	<groupId>com.java.crv</groupId>
 	<artifactId>Bible-Reader-Commentary</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Bible-Reader-Commentary</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Bible Reader Commentary</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

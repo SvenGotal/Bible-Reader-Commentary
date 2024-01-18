@@ -1,4 +1,4 @@
-package BibleReaderCommentary.BibleReaderCommentary;
+package com.java.crv.BibleReaderCommentary;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
