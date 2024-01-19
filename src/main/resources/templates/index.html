@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8"/>
-	<title>Spring Framework Guru</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css?v=version2">
-	<!-- ######################################################### Google Fonts #########################################################-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Inconsolata:wght@300;400&family=Lato&family=Roboto:wght@300&family=Satisfy&family=Ubuntu+Mono&display=swap" rel="stylesheet">		
-	<!--################################################################################################################################################-->
-	
+	<title>Index</title>
 </head>
 <body>
 	
 	<h1>Welcome to the index page</h1>
+	<p th:text="${message}"></p>
 	
-	<form th:action="@{/}" th:object="${user}" method="post">
-		<label>Username: <input type="text" th:field="*{username}"/></label><br/>
-		<label>e-Mail: <input type="text" th:field="*{email}"/></label><br/>
-		<label>Password: <input type="text" th:field="*{password}"/></label><br/>
+	<form th:object="${user}" th:action="@{/}" method="post">
+		<label>Username: <input type="text"  /></label><br/>		
 		<button type="submit">Submit</button>
 	</form>
 
 </body>
 </html>
+
+<!-- <label>e-Mail: <input type="text" /></label><br/>   th:field="*{username}"  -->
+		<!-- <label>Password: <input type="text" /></label><br/> -->
