@@ -24,9 +24,11 @@ public class IndexController {
 	}
 	
 	@PostMapping("/")
-	public String setData(@ModelAttribute("user") User user) {
+	public String setData(@ModelAttribute("user") User user, Model model) {
+		
 		
 		userRepository.save(user);
+		model.addAttribute("message", "Data successfully submitted!");
 		
 		return "redirect:/";
 	}
