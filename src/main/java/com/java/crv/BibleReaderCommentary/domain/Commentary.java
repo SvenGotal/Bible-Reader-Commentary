@@ -1,22 +1,25 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
-import org.springframework.data.annotation.Id;
+
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Commentary {
 
 	@Id
-	private int id;
+	private Long id;
 	private String text;
 	private User commenter;
 	private BookAndChapter bookAndChapter;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getText() {
