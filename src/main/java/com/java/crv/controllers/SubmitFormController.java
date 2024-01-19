@@ -15,7 +15,7 @@ import com.java.crv.domain.User;
 @RequestMapping("/submitForm")
 public class SubmitFormController {
 
-	@GetMapping("/submitForm")
+	@GetMapping
 	public String showForm(Model model) {
 		model.addAttribute("user", new User());
 		return "submitform";
