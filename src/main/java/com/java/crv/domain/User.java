@@ -1,9 +1,10 @@
 package com.java.crv.domain;
 
-import org.springframework.data.annotation.Id;
+
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 public class User {
 	
