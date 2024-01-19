@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.PostMapping;
 import com.java.crv.domain.*;
-import com.java.crv.repository.UserRepository;
+//import com.java.crv.repository.UserRepository;
 
 @Controller
 public class IndexController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	//private UserRepository userRepository;
 	
 	@GetMapping("/")
 	public String getIndex(Model model) {	
