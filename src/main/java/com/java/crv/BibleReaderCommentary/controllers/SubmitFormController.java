@@ -26,7 +26,7 @@ public class SubmitFormController {
 		if(bindingResult.hasErrors())
 			return "forms/submitform";
 		
-		model.addAttribute("message", "User successfully saved!");
+		model.addAttribute("msg", "User successfully saved!");
 		return "redirect:/";
 	}
 	
