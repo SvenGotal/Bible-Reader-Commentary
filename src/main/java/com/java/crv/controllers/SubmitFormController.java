@@ -18,13 +18,13 @@ public class SubmitFormController {
 	@GetMapping
 	public String showForm(Model model) {
 		model.addAttribute("user", new User());
-		return "submitform";
+		return "forms/submitform";
 	}
 	
 	@PostMapping
 	public String submitForm(@ModelAttribute("user") @Validated User user, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors())
-			return "submitform";
+			return "forms/submitform";
 		
 		model.addAttribute("message", "User successfully saved!");
 		return "redirect:/";
