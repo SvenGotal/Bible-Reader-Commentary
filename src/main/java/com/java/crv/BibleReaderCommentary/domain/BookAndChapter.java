@@ -1,10 +1,13 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import org.springframework.data.annotation.Id;
+
 import jakarta.persistence.Entity;
 
 @Entity
 public class BookAndChapter {
 
+	@Id
 	private int id;
 	public int getId() {
 		return id;
