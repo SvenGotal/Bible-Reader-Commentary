@@ -1,4 +1,4 @@
-package com.java.crv.domain;
+package com.java.crv.BibleReaderCommentary.domain;
 
 import jakarta.persistence.Entity;
 

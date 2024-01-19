@@ -1,4 +1,4 @@
-package com.java.crv.controllers;
+package com.java.crv.BibleReaderCommentary.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.java.crv.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.User;
 
 @Controller
 @RequestMapping("/submitForm")
