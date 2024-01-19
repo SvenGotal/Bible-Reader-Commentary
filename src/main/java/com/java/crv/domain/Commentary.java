@@ -1,5 +1,8 @@
 package com.java.crv.domain;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Commentary {
 
 	private int id;
