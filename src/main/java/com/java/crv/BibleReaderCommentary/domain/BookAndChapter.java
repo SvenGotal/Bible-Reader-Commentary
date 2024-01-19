@@ -2,15 +2,11 @@ package com.java.crv.BibleReaderCommentary.domain;
 
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity
+
+
 public class BookAndChapter {
 
-	@Id
 	private Long id;
 	
 	private String Book;
