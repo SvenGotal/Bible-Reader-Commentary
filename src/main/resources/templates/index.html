@@ -16,9 +16,10 @@
 	<h1>Welcome to the index page</h1>
 	
 	<form th:action="@{/}" th:object="${user}" method="post">
-		<label>Username: <input type="text" th:field="*{username}"></label></br>
-		<label>e-Mail: <input type="text" th:field="*{email}"></label></br>
-		<label>Password: <input type="text" th:field="*{password}"></label></br>
+		<label>Username: <input type="text" th:field="*{username}"/></label><br/>
+		<label>e-Mail: <input type="text" th:field="*{email}"/></label><br/>
+		<label>Password: <input type="text" th:field="*{password}"/></label><br/>
+		<button type="submit">Submit</button>
 	</form>
 
 </body>
