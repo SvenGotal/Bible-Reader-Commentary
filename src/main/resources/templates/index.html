@@ -16,9 +16,9 @@
 	<h1>Welcome to the index page</h1>
 	
 	<form th:action="@{/}" th:object="${user}" method="post">
-		<a>Username: </a><input type="text" th:field="*{username}">
-		<a>e-Mail: </a><input type="text" th:field="*{email}">
-		<a>Password: </a><input type="text" th:field="*{password}">
+		<label>Username: <input type="text" th:field="*{username}"></label></br>
+		<label>e-Mail: <input type="text" th:field="*{email}"></label></br>
+		<label>Password: <input type="text" th:field="*{password}"></label></br>
 	</form>
 
 </body>
