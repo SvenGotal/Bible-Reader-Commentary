@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
-import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
+import com.java.crv.BibleReaderCommentary.repositories.*;
 
 @Controller
 @RequestMapping("/submitForm")
