@@ -1,6 +1,5 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
-import com.java.crv.BibleReaderCommentary.repositories.*;
+import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Controller
 @RequestMapping("/submitForm")
@@ -19,7 +18,6 @@ public class SubmitFormController {
 
 	
 	private final UserRepository userRepository;
-	@Autowired
 	public SubmitFormController(UserRepository userRepository){
 		this.userRepository = userRepository;
 	}
@@ -36,7 +34,7 @@ public class SubmitFormController {
 			return "forms/submitform";
 		
 		model.addAttribute("msg", "User successfully saved!");
-		//userRepo.save(user);
+		userRepository.save(user);
 		return "redirect:/";
 	}
 	
