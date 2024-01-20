@@ -19,6 +19,7 @@ public class SubmitFormController {
 
 	
 	private final UserRepository userRepository;
+	@Autowired
 	public SubmitFormController(UserRepository userRepository){
 		this.userRepository = userRepository;
 	}
