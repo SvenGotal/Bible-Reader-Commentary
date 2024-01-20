@@ -17,11 +17,10 @@ import com.java.crv.BibleReaderCommentary.repositories.*;
 @RequestMapping("/submitForm")
 public class SubmitFormController {
 
-	@Autowired
-	private final UserRepository userRepo;
 	
-	public SubmitFormController(UserRepository userRepo){
-		this.userRepo = userRepo;
+	private final UserRepository userRepository;
+	public SubmitFormController(UserRepository userRepository){
+		this.userRepository = userRepository;
 	}
 	
 	@GetMapping
@@ -36,7 +35,7 @@ public class SubmitFormController {
 			return "forms/submitform";
 		
 		model.addAttribute("msg", "User successfully saved!");
-		userRepo.save(user);
+		//userRepo.save(user);
 		return "redirect:/";
 	}
 	
