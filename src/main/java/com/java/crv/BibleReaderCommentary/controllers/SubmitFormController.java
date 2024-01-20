@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +17,10 @@ import com.java.crv.BibleReaderCommentary.repositories.*;
 @RequestMapping("/submitForm")
 public class SubmitFormController {
 
+	@Autowired
 	private final UserRepository userRepo;
 	
-	SubmitFormController(UserRepository userRepo){
+	public SubmitFormController(UserRepository userRepo){
 		this.userRepo = userRepo;
 	}
 	
