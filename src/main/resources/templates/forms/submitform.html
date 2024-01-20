@@ -7,7 +7,7 @@
 	
 	<h1>Welcome to submit form</h1>	
 	
-	<form method="post">
+	<form method="post" th:action="submitForm" th:object="${user}">
 		<label>Username: <input type="text" th:field="*{username}" /></label><br/>		
 		<button type="submit">Submit</button>
 	</form>
