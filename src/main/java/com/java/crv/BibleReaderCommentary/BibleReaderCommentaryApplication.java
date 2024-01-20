@@ -7,9 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.java.crv.BibleReaderCommentary")
-@EntityScan("com.java.crv.BibleReaderCommentary.domain")
-@EnableJpaRepositories("com,java.crv.BibleReaderCommentary.repositories")
+@ComponentScan({"com.java.crv.BibleReaderCommentary", "com,java.crv.BibleReaderCommentary.repositories", "com,java.crv.BibleReaderCommentary.domain", "com,java.crv.BibleReaderCommentary.controllers"})
+
 public class BibleReaderCommentaryApplication {
 
 	public static void main(String[] args) {
