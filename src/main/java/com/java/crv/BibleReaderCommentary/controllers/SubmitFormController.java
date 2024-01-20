@@ -10,11 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Controller
 @RequestMapping("/submitForm")
 public class SubmitFormController {
 
+	private final UserRepository userRepo;
+	
+	SubmitFormController(UserRepository userRepo){
+		this.userRepo = userRepo;
+	}
+	
 	@GetMapping
 	public String showForm(Model model) {
 		model.addAttribute("user", new User());
@@ -27,6 +34,7 @@ public class SubmitFormController {
 			return "forms/submitform";
 		
 		model.addAttribute("msg", "User successfully saved!");
+		userRepo.save(user);
 		return "redirect:/";
 	}
 	
