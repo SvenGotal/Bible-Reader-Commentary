@@ -8,7 +8,9 @@
 	<h1>Welcome to submit form</h1>	
 	
 	<form method="post" th:action="submitForm" th:object="${user}">
-		<label>Username: <input type="text" th:field="*{username}" /></label><br/>		
+		<label>Username: <input type="text" th:field="*{username}" /></label><br/>
+		<label>Email: <input type="text" th:field="*{email}" /></label><br/>
+		<label>Password: <input type="text" th:field="*{password}" /></label><br/>		
 		<button type="submit">Submit</button>
 	</form>
 
