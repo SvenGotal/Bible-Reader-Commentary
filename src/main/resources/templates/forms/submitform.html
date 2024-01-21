@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Submit Form</title>
-	<link rel="icon" type="image/x-icon" href="/static/images/BRC_favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/home/sven/git/Bible-Reader-Commentary/src/main/resources/static/images/BRC_favicon.ico">
 </head>
 <body>
 	
-	<h1>Welcome to submit form</h1>	
+	<h1>Submit form</h1>	
 	
 	<form method="post" th:action="submitForm" th:object="${user}">
 		<label>Username: <input type="text" th:field="*{username}" /></label><br/>
