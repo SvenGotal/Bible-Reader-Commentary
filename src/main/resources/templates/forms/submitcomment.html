@@ -8,7 +8,7 @@
 	
 	<h1>Submit form</h1>	
 	
-	<form method="post" th:action="submitForm" th:object="${comment}">
+	<form method="post" th:action="submitComment" th:object="${text}">
 		<label>Username: <textarea type="text" th:field="*{text}" /></label><br/>		
 		<button type="submit">Submit</button>
 	</form>
