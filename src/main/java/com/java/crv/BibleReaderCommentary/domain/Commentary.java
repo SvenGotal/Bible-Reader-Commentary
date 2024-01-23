@@ -1,9 +1,15 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+
 
 @Entity
 public class Commentary {
@@ -12,7 +18,15 @@ public class Commentary {
 	@GeneratedValue(strategy = GenerationType.AUTO) /* DB sama brine o generiranju ID-eva (AUTO) property */
 	private Long id;
 	private String text;
-	//private User commenter;
+	private String timestamp;
+	
+	
+	public Commentary() {		
+		
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		this.timestamp = ldt.format(format);				
+	}
 	
 	public Long getId() {
 		return id;
@@ -26,6 +40,13 @@ public class Commentary {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public String getDateOfCreation() {
+		return timestamp;
+	}
+	public void setDateOfCreation(String dateOfCreation) {
+		this.timestamp = dateOfCreation;
+	}
+	
 	@Override
 	public String toString() {
 		return "Commentary [id=" + id + ", text=" + text + "]";

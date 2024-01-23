@@ -37,6 +37,7 @@ public class SubmitCommentController {
 		}
 		
 		commentaryRepository.save(comment);
+		System.out.println(comment.getDateOfCreation().toString());
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
 		return "redirect:/";
