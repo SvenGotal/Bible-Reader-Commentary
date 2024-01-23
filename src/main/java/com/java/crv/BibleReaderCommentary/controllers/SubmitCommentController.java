@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
@@ -28,20 +29,15 @@ public class SubmitCommentController {
 	}
 	
 	@PostMapping
-	public String addComment(@ModelAttribute("comment") Commentary comment, BindingResult validation, Model model) {
-		
-		String binding;
+	public String addComment(@ModelAttribute("comment") Commentary comment, BindingResult validation, RedirectAttributes redirectAttributes) {		
 		
 		if(validation.hasErrors()) {
-			binding = "Failed to insert data!";			
+			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");		
 			return "forms/submitComment";
 		}
 		
 		commentaryRepository.save(comment);
-		binding = "Data succesfully stored!";
-		
-		model.addAttribute(binding);
-		System.out.println(comment.toString());
+		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
 		return "redirect:/";
 	}
