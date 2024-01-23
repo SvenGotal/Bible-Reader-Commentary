@@ -40,11 +40,11 @@ public class Commentary {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getDateOfCreation() {
+	public String getTimestamp() {
 		return timestamp;
 	}
-	public void setDateOfCreation(String dateOfCreation) {
-		this.timestamp = dateOfCreation;
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
 	
 	@Override
