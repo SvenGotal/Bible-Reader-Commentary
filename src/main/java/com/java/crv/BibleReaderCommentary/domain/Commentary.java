@@ -13,7 +13,6 @@ public class Commentary {
 	private Long id;
 	private String text;
 	private User commenter;
-	private BookAndChapter bookAndChapter;
 	
 	public Long getId() {
 		return id;
@@ -33,17 +32,5 @@ public class Commentary {
 	public void setCommenter(User commenter) {
 		this.commenter = commenter;
 	}
-	public BookAndChapter getBookAndChapter() {
-		return bookAndChapter;
-	}
-	public void setBookAndChapter(BookAndChapter bookAndChapter) {
-		this.bookAndChapter = bookAndChapter;
-	}
-	@Override
-	public String toString() {
-		return bookAndChapter.getBook() + " " + bookAndChapter.getChapter() + "\n\n" + text + "\n\n" + commenter;
-	}
-	
-	
-	
+			
 }
