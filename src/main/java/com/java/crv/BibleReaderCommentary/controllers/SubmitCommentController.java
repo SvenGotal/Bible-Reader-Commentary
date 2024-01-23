@@ -30,13 +30,17 @@ public class SubmitCommentController {
 	@PostMapping
 	public String addComment(@ModelAttribute("comment") Commentary comment, BindingResult validation, Model model) {
 		
+		String binding;
+		
 		if(validation.hasErrors()) {
-			model.addAttribute("errormsg", "Binding unsucessful!");
-			System.out.println("!!!ERROR!!!");
+			binding = "Failed to insert data!";			
 			return "forms/submitComment";
 		}
 		
 		commentaryRepository.save(comment);
+		binding = "Data succesfully stored!";
+		
+		model.addAttribute(binding);
 		System.out.println(comment.toString());
 		
 		return "redirect:/";
