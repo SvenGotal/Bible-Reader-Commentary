@@ -12,7 +12,7 @@ public class Commentary {
 	@GeneratedValue(strategy = GenerationType.AUTO) /* DB sama brine o generiranju ID-eva (AUTO) property */
 	private Long id;
 	private String text;
-	private User commenter;
+	//private User commenter;
 	
 	public Long getId() {
 		return id;
