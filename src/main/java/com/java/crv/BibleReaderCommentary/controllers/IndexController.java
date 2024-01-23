@@ -14,7 +14,7 @@ public class IndexController {
 		
 	@GetMapping
 	public String getIndex(Model model) {	
-		model.addAttribute("message", "Hello from getIndex method!");
+		
 		model.addAttribute("user", new User());
 		return "index";
 	}		
