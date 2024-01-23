@@ -26,11 +26,6 @@ public class Commentary {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public User getCommenter() {
-		return commenter;
-	}
-	public void setCommenter(User commenter) {
-		this.commenter = commenter;
-	}
+	
 			
 }
