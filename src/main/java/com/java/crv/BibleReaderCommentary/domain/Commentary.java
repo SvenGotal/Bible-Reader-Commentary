@@ -1,13 +1,15 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-
-
-
-
+@Entity
 public class Commentary {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) /* DB sama brine o generiranju ID-eva (AUTO) property */
 	private Long id;
 	private String text;
 	private User commenter;

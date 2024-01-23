@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Submit Form</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.webp}">
+</head>
+<body>
+	
+	<h1>Submit form</h1>	
+	
+	<form method="post" th:action="submitForm" th:object="${comment}">
+		<label>Username: <textarea type="text" th:field="*{text}" /></label><br/>		
+		<button type="submit">Submit</button>
+	</form>
+
+</body>
+</html>
+
+<!-- <label>e-Mail: <input type="text" /></label><br/>   th:field="*{username}"  -->
+		<!-- <label>Password: <input type="text" /></label><br/> -->
