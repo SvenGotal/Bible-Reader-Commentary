@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Index</title>
+	<script th:src="@{/scripts/redirection_script.js}" defer="true"></script>
 </head>
 <body>
 	
 	<h1>Welcome to the index page</h1>
 	<p th:text="${binding}"></p>
-
+	
+	<button id="redirectToUserForm" type="submit">Go to user creation</button></br>
 </body>
 </html>
 

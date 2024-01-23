@@ -40,7 +40,5 @@ public class SubmitCommentController {
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
 		return "redirect:/";
-	}
-	
-	
+	}		
 }
