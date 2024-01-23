@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Controller
@@ -35,7 +36,7 @@ public class SubmitCommentController {
 			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");		
 			return "forms/submitComment";
 		}
-		
+				
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		

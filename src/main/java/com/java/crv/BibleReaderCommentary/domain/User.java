@@ -1,9 +1,12 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,15 @@ public class User {
 	private String username;
 	private String email;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Commentary> comments;
+	
+	public List<Commentary> getComments() {
+		return comments;
+	}
+	public void setComments(List<Commentary> comments) {
+		this.comments = comments;
+	}
 	public String getPassword() {
 		return password;
 	}
