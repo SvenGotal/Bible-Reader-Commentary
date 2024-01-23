@@ -36,8 +36,7 @@ public class SubmitCommentController {
 			return "forms/submitComment";
 		}
 		
-		commentaryRepository.save(comment);
-		System.out.println(comment.getDateOfCreation().toString());
+		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
 		return "redirect:/";
