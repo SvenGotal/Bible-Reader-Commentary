@@ -26,13 +26,9 @@ public class SecurityConfig extends WebSecurityConfiguration{
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		
-	
-		
+				
 		http.authorizeHttpRequests((authorizeHttpRequests) ->
-			authorizeHttpRequests.requestMatchers("/h2-console**").permitAll().anyRequest().authenticated());
-		
-		
+			authorizeHttpRequests.requestMatchers("/h2-console/**").permitAll().anyRequest().authenticated());		
 	}
 		
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
