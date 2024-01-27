@@ -3,10 +3,12 @@ package com.java.crv.BibleReaderCommentary.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
@@ -36,6 +38,18 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 				.password(user.getPassword())
 				.roles("USER")
 				.build();
+	}
+	
+	@Bean
+	public SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
+		http.authorizeHttpRequests((requests) -> 
+		requests
+		.requestMatchers("/h2-console/**")
+		.permitAll()
+		.anyRequest()
+		.authenticated());
+		
+		return http.build();
 	}
 	
 	@Bean(name="encoder")
