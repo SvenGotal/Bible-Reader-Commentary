@@ -1,6 +1,8 @@
 package com.java.crv.BibleReaderCommentary.configuration;
 
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +13,7 @@ import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Service
+@Configuration
 public class UserDetailsServiceImpl implements UserDetailsService{
 
 	private final UserRepository userRepo;
@@ -35,8 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 				.build();
 	}
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	@Bean(name="encoder")
+	protected BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
