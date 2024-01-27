@@ -41,13 +41,20 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	}
 	
 	@Bean
-	public SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
+	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		http.authorizeHttpRequests((requests) -> 
 		requests
-		.requestMatchers("/h2-console/**")
-		.permitAll()
-		.anyRequest()
-		.authenticated());
+			.requestMatchers("/")
+			.permitAll()
+			.requestMatchers("/h2-console/**","submitForm","submitComment")
+			.denyAll()
+			.anyRequest()
+			.authenticated()
+			
+			
+			
+	
+			).formLogin();
 		
 		return http.build();
 	}
