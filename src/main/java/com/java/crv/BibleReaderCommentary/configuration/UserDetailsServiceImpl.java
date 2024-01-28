@@ -3,6 +3,7 @@ package com.java.crv.BibleReaderCommentary.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Service
@@ -42,19 +44,19 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
+		
+		
 		http.authorizeHttpRequests((requests) -> 
 		requests
-			.requestMatchers("/")
+			.requestMatchers("/","/h2-console/**")		
 			.permitAll()
-			.requestMatchers("/h2-console/**","submitForm","submitComment")
-			.denyAll()
 			.anyRequest()
-			.authenticated()
-			
-			
-			
-	
-			).formLogin();
+			.authenticated())
+				.formLogin(Customizer.withDefaults())
+				.csrf( csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+				.headers( headers -> headers
+						.frameOptions(frame -> frame.disable())
+			);
 		
 		return http.build();
 	}
