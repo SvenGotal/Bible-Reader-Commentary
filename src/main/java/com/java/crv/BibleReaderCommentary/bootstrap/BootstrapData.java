@@ -24,13 +24,29 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println("Commandline runner running....");
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
+		User owner = new User();
+		owner.setId(2000L);
+		owner.setUsername("owner");
+		owner.setEmail("sven.gotal@gmail.com");
+		owner.setPassword(encoder.encode("sveng"));
+		owner.setRole(UserRoles.OWNER);
+		
 		User admin = new User();
 		admin.setId(1000L);
 		admin.setUsername("admin");
 		admin.setPassword(encoder.encode("admin"));
 		admin.setRole(UserRoles.ADMIN);
-		System.out.println("Saving data....");
+		
+		User simple = new User();
+		simple.setId(109L);
+		simple.setUsername("simpleuser");
+		simple.setPassword(encoder.encode("password"));
+		simple.setRole(UserRoles.USER);
+		
+		System.out.println("Saving data....");		
+		userRepo.save(owner);
 		userRepo.save(admin);
+		userRepo.save(simple);
 		System.out.println("Number of inserted rows: " + userRepo.count());
 		System.out.println(userRepo.findAll().toString()); 
 	}
