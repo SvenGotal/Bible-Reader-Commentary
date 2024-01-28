@@ -19,10 +19,19 @@ public class User {
 	private String password;	
 	private String username;
 	private String email;
+	private UserRoles role;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Commentary> comments;
 	
+	
+	
+	public UserRoles getRole() {
+		return role;
+	}
+	public void setRole(UserRoles role) {
+		this.role = role;
+	}
 	public List<Commentary> getComments() {
 		return comments;
 	}
