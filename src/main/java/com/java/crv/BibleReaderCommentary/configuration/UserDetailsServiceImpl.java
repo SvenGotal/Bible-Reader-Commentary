@@ -38,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		return org.springframework.security.core.userdetails.User.builder()
 				.username(user.getUsername())
 				.password(user.getPassword())
-				.roles("USER")
+				.roles(user.getRole().name())
 				.build();
 	}
 	
@@ -48,8 +48,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		http.authorizeHttpRequests((requests) -> 
 		requests
-			.requestMatchers("/","/h2-console/**")		
-			.permitAll()
+			.requestMatchers("/"/*,"/h2-console/**"*/).permitAll()
+			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.anyRequest()
 			.authenticated())
 				.formLogin(Customizer.withDefaults())
