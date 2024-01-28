@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Component
@@ -27,6 +28,7 @@ public class BootstrapData implements CommandLineRunner{
 		admin.setId(1000L);
 		admin.setUsername("admin");
 		admin.setPassword(encoder.encode("admin"));
+		admin.setRole(UserRoles.ADMIN);
 		System.out.println("Saving data....");
 		userRepo.save(admin);
 		System.out.println("Number of inserted rows: " + userRepo.count());
