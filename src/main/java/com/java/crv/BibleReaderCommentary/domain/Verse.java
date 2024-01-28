@@ -13,6 +13,7 @@ public class Verse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private int number;
 	private String text;
 	@ManyToOne
 	@JoinColumn(name = "chapter_id")
@@ -35,6 +36,12 @@ public class Verse {
 	}
 	public void setChapter(Chapter chapter) {
 		this.chapter = chapter;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	
 	

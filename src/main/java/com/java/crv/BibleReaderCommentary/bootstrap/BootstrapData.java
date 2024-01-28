@@ -52,5 +52,9 @@ public class BootstrapData implements CommandLineRunner{
 		userRepo.save(simple);
 		System.out.println("Number of inserted rows: " + userRepo.count());
 		System.out.println(userRepo.findAll().toString()); 
+		
+		
+		
+		
 	}
 }
