@@ -4,6 +4,7 @@ package com.java.crv.BibleReaderCommentary.domain;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,9 @@ public class Commentary {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) /* DB sama brine o generiranju ID-eva (AUTO) property */
 	private Long id;
+	
+	private String subject;
+	@Column(length = 2000)
 	private String text;
 	private String timestamp;
 	
@@ -33,10 +37,22 @@ public class Commentary {
 		this.timestamp = ldt.format(format);				
 	}
 	
+	
+	
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+
+
 	public User getUser() {
 		return user;
 	}
-
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -61,7 +77,7 @@ public class Commentary {
 	
 	@Override
 	public String toString() {
-		return "Commentary [id=" + id + ", text=" + text + "]";
+		return text + "\n\n" + user.getUsername() + " at: " + timestamp;
 	}
 	
 			

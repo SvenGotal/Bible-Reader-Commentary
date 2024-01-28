@@ -12,8 +12,17 @@
 	<button id="redirectToUserForm" type="submit" onclick="redirectToUserForm()">Go to user creation</button></br>
 	<button type="submit" th:href="@{/forms/submitform}">Click here for new user</button>
 	<button id="redirectToCommentForm" type="submit" onclick="redirectToCommentForm()">Go to comment creation</button></br>
+	
+	<table>
+		<tr>
+			<th>Comments</th>
+		</tr>	
+		<tr th:each="comment : ${comments}">
+			<td th:text="${comment}"></td>
+		</tr>
+	</table>
+	
 </body>
 </html>
 
-<!-- <label>e-Mail: <input type="text" /></label><br/>   th:field="*{username}"  -->
-		<!-- <label>Password: <input type="text" /></label><br/> -->
+
