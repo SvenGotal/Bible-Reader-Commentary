@@ -18,7 +18,10 @@
 			<th>Comments</th>
 		</tr>	
 		<tr th:each="comment : ${comments}">
-			<td th:text="${comment}"></td>
+			<td >
+				<p th:text="${comment.subject}"></p>
+				<p th:utext="${comment.text + '<br/><br/>Komentator: ' + comment.user.username + ' - ' + comment.timestamp}"></p>
+			</td>
 		</tr>
 	</table>
 	
