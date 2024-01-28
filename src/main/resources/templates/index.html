@@ -10,7 +10,7 @@
 	<p th:text="${binding}"></p></br>
 	
 	<button id="redirectToUserForm" type="submit" onclick="redirectToUserForm()">Go to user creation</button></br>
-	
+	<button type="submit" th:href="@{/forms/submitform}">Click here for new user</button>
 	<button id="redirectToCommentForm" type="submit" onclick="redirectToCommentForm()">Go to comment creation</button></br>
 </body>
 </html>
