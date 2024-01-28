@@ -45,6 +45,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		
+		/*SecurityFilterChain - configures which URL's are accessible and to whom. Users are discriminated against their roles and allowed
+		 * access only to certain portions of the web app*/
 		
 		http.authorizeHttpRequests((requests) -> 
 		requests

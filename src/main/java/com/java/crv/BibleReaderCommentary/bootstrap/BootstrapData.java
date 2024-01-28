@@ -21,6 +21,9 @@ public class BootstrapData implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		//todo remove all except owner for production purposes
+		
 		System.out.println("Commandline runner running....");
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
