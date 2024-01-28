@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Controller
@@ -33,7 +35,10 @@ public class SubmitFormController {
 		if(bindingResult.hasErrors())
 			return "forms/submitform";
 		
-		model.addAttribute("msg", "User successfully saved!");
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setRole(UserRoles.USER);
+		
 		userRepository.save(user);
 		return "redirect:/";
 	}
