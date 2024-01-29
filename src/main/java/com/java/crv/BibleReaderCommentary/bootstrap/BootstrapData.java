@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
+import com.java.crv.BibleReaderCommentary.objects.XMLReader;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Component
@@ -53,8 +54,6 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println("Number of inserted rows: " + userRepo.count());
 		System.out.println(userRepo.findAll().toString()); 
 		
-		
-		
-		
+	
 	}
 }
