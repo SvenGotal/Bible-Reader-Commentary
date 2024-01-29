@@ -24,11 +24,6 @@ public class SecurityConfig extends WebSecurityConfiguration{
 		this.userDetailsService = userDetailsService;
 	}
 	
-//	protected void configure(HttpSecurity http) throws Exception {
-//				
-//		http.authorizeHttpRequests((authorizeHttpRequests) ->
-//			authorizeHttpRequests.requestMatchers("/h2-console/**"));		
-//	}
 		
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
