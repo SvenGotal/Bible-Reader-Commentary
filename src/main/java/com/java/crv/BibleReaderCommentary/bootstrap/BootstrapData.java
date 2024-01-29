@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
-import com.java.crv.BibleReaderCommentary.objects.XMLReader;
+import com.java.crv.BibleReaderCommentary.objects.ExcelReader;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Component
@@ -55,5 +55,8 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println(userRepo.findAll().toString()); 
 		
 	
+		ExcelReader rdr = new ExcelReader("/home/sven/test.xlsx");
+		rdr.read();
+		
 	}
 }
