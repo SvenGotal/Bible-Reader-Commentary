@@ -26,7 +26,7 @@ public class ExcelReader {
 			
 			for(Row row : sheet) {
 								
-				Cell book = row.getCell(0);
+				//Cell book = row.getCell(0);
 				Cell chapter = row.getCell(1);
 				Cell verseText = row.getCell(2);
 				Cell verseNumber = row.getCell(3);

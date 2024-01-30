@@ -55,8 +55,8 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println(userRepo.findAll().toString()); 
 		
 	
-		ExcelReader rdr = new ExcelReader("/home/sven/test.xlsx");
-		rdr.read();
+		
+		
 		
 	}
 }
