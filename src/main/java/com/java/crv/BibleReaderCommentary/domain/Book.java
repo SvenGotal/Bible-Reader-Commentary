@@ -24,13 +24,6 @@ public class Book {
 	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<Chapter> chapters;
 	
-	
-	public String getTranslation() {
-		return translation;
-	}
-	public void setTranslation(String translation) {
-		this.translation = translation;
-	}
 	public Long getId() {
 		return id;
 	}
