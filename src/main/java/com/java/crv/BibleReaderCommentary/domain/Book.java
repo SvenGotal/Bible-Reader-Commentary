@@ -24,6 +24,13 @@ public class Book {
 	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<Chapter> chapters;
 	
+	
+	public Bible getBible() {
+		return bible;
+	}
+	public void setBible(Bible bible) {
+		this.bible = bible;
+	}
 	public Long getId() {
 		return id;
 	}
