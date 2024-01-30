@@ -15,7 +15,6 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String translation;
 	private String name;
 	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<Chapter> chapters;
