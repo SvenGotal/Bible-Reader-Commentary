@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,9 @@ public class Verse {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int number;
+	/* The Book of Esther8:9 is the longest verse by character count up to 487 chars including white space.
+	 * Added at least 500 to make sure that the verse will fit into the persistence. */
+	@Column(length = 500)
 	private String text;
 	@ManyToOne
 	@JoinColumn(name = "chapter_id")

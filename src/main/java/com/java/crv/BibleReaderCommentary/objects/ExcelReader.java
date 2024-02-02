@@ -1,9 +1,17 @@
 package com.java.crv.BibleReaderCommentary.objects;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.java.crv.BibleReaderCommentary.domain.Bible;
+import com.java.crv.BibleReaderCommentary.domain.Book;
+import com.java.crv.BibleReaderCommentary.domain.Chapter;
+import com.java.crv.BibleReaderCommentary.domain.Verse;
+
 
 public class ExcelReader {
 
@@ -15,7 +23,19 @@ public class ExcelReader {
 		this.filename = filename;			
 	}
 	
-	public void read() {
+	public Bible loadBible(String translation) {
+		
+		Bible bible = new Bible();
+		bible.setTranslation(translation);
+		bible.setBooks(new ArrayList<Book>());
+		
+		int countVerse = 1;
+		int countBookandChapter = 1;
+		
+		/* Create domains */
+		Book book = null;				
+		Chapter chapter = null;
+		Verse verse = null;
 		
 		try(FileInputStream inputStream = new FileInputStream(filename)){
 			Workbook workbook = new XSSFWorkbook(filename);
@@ -23,35 +43,59 @@ public class ExcelReader {
 			
 			for(Row row : sheet) {
 				
-				;
-				for(Cell cell : row) {
-					
-				}
 				
-				Cell book = row.getCell(0);
-				Cell chapter = row.getCell(1);
-				Cell verseText = row.getCell(2);
-				Cell verseNumber = row.getCell(3);
 				
-				if(book != null)
-					System.out.println(book.toString() + " " + chapter.toString());
-						
-				String vt = verseText.toString().replaceAll("\\b\\d+(\\.\\d+)?\\b", "");
-				String vn = verseNumber.toString().replaceAll("\\.0\\b", "");
-				System.out.println(vn + " " + vt);
-//				for(Cell cell : row) {
-//					System.out.print(cell.toString());
-//					System.out.print(" ");
-//					
-//				}
+				Cell bookCell = row.getCell(0);
+				Cell chapterCell = row.getCell(1);
+				Cell verseCell = row.getCell(2);
+				Cell verseNumberCell = row.getCell(3);
+				if(bookCell != null ) {
+					if(bookCell.toString() != "") {
+						/* Create new book if entry is found and assign fields, Bible adds book */
+						book = new Book();
+						book.setChapters(new ArrayList<Chapter>());
+						book.setName(bookCell.toString());	
+						book.setBible(bible);
+						bible.getBooks().add(book);
+
+						System.out.println("Pass book: " + countBookandChapter);
+
+						/* Create new chapter, assign  */	
+						chapter = new Chapter();
+						chapter.setVerses(new ArrayList<Verse>());
+						int ch = (int)chapterCell.getNumericCellValue();
+						chapter.setNumber(ch);
+						chapter.setBook(book);
+						book.getChapters().add(chapter);
+
+						System.out.println("Pass chapter: " + countBookandChapter);
+						++countBookandChapter;
+					}
+				}	
+
+				/* Create new verse, assign fields from table*/
+				verse = new Verse();
+				verse.setText(verseCell.toString().replaceAll("\\b\\d+(\\.\\d+)?\\b", "").trim());
+				verse.setNumber((int)verseNumberCell.getNumericCellValue());
+				verse.setChapter(chapter);
 				
+				System.out.println("Pass verse: " + countVerse);
+				
+				++countVerse;
+				
+				
+				if(chapter != null)
+					chapter.getVerses().add(verse);
 			}
 			
 			workbook.close();
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}		
+			
+		}			
+		return bible;
 	}
 	
 }
