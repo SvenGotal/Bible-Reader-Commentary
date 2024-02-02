@@ -33,7 +33,7 @@ public class ExcelReader {
 		int countBookandChapter = 1;
 		
 		/* Create domains */
-		Book book = null;				
+		Book book = new Book();;				
 		Chapter chapter = null;
 		Verse verse = null;
 		
@@ -52,11 +52,11 @@ public class ExcelReader {
 				if(bookCell != null ) {
 					if(bookCell.toString() != "") {
 						
-						if(!bible.getBooks().contains(book)) {
+						if(book.getName() != bookCell.getStringCellValue()) {
 							/* Create new book if entry is found and assign fields, Bible adds book */
 							book = new Book();
-							book.setChapters(new ArrayList<Chapter>());
-							book.setName(bookCell.toString());	
+							book.setName(bookCell.toString());
+							book.setChapters(new ArrayList<Chapter>());								
 							book.setBible(bible);
 							bible.getBooks().add(book);
 
