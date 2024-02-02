@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
@@ -21,10 +22,12 @@ public class SubmitCommentController {
 	
 	private CommentaryRepository commentaryRepository;
 	private UserRepository userRepository;
+	private BookRepository bookRepository;
 	
-	public SubmitCommentController(CommentaryRepository commentaryRepository, UserRepository userRepository) {
+	public SubmitCommentController(CommentaryRepository commentaryRepository, UserRepository userRepository, BookRepository bookRepository) {
 		this.commentaryRepository = commentaryRepository;
 		this.userRepository = userRepository;
+		this.bookRepository = bookRepository;
 	}
 	
 	
@@ -48,6 +51,7 @@ public class SubmitCommentController {
 		
 		System.out.println("User: " + comment.getUser().getUsername() + " found!");
 				
+		
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
