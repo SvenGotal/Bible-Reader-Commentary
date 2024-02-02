@@ -23,6 +23,7 @@ public class Commentary {
 	
 	private String subject;
 	@Column(length = 2000)
+	private Boolean published;
 	private String text;
 	private String timestamp;
 	
@@ -77,9 +78,17 @@ public class Commentary {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-	
-	
+			
+	public Boolean getPublished() {
+		return published;
+	}
+
+	public void setPublished(Boolean published) {
+		this.published = published;
+	}
+
+
+
 	public Chapter getChapter() {
 		return chapter;
 	}
