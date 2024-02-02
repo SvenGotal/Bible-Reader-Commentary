@@ -51,15 +51,17 @@ public class ExcelReader {
 				Cell verseNumberCell = row.getCell(3);
 				if(bookCell != null ) {
 					if(bookCell.toString() != "") {
-						/* Create new book if entry is found and assign fields, Bible adds book */
-						book = new Book();
-						book.setChapters(new ArrayList<Chapter>());
-						book.setName(bookCell.toString());	
-						book.setBible(bible);
-						bible.getBooks().add(book);
+						
+						if(!bible.getBooks().contains(book)) {
+							/* Create new book if entry is found and assign fields, Bible adds book */
+							book = new Book();
+							book.setChapters(new ArrayList<Chapter>());
+							book.setName(bookCell.toString());	
+							book.setBible(bible);
+							bible.getBooks().add(book);
 
-						System.out.println("Pass book: " + countBookandChapter);
-
+							System.out.println("Pass book: " + countBookandChapter);
+						}
 						/* Create new chapter, assign  */	
 						chapter = new Chapter();
 						chapter.setVerses(new ArrayList<Verse>());
