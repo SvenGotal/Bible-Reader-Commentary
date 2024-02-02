@@ -1,7 +1,10 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,10 +74,6 @@ public class SubmitCommentController {
 		System.out.println("User: " + comment.getUser().getUsername() + " found!");
 				
 		
-		for(Book book : bookRepository.findAll()) {
-			System.out.println(book.getName());
-		}
-		
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
@@ -85,9 +84,27 @@ public class SubmitCommentController {
     @ResponseBody
     public List<Chapter> fetchChapters(@RequestParam Long bookId) {
         // Replace this with your actual logic to fetch chapters based on the bookId
-        // This is just a placeholder example
-		       
-        return chapterRepository.findByBookId(bookId);
+        
+		Optional<Book> bk = bookRepository.findById(bookId);
+		ArrayList<Chapter> chapters;
+		
+		if(bk.isPresent()) {
+			List<Chapter> list = bk.get().getChapters(); 
+			chapters = new ArrayList<Chapter>();
+			
+			for(Chapter ch : list) {
+				System.out.println(ch.getNumber());
+				Chapter chapt = new Chapter();
+				chapt.setId(ch.getId());
+				chapt.setNumber(ch.getNumber());
+				chapters.add(chapt);
+			}
+			
+			
+			return chapters;
+		}
+		else       
+			return Collections.emptyList();
     }
 	
 	
