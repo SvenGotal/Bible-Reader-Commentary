@@ -29,6 +29,10 @@ public class Commentary {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "chapter_id")
+	private Chapter chapter;
 
 	public Commentary() {		
 		
@@ -46,7 +50,6 @@ public class Commentary {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
 
 
 	public User getUser() {
@@ -75,6 +78,20 @@ public class Commentary {
 		this.timestamp = timestamp;
 	}
 	
+	
+	
+	public Chapter getChapter() {
+		return chapter;
+	}
+
+
+
+	public void setChapter(Chapter chapter) {
+		this.chapter = chapter;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return text + "\n\n" + user.getUsername() + " at: " + timestamp;

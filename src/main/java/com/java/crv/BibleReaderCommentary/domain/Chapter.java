@@ -23,6 +23,9 @@ public class Chapter {
 	private Book book;
 	@OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
 	private List<Verse> verses;
+	@OneToMany(mappedBy ="chapter", cascade = CascadeType.ALL)
+	private List<Commentary> comments;
+	
 	
 	public Long getId() {
 		return id;
@@ -48,6 +51,14 @@ public class Chapter {
 	public void setVerses(List<Verse> verses) {
 		this.verses = verses;
 	}
+	public List<Commentary> getComments() {
+		return comments;
+	}
+	public void setComments(List<Commentary> comments) {
+		this.comments = comments;
+	}
+	
+	
 	
 	
 }
