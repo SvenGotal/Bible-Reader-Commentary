@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //todo refactor URL endpoints
 //todo allow only anonymous and guests to create their users
 //todo existing users should access their homepage rather than new user creation form
+//todo implement sharing of comments between users both public and private.
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.java.crv.BibleReaderCommentary.repositories")
