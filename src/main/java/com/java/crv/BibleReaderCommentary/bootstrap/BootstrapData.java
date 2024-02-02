@@ -58,8 +58,8 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println("Number of inserted rows: " + userRepo.count());
 		System.out.println(userRepo.findAll().toString()); 
 		
-	
-		ExcelReader reader = new ExcelReader("/home/sven/test.xlsx");
+		ExcelReader reader = new ExcelReader("C:\\Users\\sgotal\\Downloads\\test.xlsx");
+		//ExcelReader reader = new ExcelReader("/home/sven/test.xlsx");
 		Bible bible = reader.loadBible("WordProject");
 		bibleRepo.save(bible);
 		
