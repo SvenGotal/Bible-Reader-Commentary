@@ -88,10 +88,8 @@ public class SubmitCommentController {
     public List<Chapter> fetchChapters(@RequestParam Long bookId) {
         // Replace this with your actual logic to fetch chapters based on the bookId
         // This is just a placeholder example
-		
-		
-        Optional<Chapter> chpt = chapterRepository.findById(bookId);
-        return chpt.map(Collections::singletonList).orElseGet(Collections::emptyList);
+		       
+        return chapterRepository.findByBookId(bookId);
     }
 	
 	
