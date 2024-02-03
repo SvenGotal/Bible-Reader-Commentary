@@ -50,9 +50,9 @@ public class Book {
 		this.chapters = chapters;
 	}
 	
-	public Chapter getChapterByNumber(int number) {
+	public Chapter getChapterByNumber(Long number) {
 		
-		for(Chapter chapter : chapters) {
+		for(Chapter chapter : chapters) {				
 			if(chapter.getNumber() == number)
 				return chapter;
 		}
