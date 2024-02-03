@@ -34,7 +34,6 @@ public class SubmitCommentController {
 	private CommentaryRepository commentaryRepository;
 	private UserRepository userRepository;
 	private BookRepository bookRepository;
-	private ChapterRepository chapterRepository;
 	
 	public SubmitCommentController(
 			CommentaryRepository commentaryRepository, 
@@ -45,7 +44,6 @@ public class SubmitCommentController {
 		this.commentaryRepository = commentaryRepository;
 		this.userRepository = userRepository;
 		this.bookRepository = bookRepository;
-		this.chapterRepository = chapterRepository;
 	}
 	
 	
