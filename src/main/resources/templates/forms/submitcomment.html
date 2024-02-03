@@ -23,7 +23,15 @@
 		</select>	
 	
 		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
-		<label>Comment: <textarea type="text" th:field="*{text}" /></label><br/>		
+		<label>Comment: <textarea type="text" th:field="*{text}" /></label><br/>
+		
+		<label>
+			Želim da moj komentar bude privatan: 
+			<input type="checkbox" name="setPrivateCheckbox" value="false">
+		</label>
+		
+	
+				
 		<button type="submit">Submit</button>
 	</form>
 
