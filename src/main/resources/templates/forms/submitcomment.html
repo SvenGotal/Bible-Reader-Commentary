@@ -26,7 +26,7 @@
 	
 	<form method="post" th:action="submitComment" th:object="${comment}">
 		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
-		<label>Username: <textarea type="text" th:field="*{text}" /></label><br/>		
+		<label>Comment: <textarea type="text" th:field="*{text}" /></label><br/>		
 		<button type="submit">Submit</button>
 	</form>
 
