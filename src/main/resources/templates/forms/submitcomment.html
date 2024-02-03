@@ -9,22 +9,19 @@
 	
 	<h1>Submit form</h1>	
 	
-	<form method="post" th:action="@{/submitComment}" onsubmit="return validateForm()">
+	<form method="post" th:action="@{/submitComment}" onsubmit="return validateForm()" th:object="${comment}">
     <!-- Existing code... -->
 
-    <select id="bookSelection" name="selectedBook" onchange="updateChapters()">
-        <option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-        <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-    </select>
+		<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
+			<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+			<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+		</select>
 
-    <select id="chapterSelection" name="selectedChapter" disabled>
-        <option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>
-        <!-- Options will be dynamically populated using JavaScript -->
-    </select>
-	</form>
+		<select id="chapterSelection" name="selectedChapter" disabled>
+			<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>
+			<!-- Options will be dynamically populated using JavaScript -->
+		</select>	
 	
-	
-	<form method="post" th:action="submitComment" th:object="${comment}">
 		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
 		<label>Comment: <textarea type="text" th:field="*{text}" /></label><br/>		
 		<button type="submit">Submit</button>
