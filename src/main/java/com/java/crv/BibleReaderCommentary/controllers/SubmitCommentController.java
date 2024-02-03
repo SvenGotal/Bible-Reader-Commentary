@@ -70,19 +70,34 @@ public class SubmitCommentController {
 		
 		model.addAttribute("books", bookRepository.findAll());
 		
+		// Validate if there are binding issues
 		if(validation.hasErrors()) {
 			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");		
 			return "forms/submitComment";
 		}
+		
+		// Console debugging
 		System.out.println("Looking for user...");
+		
+		// Set set comment to a specific user
 		comment.setUser(userRepository.findByUsername(princ.getName()));
 		if(comment.getUser()==null)
 			System.out.println("User not found!");
 		
+		// Console debugging
 		System.out.println("User: " + comment.getUser().getUsername() + " found!");
 		System.out.println("Selected book: " + request.getParameter("selectedBook"));		
 		System.out.println("Selected chapter: " + request.getParameter("selectedChapter"));
 		
+		// find book first, set the comment's chapter to Book's chapter by number, not Id
+		// Set comment to a specific Book and Chapter
+		Optional<Book> book = bookRepository.findById(Long.parseLong(request.getParameter("selectedBook")));
+		Book selectedBook = book.get();
+		
+		Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
+		Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
+		 
+		comment.setChapter(selectedChapter);
 		
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
