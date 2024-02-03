@@ -60,10 +60,12 @@ public class SubmitCommentController {
 	@PostMapping
 	public String addComment(
 			@ModelAttribute("comment") Commentary comment,
+			@RequestParam(name="setPrivateCheckbox", required=false) String setPrivateCheckbox,
 			HttpServletRequest request,
 			BindingResult validation, 
 			RedirectAttributes redirectAttributes, 
-			Principal princ, Model model) 
+			Principal princ, 
+			Model model) 
 	{		
 		
 		model.addAttribute("books", bookRepository.findAll());
@@ -87,15 +89,28 @@ public class SubmitCommentController {
 		System.out.println("Selected book: " + request.getParameter("selectedBook"));		
 		System.out.println("Selected chapter: " + request.getParameter("selectedChapter"));
 		
-		// find book first, set the comment's chapter to Book's chapter by number, not Id
-		// Set comment to a specific Book and Chapter
+		
+		/* Find Book with specified id. Book's numbers (1,2,3, etc) 
+		 * correspond to their Id's in the database */
 		Optional<Book> book = bookRepository.findById(Long.parseLong(request.getParameter("selectedBook")));
 		Book selectedBook = book.get();
 		
+		/* Search for Chapter by number property in the Book object from the persistence */
 		Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
 		Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
-		 
+		
+		/* Set found Chapter in the Book to the Commentary object 'comment' */
 		comment.setChapter(selectedChapter);
+		
+		/* Check requested parameter value of String
+		 * If user wants their comment to remain private, they will check the checkbox so Published: false */
+		Boolean published = false;
+		if(setPrivateCheckbox == null || setPrivateCheckbox == "")
+			published = true;
+		
+		/* Set comment to private/public from the checkbox value */
+		comment.setPublished(published);
+		
 		
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
