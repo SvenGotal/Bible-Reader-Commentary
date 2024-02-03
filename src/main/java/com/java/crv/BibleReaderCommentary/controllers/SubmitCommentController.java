@@ -25,6 +25,8 @@ import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/submitComment")
 public class SubmitCommentController {
@@ -58,7 +60,13 @@ public class SubmitCommentController {
 	
 	
 	@PostMapping
-	public String addComment(@ModelAttribute("comment") Commentary comment, BindingResult validation, RedirectAttributes redirectAttributes, Principal princ, Model model) {		
+	public String addComment(
+			@ModelAttribute("comment") Commentary comment,
+			HttpServletRequest request,
+			BindingResult validation, 
+			RedirectAttributes redirectAttributes, 
+			Principal princ, Model model) 
+	{		
 		
 		model.addAttribute("books", bookRepository.findAll());
 		
@@ -72,7 +80,9 @@ public class SubmitCommentController {
 			System.out.println("User not found!");
 		
 		System.out.println("User: " + comment.getUser().getUsername() + " found!");
-				
+		System.out.println("Selected book: " + request.getParameter("selectedBook"));		
+		System.out.println("Selected chapter: " + request.getParameter("selectedChapter"));
+		
 		
 		commentaryRepository.save(comment);		
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
