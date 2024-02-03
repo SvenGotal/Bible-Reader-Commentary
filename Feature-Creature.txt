@@ -1,1 +1,3 @@
 Ideja: staviti link na referencu unutar teksta komentara, npr Ivan3:16 u komentaru da povuče biblijski tekst.
+Ideja: staviti da komentari mogu biti javni i privatni po odabiru korisnika
+Ideja: omogućiti međusobno šeranje komentara sa drugim korisnicima 
