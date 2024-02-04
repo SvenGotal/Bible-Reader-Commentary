@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //todo implement sharing of comments between users both public and private.
 //todo proof user creation, disallow username duplicates.
 //todo non-users cannot view comment creation but only user creation forms
+//todo make custom made user login form.
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.java.crv.BibleReaderCommentary.repositories")
