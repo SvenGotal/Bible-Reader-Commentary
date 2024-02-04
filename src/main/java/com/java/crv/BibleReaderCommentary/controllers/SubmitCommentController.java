@@ -66,8 +66,15 @@ public class SubmitCommentController {
 			RedirectAttributes redirectAttributes, 
 			Principal princ, 
 			Model model) 
-	{		
+	{	
 		
+		
+		
+		
+		
+		
+		
+		/* Fetch all books to populate user selection */
 		model.addAttribute("books", bookRepository.findAll());
 		
 		// Validate if there are binding issues
@@ -85,15 +92,28 @@ public class SubmitCommentController {
 		
 		/* Find Book with specified id. Book's numbers (1,2,3, etc) 
 		 * correspond to their Id's in the database */
-		Optional<Book> book = bookRepository.findById(Long.parseLong(request.getParameter("selectedBook")));
-		Book selectedBook = book.get();
+		Book selectedBook = new Book();
+		if(request.getParameter("selectedBook") != null) {
+			Optional<Book> book = bookRepository.findById(Long.parseLong(request.getParameter("selectedBook")));
+			selectedBook = book.get();
+		}
+		else {
+			redirectAttributes.addFlashAttribute("binding", "Morate odabrati knjigu!");
+			return "redirect:/";
+		}
 		
 		/* Search for Chapter by number property in the Book object from the persistence */
-		Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
-		Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
-		
-		/* Set found Chapter in the Book to the Commentary object 'comment' */
-		comment.setChapter(selectedChapter);
+		Chapter selectedChapter = new Chapter();
+		if(request.getParameter("selectedChapter") != null) {
+			Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
+			selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
+			/* Set found Chapter in the Book to the Commentary object 'comment' */
+			comment.setChapter(selectedChapter);
+		}
+		else {
+			redirectAttributes.addFlashAttribute("binding", "Morate odabrati poglavlje!");
+			return "redirect:/";
+		}
 		
 		/* Check requested parameter value of String
 		 * If user wants their comment to remain private, they will check the checkbox so Published: false */
@@ -104,11 +124,21 @@ public class SubmitCommentController {
 		/* Set comment to published/not published from the checkbox value */
 		comment.setPublished(published);
 		
+		/* Check if the contents have been fully submitted */
+		if(comment.getSubject() == null || comment.getSubject() == "") {
+			redirectAttributes.addFlashAttribute("binding", "Komentar mora imati naslov!");
+			return "redirect:/";
+		}
+		if(comment.getText().length() < 20 || comment.getText() == null) {
+			redirectAttributes.addFlashAttribute("binding", "Komentar kraći od 20 slova neće biti unesen. ");
+			return "redirect:/";
+		}
+		
 		/* Store comment into persistence */
 		commentaryRepository.save(comment);	
 		
 		/* Send message to the index that saving was successful */
-		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
+		redirectAttributes.addFlashAttribute("binding", "Uspješno ste dodali komentar!");
 		
 		return "redirect:/";
 	}	
@@ -126,7 +156,7 @@ public class SubmitCommentController {
 			chapters = new ArrayList<Chapter>();
 			
 			for(Chapter ch : list) {
-				System.out.println(ch.getNumber());
+				
 				Chapter chapt = new Chapter();
 				chapt.setId(ch.getId());
 				chapt.setNumber(ch.getNumber());
