@@ -74,21 +74,14 @@ public class SubmitCommentController {
 		if(validation.hasErrors()) {
 			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");		
 			return "forms/submitComment";
-		}
+		}	
 		
-		// Console debugging
-		System.out.println("Looking for user...");
-		
-		// Set set comment to a specific user
+		// Set comment to a specific user
 		comment.setUser(userRepository.findByUsername(princ.getName()));
-		if(comment.getUser()==null)
-			System.out.println("User not found!");
-		
-		// Console debugging
-		System.out.println("User: " + comment.getUser().getUsername() + " found!");
-		System.out.println("Selected book: " + request.getParameter("selectedBook"));		
-		System.out.println("Selected chapter: " + request.getParameter("selectedChapter"));
-		
+		if(comment.getUser()==null) {
+			redirectAttributes.addFlashAttribute("binding", "User not found!");
+			return "redirect:/";
+		}
 		
 		/* Find Book with specified id. Book's numbers (1,2,3, etc) 
 		 * correspond to their Id's in the database */
@@ -108,11 +101,13 @@ public class SubmitCommentController {
 		if(setPrivateCheckbox == null || setPrivateCheckbox == "")
 			published = true;
 		
-		/* Set comment to private/public from the checkbox value */
+		/* Set comment to published/not published from the checkbox value */
 		comment.setPublished(published);
 		
+		/* Store comment into persistence */
+		commentaryRepository.save(comment);	
 		
-		commentaryRepository.save(comment);		
+		/* Send message to the index that saving was successful */
 		redirectAttributes.addFlashAttribute("binding", "Data succesfully stored!");
 		
 		return "redirect:/";
