@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //todo existing users should access their homepage rather than new user creation form
 //todo implement sharing of comments between users both public and private.
 //todo proof user creation, disallow username duplicates.
+//todo non-users cannot view comment creation but only user creation forms
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.java.crv.BibleReaderCommentary.repositories")
