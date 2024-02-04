@@ -1,4 +1,5 @@
 Ideja: staviti link na referencu unutar teksta komentara, npr Ivan3:16 u komentaru da povuče biblijski tekst.
-Ideja: staviti da komentari mogu biti javni i privatni po odabiru korisnika
+check - Ideja: staviti da komentari mogu biti javni i privatni po odabiru korisnika
 Ideja: omogućiti međusobno šeranje komentara sa drugim korisnicima 
-Idjea: omogućiti korisnicima da modificiraju svoje komentare
+Ideja: omogućiti korisnicima da modificiraju svoje komentare
+Ideja: onemogućiti ružne riječi via preloadanom listom ružnih riječi pomoću regex-a
