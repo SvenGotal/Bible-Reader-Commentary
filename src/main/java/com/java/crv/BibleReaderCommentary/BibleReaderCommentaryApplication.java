@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //todo proof user creation, disallow username duplicates.
 //todo non-users cannot view comment creation but only user creation forms
 //todo make custom made user login form.
+//todo use preloaded library of cuss words and sift comments via regex, disallow such comments.
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.java.crv.BibleReaderCommentary.repositories")
