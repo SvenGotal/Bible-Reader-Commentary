@@ -4,6 +4,7 @@
 	<title>Submit Form</title>
 	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.webp}">
 	<script th:src="@{/scripts/ajax_script.js}"></script>
+	<script th:src="@{/scripts/redirection_script.js}" defer="true"></script>
 </head>
 <body>
 	
@@ -34,6 +35,8 @@
 				
 		<button type="submit">Submit</button>
 	</form>
+	
+	<button type="submit" onclick="redirectToIndex()">Nazad na početnu stranicu</button>
 
 </body>
 </html>
