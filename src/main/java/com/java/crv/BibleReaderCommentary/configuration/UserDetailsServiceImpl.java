@@ -50,7 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		http.authorizeHttpRequests((requests) -> 
 		requests
-			.requestMatchers("/"/*,"/h2-console/**"*/).permitAll()
+			.requestMatchers("/").permitAll()
 			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.anyRequest()
 			.authenticated())
@@ -59,6 +59,18 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 				.headers( headers -> headers
 						.frameOptions(frame -> frame.disable())
 			);
+		
+		return http.build();
+	}
+	
+	@Bean
+	protected SecurityFilterChain loginConfig(HttpSecurity http) throws Exception {
+		
+		http.authorizeHttpRequests( (requests) -> 
+		requests
+		.requestMatchers("/login").permitAll()
+		.anyRequest().authenticated()
+		).formLogin(Customizer.withDefaults());
 		
 		return http.build();
 	}
