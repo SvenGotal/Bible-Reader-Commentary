@@ -27,6 +27,11 @@ public class IndexController {
 		model.addAttribute("comments", comments.findAll());
 		
 		
-		return "index";
-	}		
+		return "/index";
+	}
+	
+	@GetMapping("/login")
+	public String loginUser() {
+		return "redirect:/";
+	}
 }
