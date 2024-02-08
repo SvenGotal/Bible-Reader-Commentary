@@ -11,7 +11,10 @@
 	<form method="post" th:action="submitForm" th:object="${user}">
 		<label>Username: <input type="text" th:field="*{username}" /></label><br/>
 		<label>Email: <input type="text" th:field="*{email}" /></label><br/>
-		<label>Password: <input type="text" th:field="*{password}" /></label><br/>		
+		<label>Password: <input type="text" th:field="*{password}" /></label><br/>
+		<div th:switch="${adminRole}">
+			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>		
+		</div>
 		<button type="submit">Submit</button>
 	</form>
 

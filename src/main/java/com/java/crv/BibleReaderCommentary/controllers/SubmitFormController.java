@@ -1,5 +1,7 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.security.Principal;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,14 @@ public class SubmitFormController {
 	}
 	
 	@GetMapping
-	public String showForm(Model model) {
+	public String showForm(Model model, Principal princ) {
+		
+	
+		String username = princ.getName();
+		User currentUser = userRepository.findByUsername(username);
+		UserRoles ur = currentUser.getRole();
+		
+		model.addAttribute("adminRole", ur.name());
 		model.addAttribute("user", new User());
 		return "forms/submitform";
 	}
@@ -37,7 +46,7 @@ public class SubmitFormController {
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setRole(UserRoles.USER);
+		//user.setRole(UserRoles.USER);
 		
 		userRepository.save(user);
 		return "redirect:/";
