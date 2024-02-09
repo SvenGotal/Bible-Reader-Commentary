@@ -3,19 +3,24 @@
 <head>
 	<title>Submit Form</title>
 	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.webp}">
+	<script th:src="@{/scripts/javascript.js}" ></script>
 </head>
 <body>
 	
 	<h1>Submit form</h1>	
 	
-	<form method="post" th:action="submitForm" th:object="${user}">
-		<label>Username: <input type="text" th:field="*{username}" /></label><br/>
-		<label>Email: <input type="text" th:field="*{email}" /></label><br/>
-		<label>Password: <input type="text" th:field="*{password}" /></label><br/>
+	<form method="post" id="user_creation_form" th:action="submitForm" th:object="${user}">
+		<label>Username: <input type="text" th:field="*{username}" required/></label><br/>
+		<label>Email: <input type="email" th:field="*{email}" /></label><br/>
+		<label>Password: <input type="password" name="password" id="password" th:field="*{password}" required/></label><br/>
+		<label>Retype password: <input type="password" name="password_retype" id="password_retype" /> </label>
 		<div th:switch="${adminRole}">
 			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>		
 		</div>
-		<button type="submit">Submit</button>
+		<div>
+			<span name="error_display" id="error_display"></span>
+		</div>
+		<button type="submit" onclick="passwordValidation()">Submit</button>
 	</form>
 
 </body>

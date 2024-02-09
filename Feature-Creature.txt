@@ -3,3 +3,4 @@ check - Ideja: staviti da komentari mogu biti javni i privatni po odabiru korisn
 Ideja: omogućiti međusobno šeranje komentara sa drugim korisnicima 
 Ideja: omogućiti korisnicima da modificiraju svoje komentare
 Ideja: onemogućiti ružne riječi via preloadanom listom ružnih riječi pomoću regex-a
+Dodatak: dodati posebni dio za Admine, vidljivost usera, upravljanje userima i komentarima itd.

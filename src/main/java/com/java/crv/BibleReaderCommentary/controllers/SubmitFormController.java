@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/submitForm")
@@ -40,13 +43,32 @@ public class SubmitFormController {
 	}
 	
 	@PostMapping
-	public String submitForm(@ModelAttribute("user") @Validated User user, BindingResult bindingResult, Model model) {
+	public String submitForm(
+			@ModelAttribute("user") @Validated User user,
+			BindingResult bindingResult, 
+			Model model,
+			RedirectAttributes redirectAttributes,
+			HttpServletRequest request) 
+	{
 		if(bindingResult.hasErrors())
 			return "forms/submitform";
 		
+		/* Check if fields username and password are filled */
+		if(user.getUsername() == null || user.getUsername() == "" || user.getPassword() == null || user.getPassword() == "") {
+			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");
+			return "redirect:/";			
+		}
+		
+		/* Chech if user password and retyped password match */
+		/*if(user.getPassword().trim() != request.getParameter("password_retype").trim()) {
+			redirectAttributes.addFlashAttribute("binding", "Passwords did not match!");
+			return "redirect:/";
+		}*/
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));
-		//user.setRole(UserRoles.USER);
+		user.setPassword(encoder.encode(user.getPassword().trim()));
+		if(user.getRole() == null || user.getRole().name() == "")
+			user.setRole(UserRoles.USER);
 		
 		userRepository.save(user);
 		return "redirect:/";
