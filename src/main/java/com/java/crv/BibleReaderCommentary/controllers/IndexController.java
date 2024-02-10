@@ -34,17 +34,19 @@ public class IndexController {
 	{	
 		
 		String currentUsername;
+		Boolean userValidated = false;
 		/* Take current logged user to adjust options visibility */
 		if(princ != null) {
 			if(princ.getName() != null) {
 				currentUsername = princ.getName();
 				User currentUser = userRepository.findByUsername(currentUsername);		
 				UserRoles currentUserRole = currentUser.getRole();
-				Boolean userValidated = currentUserRole.name() != null ? true : false;
+				userValidated = currentUserRole.name() != null ? true : false;
 				model.addAttribute("userRole", currentUserRole.name());
-				model.addAttribute("userValidated", userValidated);
+				
 			}
 		}
+		model.addAttribute("userValidated", userValidated);
 		model.addAttribute("binding", binding);
 		model.addAttribute("comments", comments.findCommentaryByPublished(true));
 		
