@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
@@ -32,14 +33,20 @@ public class IndexController {
 			Principal princ) 
 	{	
 		
-		/* Take current logged user to adjust visibility */
-		String currentUsername = princ.getName();
-		User currentUser = userRepository.findByUsername(currentUsername);
-		
-		
-		
+		String currentUsername;
+		/* Take current logged user to adjust options visibility */
+		if(princ != null) {
+			if(princ.getName() != null) {
+				currentUsername = princ.getName();
+				User currentUser = userRepository.findByUsername(currentUsername);		
+				UserRoles currentUserRole = currentUser.getRole();
+				Boolean userValidated = currentUserRole.name() != null ? true : false;
+				model.addAttribute("userRole", currentUserRole.name());
+				model.addAttribute("userValidated", userValidated);
+			}
+		}
 		model.addAttribute("binding", binding);
-		model.addAttribute("comments", comments.findAll());
+		model.addAttribute("comments", comments.findCommentaryByPublished(true));
 		
 		
 		return "/index";
