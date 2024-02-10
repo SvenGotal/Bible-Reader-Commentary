@@ -12,23 +12,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
+import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
-import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
+import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Controller
 public class ApiController {
 	
 	private BookRepository bookRepository;
-	private ChapterRepository chapterRepository;
+	private CommentaryRepository commentRepository;
 	
 	public ApiController (
 			BookRepository bookRepository,
-			ChapterRepository chapterRepository
+			CommentaryRepository commentRepository
 			) 
 	{
 		this.bookRepository = bookRepository;
-		this.chapterRepository = chapterRepository;
+		this.commentRepository = commentRepository;
 	}
 	
 	@GetMapping({"/submitComment/fetchChapters", "/fetchChapters"})
@@ -73,20 +74,36 @@ public class ApiController {
 
 				if(ch.getNumber() == chapterNumber) {
 					selectedChapter = ch;
-					System.out.println("User selected Chapter: " + selectedChapter.getNumber());
 					break;
 				}
-				
-			}
-			
+			}	
 			/* Fetch Verses from chapter into a list */
 			List<Verse> foundVerses = selectedChapter.getVerses();
-			
-
 			return foundVerses;
-		}
-		
+		}		
 		return Collections.emptyList();
+	}
+	
+	@GetMapping("/fetchPublicComments")
+	@ResponseBody
+	public List<Commentary> fetchPublicComments(@RequestParam Long bookId, @RequestParam int chapterNumber){
+		
+		List<Chapter> chapters = fetchChapters(bookId); 
+		Chapter selectedChapter = fetchSelectedChapterbyNumber(chapters, chapterNumber);
+		
+		List<Commentary> comments = commentRepository.findCommentaryById(selectedChapter.getId());
+		
+		return comments;
+	}
+	
+	private Chapter fetchSelectedChapterbyNumber(List<Chapter> chpt, int chapterNumber) {
+		
+		for(Chapter ch : chpt) {
+			if(ch.getNumber() == chapterNumber) {
+				return ch;
+			}
+		}
+		return null;
 	}
 
 }
