@@ -48,6 +48,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		/*SecurityFilterChain - configures which URL's are accessible and to whom. Users are discriminated against their roles and allowed
 		 * access only to certain portions of the web app*/
 		
+		//todo allow URL's that fetch book, chapter and verses in index
+		
 		http.authorizeHttpRequests((requests) -> 
 		requests
 			.requestMatchers("/").permitAll()
