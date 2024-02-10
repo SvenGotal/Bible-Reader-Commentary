@@ -1,9 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -14,14 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
-import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
@@ -38,8 +33,8 @@ public class SubmitCommentController {
 	public SubmitCommentController(
 			CommentaryRepository commentaryRepository, 
 			UserRepository userRepository, 
-			BookRepository bookRepository, 
-			ChapterRepository chapterRepository) 
+			BookRepository bookRepository 
+			) 
 	{
 		this.commentaryRepository = commentaryRepository;
 		this.userRepository = userRepository;
@@ -142,33 +137,5 @@ public class SubmitCommentController {
 		
 		return "redirect:/";
 	}	
-	
-	@GetMapping("/fetchChapters")
-    @ResponseBody
-    public List<Chapter> fetchChapters(@RequestParam Long bookId) {
-        // Replace this with your actual logic to fetch chapters based on the bookId
-        
-		Optional<Book> bk = bookRepository.findById(bookId);
-		ArrayList<Chapter> chapters;
-		
-		if(bk.isPresent()) {
-			List<Chapter> list = bk.get().getChapters(); 
-			chapters = new ArrayList<Chapter>();
-			
-			for(Chapter ch : list) {
-				
-				Chapter chapt = new Chapter();
-				chapt.setId(ch.getId());
-				chapt.setNumber(ch.getNumber());
-				chapters.add(chapt);
-			}
-			
-			
-			return chapters;
-		}
-		else       
-			return Collections.emptyList();
-    }
-	
 	
 }
