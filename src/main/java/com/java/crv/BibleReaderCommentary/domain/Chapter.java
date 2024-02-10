@@ -2,6 +2,8 @@ package com.java.crv.BibleReaderCommentary.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Chapter {
 	private Long id;
 	private int number;
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn( name = "book_id")
 	private Book book;
 	@OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)

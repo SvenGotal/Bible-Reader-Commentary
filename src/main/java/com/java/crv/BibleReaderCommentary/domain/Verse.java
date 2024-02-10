@@ -1,5 +1,7 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Verse {
 	@Column(length = 500)
 	private String text;
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "chapter_id")
 	private Chapter chapter;
 	
