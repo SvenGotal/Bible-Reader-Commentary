@@ -11,7 +11,7 @@
 	<h1>Submit form</h1>	
 	
 	<form method="post" th:action="@{/submitComment}" onsubmit="return validateForm()" th:object="${comment}">
-    <!-- Existing code... -->
+
 
 		<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
 			<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
@@ -19,8 +19,7 @@
 		</select>
 
 		<select id="chapterSelection" name="selectedChapter" disabled>
-			<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>
-			<!-- Options will be dynamically populated using JavaScript -->
+			<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
 		</select>	
 	
 		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
