@@ -93,7 +93,7 @@
 		fetch('/fetchVerses?' + params.toString())
 		.then(response => {
 			if(!response.ok){
-				throw new Error("Network response not sending json...");
+				console.error("Response is not ok...");
 			}
 			console.log("Printing parameters: " + params.toString());
 			console.log("Response is ok...");
