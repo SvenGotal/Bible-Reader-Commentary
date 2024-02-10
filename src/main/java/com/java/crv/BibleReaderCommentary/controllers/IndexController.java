@@ -1,24 +1,16 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.java.crv.BibleReaderCommentary.domain.Book;
-import com.java.crv.BibleReaderCommentary.domain.Chapter;
+
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
-import com.java.crv.BibleReaderCommentary.domain.Verse;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
@@ -74,31 +66,5 @@ public class IndexController {
 	public String loginUser() {
 		return "redirect:/";
 	}
-	
-	@GetMapping("/fetchVerses")
-	@ResponseBody
-	public List<Verse> fetchVerses(@RequestParam Long bookId){
-		
-		/* Modify controller to fetch verses from book->chapter->verses */
-		
-		Optional<Book> bk = bookRepository.findById(bookId);
-		ArrayList<Chapter> chapters;
-		
-		if(bk.isPresent()) {
-			List<Chapter> list = bk.get().getChapters(); 
-			chapters = new ArrayList<Chapter>();
-			
-			for(Chapter ch : list) {
-				
-				Chapter chapt = new Chapter();
-				chapt.setId(ch.getId());
-				chapt.setNumber(ch.getNumber());
-				chapters.add(chapt);
-			}			
-		}
-		
-		return Collections.emptyList();
-	}
-	
 	
 }
