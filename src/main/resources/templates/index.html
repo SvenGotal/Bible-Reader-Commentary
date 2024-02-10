@@ -10,7 +10,7 @@
 	<p th:text="${binding}"></p>
 	</br>
 	
-	<div name="bible_display">
+	<div id="bible_display">
 	
 		<form method="post" th:action="@{/fetchChapters}">
 			<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
@@ -18,11 +18,16 @@
 				<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 			</select>
 	
-			<select id="chapterSelection" name="selectedChapter" disabled>
+			<select id="chapterSelection" name="selectedChapter" onchange="updateIndexVerses()" disabled>
 				<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
 			</select>	
 		</form>
-	
+		
+		<div id="bible_text">
+		
+		
+		
+		</div>
 	
 	</div>
 	
