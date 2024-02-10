@@ -14,6 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //todo non-users cannot view comment creation but only user creation forms
 //todo make custom made user login form.
 //todo use preloaded library of cuss words and sift comments via regex, disallow such comments.
+//todo implement try->catch blocks where needed.
+//todo use SLF4J logging instead of System.out.println
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.java.crv.BibleReaderCommentary.repositories")
