@@ -11,10 +11,31 @@
 	<p th:text="${binding}"></p>
 	</br>
 	
+	<div th:if="${userValidated}">
+		<span th:switch="${userRole}">
+		<!--  
+		ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
+		USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
+		-->
+			<span th:case="USER">
+				<a href="/submitComment?redirect=/">Write comment</a>
+			</span>
+			<span th:case="ADMIN">
+				<a href="/submitForm?redirect=/">Create profile</a>
+				<a href="/submitComment?redirect=/">Write comment</a>
+			</span>
+			<span th:case="OWNER">
+				<a href="/submitForm?redirect=/">Create profile</a>
+				<a href="/submitComment?redirect=/">Write comment</a>			
+			</span>
+						
+		</span>
+	</div>
+	<div th:unless="${userValidated}">
+		<a href="/submitForm?redirect=/">Create profile</a>	
+		<a href="/login?redirect=/">Login</a>
+	</div>
 	
-	<a href="/submitForm?redirect=/">Create profile</a>
-	<a href="/submitComment?redirect=/">Write comment</a>
-	<a href="/login?redirect=/">Login</a>
 	
 	<table>
 		<tr>
