@@ -2,14 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Index</title>
-	<script th:src="@{/scripts/redirection_script.js}" defer="true"></script>
-	
+	<script th:src="@{/scripts/ajax_script.js}"></script>
 </head>
 <body>
 	
 	<h1>Welcome to the index page</h1>
 	<p th:text="${binding}"></p>
 	</br>
+	
+	<div name="bible_display">
+	
+		<form method="post" th:action="@{/fetchChapters}">
+			<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+				<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+				<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+			</select>
+	
+			<select id="chapterSelection" name="selectedChapter" disabled>
+				<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
+			</select>	
+		</form>
+	
+	
+	</div>
 	
 	<div th:if="${userValidated}">
 		<span th:switch="${userRole}">
