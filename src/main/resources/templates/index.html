@@ -18,13 +18,18 @@
 				<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 			</select>
 	
-			<select id="chapterSelection" name="selectedChapter" onchange="updateIndexVerses()" disabled>
+			<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled>
 				<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
 			</select>	
 		</form>
 		
 		<div id="bible_text">
 		
+		
+		
+		</div>
+		
+		<div id="comments_text">
 		
 		
 		</div>
