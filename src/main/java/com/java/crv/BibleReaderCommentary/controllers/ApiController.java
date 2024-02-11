@@ -91,9 +91,25 @@ public class ApiController {
 		List<Chapter> chapters = fetchChapters(bookId); 
 		Chapter selectedChapter = fetchSelectedChapterbyNumber(chapters, chapterNumber);
 		
-		List<Commentary> comments = commentRepository.findCommentaryById(selectedChapter.getId());
+		List<Commentary> allComments = (List<Commentary>) commentRepository.findAll();
 		
-		return comments;
+		/*================ TEST ================*/
+		for(Commentary comment: allComments) {
+			System.out.println("printing comment:");
+			System.out.println(comment.getSubject());
+		}
+		/*======================================*/
+		
+		List<Commentary> publicComments = fetchOnlyPublicComments(allComments);
+		
+		/*================ TEST ================*/
+		for(Commentary comment: publicComments) {
+			System.out.println("Printing a public comment:");
+			System.out.println(comment.getSubject());
+		}
+		/*======================================*/
+		
+		return publicComments;
 	}
 	
 	private Chapter fetchSelectedChapterbyNumber(List<Chapter> chpt, int chapterNumber) {
@@ -104,6 +120,19 @@ public class ApiController {
 			}
 		}
 		return null;
+	}
+	
+	private List<Commentary> fetchOnlyPublicComments(List<Commentary> allComments){
+		
+		ArrayList<Commentary> publicComments = new ArrayList<Commentary>();
+		
+		for(Commentary cmnt : allComments) {
+			if(cmnt.getPublished()) {
+				publicComments.add(cmnt);
+			}
+		}
+		
+		return publicComments;
 	}
 
 }
