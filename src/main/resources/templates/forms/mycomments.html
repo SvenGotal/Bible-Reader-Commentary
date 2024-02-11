@@ -15,7 +15,7 @@
 			<h2>Komentari</h2>
 			<table id="comment_table">
 				<tr>
-					<th>Datum</th>
+					<th>Datum pisanja</th>
 					<th>Komentar</th>
 					<th>Knjiga</th>
 					<th>Poglavlje</th>
@@ -28,15 +28,20 @@
 						</br>
 						<p th:text="${comment.text}"></p>
 					</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td th:text="${comment.chapter.book.name}"></td>
+					<td th:text="${comment.chapter.number}"></td>
+					<td> <input type="radio" th:attr="name=${'1'}"> </td>
 				</tr>
 				
 			
 			
 			</table>
 			
+			<a href="/logout?redirect=/">Odjava</a>
+			</br>
+			<a href="/?redirect=/">Nazad na početnu stranicu</a>
+			</br>
+			<a href="/submitComment?redirect=/">Napiši komentar</a>
 	
 		</div>
 	
