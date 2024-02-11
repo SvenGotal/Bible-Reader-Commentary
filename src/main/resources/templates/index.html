@@ -43,18 +43,21 @@
 		USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
 		-->
 			<span th:case="USER">
-				<a href="/submitComment?redirect=/">Write comment</a>
-				<a href="/logout?redirect=/">Logout</a>
+				<a href="/submitComment?redirect=/">Napiši komentar</a>
+				<a href="/logout?redirect=/">Odjava</a>
+				<a href="private/myComments?redirect=/">Moji komentari</a>
 			</span>
 			<span th:case="ADMIN">
-				<a href="public/submitForm?redirect=/">Create profile</a>
-				<a href="/submitComment?redirect=/">Write comment</a>
-				<a href="/logout?redirect=/">Logout</a>
+				<a href="public/submitForm?redirect=/">Novi korisnik</a>
+				<a href="/submitComment?redirect=/">Napiši komentar</a>
+				<a href="/logout?redirect=/">Odjava</a>
+				<a href="private/myComments?redirect=/">Moji komentari</a>
 			</span>
 			<span th:case="OWNER">
-				<a href="public/submitForm?redirect=/">Create profile</a>
-				<a href="/submitComment?redirect=/">Write comment</a>
-				<a href="/logout?redirect=/">Logout</a>			
+				<a href="public/submitForm?redirect=/">Novi korisnik</a>
+				<a href="/submitComment?redirect=/">Napiši komentar</a>
+				<a href="/logout?redirect=/">Odjava</a>
+				<a href="private/myComments?redirect=/">Moji komentari</a>
 			</span>
 						
 		</span>
