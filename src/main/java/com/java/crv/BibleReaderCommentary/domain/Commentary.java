@@ -21,9 +21,9 @@ public class Commentary {
 	@GeneratedValue(strategy = GenerationType.AUTO) /* DB sama brine o generiranju ID-eva (AUTO) property */
 	private Long id;
 	
-	private String subject;
-	@Column(length = 2000)
+	private String subject;	
 	private Boolean published;
+	@Column(length = 2000)
 	private String text;
 	private String timestamp;
 	
