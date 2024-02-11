@@ -38,7 +38,7 @@
 
 		console.log("Performing fetch...")
         // Perform an Ajax request to fetch chapters for the selected book
-        fetch('/fetchChapters?bookId=' + selectedBookId)
+        fetch('public/fetchChapters?bookId=' + selectedBookId)
             .then(response => response.json())
             .then(data => {
                 // Populate the 'chapterSelection' dropdown based on the response
@@ -184,12 +184,12 @@
 			params.append('chapterNumber', selectedChapterNumber);
 			
 			console.log("Fetching Verses...");
-			const fetchVerses = await fetch('/fetchVerses?' + params.toString());
+			const fetchVerses = await fetch('/public/fetchVerses?' + params.toString());
 			const caughtVerses = await fetchVerses.json();
 			console.log("Caught Verses...");
 			
 			console.log("Fetching Comments...");
-			const fetchComments = await fetch('/fetchPublicComments?' + params.toString());
+			const fetchComments = await fetch('/public/fetchPublicComments?' + params.toString());
 			console.log("Fetching Comments first part complete...");
 			const caughtComments = await fetchComments.json();
 			console.log("Caught Comments...");

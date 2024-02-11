@@ -29,7 +29,7 @@ public class ApiController {
 		this.bookRepository = bookRepository;
 	}
 	
-	@GetMapping({"/submitComment/fetchChapters", "/fetchChapters"})
+	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
     @ResponseBody
     public List<Chapter> fetchChapters(@RequestParam Long bookId) {
         
@@ -55,7 +55,7 @@ public class ApiController {
 			return Collections.emptyList();
     }
 	
-	@GetMapping("/fetchVerses")
+	@GetMapping("/public/fetchVerses")
 	@ResponseBody
 	public List<Verse> fetchVerses(@RequestParam Long bookId, @RequestParam int chapterNumber){
 		
@@ -81,7 +81,7 @@ public class ApiController {
 		return Collections.emptyList();
 	}
 	
-	@GetMapping("/fetchPublicComments")
+	@GetMapping("/public/fetchPublicComments")
 	@ResponseBody
 	public List<Commentary> fetchPublicComments(@RequestParam Long bookId, @RequestParam int chapterNumber){
 		

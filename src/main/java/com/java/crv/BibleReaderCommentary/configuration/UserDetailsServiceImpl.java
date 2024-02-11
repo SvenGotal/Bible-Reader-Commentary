@@ -52,7 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		http.authorizeHttpRequests((requests) -> 
 		requests
-			.requestMatchers("/").permitAll()
+			.requestMatchers("/","/public/**").permitAll()
 			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.anyRequest()
 			.authenticated())
@@ -73,6 +73,18 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		.requestMatchers("/login").permitAll()
 		.anyRequest().authenticated()
 		).formLogin(Customizer.withDefaults());
+		
+		return http.build();
+	}
+	
+	@Bean
+	protected SecurityFilterChain logoutConfig(HttpSecurity http) throws Exception{
+		
+		http.authorizeHttpRequests( (requests) -> 
+		requests
+		.requestMatchers("logout").permitAll()
+		.anyRequest().authenticated()
+		).logout(Customizer.withDefaults());
 		
 		return http.build();
 	}
