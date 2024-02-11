@@ -44,14 +44,17 @@
 		-->
 			<span th:case="USER">
 				<a href="/submitComment?redirect=/">Write comment</a>
+				<a href="/logout?redirect=/">Logout</a>
 			</span>
 			<span th:case="ADMIN">
 				<a href="/submitForm?redirect=/">Create profile</a>
 				<a href="/submitComment?redirect=/">Write comment</a>
+				<a href="/logout?redirect=/">Logout</a>
 			</span>
 			<span th:case="OWNER">
 				<a href="/submitForm?redirect=/">Create profile</a>
-				<a href="/submitComment?redirect=/">Write comment</a>			
+				<a href="/submitComment?redirect=/">Write comment</a>
+				<a href="/logout?redirect=/">Logout</a>			
 			</span>
 						
 		</span>
