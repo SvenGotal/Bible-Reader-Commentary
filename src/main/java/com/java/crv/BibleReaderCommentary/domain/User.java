@@ -2,7 +2,9 @@ package com.java.crv.BibleReaderCommentary.domain;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name= "`USER`")
 public class User {
 	
@@ -24,7 +27,7 @@ public class User {
 	private UserRoles role;
 	
 	@OneToMany(mappedBy = "user")
-	@JsonIgnore
+	@JsonProperty("comments")
 	private List<Commentary> comments;
 	
 	
