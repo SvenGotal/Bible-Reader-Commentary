@@ -100,7 +100,7 @@ public class SubmitCommentController {
 		/* Search for Chapter by number property in the Book object from the persistence */
 		Chapter selectedChapter = new Chapter();
 		if(request.getParameter("selectedChapter") != null) {
-			Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
+			int chapterNumber = Integer.parseInt(request.getParameter("selectedChapter"));
 			selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
 			/* Set found Chapter in the Book to the Commentary object 'comment' */
 			comment.setChapter(selectedChapter);

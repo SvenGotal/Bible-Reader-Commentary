@@ -49,6 +49,7 @@ public class Commentary {
 	
 	
 	
+	
 	public String getSubject() {
 		return subject;
 	}

@@ -88,51 +88,31 @@ public class ApiController {
 	@ResponseBody
 	public List<Commentary> fetchPublicComments(@RequestParam Long bookId, @RequestParam int chapterNumber){
 		
-		List<Chapter> chapters = fetchChapters(bookId); 
-		Chapter selectedChapter = fetchSelectedChapterbyNumber(chapters, chapterNumber);
+		//todo separate only public and Book-Chapter related comments.
 		
-		List<Commentary> allComments = (List<Commentary>) commentRepository.findAll();
-		
-		/*================ TEST ================*/
-		for(Commentary comment: allComments) {
-			System.out.println("printing comment:");
-			System.out.println(comment.getSubject());
+		try {
+			
+			Book selectedBook = bookRepository.findById(bookId).get();
+			
+			Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
+			
+			List<Commentary> getComments = selectedChapter.getComments();
+			ArrayList<Commentary> publicComments = new ArrayList<Commentary>();
+			
+			for(Commentary comment : getComments) {
+				if(comment.getPublished()) {
+					publicComments.add(comment);
+				}
+			}
+			
+			return publicComments;
+		} catch (Exception e) {
+
+			e.printStackTrace();
 		}
-		/*======================================*/
 		
-		List<Commentary> publicComments = fetchOnlyPublicComments(allComments);
-		
-		/*================ TEST ================*/
-		for(Commentary comment: publicComments) {
-			System.out.println("Printing a public comment:");
-			System.out.println(comment.getSubject());
-		}
-		/*======================================*/
-		
-		return publicComments;
+		return Collections.emptyList();
 	}
 	
-	private Chapter fetchSelectedChapterbyNumber(List<Chapter> chpt, int chapterNumber) {
-		
-		for(Chapter ch : chpt) {
-			if(ch.getNumber() == chapterNumber) {
-				return ch;
-			}
-		}
-		return null;
-	}
-	
-	private List<Commentary> fetchOnlyPublicComments(List<Commentary> allComments){
-		
-		ArrayList<Commentary> publicComments = new ArrayList<Commentary>();
-		
-		for(Commentary cmnt : allComments) {
-			if(cmnt.getPublished()) {
-				publicComments.add(cmnt);
-			}
-		}
-		
-		return publicComments;
-	}
 
 }

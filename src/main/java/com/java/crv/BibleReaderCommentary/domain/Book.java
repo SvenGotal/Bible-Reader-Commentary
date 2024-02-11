@@ -53,7 +53,7 @@ public class Book {
 		this.chapters = chapters;
 	}
 	
-	public Chapter getChapterByNumber(Long number) {
+	public Chapter getChapterByNumber(int number) {
 		
 		for(Chapter chapter : chapters) {				
 			if(chapter.getNumber() == number)
