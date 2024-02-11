@@ -119,3 +119,119 @@
 			});
 		
 	}
+	
+	function updateComments(){
+		
+		console.log("Trying to update comments...");
+		
+		var selectedBookId = document.getElementById('bookSelection').value;
+		var selectedChapterNumber = document.getElementById('chapterSelection').value;
+		var commentsDisplay = document.getElementById('comments_text');
+		
+		var params = new URLSearchParams();
+		params.append('bookId', selectedBookId);
+		params.append('chapterNumber', selectedChapterNumber);
+		
+		console.log("Performing fetch in update comments...");
+		
+		fetch('/fetchPublicComments?' + params.toString())
+		.then( response => response.json())
+		.then( data => {
+			
+			console.log("Got data, displaying data to the screen...");
+			commentsDisplay.innerHTML = '';
+			
+			if(Array.isArray(data)){
+				console.log("Sent data is an array...");
+			}
+			else{
+				console.log("Sent data is NOT an array...");
+			}
+			
+			data.forEach(comment => {
+				var paragraph = document.createElement('p');
+				paragraph.innerHTML = 
+					comment.subject + 
+					'</br></br>' + 
+					comment.text + 
+					'</br></br>' + 
+					comment.username.getUsername() + 
+					' : ' 
+					+ comment.timestamp;
+					
+				commentsDisplay.appendChild(paragraph);
+			});
+			
+		}).catch( error => {
+			console.error('Error fetching commentary...', error);
+		});
+		
+	}
+
+	
+	async function fetchVersesAndComments(){
+		
+		var selectedBookId = document.getElementById('bookSelection').value;
+		var selectedChapterNumber = document.getElementById('chapterSelection').value;
+		var commentsDisplay = document.getElementById('comments_text');
+		var versesDisplay = document.getElementById('bible_text');
+		
+		try{
+			
+			console.log("Started in try block...");
+			var params = new URLSearchParams();
+			params.append('bookId', selectedBookId);
+			params.append('chapterNumber', selectedChapterNumber);
+			
+			console.log("Fetching Verses...");
+			const fetchVerses = await fetch('/fetchVerses?' + params.toString());
+			const caughtVerses = await fetchVerses.json();
+			console.log("Caught Verses...");
+			
+			console.log("Fetching Comments...");
+			const fetchComments = await fetch('/fetchPublicComments?' + params.toString());
+			console.log("Fetching Comments first part complete...");
+			const caughtComments = await fetchComments.json();
+			console.log("Caught Comments...");
+			
+			console.log("Cleaning existing text...");
+			versesDisplay.innerHTML = '';
+			commentsDisplay.innerHTML = '';
+			
+			console.log("Processing caught Verses...");
+			caughtVerses.forEach(verse => {
+				var paragraph = document.createElement('p');
+				paragraph.textContent = verse.number + ' ' + verse.text;
+				versesDisplay.append(paragraph);
+			});
+			
+			console.log("Processing caught Comments...");
+			caughtComments.forEach(comment => {
+				var paragraph = document.createElement('p');
+				paragraph.innerHTML = 
+					comment.subject + 
+					'</br></br>' + 
+					comment.text + 
+					'</br></br>' + 
+					comment.username.getUsername() + 
+					' : ' 
+					+ comment.timestamp;
+					
+				commentsDisplay.appendChild(paragraph);
+			});
+			
+		}
+		catch(error){
+			console.error("Error fetching verses and comments.", error);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
