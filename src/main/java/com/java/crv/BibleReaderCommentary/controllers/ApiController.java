@@ -21,15 +21,12 @@ import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 public class ApiController {
 	
 	private BookRepository bookRepository;
-	private CommentaryRepository commentRepository;
-	
 	public ApiController (
 			BookRepository bookRepository,
 			CommentaryRepository commentRepository
 			) 
 	{
 		this.bookRepository = bookRepository;
-		this.commentRepository = commentRepository;
 	}
 	
 	@GetMapping({"/submitComment/fetchChapters", "/fetchChapters"})

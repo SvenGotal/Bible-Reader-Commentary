@@ -1,7 +1,6 @@
 package com.java.crv.BibleReaderCommentary.bootstrap;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.boot.CommandLineRunner;

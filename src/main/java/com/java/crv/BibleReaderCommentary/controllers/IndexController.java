@@ -21,7 +21,6 @@ import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 @RequestMapping("/")
 public class IndexController {
 		
-	private CommentaryRepository comments;
 	private UserRepository userRepository;
 	private BookRepository bookRepository;
 	
@@ -30,7 +29,6 @@ public class IndexController {
 			BookRepository bookRepository
 			) 
 	{
-		this.comments = comments;
 		this.userRepository = userRepository;
 		this.bookRepository = bookRepository;
 	}
