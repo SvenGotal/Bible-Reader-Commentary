@@ -11,3 +11,9 @@ function passwordValidation(){
 		error_display.textContent= '';
 	}
 }
+
+function commentEdit(){
+	
+	var commentId = document.getElementById
+	
+}
