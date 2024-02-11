@@ -2,6 +2,8 @@ package com.java.crv.BibleReaderCommentary.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class User {
 	private UserRoles role;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Commentary> comments;
 	
 	

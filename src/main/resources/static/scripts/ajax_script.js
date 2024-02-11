@@ -213,7 +213,7 @@
 					'</br></br>' + 
 					comment.text + 
 					'</br></br>' + 
-					comment.username.getUsername() + 
+					comment.user.username + 
 					' : ' 
 					+ comment.timestamp;
 					

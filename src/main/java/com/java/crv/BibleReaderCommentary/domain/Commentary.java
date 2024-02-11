@@ -4,6 +4,9 @@ package com.java.crv.BibleReaderCommentary.domain;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +31,12 @@ public class Commentary {
 	private String timestamp;
 	
 	@ManyToOne
+	@JsonProperty("user")
 	@JoinColumn(name = "user_id")
 	private User user;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "chapter_id")
 	private Chapter chapter;
 
