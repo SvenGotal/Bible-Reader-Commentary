@@ -10,7 +10,9 @@
 	
 	<h1>Submit form</h1>	
 	
-	<form method="post" th:action="@{/submitComment}" onsubmit="return validateForm()" th:object="${comment}">
+	<!--  onsubmit="return validateForm()"  -->
+	
+	<form method="post" th:action="@{/submitComment}" th:object="${comment}">
 
 
 		<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
