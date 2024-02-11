@@ -33,7 +33,7 @@ public class IndexController {
 		this.bookRepository = bookRepository;
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public String getIndex(@ModelAttribute("binding") String binding,
 			Model model,
 			Principal princ) 

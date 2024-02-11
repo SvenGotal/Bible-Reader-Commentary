@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
@@ -20,7 +19,6 @@ import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/submitForm")
 public class SubmitFormController {
 
 	
@@ -29,20 +27,30 @@ public class SubmitFormController {
 		this.userRepository = userRepository;
 	}
 	
-	@GetMapping
+	@GetMapping("public/submitForm")
 	public String showForm(Model model, Principal princ) {
-		
-	
-		String username = princ.getName();
-		User currentUser = userRepository.findByUsername(username);
-		UserRoles ur = currentUser.getRole();
-		
-		model.addAttribute("adminRole", ur.name());
+				
+		try {
+			
+			if(princ != null) {
+				String username = princ.getName();
+				User currentUser = userRepository.findByUsername(username);
+				UserRoles ur = currentUser.getRole();
+				model.addAttribute("adminRole", ur.name());
+
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("user", new User());
+		model.addAttribute("adminRole", "GUEST");
 		return "forms/submitform";
 	}
 	
-	@PostMapping
+	@PostMapping("public/submitForm")
 	public String submitForm(
 			@ModelAttribute("user") @Validated User user,
 			BindingResult bindingResult, 

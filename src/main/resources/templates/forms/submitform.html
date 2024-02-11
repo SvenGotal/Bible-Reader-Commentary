@@ -15,7 +15,8 @@
 		<label>Password: <input type="password" name="password" id="password" th:field="*{password}" required/></label><br/>
 		<label>Retype password: <input type="password" name="password_retype" id="password_retype" /> </label>
 		<div th:switch="${adminRole}">
-			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>		
+			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>
+			<label th:case="GUEST">Dobrodošao posjetitelju! Prijavi se i postani dio našeg projekta.</label>		
 		</div>
 		<div>
 			<span id="error_display"></span>

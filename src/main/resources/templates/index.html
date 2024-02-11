@@ -47,12 +47,12 @@
 				<a href="/logout?redirect=/">Logout</a>
 			</span>
 			<span th:case="ADMIN">
-				<a href="/submitForm?redirect=/">Create profile</a>
+				<a href="public/submitForm?redirect=/">Create profile</a>
 				<a href="/submitComment?redirect=/">Write comment</a>
 				<a href="/logout?redirect=/">Logout</a>
 			</span>
 			<span th:case="OWNER">
-				<a href="/submitForm?redirect=/">Create profile</a>
+				<a href="public/submitForm?redirect=/">Create profile</a>
 				<a href="/submitComment?redirect=/">Write comment</a>
 				<a href="/logout?redirect=/">Logout</a>			
 			</span>
@@ -60,7 +60,7 @@
 		</span>
 	</div>
 	<div th:unless="${userValidated}">
-		<a href="/submitForm?redirect=/">Create profile</a>	
+		<a href="public/submitForm?redirect=/">Create profile</a>	
 		<a href="/login?redirect=/">Login</a>
 	</div>
 	
