@@ -4,8 +4,10 @@ package com.java.crv.BibleReaderCommentary.domain;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -35,6 +37,8 @@ public class Commentary {
 	
 	@ManyToOne
 	@JsonProperty("user")
+	//@JsonBackReference
+	@JsonManagedReference
 	@JoinColumn(name = "user_id")
 	private User user;
 	
