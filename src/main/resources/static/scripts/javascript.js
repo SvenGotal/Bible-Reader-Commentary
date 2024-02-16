@@ -15,12 +15,20 @@ function passwordValidation(){
 function commentEdit(){
 	
 	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
-	var commentEditingArea = document.getElementById("commentEditingArea");
+	
+	
+	var commentEditingArea = document.getElementById("hidden_div_comment_edit");
+	commentEditingArea.style.visibility = "visible";
 	
 	if(selectedRadio){
+		/* Get Commentary id from radio button, each rb is given an id by Commentary id by thymeleaf */
+		var selectedCommentId = selectedRadio.id;
 		
 		var selectedComment = selectedRadio.closest('tr');
 		var rowValues = [];
+		
+		/* TEST TEST TEST */
+		var label = document.getElementById("selectedCommentId");
 		
 		selectedComment.querySelectorAll('td').forEach( function (td) {
 			
@@ -28,6 +36,7 @@ function commentEdit(){
 		});
 		
 		commentEditingArea.textContent = rowValues[1];
+		label.textContent = selectedCommentId;
 	}
 	
 }

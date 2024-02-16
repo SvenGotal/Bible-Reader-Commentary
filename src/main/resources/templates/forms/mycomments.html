@@ -47,9 +47,10 @@
 		<div>
 			<button type="submit" id="comment_edit" onclick="commentEdit()">Promjeni komentar</button>
 			<button type="submit" id="comment_delete" onclick="commentDelete()">Izbriši komentar</button>
+			<label id="selectedCommentId"></label>
 		</div>
 		
-		<div id="hidden_div_comment_edit">
+		<div style="visibility: hidden;" id="hidden_div_comment_edit">
 			<textarea type="text" id="commentEditingArea"></textarea>
 			<button type="submit">Pohrani komentar</button>
 		</div>
