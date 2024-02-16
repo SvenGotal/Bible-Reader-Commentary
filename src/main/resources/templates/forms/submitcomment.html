@@ -11,7 +11,7 @@
 	
 	<!--  onsubmit="return validateForm()"  -->
 	
-	<form method="post" th:action="@{/submitComment}" th:object="${comment}">
+	<form method="post" th:action="@{submitComment}" th:object="${comment}">
 
 
 		<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
@@ -24,7 +24,7 @@
 		</select>	
 	
 		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
-		<label>Comment: <textarea type="text" th:field="*{text}" /></label><br/>
+		<label>Comment: <textarea type="text" th:field="*{text}" ></textarea></label><br/>
 		
 		<label>
 			Želim da moj komentar bude privatan: 

@@ -39,14 +39,17 @@ public class SubmitFormController {
 				model.addAttribute("adminRole", ur.name());
 
 			}
+			else
+			{
+				model.addAttribute("adminRole", "GUEST");
+			}
 			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("user", new User());
-		model.addAttribute("adminRole", "GUEST");
+		model.addAttribute("user", new User());		
 		return "forms/submitform";
 	}
 	

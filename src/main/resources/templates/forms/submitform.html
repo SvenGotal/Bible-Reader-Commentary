@@ -9,7 +9,7 @@
 	
 	<h1>Submit form</h1>	
 	
-	<form method="post" id="user_creation_form" th:action="submitForm" th:object="${user}">
+	<form method="post" id="user_creation_form" th:action="@{submitForm}" th:object="${user}">
 		<label>Username: <input type="text" th:field="*{username}" required/></label><br/>
 		<label>Email: <input type="email" th:field="*{email}" /></label><br/>
 		<label>Password: <input type="password" name="password" id="password" th:field="*{password}" required/></label><br/>
