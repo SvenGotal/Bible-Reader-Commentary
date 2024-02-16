@@ -39,7 +39,7 @@
 						<td th:text="${comment.text}"></td>						
 						<td th:text="${comment.chapter.book.name}"></td>
 						<td th:text="${comment.chapter.number}"></td>
-						<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}"></td>
+						<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'commentEdit()'}"></td>
 					</tr>
 				</tbody>	
 			</table>	
