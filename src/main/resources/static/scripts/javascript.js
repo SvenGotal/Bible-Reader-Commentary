@@ -35,6 +35,11 @@ function commentEdit(){
 			rowValues.push(td.textContent);
 		});
 		
+		commentEditingArea.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+		
 		commentEditingArea.textContent = rowValues[1];
 		label.textContent = selectedCommentId;
 	}
