@@ -14,6 +14,31 @@ function passwordValidation(){
 
 function commentEdit(){
 	
-	var commentId = document.getElementById
+	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
+	var commentEditingArea = document.getElementById("commentEditingArea");
+	
+	if(selectedRadio){
+		
+		var selectedComment = selectedRadio.closest('tr');
+		var rowValues = [];
+		
+		selectedComment.querySelectorAll('td').forEach( function (td) {
+			
+			rowValues.push(td.textContent);
+		});
+		
+		commentEditingArea.textContent = rowValues[1];
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
