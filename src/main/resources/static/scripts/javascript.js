@@ -17,8 +17,8 @@ function commentEdit(){
 	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
 	
 	
-	var commentEditingArea = document.getElementById("hidden_div_comment_edit");
-	commentEditingArea.style.visibility = "visible";
+	//var commentEditingArea = document.getElementById("hidden_div_comment_edit");
+	//commentEditingArea.style.visibility = "visible";
 	
 	if(selectedRadio){
 		/* Get Commentary id from radio button, each rb is given an id by Commentary id by thymeleaf */
@@ -27,21 +27,23 @@ function commentEdit(){
 		var selectedComment = selectedRadio.closest('tr');
 		var rowValues = [];
 		
-		/* TEST TEST TEST */
-		var label = document.getElementById("selectedCommentId");
+		
+		var label = document.getElementById("commentId");
 		
 		selectedComment.querySelectorAll('td').forEach( function (td) {
 			
 			rowValues.push(td.textContent);
 		});
 		
+		
 		commentEditingArea.scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'
 		});
 		
+		
 		commentEditingArea.textContent = rowValues[1];
-		label.textContent = selectedCommentId;
+		label.value = selectedCommentId;
 	}
 	
 }

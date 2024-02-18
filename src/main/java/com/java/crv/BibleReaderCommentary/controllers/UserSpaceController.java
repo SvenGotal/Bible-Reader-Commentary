@@ -40,9 +40,19 @@ public class UserSpaceController {
 	
 	//todo create PostMapping method, also fetch Commentary Id from displayed comments.
 	@PostMapping("/private/myComments")
-	public String editMyComment(@RequestParam Long commentId, @RequestParam String editedComment) {
+	public String editMyComment(@RequestParam("commentId") Long commentId, @RequestParam("editedComment") String editedComment) {
+		
+		try {
+			Commentary comment = commentaryRepository.findById(commentId).get();
+			
+			comment.setText(editedComment);
+			commentaryRepository.save(comment);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		
-		return "redirect:/";
+		return "redirect:/private/myComments";
 	}
 }

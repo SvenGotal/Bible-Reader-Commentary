@@ -89,6 +89,19 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		return http.build();
 	}
 	
+	@Bean
+	protected SecurityFilterChain usersConfig(HttpSecurity http) throws Exception {
+		
+		http.authorizeHttpRequests( (requests) ->
+		requests.requestMatchers("/private/**")
+		.hasAnyRole(UserRoles.USER.name(), UserRoles.ADMIN.name(), UserRoles.OWNER.name())
+		.anyRequest()
+		.authenticated());
+		
+		return http.build();
+	
+	}
+	
 	@Bean(name="encoder")
 	protected BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

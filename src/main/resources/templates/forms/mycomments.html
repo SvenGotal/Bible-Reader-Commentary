@@ -34,9 +34,9 @@
 				 	<tr>
 				 		<th colspan="4" th:text="${comment.subject}"></th>
 				 	</tr>
-					<tr >						
+					<tr>						
 						<td th:text="${comment.timestamp}"></td>
-						<td th:text="${comment.text}"></td>						
+						<td> <p th:text="${comment.text}"></p> </td>						
 						<td th:text="${comment.chapter.book.name}"></td>
 						<td th:text="${comment.chapter.number}"></td>
 						<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'commentEdit()'}"></td>
@@ -45,17 +45,19 @@
 			</table>	
 		</div>
 		<div>
-			<button type="submit" id="comment_edit" onclick="commentEdit()">Promjeni komentar</button>
 			<button type="submit" id="comment_delete" onclick="commentDelete()">Izbriši komentar</button>
 			<label id="selectedCommentId"></label>
 		</div>
 		
-		<div style="visibility: hidden;" id="hidden_div_comment_edit">
-			<textarea type="text" id="commentEditingArea"></textarea>
-			<button type="submit">Pohrani komentar</button>
-		</div>
+		<form method="post" th:action="@{/private/myComments}">
+			<div id="hidden_div_comment_edit">
+				<input style="display:none;" type="text" id="commentId" name="commentId"></label>
+				<textarea style="width:50%; height:200px;" type="text" id="commentEditingArea" name="editedComment"></textarea>
+				<button type="submit">Pohrani komentar</button>
+			</div>
+		</form>
 		
-		
+		<!--  style="block: none;" -->
 	
 	</body>
 </html>

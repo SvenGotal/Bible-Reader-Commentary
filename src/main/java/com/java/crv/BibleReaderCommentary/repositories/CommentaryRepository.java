@@ -12,6 +12,7 @@ import com.java.crv.BibleReaderCommentary.domain.Commentary;
 @Table
 public interface CommentaryRepository extends CrudRepository<Commentary, Long> {
 	List<Commentary> findAllByPublished(Boolean published);
-	List<Commentary> findCommentaryById(Long commentaryId);
+	List<Commentary> findAllCommentaryById(Long commentaryId);
+	//Commentary findByCommentId(Long commentId);
 	List<Commentary> findAllByUserId(Long userId);
 }
