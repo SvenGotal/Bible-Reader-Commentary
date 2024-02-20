@@ -44,16 +44,18 @@
 				</tbody>	
 			</table>	
 		</div>
-		<div>
-			<button type="submit" id="comment_delete" onclick="commentDelete()">Izbriši komentar</button>
-			<label id="selectedCommentId"></label>
-		</div>
-		
-		<form method="post" th:action="@{/private/myComments}">
+		<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+			<div>
+				<input style="display:none;" type="text" id="commentIdDelete" name="commentIdDelete"></label>
+				<button type="button" id="comment_delete" onclick="commentDelete()">Izbriši komentar</button>
+				<label id="selectedCommentId" th:text="${message}">nothing to display</label>
+			</div>
+		</form>
+		<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
 			<div id="hidden_div_comment_edit">
 				<input style="display:none;" type="text" id="commentId" name="commentId"></label>
 				<textarea style="width:50%; height:200px;" type="text" id="commentEditingArea" name="editedComment"></textarea>
-				<button type="submit">Pohrani komentar</button>
+				<button type="button">Pohrani komentar</button>
 			</div>
 		</form>
 		

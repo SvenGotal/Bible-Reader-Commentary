@@ -23,7 +23,7 @@ function commentEdit(){
 	if(selectedRadio){
 		/* Get Commentary id from radio button, each rb is given an id by Commentary id by thymeleaf */
 		var selectedCommentId = selectedRadio.id;
-		
+		var formEdit = document.getElementById("formEdit");
 		var selectedComment = selectedRadio.closest('tr');
 		var rowValues = [];
 		
@@ -44,7 +44,37 @@ function commentEdit(){
 		
 		commentEditingArea.textContent = rowValues[1];
 		label.value = selectedCommentId;
+		formEdit.submit();
 	}
+	
+}
+
+function commentDelete(){
+	
+	/* get id holder (hidden <inpu> tag)  */
+	var commentIdHolder = document.getElementById("commentIdDelete");
+	
+	/* get submit form ++seems unecessary approach++ */
+	var submitForm = document.getElementById("formDelete");
+	
+	/* get currently selected radio button (id holds the comment Id) */
+	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
+	
+	/* if radio button is selected */
+	if(selectedRadio){
+		
+		commentIdHolder.value = selectedRadio.id;
+		
+		var prompt = window.confirm("Jeste li sigurni da želite obrisati komentar?");
+	
+		if(prompt){
+			submitForm.submit();
+		}
+		else{
+			console.log("user cancelled delete submit...");
+		}
+	}
+	
 	
 }
 

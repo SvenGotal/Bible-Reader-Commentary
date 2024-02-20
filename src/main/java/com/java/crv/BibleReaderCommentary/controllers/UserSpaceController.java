@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
@@ -39,18 +40,41 @@ public class UserSpaceController {
 	}
 	
 	//todo create PostMapping method, also fetch Commentary Id from displayed comments.
-	@PostMapping("/private/myComments")
-	public String editMyComment(@RequestParam("commentId") Long commentId, @RequestParam("editedComment") String editedComment) {
+	@PostMapping("/private/myCommentsEdit")
+	public String editMyComment(
+			@RequestParam("commentId") Long commentId,
+			@RequestParam("editedComment") String editedComment,
+			RedirectAttributes redirectAttributes
+			)
+	{
 		
 		try {
 			Commentary comment = commentaryRepository.findById(commentId).get();
 			
 			comment.setText(editedComment);
 			commentaryRepository.save(comment);
+			redirectAttributes.addFlashAttribute("message", "Uspješno ste izmijenili svoj komentar!");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		return "redirect:/private/myComments";
+	}
+	
+	@PostMapping("/private/myCommentsDelete")
+	public String deleteMyComment(@RequestParam("commentIdDelete") Long commentIdDelete, RedirectAttributes redirectAttributes) {
+		
+		try {
+			
+			commentaryRepository.deleteById(commentIdDelete);
+			
+		}
+		catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		redirectAttributes.addFlashAttribute("message", "deleteMyComment fired");
 		
 		
 		return "redirect:/private/myComments";
