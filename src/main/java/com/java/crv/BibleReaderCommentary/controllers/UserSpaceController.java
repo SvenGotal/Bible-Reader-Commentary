@@ -74,9 +74,7 @@ public class UserSpaceController {
 		catch(IllegalArgumentException e) {
 			e.printStackTrace();
 		}
-		redirectAttributes.addFlashAttribute("message", "deleteMyComment fired");
-		
-		
+				
 		return "redirect:/private/myComments";
 	}
 }
