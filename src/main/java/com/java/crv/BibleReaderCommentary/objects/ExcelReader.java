@@ -23,15 +23,11 @@ public class ExcelReader {
 		this.filename = filename;			
 	}
 	
-	public Bible loadBible(String translation) {
+	public Bible loadBible(Integer worksheet) {
 		
 		Bible bible = new Bible();
-		bible.setTranslation(translation);
 		bible.setBooks(new ArrayList<Book>());
-		
-		int countVerse = 1;
-		int countBookandChapter = 1;
-		
+				
 		/* Create domains */
 		Book book = new Book();;				
 		Chapter chapter = null;
@@ -39,16 +35,20 @@ public class ExcelReader {
 		
 		try(FileInputStream inputStream = new FileInputStream(filename)){
 			Workbook workbook = new XSSFWorkbook(filename);
-			Sheet sheet = workbook.getSheetAt(0);
+			Sheet sheet = workbook.getSheetAt(worksheet);
+			bible.setTranslation(sheet.getSheetName());
+			
+			System.out.println("Loading translation: " + bible.getTranslation() + "...");
 			
 			for(Row row : sheet) {
-				
-				
 				
 				Cell bookCell = row.getCell(0);
 				Cell chapterCell = row.getCell(1);
 				Cell verseCell = row.getCell(2);
 				Cell verseNumberCell = row.getCell(3);
+				
+				
+				
 				if(bookCell != null ) {
 					if(bookCell.toString() != "") {
 						
@@ -60,7 +60,7 @@ public class ExcelReader {
 							book.setBible(bible);
 							bible.getBooks().add(book);
 
-							System.out.println("Pass book: " + countBookandChapter);
+							System.out.println("Loading book: " + book.getName());
 						}
 						/* Create new chapter, assign  */	
 						chapter = new Chapter();
@@ -70,8 +70,8 @@ public class ExcelReader {
 						chapter.setBook(book);
 						book.getChapters().add(chapter);
 
-						System.out.println("Pass chapter: " + countBookandChapter);
-						++countBookandChapter;
+						System.out.println("Load chapter: " + chapter.getNumber());
+						
 					}
 				}	
 
@@ -80,11 +80,6 @@ public class ExcelReader {
 				verse.setText(verseCell.toString().replaceAll("\\b\\d+(\\.\\d+)?\\b", "").trim());
 				verse.setNumber((int)verseNumberCell.getNumericCellValue());
 				verse.setChapter(chapter);
-				
-				System.out.println("Pass verse: " + countVerse);
-				
-				++countVerse;
-				
 				
 				if(chapter != null)
 					chapter.getVerses().add(verse);

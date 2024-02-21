@@ -74,7 +74,7 @@ public class BootstrapData implements CommandLineRunner{
 		
 		//ExcelReader reader = new ExcelReader("C:\\Users\\sgotal\\Downloads\\test.xlsx");
 		ExcelReader reader = new ExcelReader("/home/sven/test.xlsx");
-		Bible bible = reader.loadBible("WordProject");
+		Bible bible = reader.loadBible(0);
 		bibleRepo.save(bible);
 		
 		{
