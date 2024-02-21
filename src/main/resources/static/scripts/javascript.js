@@ -14,47 +14,71 @@ function passwordValidation(){
 
 function commentEdit(){
 	
+	/* get currently selected radio-button */
 	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
 	
-	
-	//var commentEditingArea = document.getElementById("hidden_div_comment_edit");
-	//commentEditingArea.style.visibility = "visible";
-	
+	/* if radio-button is selected */
 	if(selectedRadio){
 		/* Get Commentary id from radio button, each rb is given an id by Commentary id by thymeleaf */
 		var selectedCommentId = selectedRadio.id;
-		var formEdit = document.getElementById("formEdit");
+		/* get editing button */
+		var buttonEdit = document.getElementById("button_edit");
+		/* get deleting button */
+		var buttonDelete = document.getElementById("buttonDelete");
+		/* get text-area element */
+		var textArea = document.getElementById("commentEditingArea");
+		/* get values from table row where radio-button is selected */
 		var selectedComment = selectedRadio.closest('tr');
+		/* prepare an array to store row values */
 		var rowValues = [];
 		
+		/* erase current content from text-area for editing */
+		textArea.textContent = '';
 		
-		var label = document.getElementById("commentId");
+		/* get hidden input that will store Commentary id */
+		var commentIdHolder = document.getElementById("commentId");
 		
+		/* fill rowValues array with table row values */
 		selectedComment.querySelectorAll('td').forEach( function (td) {
 			
 			rowValues.push(td.textContent);
 		});
 		
-		
+		/* enable smooth scrolling and focus user window to editing area */
 		commentEditingArea.scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'
 		});
 		
-		
+		/* fill text-area with row value from 2nd <td> in table row (Commentary.text) */
 		commentEditingArea.textContent = rowValues[1];
-		label.value = selectedCommentId;
-		formEdit.submit();
+		/* set hidden label value to Commentary.id (send to controller) */
+		commentIdHolder.value = selectedCommentId;
+		
+		/* enable editing buttons (disabled by default) */
+		buttonEdit.disabled = false;
+		buttonDelete.disabled = false;
 	}
 	
 }
 
+/**Use only in comment editing submission */
+function submitEditedComment(){
+	
+	/* get submission form that calls controller method 'public String editMyComment()' */
+	var formEdit = document.getElementById("formEdit");
+	/* send POST to call the controller */
+	formEdit.submit();
+	
+}
+
+/** */
 function commentDelete(){
 	
 	/* get id holder (hidden <inpu> tag)  */
 	var commentIdHolder = document.getElementById("commentIdDelete");
 	
-	/* get submit form ++seems unecessary approach++ */
+	/* get submit form that calls controller method deleteMyComment() */
 	var submitForm = document.getElementById("formDelete");
 	
 	/* get currently selected radio button (id holds the comment Id) */
@@ -63,13 +87,16 @@ function commentDelete(){
 	/* if radio button is selected */
 	if(selectedRadio){
 		
+		/* set value of hidden <input> to Commentary id which will be sent to the controller */
 		commentIdHolder.value = selectedRadio.id;
-		
+		/* prompt pop-up to confirm the decision to delete Commentary from persistence */
 		var prompt = window.confirm("Jeste li sigurni da želite obrisati komentar?");
 	
+		/* if user clicked yes/ok */
 		if(prompt){
 			submitForm.submit();
 		}
+		/* if user canceled */
 		else{
 			console.log("user cancelled delete submit...");
 		}
