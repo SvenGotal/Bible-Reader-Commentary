@@ -23,7 +23,7 @@ import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/submitComment")
+@RequestMapping("/private/submitComment")
 public class SubmitCommentController {
 	
 	private CommentaryRepository commentaryRepository;
