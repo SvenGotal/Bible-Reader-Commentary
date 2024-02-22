@@ -13,7 +13,7 @@ import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
-import com.java.crv.BibleReaderCommentary.objects.ExcelReader;
+import com.java.crv.BibleReaderCommentary.objects.BibleLoader;
 import com.java.crv.BibleReaderCommentary.repositories.BibleRepository;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
@@ -73,7 +73,7 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println(userRepo.findAll().toString()); 
 		
 		//ExcelReader reader = new ExcelReader("C:\\Users\\sgotal\\Downloads\\test.xlsx");
-		ExcelReader reader = new ExcelReader("/home/sven/test.xlsx");
+		BibleLoader reader = new BibleLoader("/home/sven/test.xlsx");
 		Bible bible = reader.loadBible(0);
 		bibleRepo.save(bible);
 		

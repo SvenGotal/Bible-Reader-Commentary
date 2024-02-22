@@ -13,11 +13,11 @@ import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
 
 
-public class ExcelReader {
+public class BibleLoader {
 
 	private String filename;
 	
-	public ExcelReader(String filename) {
+	public BibleLoader(String filename) {
 		
 		//todo check validity of file path
 		this.filename = filename;			
