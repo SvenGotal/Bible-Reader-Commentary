@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Administration</title>
+	</head>
+	<body>
+		
+		<form th:action="@{/admin/uploadBible}" method="post" enctype="multipart/form-data">
+		<label for="fileInput">Odaberi .xlsx file za upload Biblije</label>
+		<input type="file" id="fileInput" name="fileInput" accept=".xlsx, .ods, .pdf">
+		
+		<button type="submit">Odaberi</button>
+	</body>
+</html>
