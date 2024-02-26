@@ -19,7 +19,7 @@ import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 public class ControlCenterController {
 
 	private CommentaryRepository comments;
-	private static final String UPLOAD_DIRECTORY = "uploads";
+	private static final String UPLOAD_DIRECTORY = "/home/sven/uploads1"; //prepare path before deployment.
 	private final ResourceLoader resourceLoader;
 	
 	public ControlCenterController(CommentaryRepository comments, ResourceLoader resourceLoader) {
@@ -37,37 +37,33 @@ public class ControlCenterController {
 	@PostMapping ("/admin/uploadBible")
 	public String uploadBible(@RequestPart("fileInput") MultipartFile file) {
 		
-		//todo use https://spring.io/guides/gs/uploading-files guid. Current setup is not working
+		//todo use StorageService in later versions: https://spring.io/guides/gs/uploading-files . Current setup is not ideal.
 		
 		try {
-			ClassPathResource classPathResource = new ClassPathResource("uploads");
-			//Resource resource = resourceLoader.getResource("classpath:/uploads");
-			//System.out.println(classPathResource.getFile().getAbsolutePath());
-			
-			if(!classPathResource.exists()) {
-				System.out.println("resource not found!");
-				return "redirect:/";
-			}
-			
-			//File directory = resource.getFile();
-			File directory = classPathResource.getFile();
-			
-			
-			
+		
+			System.out.println(System.getProperty("os.name"));
+			File directory = new File(UPLOAD_DIRECTORY);
 			if(!directory.exists()) {
-				Files.createDirectories(directory.toPath());
+				System.out.println("Creating directory " + UPLOAD_DIRECTORY);
+				directory.mkdir();
 			}
 			
 			
+			String filePath = UPLOAD_DIRECTORY + File.separator + file.getOriginalFilename();
+			File destination = new File(filePath);
 			
-			String filepath = directory.getAbsolutePath() + File.separator + file.getName();
-			
-			
-			File destination = new File(filepath);
-			
-			
+			System.out.println("Uploading file to " + destination.toString());
 			file.transferTo(destination);
-			System.out.println(new ClassPathResource("").getFile().getAbsolutePath());
+			
+			
+			
+			
+			
+			
+			
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
