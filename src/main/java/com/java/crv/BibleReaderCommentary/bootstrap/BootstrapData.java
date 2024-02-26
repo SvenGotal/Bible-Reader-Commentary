@@ -13,7 +13,7 @@ import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
-import com.java.crv.BibleReaderCommentary.objects.BibleLoader;
+import com.java.crv.BibleReaderCommentary.objects.BibleImporter;
 import com.java.crv.BibleReaderCommentary.repositories.BibleRepository;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;

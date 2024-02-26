@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.crv.BibleReaderCommentary.domain.Bible;
-import com.java.crv.BibleReaderCommentary.objects.BibleLoader;
+import com.java.crv.BibleReaderCommentary.objects.BibleImporter;
 import com.java.crv.BibleReaderCommentary.repositories.BibleRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
@@ -60,7 +60,7 @@ public class ControlCenterController {
 			System.out.println("Uploading file to " + destination.toString());
 			file.transferTo(destination);
 			
-			BibleLoader bl = new BibleLoader(destination.toString());
+			BibleImporter bl = new BibleImporter(destination.toString());
 			Bible bibleForLoading = bl.loadBible(0);
 			bibleRepository.save(bibleForLoading);
 			
