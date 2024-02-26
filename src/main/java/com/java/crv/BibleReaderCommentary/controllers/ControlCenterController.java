@@ -2,10 +2,7 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
