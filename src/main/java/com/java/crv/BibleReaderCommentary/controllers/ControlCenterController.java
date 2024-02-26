@@ -3,7 +3,6 @@ package com.java.crv.BibleReaderCommentary.controllers;
 import java.io.File;
 import java.io.IOException;
 
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +20,10 @@ public class ControlCenterController {
 	private CommentaryRepository commentaryRepository;
 	private BibleRepository bibleRepository;
 	private static final String UPLOAD_DIRECTORY = "/home/sven/uploads1"; //prepare path before deployment.
-	private final ResourceLoader resourceLoader;
 	
-	public ControlCenterController(CommentaryRepository commentaryRepository, BibleRepository bibleRepository, ResourceLoader resourceLoader) {
+	public ControlCenterController(CommentaryRepository commentaryRepository, BibleRepository bibleRepository) {
 		this.commentaryRepository = commentaryRepository;
 		this.bibleRepository = bibleRepository;
-		this.resourceLoader = resourceLoader;
 	}
 	
 	@GetMapping("/admin/controlCenter")
@@ -60,10 +57,7 @@ public class ControlCenterController {
 			BibleImporter bl = new BibleImporter(destination.toString());
 			Bible bibleForLoading = bl.loadBible(0);
 			bibleRepository.save(bibleForLoading);
-			
-			
-			
-			
+				
 		}
 		catch (NullPointerException e) {
 			e.printStackTrace();
@@ -73,6 +67,22 @@ public class ControlCenterController {
 		}
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/admin/uploadComments")
+	public String uploadComments() {
+		
+		try {
+			
+			
+		}
+		catch (Exception e) {
+			
+			
+		}
+		
+		return "redirect:/";
+		
 	}
 	
 }
