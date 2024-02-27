@@ -73,7 +73,7 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println(userRepo.findAll().toString()); 
 		
 		
-		
+		/*
 		//ExcelReader reader = new ExcelReader("C:\\Users\\sgotal\\Downloads\\test.xlsx");
 		BibleImporter reader = new BibleImporter("/home/sven/WordProject_Bible.xlsx");
 		Bible bible = reader.loadBible(0);
@@ -144,6 +144,6 @@ public class BootstrapData implements CommandLineRunner{
 			admin.getComments().add(welcome);
 			
 		}
-		
+		*/
 	}
 }

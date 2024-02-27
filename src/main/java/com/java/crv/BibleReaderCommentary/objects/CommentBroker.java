@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.objects;
 
 import java.io.FileInputStream;
+import java.util.NoSuchElementException;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -30,9 +31,12 @@ public class CommentBroker {
 		this.commentaryRepository = commentaryRepository;
 		this.userRepository = userRepository;
 		this.chapterRepository = chapterRepository;
-
-		if(checkFilename()){
+		
+		if(checkFilename(filename)){
 			this.filename = filename;
+		}
+		else {
+			System.out.println("Filename missing or corrupted...");
 		}
 		
 	}
@@ -40,6 +44,8 @@ public class CommentBroker {
 	public void ImportCommentary() {
 		
 		try (FileInputStream inputStream = new FileInputStream(filename)){
+			
+			//System.out.println("Starting import...");
 			
 			Workbook workbook = new XSSFWorkbook(filename);
 			
@@ -52,7 +58,7 @@ public class CommentBroker {
 				if(row.getRowNum() == 0) {
 					continue;
 				}
-				
+				//System.out.println("getting cells...");
 				/* Get cells */
 				Cell comment_id = row.getCell(0);
 				Cell comment_subject = row.getCell(1);
@@ -64,37 +70,52 @@ public class CommentBroker {
 				
 				/* Get models required to bind the comment */
 				User user = userRepository.findById((long) comment_user_id.getNumericCellValue()).get();
+				System.out.println(user.getUsername());
 				Chapter chapter = chapterRepository.findById((long)comment_chapter_id.getNumericCellValue()).get();
+				System.out.println(chapter.getNumber());
 				Commentary comment = new Commentary();
 				
 				comment.setId((long)comment_id.getNumericCellValue());
 				comment.setSubject(comment_subject.getStringCellValue());
 				comment.setPublished(comment_published.getBooleanCellValue());
 				comment.setText(comment_text.getStringCellValue());
-				comment.setTimestamp(comment_timestamp.getStringCellValue());
+				System.out.println("pass setting text value...");
+				comment.setTimestamp(comment_timestamp.getDateCellValue().toString());
+				System.out.println("pass setting timestamp value...");
 				comment.setUser(user);
 				comment.setChapter(chapter);
 				
-				user.getComments().add(comment);
-				chapter.getComments().add(comment);
-				commentaryRepository.save(comment);
+				System.out.println(comment.toString());
+				
+				user = userRepository.save(user);
+			    chapter = chapterRepository.save(chapter);
+
+			    comment.setUser(user);
+			    comment.setChapter(chapter);
+
+			    commentaryRepository.save(comment);
 				
 			}
 			
 			workbook.close();
 			
 		}
+		catch (NoSuchElementException e) {
+			System.out.println("Bible is not loaded...");
+			e.printStackTrace();
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		
 	}
 	
-	private Boolean checkFilename() {
-		if(this.filename.isEmpty()) {
+	private Boolean checkFilename(String filename) {
+		if(filename == null){
 			return false;
 		}
-		if(this.filename == null) {
+		if(filename.isEmpty()) {
 			return false;
 		}
 		
