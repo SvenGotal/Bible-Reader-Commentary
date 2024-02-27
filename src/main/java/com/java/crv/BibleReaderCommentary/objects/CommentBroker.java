@@ -48,6 +48,12 @@ public class CommentBroker {
 			
 			for(Row row : sheet) {
 				
+				/* Skip first row (header row) */
+				if(row.getRowNum() == 0) {
+					continue;
+				}
+				
+				/* Get cells */
 				Cell comment_id = row.getCell(0);
 				Cell comment_subject = row.getCell(1);
 				Cell comment_published = row.getCell(2);
@@ -56,6 +62,7 @@ public class CommentBroker {
 				Cell comment_user_id = row.getCell(5);
 				Cell comment_chapter_id = row.getCell(6);
 				
+				/* Get models required to bind the comment */
 				User user = userRepository.findById((long) comment_user_id.getNumericCellValue()).get();
 				Chapter chapter = chapterRepository.findById((long)comment_chapter_id.getNumericCellValue()).get();
 				Commentary comment = new Commentary();
@@ -68,6 +75,8 @@ public class CommentBroker {
 				comment.setUser(user);
 				comment.setChapter(chapter);
 				
+				user.getComments().add(comment);
+				chapter.getComments().add(comment);
 				commentaryRepository.save(comment);
 				
 			}
