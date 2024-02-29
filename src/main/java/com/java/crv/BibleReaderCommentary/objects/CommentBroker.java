@@ -1,9 +1,14 @@
 package com.java.crv.BibleReaderCommentary.objects;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
@@ -41,7 +46,11 @@ public class CommentBroker {
 		
 	}
 	
-	public void ImportCommentary() {
+	public CommentBroker(CommentaryRepository commentaryRepository) {
+		this.commentaryRepository = commentaryRepository;
+	}
+	
+	public void importCommentary() {
 		
 		try (FileInputStream inputStream = new FileInputStream(filename)){
 			
@@ -80,7 +89,7 @@ public class CommentBroker {
 				comment.setPublished(comment_published.getBooleanCellValue());
 				comment.setText(comment_text.getStringCellValue());
 				System.out.println("pass setting text value...");
-				comment.setTimestamp(comment_timestamp.getDateCellValue().toString());
+				comment.setTimestamp(comment_timestamp.getStringCellValue());
 				System.out.println("pass setting timestamp value...");
 				comment.setUser(user);
 				comment.setChapter(chapter);
@@ -109,6 +118,69 @@ public class CommentBroker {
 		}
 		
 		
+	}
+	
+	public byte[] exportComments() throws IOException {
+		
+		try (Workbook workbook = new XSSFWorkbook()){
+			
+			
+			/* create worksheet and populate List for comments */
+			Sheet worksheet = workbook.createSheet("Comments");
+			Iterable<Commentary> repoComments = commentaryRepository.findAll();
+			
+			Integer rowCount = 1;
+			
+			/* create header row and set headers */
+			Row headerRow = worksheet.createRow(0);
+			headerRow.createCell(0).setCellValue("comment_id");
+			headerRow.createCell(1).setCellValue("comment_subject");
+			headerRow.createCell(2).setCellValue("comment_published");
+			headerRow.createCell(3).setCellValue("comment_text");
+			headerRow.createCell(4).setCellValue("comment_timestamp");
+			headerRow.createCell(5).setCellValue("comment_user_id");
+			headerRow.createCell(6).setCellValue("comment_chapter_id");
+			
+			/* populating excel file with data from CommentaryRepository */
+			for(Commentary cmnt : repoComments) {
+								
+				Row currentRow = worksheet.createRow(rowCount);
+				
+				/*
+				 * comment_id (0) - Number
+				 * comment_subject (1) String
+				 * comment_published (2) Boolean
+				 * comment_text (3) String
+				 * comment_timestamp (4) String (in db)
+				 * comment_user_id (5) Number
+				 * comment_chapter_id (6) Number
+				 * 
+				 * */
+				
+				currentRow.createCell(0).setCellValue(cmnt.getId());
+				currentRow.createCell(1).setCellValue(cmnt.getSubject());
+				currentRow.createCell(2).setCellValue(cmnt.getPublished());
+				currentRow.createCell(3).setCellValue(cmnt.getText());
+				currentRow.createCell(4).setCellValue(cmnt.getTimestamp());
+				currentRow.createCell(5).setCellValue(cmnt.getUser().getId());
+				currentRow.createCell(6).setCellValue(cmnt.getChapter().getId());
+				
+				++rowCount;
+			}
+			
+			try(ByteArrayOutputStream output = new ByteArrayOutputStream()){
+				workbook.write(output);
+				return output.toByteArray();
+				
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return null;
 	}
 	
 	private Boolean checkFilename(String filename) {

@@ -3,6 +3,10 @@ package com.java.crv.BibleReaderCommentary.controllers;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +28,7 @@ public class ControlCenterController {
 	private UserRepository userRepository;
 	private ChapterRepository chapterRepository;
 	private BibleRepository bibleRepository;
+	private CommentBroker commentBroker;
 	private static final String UPLOAD_DIRECTORY = "/home/sven/uploads1"; //prepare path before deployment.
 	
 	public ControlCenterController(
@@ -103,7 +108,7 @@ public class ControlCenterController {
 			System.out.println("Starting comment broker...");
 			CommentBroker cb = new CommentBroker(commentaryRepository, userRepository, chapterRepository, destination.toString());
 			System.out.println("Comment broker started...");
-			cb.ImportCommentary();
+			cb.importCommentary();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -111,6 +116,21 @@ public class ControlCenterController {
 		}
 		
 		return "redirect:/";
+		
+	}
+	
+	@GetMapping("/admin/downloadComments")
+	public ResponseEntity<byte[]> exportComments() throws IOException {
+		
+		CommentBroker commentBroker = new CommentBroker(commentaryRepository);
+		
+		byte[] excelComments = commentBroker.exportComments();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+		headers.setContentDispositionFormData("attachment", "comments_download.xlsx");
+		
+		return new ResponseEntity<>(excelComments, headers, HttpStatus.OK);
 		
 	}
 	
