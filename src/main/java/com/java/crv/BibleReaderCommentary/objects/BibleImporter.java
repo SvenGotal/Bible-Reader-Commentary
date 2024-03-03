@@ -29,7 +29,7 @@ public class BibleImporter {
 		bible.setBooks(new ArrayList<Book>());
 				
 		/* Create domains */
-		Book book = new Book();;				
+		Book book = new Book();				
 		Chapter chapter = null;
 		Verse verse = null;
 		
