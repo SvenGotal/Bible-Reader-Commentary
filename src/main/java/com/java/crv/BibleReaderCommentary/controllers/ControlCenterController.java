@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.java.crv.BibleReaderCommentary.domain.Bible;
 import com.java.crv.BibleReaderCommentary.objects.BibleImporter;
 import com.java.crv.BibleReaderCommentary.objects.CommentBroker;
+import com.java.crv.BibleReaderCommentary.objects.UserBroker;
 import com.java.crv.BibleReaderCommentary.repositories.BibleRepository;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
@@ -28,7 +29,6 @@ public class ControlCenterController {
 	private UserRepository userRepository;
 	private ChapterRepository chapterRepository;
 	private BibleRepository bibleRepository;
-	private CommentBroker commentBroker;
 	private static final String UPLOAD_DIRECTORY = "/home/sven/uploads1"; //prepare path before deployment.
 	
 	public ControlCenterController(
@@ -133,5 +133,37 @@ public class ControlCenterController {
 		return new ResponseEntity<>(excelComments, headers, HttpStatus.OK);
 		
 	}
+	
+	@PostMapping("/admin/uploadUsers")
+	public String importUsers(@RequestPart("fileInput") MultipartFile file) {
+		
+		try {
+			System.out.println(System.getProperty("os.name"));
+			File directory = new File(UPLOAD_DIRECTORY);
+			if(!directory.exists()) {
+				System.out.println("Creating directory " + UPLOAD_DIRECTORY);
+				directory.mkdir();
+			}
+			
+			
+			String filePath = UPLOAD_DIRECTORY + File.separator + file.getOriginalFilename();
+			File destination = new File(filePath);
+			
+			System.out.println("Uploading file to " + destination.toString());
+			file.transferTo(destination);
+			
+			System.out.println("Starting user broker...");
+			UserBroker ub = new UserBroker(userRepository, commentaryRepository, destination.toString());
+			System.out.println("User broker started...");
+			ub.importUsers();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return "redirect:/";
+	}
+	
 	
 }

@@ -16,12 +16,7 @@
 				</form>					
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<br>
-			
-			</td>
-		</tr>
+		<tr><td><br></td></tr>
 		<tr>
 			<td>
 				<form th:action="@{/admin/uploadComments}" method="post" enctype="multipart/form-data">
@@ -31,11 +26,20 @@
 				</form>			
 			</td>
 		</tr>
-		
+		<tr><td><br></td></tr>
 		<tr>
 			<td>
-				<form th:action="@{/admin/downloadComments}" method="get" enctype="multipart/form-data">
-						
+				<form th:action="@{/admin/uploadUsers}" method="post" enctype="multipart/form-data">
+					<label for="fileInput">Odaberi .xlsx file za upload korisnika</label>
+					<input type="file" id="fileInput" name="fileInput" accept=".xlsx, .ods, .pdf">
+					<button type="submit">Upload</button>
+				</form>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td>
+				<form th:action="@{/admin/downloadComments}" method="get" enctype="multipart/form-data">	
 					<button type="submit">Preuzmi komentare</button>
 				</form>				
 			</td>
