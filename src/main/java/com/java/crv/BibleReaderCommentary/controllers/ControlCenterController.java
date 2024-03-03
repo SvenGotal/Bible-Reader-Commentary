@@ -1,8 +1,15 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
-import java.io.File;
-import java.io.IOException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import org.h2.tools.RunScript;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -165,5 +172,28 @@ public class ControlCenterController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/admin/restoreDatabase")
+	public void restoreDatabase() throws SQLException {
 	
+		/* change paths before production launch, make them programmable */
+		String jdbcUrl = "jdbc:h2:file:/home/sven/db.zip";
+		String pathToDB = "/home/sven/db.zip";
+		
+		try(Connection conn = DriverManager.getConnection(jdbcUrl)){
+			RunScript.execute(conn, new FileReader(pathToDB));
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
+
+	
+	
+	
+	
+	
