@@ -172,22 +172,44 @@ public class ControlCenterController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/admin/restoreDatabase")
-	public void restoreDatabase() throws SQLException {
+	@PostMapping("/admin/restoreDatabase")
+	public String restoreDatabase(@RequestPart("fileInput") MultipartFile file) throws SQLException {
 	
 		/* change paths before production launch, make them programmable */
-		String jdbcUrl = "jdbc:h2:file:/home/sven/db.zip";
-		String pathToDB = "/home/sven/db.zip";
+		final String jdbcUrl = "jdbc:h2:file:";
 		
-		try(Connection conn = DriverManager.getConnection(jdbcUrl)){
-			RunScript.execute(conn, new FileReader(pathToDB));
+		
+		try {
+			System.out.println(System.getProperty("os.name"));
+			File directory = new File(UPLOAD_DIRECTORY);
+			if(!directory.exists()) {
+				System.out.println("Creating directory " + UPLOAD_DIRECTORY);
+				directory.mkdir();
+			}
+			
+			
+			String filePath = UPLOAD_DIRECTORY + File.separator + file.getOriginalFilename();
+			File destination = new File(filePath);
+			
+			System.out.println("Uploading file to " + destination.toString());
+			file.transferTo(destination);
+			
+			try(Connection conn = DriverManager.getConnection(jdbcUrl+filePath)){
+				RunScript.execute(conn, new FileReader(filePath));
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			catch(FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
-		catch(SQLException e) {
+		catch (Exception e) {
 			e.printStackTrace();
+			
 		}
-		catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		
+		return "redirect:/";
 		
 	}
 }
