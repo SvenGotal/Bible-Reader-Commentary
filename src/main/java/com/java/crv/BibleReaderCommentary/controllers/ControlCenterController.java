@@ -172,6 +172,7 @@ public class ControlCenterController {
 		return "redirect:/";
 	}
 	
+	//todo: implement restoreDatabase
 	@PostMapping("/admin/restoreDatabase")
 	public String restoreDatabase(@RequestPart("fileInput") MultipartFile file) throws SQLException {
 	
