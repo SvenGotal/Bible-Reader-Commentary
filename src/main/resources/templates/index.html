@@ -1,89 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Index</title>
-	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
-	
+
+	<title>Bible Reader's Commentary</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width", initial-scale="1" />	
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
+	
 </head>
 <body>
 	
-	<h1>Welcome to the index page</h1>
-	<p th:text="${binding}"></p>
-	</br>
-	
-	<div id="bible_display">
-	
-		<form method="post" th:action="@{/fetchChapters}">
-			<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
-				<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-				<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-			</select>
-	
-			<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled>
-				<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
-			</select>	
-		</form>
+	<div class="main-body">
+		<!--======================================================= Header =======================================================-->
+		<div class = header-area>
 		
-		<div id="bible_text">
+			<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
 		
+		
+			<form method="post" th:action="@{/fetchChapters}">
+				<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+					<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+					<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+				</select>
+		
+				<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled>
+					<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
+				</select>	
+			</form>
+			
+			<div th:if="${userValidated}">
+				<span th:switch="${userRole}">
+				<!--  
+				ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
+				USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
+				-->
+					<span th:case="USER">
+						<a href="/private/submitComment">Napiši komentar</a>
+						<a href="/logout">Odjava</a>
+						<a href="/private/myComments">Moji komentari</a>
+					</span>
+					<span th:case="ADMIN">
+						<a href="/public/submitForm">Novi korisnik</a>
+						<a href="/private/submitComment">Napiši komentar</a>
+						<a href="/logout">Odjava</a>
+						<a href="/private/myComments">Moji komentari</a>
+						<a href="/admin/controlCenter">Control Center</a>
+					</span>
+					<span th:case="OWNER">
+						<a href="/public/submitForm">Novi korisnik</a>
+						<a href="/private/submitComment">Napiši komentar</a>
+						<a href="/logout">Odjava</a>
+						<a href="/private/myComments">Moji komentari</a>
+						<a href="/admin/controlCenter">Control Center</a>
+					</span>
+								
+				</span>
+			</div>
+			<div th:unless="${userValidated}">
+				<a href="public/submitForm?redirect=/">Create profile</a>	
+				<a href="/login?redirect=/">Login</a>
+			</div>
+			
+		</div>
+		<!--======================================================= /Header ======================================================-->
+		
+		
+		<p th:text="${binding}"></p>
+		</br>
+		
+		<div class="bible-area" id="bible_display">
+		
+			
+			
+			<div id="bible_text">
+			
+			
+			
+			</div>
+			
+			
+		
+		</div>
+		
+		<div class="comments-area">
+		
+			<div id="comments_text">
+			
+			
+			</div>
 		
 		
 		</div>
 		
-		<div id="comments_text">
 		
+		
+		
+		
+		
+		
+		
+	</div>
+	
+	<!--======================================================= Footer =======================================================-->
+		<div class="footer-area">
+		
+		
+			<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.jpg}"></p>
 		
 		</div>
-	
-	</div>
-	
-	<div th:if="${userValidated}">
-		<span th:switch="${userRole}">
-		<!--  
-		ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
-		USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
-		-->
-			<span th:case="USER">
-				<a href="/private/submitComment">Napiši komentar</a>
-				<a href="/logout">Odjava</a>
-				<a href="/private/myComments">Moji komentari</a>
-			</span>
-			<span th:case="ADMIN">
-				<a href="/public/submitForm">Novi korisnik</a>
-				<a href="/private/submitComment">Napiši komentar</a>
-				<a href="/logout">Odjava</a>
-				<a href="/private/myComments">Moji komentari</a>
-				<a href="/admin/controlCenter">Control Center</a>
-			</span>
-			<span th:case="OWNER">
-				<a href="/public/submitForm">Novi korisnik</a>
-				<a href="/private/submitComment">Napiši komentar</a>
-				<a href="/logout">Odjava</a>
-				<a href="/private/myComments">Moji komentari</a>
-				<a href="/admin/controlCenter">Control Center</a>
-			</span>
-						
-		</span>
-	</div>
-	<div th:unless="${userValidated}">
-		<a href="public/submitForm?redirect=/">Create profile</a>	
-		<a href="/login?redirect=/">Login</a>
-	</div>
-	
-	
-	<table>
-		<tr>
-			<th>Comments</th>
-		</tr>	
-		<tr th:each="comment : ${comments}">
-			<td >
-				<p th:text="${comment.subject}"></p>
-				<p th:utext="${comment.text + '<br/><br/>Komentator: ' + comment.user.username + ' - ' + comment.timestamp}"></p>
-			</td>
-		</tr>
-	</table>
-	
+		<!--======================================================= /Footer ======================================================-->
 </body>
 </html>
 

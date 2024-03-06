@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+
+
+body{
+	
+	margin-top: 1px;
+	background-color: #8C2F64;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.main-body{
+	
+	
+	background-color: white;
+	padding-top: 0px;
+	
+	
+	height: 90%;
+	
+	padding-left:10px;
+	padding-right:10px;
+	
+}
+
+.header-area{
+	
+	
+	
+}
+
+.footer-area{
+	
+	background-color: #8C2F64;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	
+	color: white;
+}
+
+.bible-area{
+	
+	column-count:2;
+	
+}
+
+.index-logo{
+	
+	width: 350px;
+	height: 120px;
+	
+}
+
+.copyright-image{
+	
+	
+	height: 68px;
+	width: 165px;
+	
+}
