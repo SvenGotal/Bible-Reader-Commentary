@@ -76,9 +76,15 @@ function updateIndexChapters() {
 async function fetchVersesAndComments() {
 
 	var selectedBookId = document.getElementById('bookSelection').value;
+	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapterNumber = document.getElementById('chapterSelection').value;
 	var commentsDisplay = document.getElementById('comments_text');
 	var versesDisplay = document.getElementById('bible_text');
+	
+	var upper_separator_text = document.getElementById('upper_separator_text');
+	var selectedBookOption = selectedBook.options[selectedBook.selectedIndex];
+	var selectedBookName = selectedBookOption.text;
+	upper_separator_text.innerText = '';
 
 	try {
 
@@ -98,6 +104,8 @@ async function fetchVersesAndComments() {
 		const caughtComments = await fetchComments.json();
 		console.log("Caught Comments...");
 
+		upper_separator_text.innerText = selectedBookName + ' : ' + selectedChapterNumber;
+	
 		console.log("Cleaning existing text...");
 		versesDisplay.innerHTML = '';
 		commentsDisplay.innerHTML = '';
