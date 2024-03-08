@@ -104,7 +104,7 @@ async function fetchVersesAndComments() {
 		const caughtComments = await fetchComments.json();
 		console.log("Caught Comments...");
 
-		upper_separator_text.innerText = selectedBookName + ' : ' + selectedChapterNumber;
+		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
 	
 		console.log("Cleaning existing text...");
 		versesDisplay.innerHTML = '';
