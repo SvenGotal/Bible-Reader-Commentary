@@ -37,20 +37,20 @@
 								USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
 								-->
 									<span th:case="USER">
-										<a href="/private/submitComment">Napiši komentar</a> 
+										
 										<a href="/logout">Odjava</a> 
 										<a href="/private/myComments">Moji komentari</a>
 									</span>
 									<span th:case="ADMIN">
 										<a href="/public/submitForm">Novi korisnik</a> 
-										<a href="/private/submitComment">Napiši komentar</a> 
+										
 										<a href="/logout">Odjava</a> 
 										<a href="/private/myComments">Moji komentari</a> 
 										<a href="/admin/controlCenter">Control Center</a>
 									</span>
 									<span th:case="OWNER"> 
 										<a href="/public/submitForm">Novi korisnik</a> 
-										<a href="/private/submitComment">Napiši komentar</a> 
+										
 										<a href="/logout">Odjava</a> 
 										<a href="/private/myComments">Moji komentari</a> 
 										<a href="/admin/controlCenter">Control Center</a>
@@ -90,30 +90,27 @@
 		</br>
 		
 		<div class="bible-area" id="bible_display">
-		
-			
-			
 			<div id="bible_text">
-			
-			
-			
+				<!-- This area is autofilled by ajax script with Bible verses -->
 			</div>
-			
-			
-		
 		</div>
+		
+		<div class="lower-separator" >
+			<div class="options-list" th:if="${userValidated}">
+				<a href="/private/submitComment">Napiši komentar</a>
+			</div>
+			<div class="options-list" th:unless="${userValidated}">
+				<a href="public/submitForm?redirect=/">Create profile</a>	
+				<a href="/login?redirect=/">Login</a>
+			</div>
+		</div>
+		
 		
 		<div class="comments-area">
-		
 			<div id="comments_text">
-			
-			
+				<!-- This area is autofilled by ajax script with Bible comments -->
 			</div>
-		
-		
 		</div>
-		
-
 	</div>
 	
 	<!--======================================================= Footer =======================================================-->

@@ -85,6 +85,7 @@ async function fetchVersesAndComments() {
 	var selectedBookOption = selectedBook.options[selectedBook.selectedIndex];
 	var selectedBookName = selectedBookOption.text;
 	upper_separator_text.innerText = '';
+	
 
 	try {
 
@@ -105,6 +106,7 @@ async function fetchVersesAndComments() {
 		console.log("Caught Comments...");
 
 		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
+		
 	
 		console.log("Cleaning existing text...");
 		versesDisplay.innerHTML = '';

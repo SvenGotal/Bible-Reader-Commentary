@@ -33,10 +33,10 @@ body{
 	
 	margin-left: auto;
 	margin-right: auto;
-	/*overflow:auto;*/
-	padding-bottom: 0px;
+	overflow:auto;
+	padding-bottom: 10px;
 	
-	height: 95px;
+	height: auto;
 }
 
 .header-area a{
@@ -66,17 +66,23 @@ body{
 .options-list a{
 	
 
-	padding: 4px;
+	padding: 6px;
+	margin: 2px;
 	text-decoration: none;
 	text-align: center;
-	color: black;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
 	
 }
 
 .options-list a:hover{
 	
-	box-shadow: inset 0px 0px 0px 2px #8C2F64;
-	border-radius: 20px;
+	/*box-shadow: inset 0px 0px 0px 2px #6764A7;*/
+	border: 1px solid #6764A7;
+	background-color: #6764A7;
+	
 	
 	
 }
@@ -84,6 +90,31 @@ body{
 .options-table td{
 	
 	padding-top: 15px;
+	
+}
+
+.upper-separator{
+	
+	background-color: #AC312B;
+	/*padding-top: 1px;
+	padding-bottom: 1px;*/
+	margin-top: 2px;
+	margin-bottom: 2px;
+	float: center;
+	text-align: center;
+	color: white;
+	margin-left: 1%;
+	margin-right: 1%;
+	height: 35px;
+	
+}
+
+.lower-separator{
+	
+	padding-top: 2%;
+	padding-bottom: 2%;
+	float:center;
+	text-align: center;
 	
 }
 
@@ -100,6 +131,8 @@ body{
 .bible-area{
 	
 	column-count:2;
+	padding-left: 2%;
+	padding-right: 2%;
 	
 }
 
