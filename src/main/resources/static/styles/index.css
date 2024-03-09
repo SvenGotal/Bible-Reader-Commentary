@@ -143,15 +143,7 @@ body{
 	
 }
 
-.footer-area{
-	
-	background-color: #8C2F64;
-	padding-top:15px;
-	padding-bottom:15px;
-	padding-left:15px;
-	
-	color: white;
-}
+
 
 .bible-area{
 	column-gap: 25px;
@@ -212,10 +204,22 @@ body{
 	height: 50%;	
 }
 
+.footer-area{
+	
+	background-color: #8C2F64;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	font-weight: bold;
+	font-style: oblique;
+	color: white;
+}
+
 .copyright-image{
 	
 	
-	height: 34px;
-	width: 82px;
+	height: 7%;
+	width: 7%;
+	padding-left: 15px;
 	
 }
