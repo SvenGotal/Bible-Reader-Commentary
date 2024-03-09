@@ -121,6 +121,45 @@ async function fetchVersesAndComments() {
 
 		console.log("Processing caught Comments...");
 		caughtComments.forEach(comment => {
+			
+			var table = document.createElement('table');
+			var tbody = document.createElement('tbody');
+			var h3 = document.createElement('h3');
+			var rowSubject = document.createElement('tr');
+			var rowText = document.createElement('tr');
+			var rowAuthor = document.createElement('tr');
+			
+			var tdSubject = document.createElement('td');
+			var tdText = document.createElement('td');
+			var tdAuthor = document.createElement('td');
+			
+			h3.innerText = comment.subject;
+			h3.style.cssText = 'padding-bottom: 2px;';
+			
+			tdSubject.appendChild(h3);
+			tdSubject.style.cssText = 'padding-left: 15px;';	
+			tdText.innerText = comment.text;
+			tdText.style.cssText = 'padding-left: 15px;';
+			tdAuthor.innerText = comment.user.username + ' : ' + comment.timestamp;
+			tdAuthor.style.cssText = 'padding-left: 15px;';
+			
+			rowSubject.appendChild(tdSubject);
+			rowSubject.style.cssText = 'height: 35px;'
+			rowText.appendChild(tdText);
+			rowAuthor.appendChild(tdAuthor);
+			
+			rowSubject.classList.add('comments-rowSubject');
+			rowText.classList.add('comments-rowText');
+			rowAuthor.classList.add('comments-rowAuthor');
+			
+			tbody.appendChild(rowSubject);
+			tbody.appendChild(rowText);
+			tbody.appendChild(rowAuthor);
+			
+			table.appendChild(tbody);
+			
+			commentsDisplay.appendChild(table);
+			/*
 			var paragraph = document.createElement('p');
 			paragraph.innerHTML =
 				comment.subject +
@@ -131,7 +170,7 @@ async function fetchVersesAndComments() {
 				' : '
 				+ comment.timestamp;
 
-			commentsDisplay.appendChild(paragraph);
+			commentsDisplay.appendChild(paragraph);*/
 		});
 
 	}

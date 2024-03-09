@@ -12,7 +12,7 @@ body{
 	background-color: #8C2F64;
 	padding-left: 10%;
 	padding-right: 10%;
-	flex-direction: column;
+	
 }
 
 .main-body{
@@ -123,11 +123,8 @@ body{
 .upper-separator{
 	
 	background-color: #AC312B;
-	/*padding-top: 1px;
-	padding-bottom: 1px;*/
 	margin-top: 2px;
 	margin-bottom: 2px;
-	
 	text-align: center;
 	color: white;
 	margin-left: 1%;
@@ -140,7 +137,6 @@ body{
 	
 	padding-top: 2%;
 	padding-bottom: 2%;
-	
 	text-align: center;
 	
 }
@@ -158,21 +154,64 @@ body{
 .bible-area{
 	column-gap: 25px;
 	column-count:2;
-	padding-left: 2%;
-	padding-right: 2%;
+	padding: 2%;
+	
 	
 }
 
 .bible-area p{
 	width: 100%;
-	-webkit-margin-before: 0;
-  	-webkit-margin-after: 0;
+	
 }
+
+.comments-area{
+	padding-bottom: 3%;
+	padding-right: 3%;
+}
+
+.comments-area table{
+	width: 100%;
+	margin-left: 1%;
+	margin-right: 1%;
+
+}
+
+.comments-area td{
+	
+	padding-top: 8px;
+	padding-bottom: 8px;
+	
+	
+}
+
+.comments-rowSubject{
+	color: white;
+	font-weight: bold;
+	max-height: 35px;
+	margin-top: 0px;
+	margin-bottom: 0px;	
+}
+
+.comments-rowSubject h3{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	background-color: #6765A9;
+}
+
+.comments-rowAuthor td{
+	font-style: oblique;
+}
+
+
 
 .index-logo{
 	
-	width: 350px;
-	height: 120px;
+	width: 50%;
+	height: 50%;
+	
+	/*width: 350px;
+	height: 120px;*/
 	
 }
 
