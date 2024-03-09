@@ -1,45 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Submit Form</title>
-	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
+	<title>Bible Reader Commentary</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitComment.css}"/>
+	
+	<script th:src="@{/scripts/javascript.js}" ></script>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
+	
+	<!-- ######################################################### Google Fonts #########################################################-->	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
+	<!--################################################################################################################################################-->
+	
 </head>
 <body>
 	
-	<h1>Submit form</h1>	
+	<div class="main-body">
 	
-	<!--  onsubmit="return validateForm()"  -->
-	
-	<form method="post" th:action="@{submitComment}" th:object="${comment}">
-
-
-		<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
-			<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-			<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-		</select>
-
-		<select id="chapterSelection" name="selectedChapter" disabled>
-			<option selected disabled th:placeholder="'Odaberite poglavlje'">Odaberite poglavlje</option>		
-		</select>	
-	
-		<label>Subject: <input type="text" th:field="*{subject}" /></label><br/>	
-		<label>Comment: <textarea type="text" th:field="*{text}" ></textarea></label><br/>
+		<div class = "header-area header-area-submit-comment">
 		
-		<label>
-			Želim da moj komentar bude privatan: 
-			<input type="checkbox" name="setPrivateCheckbox" value="false">
-		</label>
-		
-	
+			<div class="comment-logo-div">
+				<img class="comment-logo" th:src="@{/images/BRC logo.jpg}">
+			</div>
+			<div class="options-div-comment">
+				<span class="options-list">
+					<a id="logout_button" href="/logout">Odjava</a>
+					<a href="/?redirect=/">Početna</a>
+					<a href="/private/myComments">Moji komentari</a>
+				</span>
 				
-		<button type="submit">Submit</button>
-	</form>
+			
+			</div>
+		
+		</div>
+	
+		<div class="main-form">
+			<form method="post" th:action="@{submitComment}" th:object="${comment}">
+			
+				<div class="selection-comments">
+					<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
+						<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+					</select>
+			
+					<select id="chapterSelection" name="selectedChapter" disabled>
+						<option selected disabled th:placeholder="'Glava'">Glava</option>		
+					</select>	
+				</div>
+				<div class="input-comments">
+					<div class="comments-title-submit">
+						<label>Naslov:  </label>
+						<input id="commentSubject" type="text" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
+					</div>
+					<div id="wrapper">
+						<div class="comments-make-private">
+							<div class="comments-label">
+								<label id="comments_label">Komentar je privatan:</label>
+							</div>
+							
+							<div class="comments-checkbox">
+								<input id="comments_checkbox" type="checkbox" name="setPrivateCheckbox" value="false">
+							</div>
+						</div>	
+					</div>
+					<div class="comments-text-submit">
+						<textarea id="comment_textarea" type="text" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}" ></textarea><br/>
+					</div>
+				</div>
+				<div class="comment-submit">
+					<button id="submit_button" disabled class="comment-insert" type="submit">Unesi komentar</button>
+				</div>	
+				
+			</form>
+		</div>
+		
+		
+	</div>
 	
 	
 	
-	<a href="/?redirect=/">Nazad na početnu stranicu</a>
+	
+	
+	
+	
 
 </body>
 </html>

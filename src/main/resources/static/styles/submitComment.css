@@ -1,1 +1,150 @@
-@charset "UTF-8";
+
+
+body{
+	
+	margin-top: 1px;
+	background-color: #8C2F64;
+	padding-left: 10%;
+	padding-right: 10%;
+	
+}
+
+.main-body{
+	
+	background-color: white;
+	padding-top: 0px;
+	
+	
+	height: 90%;
+	
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom: 20px;
+}
+
+.options-div-comment{
+	
+	float: right;
+	margin-top: 1%;
+	
+	
+}
+
+.input-comments{
+	
+	width: 100%;
+}
+
+.comments-title-submit{
+	
+	margin-top: 1%;
+	margin-bottom: 2%;
+
+	width: 95%;
+	font-size: 100%;
+	background-color: #F6EC6D;
+	height: 50px;
+	padding-top: 10px;
+	padding-left: 15px;
+	color: #6865A7;
+	border: 2px solid #F6EC6D;
+	border-radius: 15px;
+	font-weight: bold;
+}
+
+.comments-title-submit input{
+	width: 70%;
+	height: 40px;
+	font-size: 18px;
+	border: none;
+	border-radius: 15px;
+	padding-left: 1%;
+}
+
+.comments-title-submit label{
+	padding-right: 1%;
+}
+
+.comments-make-private{
+	
+	margin-bottom: 2%;
+	font-size: 100%;
+	background-color: #6865A8;
+	height: 50px;
+
+	padding-left: 15px;
+	color: white;
+	border: 2px solid #6865A8;
+	border-radius: 15px;
+	font-weight: bold;
+	width: 90%;
+}
+
+#wrapper{
+	width: 100%;
+}
+
+.comments-label{
+	padding-top: 15px;
+	float: left;
+}
+
+.comments-checkbox{
+	
+	width: 15%;
+	height: 60%;
+	padding-top: 10px;
+	float: right;
+	
+}
+
+
+
+#comments_checkbox{
+	
+
+	width: 25px;
+	height: 25px;
+
+	
+}
+
+#comment_textarea{
+	
+	width: 100%;
+	height: 400px;
+	font-size: 16px;
+	
+}
+
+.comment-logo-div{
+	
+	float: left;
+}
+
+.comment-logo{
+	width: 50%;
+	height: 50%;
+
+}
+
+.comment-insert{
+	font-weight: bold;
+	padding: 6px;
+	margin: 2px;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
+}
+
+.comment-submit{
+	margin-top: 1%;
+	margin-left: 45%;
+}
+
+.header-area-submit-comment{
+	margin-bottom: 2%;
+}

@@ -14,7 +14,7 @@ function updateChapters() {
 			// Add a placeholder option
 			var placeholderOption = document.createElement('option');
 			placeholderOption.value = '';
-			placeholderOption.text = 'Odaberite poglavlje';
+			placeholderOption.text = 'Glava';
 			placeholderOption.disabled = true;
 			placeholderOption.selected = true;
 			chapterSelection.appendChild(placeholderOption);

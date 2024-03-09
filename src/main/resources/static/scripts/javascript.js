@@ -105,6 +105,21 @@ function commentDelete(){
 	
 }
 
+/* not working adjust later */
+function insertComment(){
+	
+	var subject = document.getElementById('commentSubject');
+	var text = document.getElementById('comment_textarea');
+	var submitButton = document.getElementById("submit_button");
+	
+	if(subject.innerText === '' || text.innerText === ''){
+		submitButton.disabled = true;	
+	}
+	else{
+		submitButton.disabled = false;
+	}
+	
+}
 
 
 
