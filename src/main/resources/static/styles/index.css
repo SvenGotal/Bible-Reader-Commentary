@@ -53,7 +53,7 @@ body{
 .options-div{
 	
 	float: right;
-	padding-right: 10%;
+	padding-right: 2%;
 }
 
 .options-table{
@@ -65,7 +65,7 @@ body{
 
 .options-list a{
 	
-
+	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
 	text-decoration: none;
@@ -93,6 +93,33 @@ body{
 	
 }
 
+#bookSelection{
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #6FB350;
+	background-color: #6FB350;
+	width: 250px;
+	height: 30px;
+	font-weight: bold;
+}
+
+#chapterSelection{
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #6FB350;
+	background-color: #6FB350;
+	width: 70px;
+	height: 30px;
+	font-weight: bold;
+}
+
+#logout_button{
+	background-color: #6765A9;
+	border: 1px solid #6765A9;
+}
+
 .upper-separator{
 	
 	background-color: #AC312B;
@@ -100,7 +127,7 @@ body{
 	padding-bottom: 1px;*/
 	margin-top: 2px;
 	margin-bottom: 2px;
-	float: center;
+	
 	text-align: center;
 	color: white;
 	margin-left: 1%;
@@ -113,7 +140,7 @@ body{
 	
 	padding-top: 2%;
 	padding-bottom: 2%;
-	float:center;
+	
 	text-align: center;
 	
 }
@@ -129,11 +156,17 @@ body{
 }
 
 .bible-area{
-	
+	column-gap: 25px;
 	column-count:2;
 	padding-left: 2%;
 	padding-right: 2%;
 	
+}
+
+.bible-area p{
+	width: 100%;
+	-webkit-margin-before: 0;
+  	-webkit-margin-after: 0;
 }
 
 .index-logo{
