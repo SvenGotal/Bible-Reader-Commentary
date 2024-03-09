@@ -128,7 +128,7 @@ public class SubmitCommentController {
 			redirectAttributes.addFlashAttribute("binding", "Komentar kraći od 20 slova neće biti unesen. ");
 			return "redirect:/";
 		}
-		
+		comment.setAuthor();
 		/* Store comment into persistence */
 		commentaryRepository.save(comment);	
 		

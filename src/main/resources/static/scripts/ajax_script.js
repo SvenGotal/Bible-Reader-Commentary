@@ -97,13 +97,13 @@ async function fetchVersesAndComments() {
 		console.log("Fetching Verses...");
 		const fetchVerses = await fetch('/public/fetchVerses?' + params.toString());
 		const caughtVerses = await fetchVerses.json();
-		console.log("Caught Verses...");
+		console.log("Caught Verses...", caughtVerses);
 
 		console.log("Fetching Comments...");
 		const fetchComments = await fetch('/public/fetchPublicComments?' + params.toString());
 		console.log("Fetching Comments first part complete...");
 		const caughtComments = await fetchComments.json();
-		console.log("Caught Comments...");
+		console.log("Caught Comments...", caughtComments);
 
 		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
 		
@@ -140,7 +140,7 @@ async function fetchVersesAndComments() {
 			tdSubject.style.cssText = 'padding-left: 15px;';	
 			tdText.innerText = comment.text;
 			tdText.style.cssText = 'padding-left: 15px;';
-			tdAuthor.innerText = comment.user.username + ' : ' + comment.timestamp;
+			tdAuthor.innerText = comment.author + ' : ' + comment.timestamp;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
 			
 			rowSubject.appendChild(tdSubject);

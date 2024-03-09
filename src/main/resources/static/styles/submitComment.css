@@ -145,6 +145,11 @@ body{
 	margin-left: 45%;
 }
 
+.comment-submit button:hover{
+	border: 1px solid #6764A7;
+	background-color: #6764A7;
+}
+
 .header-area-submit-comment{
 	margin-bottom: 2%;
 }

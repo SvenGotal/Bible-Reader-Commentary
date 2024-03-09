@@ -33,7 +33,8 @@ public class Commentary {
 	@Column(length = 2000)
 	private String text;
 	private String timestamp;
-	
+	private String author;
+
 	@ManyToOne
 	@JsonProperty("user")
 	@JsonManagedReference
@@ -49,7 +50,8 @@ public class Commentary {
 		
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-		this.timestamp = ldt.format(format);				
+		this.timestamp = ldt.format(format);
+		
 	}
 	
 	
@@ -116,6 +118,17 @@ public class Commentary {
 	public String toString() {
 		return text + "\n\n" + user.getUsername() + " at: " + timestamp;
 	}
+	public String getAuthor() {
+		return author;
+	}
+
+
+	public void setAuthor() {
+		this.author = user.getUsername();
+	}
 	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 			
 }

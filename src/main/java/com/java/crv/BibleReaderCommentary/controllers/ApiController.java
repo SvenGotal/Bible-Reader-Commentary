@@ -99,6 +99,7 @@ public class ApiController {
 			for(Commentary comment : getComments) {
 				if(comment.getPublished()) {
 					publicComments.add(comment);
+					System.out.println(comment.toString());
 				}
 			}
 			

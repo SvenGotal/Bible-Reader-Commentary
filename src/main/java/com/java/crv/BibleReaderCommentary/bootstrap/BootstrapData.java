@@ -90,7 +90,7 @@ public class BootstrapData implements CommandLineRunner{
 				welcome.setPublished(true);
 				welcome.setText("Dobrodošli! Molimo Vas da se pridržavate pravila o korištenju ove web stranice.....");
 				welcome.setSubject("Pravila zajednice");
-
+				welcome.setAuthor();
 				commentRepo.save(welcome);
 
 				admin.getComments().add(welcome);
@@ -113,7 +113,7 @@ public class BootstrapData implements CommandLineRunner{
 						+ ", selecting any radio button in that group automatically deselects any other selected radio button in the same group. You can have as many"
 						+ " radio groups on a page as you want, as long as each group has its own name.");
 				welcome.setSubject("Radio buttons");
-
+				welcome.setAuthor();
 				commentRepo.save(welcome);
 
 				admin.getComments().add(welcome);
@@ -135,7 +135,7 @@ public class BootstrapData implements CommandLineRunner{
 						+ "But these messages are something called HTTP status messages. In fact, the server always returns a message for every request. The most common message is 200 OK.\n"
 						+ "Below is a list of HTTP status messages that might be returned:");
 				welcome.setSubject("HTML Error Messages");
-
+				welcome.setAuthor();
 				commentRepo.save(welcome);
 
 				admin.getComments().add(welcome);
