@@ -115,14 +115,24 @@ function insertComment(){
 	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapter = document.getElementById('chapterSelection');
 	
-	if(selectedBook.selectedIndex !== 0 && selectedChapter.selectedIndex !== 0){
-		if(subject.text === '' && text.text === ''){
-			submitButton.disabled = true;	
+	if(selectedBook.selectedIndex !== 0 || selectedChapter.selectedIndex !== 0){
+		
+		if(subject.value === '' || text.value === ''){
+			
+			submitButton.disabled = true;
+			
 		}
 		else{
-			submitButton.disabled = false;
+			if(text.value.length < 20 && submitbutsubmitButton.clicked){
+				var warn = window.prompt("Tekst mora sadržavati minimalno 20 znakova.");
+				submitButton.disabled = true;
+			}
+			else{
+				submitButton.disabled = false;
+			}
 		}
 	}
+	
 	
 	
 	
