@@ -112,12 +112,19 @@ function insertComment(){
 	var text = document.getElementById('comment_textarea');
 	var submitButton = document.getElementById("submit_button");
 	
-	if(subject.innerText === '' || text.innerText === ''){
-		submitButton.disabled = true;	
+	var selectedBook = document.getElementById('bookSelection');
+	var selectedChapter = document.getElementById('chapterSelection');
+	
+	if(selectedBook.selectedIndex !== 0 && selectedChapter.selectedIndex !== 0){
+		if(subject.text === '' && text.text === ''){
+			submitButton.disabled = true;	
+		}
+		else{
+			submitButton.disabled = false;
+		}
 	}
-	else{
-		submitButton.disabled = false;
-	}
+	
+	
 	
 }
 

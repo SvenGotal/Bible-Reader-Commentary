@@ -47,14 +47,14 @@
 						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 					</select>
 			
-					<select id="chapterSelection" name="selectedChapter" disabled>
+					<select id="chapterSelection" name="selectedChapter" onchange=insertComment()" disabled>
 						<option selected disabled th:placeholder="'Glava'">Glava</option>		
 					</select>	
 				</div>
 				<div class="input-comments">
 					<div class="comments-title-submit">
 						<label>Naslov:  </label>
-						<input id="commentSubject" type="text" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
+						<input id="commentSubject" type="text" onchange=insertComment()" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
 					</div>
 					<div id="wrapper">
 						<div class="comments-make-private">
@@ -68,11 +68,11 @@
 						</div>	
 					</div>
 					<div class="comments-text-submit">
-						<textarea id="comment_textarea" type="text" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}" ></textarea><br/>
+						<textarea id="comment_textarea" type="text" onchange="insertComment()" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}" ></textarea><br/>
 					</div>
 				</div>
 				<div class="comment-submit">
-					<button id="submit_button" class="comment-insert" type="submit">Unesi komentar</button>
+					<button disabled id="submit_button" class="comment-insert" type="submit">Unesi komentar</button>
 				</div>	
 				
 			</form>

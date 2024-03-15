@@ -1,5 +1,5 @@
 
-
+/*
 body{
 	
 	margin-top: 1px;
@@ -7,7 +7,7 @@ body{
 	padding-left: 10%;
 	padding-right: 10%;
 	
-}
+}*/
 
 .main-body{
 	
@@ -17,8 +17,8 @@ body{
 	
 	height: 90%;
 	
-	padding-left:10px;
-	padding-right:10px;
+	padding-left:0.3%;
+	padding-right:0.3%;
 	padding-bottom: 20px;
 }
 
@@ -27,6 +27,11 @@ body{
 	float: right;
 	margin-top: 1%;
 	
+	
+}
+
+.selection-comments{
+	width: 70%;
 	
 }
 
@@ -40,7 +45,8 @@ body{
 	margin-top: 1%;
 	margin-bottom: 2%;
 
-	width: 95%;
+	max-width: 95%;
+	width: auto;
 	font-size: 100%;
 	background-color: #F6EC6D;
 	height: 50px;
@@ -111,10 +117,14 @@ body{
 
 #comment_textarea{
 	
-	width: 100%;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 98%;
+	max-width: 99%;
+	width: auto;
 	height: 400px;
 	font-size: 16px;
-	
+	resize: none;
 }
 
 .comment-logo-div{
@@ -143,6 +153,11 @@ body{
 .comment-submit{
 	margin-top: 1%;
 	margin-left: 45%;
+}
+
+#submit_button:disabled{
+	background-color: grey;
+	cursor: not-allowed;
 }
 
 .comment-submit button:hover{
