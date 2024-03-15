@@ -47,14 +47,14 @@
 						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 					</select>
 			
-					<select id="chapterSelection" name="selectedChapter" onchange=insertComment()" disabled>
+					<select id="chapterSelection" name="selectedChapter" onchange="insertComment()" disabled>
 						<option selected disabled th:placeholder="'Glava'">Glava</option>		
 					</select>	
 				</div>
 				<div class="input-comments">
 					<div class="comments-title-submit">
 						<label>Naslov:  </label>
-						<input id="commentSubject" type="text" onchange=insertComment()" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
+						<input id="commentSubject" type="text" onchange="insertComment()" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
 					</div>
 					<div id="wrapper">
 						<div class="comments-make-private">
