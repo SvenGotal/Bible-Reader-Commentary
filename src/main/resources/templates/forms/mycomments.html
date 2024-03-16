@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
+		<title>Bible Reader Commentary</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>My Comments</title>
-		<script th:src="@{/scripts/userspace.js}"></script>
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
+		
+		<script th:src="@{/scripts/userspace.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+		
+		<!-- ######################################################### Google Fonts #########################################################-->	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
+		<!--################################################################################################################################################-->
+	
+		
 	</head>
 	<body>
-
-		<div>
-		
-			<h1>Svi moji komentari na jednom mjestu</h1>
-		
-		</div>
-		
-		<div>
-			<a href="/logout">Odjava</a> </br> <a href="/">Nazad na početnu stranicu</a> 
-			</br> 
-			<a href="/private/submitComment">Napiši komentar</a>
-		</div>
-		<div>
-			<h2>Komentari</h2>
-			<table id="comment_table">
-				<thead>
-					<tr>
-						<th>Datum pisanja</th>
-						<th>Komentar</th>
-						<th>Knjiga</th>
-						<th>Poglavlje</th>
-						<th>Objavljen</th>
-						<th>Izmjene</th>
-					</tr>
-				 </thead>
-				 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
-				 	<tr>
-				 		<th colspan="4" th:text="${comment.subject}"></th>
-				 	</tr>
-					<tr>						
-						<td th:text="${comment.timestamp}"></td>
-						<td> <p th:text="${comment.text}"></p> </td>						
-						<td th:text="${comment.chapter.book.name}"></td>
-						<td th:text="${comment.chapter.number}"></td>
-						<td th:if="${comment.published}">Da</td>
-						<td th:unless="${comment.published}">Ne</td>
-						<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
-						<td style="display:none;" th:text="${comment.subject}"></td>
-					</tr>
-				</tbody>	
-			</table>	
-		</div>
-		
-		<div id="commentEditingDiv" class="comment-edit-options">
+		<div class="main-body">
+			<div class="header-area">
+			
+				<h1>Svi moji komentari na jednom mjestu</h1>
+			
+			</div>
+			
 			<div>
-				<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
-						<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
-						<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
-						<span>
-							<label>Naslov: </label>
-							<input type="text" id="commentSubjectEdit" name="commentSubject">
+				<a href="/logout">Odjava</a> </br> <a href="/">Nazad na početnu stranicu</a> 
+				</br> 
+				<a href="/private/submitComment">Napiši komentar</a>
+			</div>
+			<div class="comments-area">
+				<h2>Komentari</h2>
+				<table id="comment_table">
+					<thead>
+						<tr>
+							<th>Datum pisanja</th>
+							<th>Komentar</th>
+							<th>Knjiga</th>
+							<th>Poglavlje</th>
+							<th>Objavljen</th>
+							<th>Izmjene</th>
+						</tr>
+					 </thead>
+					 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
+					 	<tr>
+					 		<th colspan="4" th:text="${comment.subject}"></th>
+					 	</tr>
+						<tr>						
+							<td th:text="${comment.timestamp}"></td>
+							<td> <p th:text="${comment.text}"></p> </td>						
+							<td th:text="${comment.chapter.book.name}"></td>
+							<td th:text="${comment.chapter.number}"></td>
+							<td th:if="${comment.published}">Da</td>
+							<td th:unless="${comment.published}">Ne</td>
+							<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
+							<td style="display:none;" th:text="${comment.subject}"></td>
+						</tr>
+					</tbody>	
+				</table>	
+			</div>
+			
+			<div id="commentEditingDiv" class="comment-edit-options">
+				<div>
+					<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
+							<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
+							<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
+							<span>
+								<label>Naslov: </label>
+								<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
+								<br>
+								<textarea disabled style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
+							</span>
 							<br>
-							<textarea style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
-						</span>
-						<br>
-						<span>
-							<label>Objavljen: </label>
-							<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
-							<button type="button" id="buttonEdit" onclick="submitEditedComment()" disabled>Pohrani komentar</button>
-						</span>
-				</form>
-				<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-						<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
-						<button type="button" id="buttonDelete" onclick="commentDelete()" disabled>Izbriši komentar</button>
-				</form>
+							<span>
+								<label>Objavljen: </label>
+								<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
+								<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
+							</span>
+					</form>
+					<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+							<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
+							<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
+					</form>
+				</div>
 			</div>
 		</div>
-		<!--  style="block: none;" -->
-	
 	</body>
 </html>
