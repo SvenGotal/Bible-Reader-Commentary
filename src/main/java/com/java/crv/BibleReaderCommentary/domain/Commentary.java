@@ -49,7 +49,7 @@ public class Commentary {
 	public Commentary() {		
 		
 		LocalDateTime ldt = LocalDateTime.now();
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.timestamp = ldt.format(format);
 		
 	}
