@@ -123,7 +123,7 @@ function insertComment(){
 			
 		}
 		else{
-			if(text.value.length < 20 && submitbutsubmitButton.clicked){
+			if(text.value.length < 20){
 				var warn = window.prompt("Tekst mora sadržavati minimalno 20 znakova.");
 				submitButton.disabled = true;
 			}
