@@ -44,14 +44,24 @@ public class UserSpaceController {
 	public String editMyComment(
 			@RequestParam("commentId") Long commentId,
 			@RequestParam("editedComment") String editedComment,
-			RedirectAttributes redirectAttributes
-			)
+			@RequestParam(name="setPrivateCheckbox", required=false) String commentPublished,
+			@RequestParam("commentSubject") String commentSubject,
+			RedirectAttributes redirectAttributes)
 	{
 		
 		try {
 			Commentary comment = commentaryRepository.findById(commentId).get();
 			
 			comment.setText(editedComment);
+			comment.setSubject(commentSubject);
+			
+			if(commentPublished == null || commentPublished == "") {
+				comment.setPublished(false);
+			}
+			else {
+				comment.setPublished(true);
+			}
+			
 			commentaryRepository.save(comment);
 			redirectAttributes.addFlashAttribute("message", "Uspješno ste izmijenili svoj komentar!");
 		}
@@ -64,8 +74,10 @@ public class UserSpaceController {
 	}
 	
 	@PostMapping("/private/myCommentsDelete")
-	public String deleteMyComment(@RequestParam("commentId") Long commentIdDelete, RedirectAttributes redirectAttributes) {
-		
+	public String deleteMyComment(
+			@RequestParam("commentId") Long commentIdDelete, 
+			RedirectAttributes redirectAttributes) 
+	{
 		try {
 			
 			commentaryRepository.deleteById(commentIdDelete);
@@ -79,7 +91,10 @@ public class UserSpaceController {
 	}
 	
 	@PostMapping("/private/myCommentMakePublicOrPrivate")
-	public String makeMyCommentPublicOrPrivate(@RequestParam("commentId") Long commentIdDelete, @RequestParam("setPrivateCheckbox") Boolean commentBoolean) {
+	public String makeMyCommentPublicOrPrivate(
+			@RequestParam("commentId") Long commentIdDelete, 
+			@RequestParam("setPrivateCheckbox") Boolean commentBoolean) 
+	{
 		
 		try {
 			Commentary comment = commentaryRepository.findById(commentIdDelete).get();
