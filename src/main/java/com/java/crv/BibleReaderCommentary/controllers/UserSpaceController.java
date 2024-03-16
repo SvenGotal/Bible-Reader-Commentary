@@ -64,7 +64,7 @@ public class UserSpaceController {
 	}
 	
 	@PostMapping("/private/myCommentsDelete")
-	public String deleteMyComment(@RequestParam("commentIdDelete") Long commentIdDelete, RedirectAttributes redirectAttributes) {
+	public String deleteMyComment(@RequestParam("commentId") Long commentIdDelete, RedirectAttributes redirectAttributes) {
 		
 		try {
 			
@@ -75,6 +75,21 @@ public class UserSpaceController {
 			e.printStackTrace();
 		}
 				
+		return "redirect:/private/myComments";
+	}
+	
+	@PostMapping("/private/myCommentMakePublicOrPrivate")
+	public String makeMyCommentPublicOrPrivate(@RequestParam("commentId") Long commentIdDelete, @RequestParam("setPrivateCheckbox") Boolean commentBoolean) {
+		
+		try {
+			Commentary comment = commentaryRepository.findById(commentIdDelete).get();
+			comment.setPublished(commentBoolean);
+			commentaryRepository.save(comment);
+		}
+		catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		
 		return "redirect:/private/myComments";
 	}
 }

@@ -123,7 +123,6 @@ public class ControlCenterController {
 		}
 		
 		return "redirect:/";
-		
 	}
 	
 	@GetMapping("/admin/downloadComments")
@@ -211,8 +210,7 @@ public class ControlCenterController {
 		}
 		
 		return "redirect:/";
-		
-	}
+	}	
 }
 
 	

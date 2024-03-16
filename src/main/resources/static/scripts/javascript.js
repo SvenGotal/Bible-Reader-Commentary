@@ -75,8 +75,8 @@ function submitEditedComment(){
 /** */
 function commentDelete(){
 	
-	/* get id holder (hidden <inpu> tag)  */
-	var commentIdHolder = document.getElementById("commentIdDelete");
+	/* get id holder (hidden <input> tag)  */
+	var commentIdHolder = document.getElementById("commentId");
 	
 	/* get submit form that calls controller method deleteMyComment() */
 	var submitForm = document.getElementById("formDelete");
@@ -91,6 +91,61 @@ function commentDelete(){
 		commentIdHolder.value = selectedRadio.id;
 		/* prompt pop-up to confirm the decision to delete Commentary from persistence */
 		var prompt = window.confirm("Jeste li sigurni da želite obrisati komentar?");
+	
+		/* if user clicked yes/ok */
+		if(prompt){
+			submitForm.submit();
+		}
+		/* if user canceled */
+		else{
+			console.log("user cancelled delete submit...");
+		}
+	}
+	
+	
+}
+
+function commentMakePrivateOrPublic(){
+	
+	/* get id holder (hidden <inpu> tag)  */
+	var commentIdHolder = document.getElementById("commentId");
+	
+	/* get submit form that calls controller method deleteMyComment() */
+	var submitForm = document.getElementById("formMakePrivate");
+	
+	/* get currently selected radio button (id holds the comment Id) */
+	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
+	
+	var checkboxLabel = document.getElementById('private_checkbox_label');
+	var checkBox = document.getElementById('private_checkbox');
+	
+	/* get values from table row where radio-button is selected */
+	var selectedComment = selectedRadio.closest('tr');
+	
+	var rowValues = [];
+	
+	selectedComment.querySelectorAll('td').forEach( function (td) {
+			
+			rowValues.push(td.textContent);
+	});
+	
+	/* if radio button is selected */
+	if(selectedRadio){
+		checkBox.disabled = false;
+		if(rowValues[4] === 'Da'){
+			
+			checkboxLabel.text = 'Učini komentar privatnim: ';
+			
+		}
+		else{
+			checkboxLabel.text = 'Objavi komentar: ';
+		}
+
+
+		/* set value of hidden <input> to Commentary id which will be sent to the controller */
+		commentIdHolder.value = selectedRadio.id;
+		/* prompt pop-up to confirm the decision to delete Commentary from persistence */
+		var prompt = window.confirm("Jeste li sigurni da želite objaviti komentar?");
 	
 		/* if user clicked yes/ok */
 		if(prompt){
