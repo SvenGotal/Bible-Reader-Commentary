@@ -52,26 +52,28 @@
 		</div>
 		
 		<div id="commentEditingDiv" class="comment-edit-options">
-			<span>
-				<div>
-					<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-							<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
-							<button type="button" id="buttonDelete" onclick="commentDelete()" disabled>Izbriši komentar</button>
-					</form>
-				</div>	
-					
-				
-				<div>
-					<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
-							<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
+			<div>
+				<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
+						<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
+						<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
+						<span>
+							<label>Naslov: </label>
 							<input type="text" id="commentSubjectEdit" name="commentSubject">
+							<br>
 							<textarea style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
-							<label id="publishedCheckboxLabel">Objavljen: </label>
+						</span>
+						<br>
+						<span>
+							<label>Objavljen: </label>
 							<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
 							<button type="button" id="buttonEdit" onclick="submitEditedComment()" disabled>Pohrani komentar</button>
-					</form>
-				</div>
-			</span>
+						</span>
+				</form>
+				<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+						<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
+						<button type="button" id="buttonDelete" onclick="commentDelete()" disabled>Izbriši komentar</button>
+				</form>
+			</div>
 		</div>
 		<!--  style="block: none;" -->
 	
