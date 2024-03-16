@@ -41,16 +41,12 @@ public class SubmitCommentController {
 		this.bookRepository = bookRepository;
 	}
 	
-	
-	
 	@GetMapping
 	public String getCommentForm(Model model) {
 		model.addAttribute("comment", new Commentary());
 		model.addAttribute("books", bookRepository.findAll());
 		return "forms/submitcomment";
 	}
-	
-	
 	
 	@PostMapping
 	public String addComment(
@@ -62,13 +58,6 @@ public class SubmitCommentController {
 			Principal princ, 
 			Model model) 
 	{	
-		
-		
-		
-		
-		
-		
-		
 		/* Fetch all books to populate user selection */
 		model.addAttribute("books", bookRepository.findAll());
 		
