@@ -3,7 +3,7 @@
 	<head>
 		<title>Bible Reader Commentary</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
 		
 		<script th:src="@{/scripts/userspace.js}"></script>
@@ -78,7 +78,7 @@
 								<td th:text="${comment.chapter.number}"></td>
 								<td class="myComments-published" th:if="${comment.published}">Da</td>
 								<td class="myComments-not-published" th:unless="${comment.published}">Ne</td>
-								<td><input class="form-control" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
+								<td><input class="myComments-radio-button" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
 								<td style="display:none;" th:text="${comment.subject}"></td>
 							</tr>
 						</tbody>	
@@ -90,22 +90,28 @@
 								<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
 								<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
 								<span>
-									<label>Naslov: </label>
-									<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
-									<br>
-									<textarea disabled id="commentEditingArea" name="editedComment"></textarea>
+									<div class="myComments-subject-and-text-edit">
+										<label>Naslov: </label>
+										<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
+										<br>
+										<textarea disabled id="commentEditingArea" name="editedComment"></textarea>
+									</div>
 								</span>
 								<br>
 								<span>
-									<label>Objavljen: </label>
-									<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
-									<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
+									<div class="myComments-publish-and-submit-area">
+										<label>Objavljen: </label>
+										<input disabled class="myComments-publish-checkbox" id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
+										<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
+									</div>
 								</span>
 						</form>
-						<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-								<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
-								<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
-						</form>
+						<div class="myComments-delete-area">
+							<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+									<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
+									<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+@media screen and (max-width: 767px) and (orientation: landscape){
+	body{
+		transform: rotate(90deg);
+ 		transform-origin: top left;
+  		width: 100vh;
+  		overflow-x: hidden;
+  		position: fixed;
+   		top: 0;
+   		left: 0;
+	}
+}
+
 .options-div{
 	padding-top: 7%;
 }
@@ -25,6 +37,12 @@
 	padding: 2px;
 	text-align: center;
 	width: auto;
+}
+
+.myComments-radio-button{
+	border: 0px;
+	width: 100%;
+	height: 2em;
 }
 
 .myComments-p-align-text-justify{
@@ -62,13 +80,101 @@
 
 #commentEditingArea{
 	width: 99%;
-	height: 100px;
+	height: 150px;
+}
+
+.myComments-subject-and-text-edit{
+	margin-top: 1%;
+	margin-bottom: 0.5%;
+
+	max-width: 100%;
+	width: auto;
+	font-size: 100%;
+	background-color: #F6EC6D;
+	height: 195px;
+	padding-top: 10px;
+	padding-left: 10px;
+	color: #6865A7;
+	border: 2px solid #F6EC6D;
+	border-radius: 15px;
+	font-weight: bold;
+}
+
+#commentSubjectEdit{
+	background-color: #6FB350;
+	border: 2px solid #6FB350;
+	border-radius: 15px;
+	margin-bottom: 5px;
+	margin-left: 2%;
+}
+
+.myComments-publish-and-submit-area{
+	
+	width: auto;
+	max-width: 80%;
+	height: 50px;
+	background-color: #6FB350;
+	border: 2px solid #6FB350;
+	border-radius: 15px;
+	font-weight: bold;
+	margin-bottom: 10px;
 }
 
 
+.myComments-publish-and-submit-area button{
+	
+	font-weight: bold;
+	padding: 6px;
+	margin: 2px;
+	margin-left: 2%;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
+}
 
+.myComments-publish-checkbox{
+	margin-top: 10px;
+	width: 10%;
+	height: 2em;
+}
 
+.myComments-publish-and-submit-area button:hover{
+	border: 1px solid #f5c211;;
+	background-color: #f5c211;
+}
 
+.myComments-delete-area{
+	font-weight: bold;
+	padding-top: 6px;
+	margin: 2px;
+	max-width: 40%;
+	text-decoration: none;
+	text-align: left;
+	color: white;
+	
+}
+
+.myComments-delete-area button:hover{
+	border: 1px solid #f5c211;;
+	background-color: #f5c211;
+}
+
+.myComments-delete-area button{
+	
+	font-weight: bold;
+	padding: 6px;
+	margin: 2px;
+	margin-left: 2%;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
+}
 
 
 
