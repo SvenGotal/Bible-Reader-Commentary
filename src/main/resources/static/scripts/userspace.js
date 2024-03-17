@@ -30,6 +30,7 @@ function modifyComment(){
 		
 		/* enable smooth scrolling and focus user window to editing area */
 		var commentEditingDiv = document.getElementById("commentEditingDiv");
+		commentEditingDiv.style.display = "block";
 		commentEditingDiv.scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'

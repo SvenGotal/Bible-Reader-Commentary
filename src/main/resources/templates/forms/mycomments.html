@@ -84,7 +84,7 @@
 						</tbody>	
 					</table>	
 				</div>
-				<div id="commentEditingDiv" class="comment-edit-div">
+				<div style="display:none;" id="commentEditingDiv" class="comment-edit-div">
 					<div>
 						<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
 								<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
@@ -93,7 +93,7 @@
 									<label>Naslov: </label>
 									<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
 									<br>
-									<textarea disabled style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
+									<textarea disabled id="commentEditingArea" name="editedComment"></textarea>
 								</span>
 								<br>
 								<span>
