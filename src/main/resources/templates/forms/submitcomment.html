@@ -4,7 +4,7 @@
 	<title>Bible Reader Commentary</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
-	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitComment.css}"/>
 	
 	<script th:src="@{/scripts/javascript.js}" ></script>
@@ -19,7 +19,7 @@
 </head>
 <body>
 	
-	<div class="main-body">
+	<div class="main-wrapper">
 	
 		<div class = "header-area header-area-submit-comment">
 		
@@ -28,9 +28,9 @@
 			</div>
 			<div class="options-div-comment">
 				<span class="options-list">
-					<a id="logout_button" href="/logout">Odjava</a>
 					<a href="/?redirect=/">Početna</a>
 					<a href="/private/myComments">Moji komentari</a>
+					<a id="logout_button" href="/logout">Odjava</a>
 				</span>
 				
 			

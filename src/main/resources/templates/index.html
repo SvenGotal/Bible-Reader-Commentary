@@ -5,7 +5,9 @@
 	<title>Bible Reader Commentary</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
-	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>	
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
 	
@@ -18,16 +20,16 @@
 	
 </head>
 <body>
-	<div class="main-body">
+	<div class="main-wrapper">
 		<!--======================================================= Header =======================================================-->
 		<div class ="header-area">
 			<div class="logo-div">
 				<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
 			</div>
-			<div class="options-div">
 			
-				<table class="options-table">
-					<!--======================================================= Options menu =======================================================-->
+			<!--======================================================= Options menu =======================================================-->
+			<div class="options-div">
+				<table class="options-table">					
 					<tr>
 						<td>
 							<div class="options-list" th:if="${userValidated}">

@@ -7,7 +7,8 @@
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
 		
 		<script th:src="@{/scripts/userspace.js}"></script>
-		<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/myComments.css}"/>
 		
 		<!-- ######################################################### Google Fonts #########################################################-->	
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,20 +19,24 @@
 		
 	</head>
 	<body>
-		<div class="main-body">
+		<div class="main-wrapper">
 			<div class="header-area">
 			
-				<h1>Svi moji komentari na jednom mjestu</h1>
-			
+				<div class="logo-div">
+					<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
+				</div>
+				<div class="options-div">
+					<div class="options-list">
+						<span>
+							<a href="/private/submitComment">Napiši komentar</a>
+							<a href="/">Nazad na početnu stranicu</a>
+							<a id="logout_button" href="/logout">Odjava</a> 
+						</span>
+					</div>
+				</div>
 			</div>
 			
-			<div>
-				<a href="/logout">Odjava</a> </br> <a href="/">Nazad na početnu stranicu</a> 
-				</br> 
-				<a href="/private/submitComment">Napiši komentar</a>
-			</div>
 			<div class="comments-area">
-				<h2>Komentari</h2>
 				<table id="comment_table">
 					<thead>
 						<tr>
