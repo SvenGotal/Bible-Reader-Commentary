@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script th:src="@{/scripts/javascript.js}"></script>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
+	</head>
+	<body>
+
+		<div>
+		
+			<h1>Svi moji komentari na jednom mjestu</h1>
+		
+		</div>
+		
+		<div>
+			<a href="/logout">Odjava</a> </br> <a href="/">Nazad na početnu stranicu</a> 
+			</br> 
+			<a href="/private/submitComment">Napiši komentar</a>
+		</div>
+		<div>
+			<h2>Komentari</h2>
+			<table id="comment_table">
+				<thead>
+					<tr>
+						<th>Datum pisanja</th>
+						<th>Komentar</th>
+						<th>Knjiga</th>
+						<th>Poglavlje</th>
+						<th>Izmjene</th>
+					</tr>
+				 </thead>
+				 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
+				 	<tr>
+				 		<th colspan="4" th:text="${comment.subject}"></th>
+				 	</tr>
+					<tr>						
+						<td th:text="${comment.timestamp}"></td>
+						<td> <p th:text="${comment.text}"></p> </td>						
+						<td th:text="${comment.chapter.book.name}"></td>
+						<td th:text="${comment.chapter.number}"></td>
+						<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'commentEdit()'}"></td>
+					</tr>
+				</tbody>	
+			</table>	
+		</div>
+		<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+			<div>
+				<input style="display:none;" type="text" id="commentIdDelete" name="commentIdDelete"></label>
+				<button type="button" id="buttonDelete" onclick="commentDelete()" disabled>Izbriši komentar</button>
+				<label id="selectedCommentId" th:text="${message}">nothing to display</label>
+			</div>
+		</form>
+		<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
+			<div id="hidden_div_comment_edit">
+				<input style="display:none;" type="text" id="commentId" name="commentId"></label>
+				<textarea style="width:50%; height:200px;" type="text" id="commentEditingArea" name="editedComment"></textarea>
+				<button type="button" id="button_edit" onclick="submitEditedComment()" disabled>Pohrani komentar</button>
+			</div>
+		</form>
+		
+		<!--  style="block: none;" -->
+	
+	</body>
+</html>

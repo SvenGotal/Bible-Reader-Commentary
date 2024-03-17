@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<title>Bible Reader Commentary</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+	<script th:src="@{/scripts/ajax_script.js}"></script>
+	
+	<!-- ######################################################### Google Fonts #########################################################-->	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
+	<!--################################################################################################################################################-->
+	
+	
+</head>
+<body>
+	<div class="main-wrapper">
+		<!--======================================================= Header =======================================================-->
+		<div class = header-area>
+			<div class="logo-div">
+				<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
+			</div>
+			<div class="options-div">
+			
+				<table class="options-table">
+					<!--======================================================= Options menu =======================================================-->
+					<tr>
+						<td>
+							<div class="options-list" th:if="${userValidated}">
+								<span th:switch="${userRole}">
+								<!--  
+								ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
+								USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
+								-->
+									<span th:case="USER">
+										<a id="logout_button" href="/logout">Odjava</a> 
+										<a href="/private/myComments">Moji komentari</a>
+									</span>
+									<span th:case="ADMIN">
+										<a id="logout_button" href="/logout">Odjava</a>
+										<a href="/public/submitForm">Novi korisnik</a> 
+										 
+										<a href="/private/myComments">Moji komentari</a> 
+										<a href="/admin/controlCenter">Control Center</a>
+									</span>
+									<span th:case="OWNER"> 
+										<a id="logout_button" href="/logout">Odjava</a>
+										<a href="/public/submitForm">Novi korisnik</a> 
+										<a href="/private/myComments">Moji komentari</a> 
+										<a href="/admin/controlCenter">Control Center</a>
+									</span>		
+								</span>
+							</div>
+							<div class="options-list" th:unless="${userValidated}">
+								<a href="public/submitForm?redirect=/">Izradi profil</a>	
+								<a href="/login?redirect=/">Prijava</a>
+							</div>
+						</td>
+					</tr>
+					<!--======================================================= Book-Chapter Selection =======================================================-->					
+					<tr>
+						<td>
+						<form method="post" th:action="@{/fetchChapters}">
+							<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+								<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+								<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+							</select>
+							<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled>
+								<option selected disabled th:placeholder="'Glava'">Glava</option>		
+							</select>	
+						</form>
+						</td>
+					</tr>
+					<!--======================================================================================================================================-->
+				</table>			
+			</div>
+		</div>
+		<!--======================================================= /Header ======================================================-->
+		<div class="upper-separator">
+			<h2 id="upper_separator_text"></h2>
+		</div>		
+		<!--=========================================================== Verses ============================================================-->
+		<div class="bible-area" id="bible_display">
+			<div id="bible_text">
+				<!-- This area is autofilled by ajax script with Bible verses -->
+			</div>
+		</div>
+		
+		<div class="lower-separator" >
+			<div class="options-list" th:if="${userValidated}">
+				<a href="/private/submitComment">Napiši komentar</a>
+			</div>
+			<div class="options-list" th:unless="${userValidated}">
+				<a href="public/submitForm?redirect=/">Izradi profil</a>	
+				<a href="/login?redirect=/">Prijava</a>
+			</div>
+		</div>
+		
+		<!--============================================================ Comments ===============================================================-->
+		<div class="comments-area">
+			<div id="comments_text">
+				<!-- This area is autofilled by ajax script with Bible comments -->
+			</div>
+		</div>
+	</div>
+	
+	<!--======================================================= Footer =======================================================-->
+	<div class="footer-area">		
+		<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.png}" ></p>		
+	</div>
+	<!--======================================================= /Footer ======================================================-->
+</body>
+</html>
+
+

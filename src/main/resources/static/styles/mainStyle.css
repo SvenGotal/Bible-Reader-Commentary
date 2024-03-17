@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+html{
+	font-family: Lato;
+}
+
+body{
+	
+	margin-top: 1px;
+	background-color: #8C2F64;
+	padding-left: 8%;
+	padding-right: 8%;
+	
+}
+
+.main-wrapper{
+	background-color: white;
+	padding-top: 0px;
+	height: 90%;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.logo-div{	
+	float: left;
+}
+
+.index-logo{	
+	width: 50%;
+	height: 50%;	
+}
+
+.footer-area{
+	
+	background-color: #8C2F64;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	font-weight: bold;
+	font-style: oblique;
+	color: white;
+}
+
+.copyright-image{
+	
+	
+	height: 7%;
+	width: 7%;
+	padding-left: 15px;
+	
+}
+
+#bookSelection{
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #6FB350;
+	background-color: #6FB350;
+	width: 65%;
+	height: 30px;
+	font-weight: bold;
+	margin: 0.5%;
+}
+
+#chapterSelection{
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #6FB350;
+	background-color: #6FB350;
+	width: 30%;
+	height: 30px;
+	font-weight: bold;
+	margin: 0.5%;
+}
+
+.options-div{
+	
+	float: right;
+	padding-right: 2%;
+}
+
+.options-list a{
+	
+	font-weight: bold;
+	padding: 6px;
+	margin: 2px;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
+}
+
+.options-list a:hover{
+	border: 1px solid #6764A7;
+	background-color: #6764A7;
+}
+
+#logout_button{
+	background-color: #6765A9;
+	border: 1px solid #6765A9;
+}
+
