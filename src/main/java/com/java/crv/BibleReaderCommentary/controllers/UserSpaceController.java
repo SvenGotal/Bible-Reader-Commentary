@@ -58,7 +58,7 @@ public class UserSpaceController {
 		try {
 			Commentary comment = commentaryRepository.findById(commentId).get();
 			
-			comment.setText(editedComment);
+			comment.setText(editedComment.trim());
 			comment.setSubject(commentSubject);
 			
 			if(commentPublished == null || commentPublished == "") {
