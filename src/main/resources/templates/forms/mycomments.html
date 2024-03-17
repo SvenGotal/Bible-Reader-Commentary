@@ -20,6 +20,7 @@
 	</head>
 	<body>
 		<div class="main-wrapper">
+			<!--======================================================= Header =======================================================-->
 			<div class="header-area">
 				<div class="logo-div">
 					<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
@@ -28,68 +29,87 @@
 					<div class="options-list">
 						<span>
 							<a id="logout_button" href="/logout">Odjava</a>
-							<a href="/private/submitComment">Napiši komentar</a>
-							<a href="/">Nazad na početnu stranicu</a>
-							 
+							<a th:unless="${message}" href="/private/submitComment">Napiši komentar</a>
+							<a href="/">Početna</a>
 						</span>
 					</div>
 				</div>
 			</div>
-			
-			<div class="comments-area">
-				<table id="comment_table">
-					<thead>
-						<tr>
-							<th>Datum pisanja</th>
-							<th>Komentar</th>
-							<th>Knjiga</th>
-							<th>Poglavlje</th>
-							<th>Objavljen</th>
-							<th>Izmjene</th>
-						</tr>
-					 </thead>
-					 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
-					 	<tr>
-					 		<th colspan="4" th:text="${comment.subject}"></th>
-					 	</tr>
-						<tr>						
-							<td th:text="${comment.timestamp}"></td>
-							<td> <p th:text="${comment.text}"></p> </td>						
-							<td th:text="${comment.chapter.book.name}"></td>
-							<td th:text="${comment.chapter.number}"></td>
-							<td th:if="${comment.published}">Da</td>
-							<td th:unless="${comment.published}">Ne</td>
-							<td><input type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
-							<td style="display:none;" th:text="${comment.subject}"></td>
-						</tr>
-					</tbody>	
-				</table>	
-			</div>
-			
-			<div id="commentEditingDiv" class="comment-edit-options">
-				<div>
-					<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
-							<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
-							<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
+<!--======================================================= No comments found OR message =======================================================-->
+			<div th:if="${noCommentsFound != null OR message != null}" class="comments-area myComments-no-comments-found" >
+				<div >
+					<h1 th:text="${message}"></h1>
+					<h1 th:text="${noCommentsFound}"></h1>
+					
+					<div class="comment-edit-options">
+						<div class="options-list">
 							<span>
-								<label>Naslov: </label>
-								<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
+								<a href="/private/submitComment">Napiši komentar</a>
+								<a th:if="${message}" href="/private/myComments">Natrag na moji komentari</a>
+							</span>
+						</div>
+					</div>
+					
+				</div>								
+				
+			</div>		
+<!--======================================================= Comments found =======================================================-->
+			<div th:unless="${noCommentsFound != null OR message != null}">						
+				<div  class="comments-area">
+					<table class="myComments-comments-table" id="comment_table">
+						<thead class="myComments-table-header">
+							<tr>
+								<th>Datum pisanja</th>
+								<th>Komentar i naslov</th>
+								<th>Knjiga</th>
+								<th>Poglavlje</th>
+								<th>Objavljen</th>
+								<th>Odaberi</th>
+							</tr>
+						 </thead>
+						 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
+						 	<tr class="myComments-subject-row">
+						 		<th colspan="6" th:text="${comment.subject}"></th>
+						 	</tr>
+							<tr>						
+								<td th:text="${comment.timestamp}"></td>
+								<td> <p class="myComments-p-align-text-justify" th:text="${comment.text}"></p> </td>						
+								<td th:text="${comment.chapter.book.name}"></td>
+								<td th:text="${comment.chapter.number}"></td>
+								<td class="myComments-published" th:if="${comment.published}">Da</td>
+								<td class="myComments-not-published" th:unless="${comment.published}">Ne</td>
+								<td><input class="form-control" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
+								<td style="display:none;" th:text="${comment.subject}"></td>
+							</tr>
+						</tbody>	
+					</table>	
+				</div>
+				<div id="commentEditingDiv" class="comment-edit-div">
+					<div>
+						<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
+								<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
+								<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
+								<span>
+									<label>Naslov: </label>
+									<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
+									<br>
+									<textarea disabled style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
+								</span>
 								<br>
-								<textarea disabled style="width:50%; height:200px;" id="commentEditingArea" name="editedComment"></textarea>
-							</span>
-							<br>
-							<span>
-								<label>Objavljen: </label>
-								<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
-								<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
-							</span>
-					</form>
-					<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-							<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
-							<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
-					</form>
+								<span>
+									<label>Objavljen: </label>
+									<input disabled id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
+									<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
+								</span>
+						</form>
+						<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
+								<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
+								<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
+						</form>
+					</div>
 				</div>
 			</div>
+			
 		</div>
 	</body>
 </html>

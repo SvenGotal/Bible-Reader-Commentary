@@ -1,2 +1,71 @@
 @charset "UTF-8";
 
+.options-div{
+	padding-top: 7%;
+}
+
+.myComments-subject-row{
+	background-color: #6765A9;
+	text-align: left;
+}
+
+.myComments-subject-row th{
+	padding-left: 5%;
+}
+
+
+
+.myComments-comments-table{
+	padding-top: 10px;
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+.myComments-comments-table td{
+	padding: 2px;
+	text-align: center;
+	width: auto;
+}
+
+.myComments-p-align-text-justify{
+	text-align: justify;
+}
+
+.myComments-published{
+	font-weight: bold;
+	color: #6765A9;
+	font-size: 125%;
+}
+
+.myComments-not-published{
+	font-weight: bold;
+	color: #8C2F64;
+	font-size: 125%;
+}
+
+.myComments-no-comments-found{
+	padding-top: 60px;
+	padding-bottom: 50px;
+	text-align: center;
+}
+
+.myComments-no-comments-found h1{
+	font-weight: bold;
+	color: #AC312B;
+	padding: 20px;
+}
+
+.comment-edit-div{
+	width:100%;
+	padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+

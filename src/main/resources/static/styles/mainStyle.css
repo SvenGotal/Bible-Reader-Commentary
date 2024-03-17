@@ -110,8 +110,8 @@ body{
 }
 
 .options-list a:hover{
-	border: 1px solid #6764A7;
-	background-color: #6764A7;
+	border: 1px solid #f5c211;;
+	background-color: #f5c211;
 }
 
 #logout_button{

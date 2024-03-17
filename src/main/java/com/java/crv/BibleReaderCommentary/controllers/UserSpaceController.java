@@ -27,7 +27,10 @@ public class UserSpaceController {
 	}
 	
 	@GetMapping("/private/myComments")
-	public String getMyCommentsForm(Model model, Principal princ) {
+	public String getMyCommentsForm(
+			Model model, 
+			Principal princ,
+			RedirectAttributes redirectAttributes) {
 		
 		String username = princ.getName();
 		User loggedUser = userRepository.findByUsername(username);
@@ -35,6 +38,9 @@ public class UserSpaceController {
 		ArrayList<Commentary> comments = (ArrayList<Commentary>) commentaryRepository.findAllByUserId(loggedUser.getId());
 		
 		model.addAttribute("comments", comments);
+		if(comments.isEmpty()) {
+			model.addAttribute("noCommentsFound", "Trenutno nemate ni jedan komentar!");
+		}
 		
 		return "forms/mycomments";
 	}
