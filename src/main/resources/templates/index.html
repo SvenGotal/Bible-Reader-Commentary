@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>	
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
+	<script th:src="@{/scripts/javascript.js}"></script>
+	<script th:src="@{/scripts/scrollbutton.js}"></script>
 	
 	<!-- ######################################################### Google Fonts #########################################################-->	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +22,10 @@
 	
 </head>
 <body>
+
+	
+	<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
+
 	<div class="main-wrapper">
 		<!--======================================================= Header =======================================================-->
 		<div class ="header-area">
@@ -34,10 +40,6 @@
 						<td>
 							<div class="options-list" th:if="${userValidated}">
 								<span th:switch="${userRole}">
-								<!--  
-								ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
-								USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
-								-->
 									<span th:case="USER">
 										<a id="logout_button" href="/logout">Odjava</a> 
 										<a href="/private/myComments">Moji komentari</a>
@@ -114,6 +116,8 @@
 	<div class="footer-area">		
 		<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.png}" > /2024</p>		
 	</div>
+	
+	
 	<!--======================================================= /Footer ======================================================-->
 </body>
 </html>

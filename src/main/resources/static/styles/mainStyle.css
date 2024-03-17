@@ -124,3 +124,26 @@ body{
 	border: 1px solid #6765A9;
 }
 
+#topBtn{
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	font-size: 120%;
+	border: none;
+	outline: none;
+	background-color: #6FB350;
+	color: white;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 3em;
+	height: 3em;
+	text-align: center;
+
+}
+
+#topBtn:hover{
+	background-color: #6765A9;
+}
+
