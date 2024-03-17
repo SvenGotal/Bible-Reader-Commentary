@@ -58,12 +58,17 @@ body{
 }
 
 .copyright-image{
-	
-	
-	height: 7%;
-	width: 7%;
+	height: 10%;
+	width: 10%;
 	padding-left: 15px;
-	
+}
+
+@media screen and (max-width: 800px){
+	.copyright-image{
+		height: 30%;
+		width: 30%;
+		padding-left: 15px;
+	}
 }
 
 #bookSelection{

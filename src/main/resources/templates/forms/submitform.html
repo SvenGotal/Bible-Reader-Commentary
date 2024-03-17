@@ -1,28 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Submit Form</title>
-	<link rel="icon" type="image/x-icon" th:href="@{images/logoico.ico}">
-	<script th:src="@{/scripts/javascript.js}" ></script>
+	<title>Bible Reader Commentary</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitUser.css}"/>
+	<script th:src="@{/scripts/javascript.js}"></script>
+	
+	<!-- ######################################################### Google Fonts #########################################################-->	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
+	<!--################################################################################################################################################-->
+	
 </head>
 <body>
-	
-	<h1>Submit form</h1>	
-	
-	<form method="post" id="user_creation_form" th:action="@{submitForm}" th:object="${user}">
-		<label>Username: <input type="text" th:field="*{username}" required/></label><br/>
-		<label>Email: <input type="email" th:field="*{email}" /></label><br/>
-		<label>Password: <input type="password" name="password" id="password" th:field="*{password}" required/></label><br/>
-		<label>Retype password: <input type="password" name="password_retype" id="password_retype" /> </label>
-		<div th:switch="${adminRole}">
-			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>
-			<label th:case="GUEST">Dobrodošao posjetitelju! Prijavi se i postani dio našeg projekta.</label>		
+	<div class="main-wrapper">
+		<div class="header-area">
+			<div class="logo-div">
+				<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
+			</div>
+			<div class="greet-div">
+				<h1>Dobrodošao!</h1>
+			</div>
 		</div>
-		<div>
-			<span id="error_display"></span>
+		<div class="submit-user-area">
+			<form method="post" id="user_creation_form" th:action="@{submitForm}" th:object="${user}">
+				<table class="submit-user-table">
+					<tr>
+						<td><label>Korisničko ime: </label></td>
+						<td><input type="text" th:field="*{username}" required/></td>
+					</tr>
+					<tr>
+						<td><label>Email: </label></td>
+						<td><input type="email" th:field="*{email}" /></td>
+					</tr>
+					<tr>
+						<td><label>Lozinka: </label></td>
+						<td><input type="password" name="password" id="password" th:field="*{password}" required/></td>
+					</tr>
+					<tr>
+						<td><label>Ponovi Lozinku: </label></td>
+						<td><input type="password" name="password_retype" id="password_retype"/></td>
+					</tr>
+					<tr th:switch="${adminRole}">
+						<td><label th:case="ADMIN">Role: </label></td>
+						<td><input type="text" th:field="*{role}" ></td>
+						
+						<td colspan="2"><label th:case="GUEST">Dobrodošao posjetitelju! Prijavi se i postani dio našeg projekta.</label></td>
+					</tr>				 
+					<tr>
+						<td colspan="2"><button class="submit-user-button" type="submit" onclick="passwordValidation()">Registriraj se</button></td>
+					</tr>
+				</table>
+			</form>
+			<div class="submit-user-back-to-index">
+				<a href="/">Nazad na početnu</a>
+			</div>
+			
 		</div>
-		<button type="submit" onclick="passwordValidation()">Submit</button>
-	</form>
-	<a href="/?redirect=/">Nazad na početnu stranicu</a>
+	</div>
+	<div class="footer-area">		
+			<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.png}" > /2024</p>		
+		</div>
 </body>
 </html>
