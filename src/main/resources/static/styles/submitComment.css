@@ -1,33 +1,6 @@
 
-/*
-body{
-	
-	margin-top: 1px;
-	background-color: #8C2F64;
-	padding-left: 10%;
-	padding-right: 10%;
-	
-}*/
-
-.main-wrapper{
-	
-	background-color: white;
-	padding-top: 0px;
-	
-	
-	height: 90%;
-	
-	padding-left:0.3%;
-	padding-right:0.3%;
-	padding-bottom: 20px;
-}
-
-.options-div-comment{
-	
-	float: right;
-	margin-top: 1%;
-	
-	
+.options-div{
+	padding-top: 7%;
 }
 
 .selection-comments{

@@ -16,9 +16,25 @@ body{
 .main-wrapper{
 	background-color: white;
 	padding-top: 0px;
+	margin-top: 0px;
 	height: 90%;
 	padding-left:10px;
 	padding-right:10px;
+}
+
+.header-area{
+	
+	margin-left: auto;
+	margin-right: auto;
+	overflow:auto;
+	padding-bottom: 30px;
+	height: auto;
+}
+
+.header-area a{
+	
+	float: right;
+	
 }
 
 .logo-div{	
