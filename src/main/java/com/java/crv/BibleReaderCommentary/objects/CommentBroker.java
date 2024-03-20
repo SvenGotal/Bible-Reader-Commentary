@@ -72,7 +72,8 @@ public class CommentBroker {
 				Cell comment_text = row.getCell(3);
 				Cell comment_timestamp = row.getCell(4);
 				Cell comment_user_id = row.getCell(5);
-				Cell comment_chapter_id = row.getCell(6);
+				Cell comment_author = row.getCell(6);
+				Cell comment_chapter_id = row.getCell(7);
 				
 				/* Get models required to bind the comment */
 				User user = userRepository.findById((long) comment_user_id.getNumericCellValue()).get();
@@ -88,6 +89,7 @@ public class CommentBroker {
 				System.out.println("pass setting text value...");
 				comment.setTimestamp(comment_timestamp.getStringCellValue());
 				System.out.println("pass setting timestamp value...");
+				comment.setAuthor(comment_author.getStringCellValue());
 				comment.setUser(user);
 				comment.setChapter(chapter);
 				
@@ -136,7 +138,8 @@ public class CommentBroker {
 			headerRow.createCell(3).setCellValue("comment_text");
 			headerRow.createCell(4).setCellValue("comment_timestamp");
 			headerRow.createCell(5).setCellValue("comment_user_id");
-			headerRow.createCell(6).setCellValue("comment_chapter_id");
+			headerRow.createCell(6).setCellValue("comment_author");
+			headerRow.createCell(7).setCellValue("comment_chapter_id");
 			
 			/* populating excel file with data from CommentaryRepository */
 			for(Commentary cmnt : repoComments) {
@@ -160,7 +163,8 @@ public class CommentBroker {
 				currentRow.createCell(3).setCellValue(cmnt.getText());
 				currentRow.createCell(4).setCellValue(cmnt.getTimestamp());
 				currentRow.createCell(5).setCellValue(cmnt.getUser().getId());
-				currentRow.createCell(6).setCellValue(cmnt.getChapter().getId());
+				currentRow.createCell(6).setCellValue(cmnt.getAuthor());
+				currentRow.createCell(7).setCellValue(cmnt.getChapter().getId());
 				
 				++rowCount;
 			}
