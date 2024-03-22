@@ -89,37 +89,37 @@ async function fetchVersesAndComments() {
 
 	try {
 
-		console.log("Started in try block...");
+		
 		var params = new URLSearchParams();
 		params.append('bookId', selectedBookId);
 		params.append('chapterNumber', selectedChapterNumber);
 
-		console.log("Fetching Verses...");
+		
 		const fetchVerses = await fetch('/public/fetchVerses?' + params.toString());
 		const caughtVerses = await fetchVerses.json();
-		console.log("Caught Verses...", caughtVerses);
+		
 
-		console.log("Fetching Comments...");
+	
 		const fetchComments = await fetch('/public/fetchPublicComments?' + params.toString());
-		console.log("Fetching Comments first part complete...");
+		
 		const caughtComments = await fetchComments.json();
-		console.log("Caught Comments...", caughtComments);
+		
 
 		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
 		
 	
-		console.log("Cleaning existing text...");
+		
 		versesDisplay.innerHTML = '';
 		commentsDisplay.innerHTML = '';
 
-		console.log("Processing caught Verses...");
+		
 		caughtVerses.forEach(verse => {
 			var paragraph = document.createElement('p');
 			paragraph.textContent = verse.number + ' ' + verse.text;
 			versesDisplay.append(paragraph);
 		});
 
-		console.log("Processing caught Comments...");
+		
 		caughtComments.forEach(comment => {
 			
 			var table = document.createElement('table');
@@ -159,18 +159,7 @@ async function fetchVersesAndComments() {
 			table.appendChild(tbody);
 			
 			commentsDisplay.appendChild(table);
-			/*
-			var paragraph = document.createElement('p');
-			paragraph.innerHTML =
-				comment.subject +
-				'</br></br>' +
-				comment.text +
-				'</br></br>' +
-				comment.user.username +
-				' : '
-				+ comment.timestamp;
-
-			commentsDisplay.appendChild(paragraph);*/
+		
 		});
 
 	}
