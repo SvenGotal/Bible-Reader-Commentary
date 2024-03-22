@@ -27,6 +27,7 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	overflow:auto;
+	padding-top: 10px;
 	padding-bottom: 30px;
 	height: auto;
 }
@@ -41,7 +42,7 @@ body{
 	float: left;
 }
 
-.index-logo{	
+.index-logo{
 	width: 50%;
 	height: 50%;	
 }
