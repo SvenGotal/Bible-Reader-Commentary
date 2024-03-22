@@ -41,12 +41,11 @@
 	column-count:2;
 	padding: 2%;
 	
-	
 }
 
 .bible-area p{
 	width: 100%;
-	
+	break-inside: avoid-column;
 }
 
 .comments-area{
