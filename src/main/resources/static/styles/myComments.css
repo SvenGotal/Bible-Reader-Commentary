@@ -22,7 +22,11 @@
 }
 
 .myComments-subject-row th{
-	padding-left: 5%;
+	padding-left: 9%;
+}
+
+.myComments-td-10percent{
+	max-width: 10%;
 }
 
 
@@ -30,6 +34,7 @@
 .myComments-comments-table{
 	padding-top: 10px;
 	padding-bottom: 20px;
+	max-width: 100%;
 	width: 100%;
 }
 

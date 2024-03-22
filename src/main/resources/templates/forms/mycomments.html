@@ -77,12 +77,12 @@
 						 		<th colspan="6" th:text="${comment.subject}"></th>
 						 	</tr>
 							<tr>						
-								<td th:text="${comment.timestamp}"></td>
+								<td class="myComments-td-10percent" th:text="${comment.timestamp}"></td>
 								<td> <p class="myComments-p-align-text-justify" th:text="${comment.text}"></p> </td>						
-								<td th:text="${comment.chapter.book.name}"></td>
+								<td class="myComments-td-10percent" th:text="${comment.chapter.book.name}"></td>
 								<td th:text="${comment.chapter.number}"></td>
-								<td class="myComments-published" th:if="${comment.published}">Da</td>
-								<td class="myComments-not-published" th:unless="${comment.published}">Ne</td>
+								<td class="myComments-published myComments-td-10percent" th:if="${comment.published}">Da</td>
+								<td class="myComments-not-published myComments-td-10percent" th:unless="${comment.published}">Ne</td>
 								<td><input class="myComments-radio-button" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
 								<td style="display:none;" th:text="${comment.subject}"></td>
 							</tr>
