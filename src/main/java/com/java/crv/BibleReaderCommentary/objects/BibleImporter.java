@@ -47,8 +47,6 @@ public class BibleImporter {
 				Cell verseCell = row.getCell(2);
 				Cell verseNumberCell = row.getCell(3);
 				
-				
-				
 				if(bookCell != null ) {
 					if(bookCell.toString() != "") {
 						
