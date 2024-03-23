@@ -5,12 +5,10 @@ html{
 }
 
 body{
-	
 	margin-top: 1px;
 	background-color: #8C2F64;
 	padding-left: 8%;
 	padding-right: 8%;
-	
 }
 
 .main-wrapper{
@@ -23,7 +21,6 @@ body{
 }
 
 .header-area{
-	
 	margin-left: auto;
 	margin-right: auto;
 	overflow:auto;
@@ -33,9 +30,7 @@ body{
 }
 
 .header-area a{
-	
 	float: right;
-	
 }
 
 .logo-div{	
@@ -48,7 +43,6 @@ body{
 }
 
 .footer-area{
-	
 	background-color: #8C2F64;
 	padding-top:15px;
 	padding-bottom:15px;
@@ -97,13 +91,11 @@ body{
 }
 
 .options-div{
-	
 	float: right;
 	padding-right: 2%;
 }
 
 .options-list a{
-	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
@@ -141,7 +133,6 @@ body{
 	width: 3em;
 	height: 3em;
 	text-align: center;
-
 }
 
 #topBtn:hover{

@@ -46,14 +46,11 @@ function modifyComment(){
 			rowValues.push(td.textContent);
 		});
 		
-		
 		/* fill textarea and subject area with selected commentary text */
 		textArea.textContent = rowValues[1];
 		subjectArea.value = rowValues[6];
 		
 		commentMakePrivateOrPublic(rowValues[4]);
-		
-		
 	}
 }
 
@@ -121,7 +118,6 @@ function commentMakePrivateOrPublic(publishedBoolean){
 	else{
 		publishedCheckbox.checked = false;
 	}
-	
 }
 
 function enableInputFields(){

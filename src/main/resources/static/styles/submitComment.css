@@ -5,19 +5,15 @@
 
 .selection-comments{
 	width: 70%;
-	
 }
 
 .input-comments{
-	
 	width: 100%;
 }
 
 .comments-title-submit{
-	
 	margin-top: 1%;
 	margin-bottom: 2%;
-
 	max-width: 95%;
 	width: auto;
 	font-size: 100%;
@@ -45,12 +41,10 @@
 }
 
 .comments-make-private{
-	
 	margin-bottom: 2%;
 	font-size: 100%;
 	background-color: #6865A8;
 	height: 50px;
-
 	padding-left: 15px;
 	color: white;
 	border: 2px solid #6865A8;
@@ -69,27 +63,20 @@
 }
 
 .comments-checkbox{
-	
 	width: 15%;
 	height: 60%;
 	padding-top: 10px;
 	float: right;
-	
 }
 
 
 
 #comments_checkbox{
-	
-
 	width: 25px;
 	height: 25px;
-
-	
 }
 
 #comment_textarea{
-	
 	padding-left: 5px;
 	padding-right: 5px;
 	min-width: 98%;
@@ -101,14 +88,12 @@
 }
 
 .comment-logo-div{
-	
 	float: left;
 }
 
 .comment-logo{
 	width: 50%;
 	height: 50%;
-
 }
 
 .comment-insert{
@@ -142,3 +127,5 @@
 .header-area-submit-comment{
 	margin-bottom: 2%;
 }
+
+

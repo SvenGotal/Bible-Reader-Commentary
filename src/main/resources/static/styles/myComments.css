@@ -29,8 +29,6 @@
 	max-width: 10%;
 }
 
-
-
 .myComments-comments-table{
 	padding-top: 10px;
 	padding-bottom: 20px;
@@ -91,7 +89,6 @@
 .myComments-subject-and-text-edit{
 	margin-top: 1%;
 	margin-bottom: 0.5%;
-
 	max-width: 100%;
 	width: auto;
 	font-size: 100%;
@@ -114,7 +111,6 @@
 }
 
 .myComments-publish-and-submit-area{
-	
 	width: auto;
 	max-width: 80%;
 	height: 50px;
@@ -127,7 +123,6 @@
 
 
 .myComments-publish-and-submit-area button{
-	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
@@ -159,7 +154,6 @@
 	text-decoration: none;
 	text-align: left;
 	color: white;
-	
 }
 
 .myComments-delete-area button:hover{
@@ -168,7 +162,6 @@
 }
 
 .myComments-delete-area button{
-	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
