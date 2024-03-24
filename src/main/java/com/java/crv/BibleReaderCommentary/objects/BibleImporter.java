@@ -75,10 +75,15 @@ public class BibleImporter {
 
 				/* Create new verse, assign fields from table*/
 				verse = new Verse();
-				verse.setText(verseCell.toString().replaceAll("\\b\\d+(\\.\\d+)?\\b", "").trim());
+				//verse.setText(verseCell.toString().replaceAll("\\b\\d+(\\.\\d+)?\\b", "").trim());
+				String verseText = verseCell.toString();
+				verseText = verseText.replaceAll("\\([^()]*\\)", "");
+				verseText = verseText.replaceAll("[^a-zA-Z\\sŠšĐđČčĆćŽž!.,;:<>\"]", "").trim();
+				
+				verse.setText(verseText);
 				verse.setNumber((int)verseNumberCell.getNumericCellValue());
 				verse.setChapter(chapter);
-				
+				System.out.println("Verse: " + verse.getNumber());
 				if(chapter != null)
 					chapter.getVerses().add(verse);
 			}
