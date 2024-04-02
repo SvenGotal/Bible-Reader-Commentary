@@ -24,14 +24,10 @@ public class BootstrapData implements CommandLineRunner{
 
 	private final UserRepository userRepo;
 	private final BibleRepository bibleRepo;
-	//private final ChapterRepository chapterRepo;
-	//private final CommentaryRepository commentRepo;
 	
 	public BootstrapData(UserRepository userRepo, BibleRepository bibleRepo, ChapterRepository chapterRepo, CommentaryRepository commentRepo) {
 		this.userRepo = userRepo;
 		this.bibleRepo = bibleRepo;
-		//this.chapterRepo = chapterRepo;
-		//this.commentRepo = commentRepo;
 	}
 	
 	@Override
