@@ -57,7 +57,7 @@ public class IndexController {
 		//model.addAttribute("comments", comments.findCommentaryByPublished(true));
 		model.addAttribute("books", bookRepository.findAll());
 		
-		return "/index";
+		return "index";
 	}
 	
 	@GetMapping("/login")
