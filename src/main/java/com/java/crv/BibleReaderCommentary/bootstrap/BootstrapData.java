@@ -35,6 +35,10 @@ public class BootstrapData implements CommandLineRunner{
 		
 		//todo remove all except owner for production purposes
 		
+		//check working dir
+		String working_dir = System.getProperty("user.dir");
+		System.out.println("Working directory: " + working_dir);
+		
 		System.out.println("Commandline runner running....");
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
