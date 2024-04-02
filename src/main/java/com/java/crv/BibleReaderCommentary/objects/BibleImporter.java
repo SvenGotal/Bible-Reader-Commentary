@@ -38,7 +38,7 @@ public class BibleImporter {
 			Sheet sheet = workbook.getSheetAt(worksheet);
 			bible.setTranslation(sheet.getSheetName());
 			
-			System.out.println("Loading translation: " + bible.getTranslation() + "...");
+			//System.out.println("Loading translation: " + bible.getTranslation() + "...");
 			
 			for(Row row : sheet) {
 				
@@ -58,7 +58,7 @@ public class BibleImporter {
 							book.setBible(bible);
 							bible.getBooks().add(book);
 
-							System.out.println("Loading book: " + book.getName());
+							//System.out.println("Loading book: " + book.getName());
 						}
 						/* Create new chapter, assign  */	
 						chapter = new Chapter();
@@ -68,7 +68,7 @@ public class BibleImporter {
 						chapter.setBook(book);
 						book.getChapters().add(chapter);
 
-						System.out.println("Load chapter: " + chapter.getNumber());
+						//System.out.println("Load chapter: " + chapter.getNumber());
 						
 					}
 				}	
@@ -83,7 +83,7 @@ public class BibleImporter {
 				verse.setText(verseText);
 				verse.setNumber((int)verseNumberCell.getNumericCellValue());
 				verse.setChapter(chapter);
-				System.out.println("Verse: " + verse.getNumber());
+				//System.out.println("Verse: " + verse.getNumber());
 				if(chapter != null)
 					chapter.getVerses().add(verse);
 			}
