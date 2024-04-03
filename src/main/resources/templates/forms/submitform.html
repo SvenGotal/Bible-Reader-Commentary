@@ -47,12 +47,11 @@
 						<td><label>Ponovi Lozinku: </label></td>
 						<td><input type="password" name="password_retype" id="password_retype"/></td>
 					</tr>
-					<tr th:switch="${adminRole}">
-						<td><label th:case="ADMIN">Role: </label></td>
+					<tr th:if="${adminRole == 'ADMIN'}">
+						<td><label>Role: </label></td>
 						<td><input type="text" th:field="*{role}" ></td>
-						
-						<td colspan="2"><label th:case="GUEST">Dobrodošao posjetitelju! Prijavi se i postani dio našeg projekta.</label></td>
-					</tr>				 
+					</tr>
+								 
 					<tr>
 						<td colspan="2"><button class="submit-user-button" type="submit" onclick="passwordValidation()">Registriraj se</button></td>
 					</tr>
