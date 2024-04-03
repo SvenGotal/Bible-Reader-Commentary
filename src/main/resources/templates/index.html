@@ -17,7 +17,7 @@
 	<!-- ######################################################### Google Fonts #########################################################-->	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 	<!--################################################################################################################################################-->
 	
 	
@@ -36,11 +36,17 @@
 			
 			<!--======================================================= Options menu =======================================================-->
 			<div class="options-div">
-				<table class="options-table">					
+				<table class="options-table">
+					<tr>
+						<td><label>Dobrodošao </label><label th:text="${username}"></label></td>
+					</tr>					
 					<tr>
 						<td>
 							<div class="options-list" th:if="${userValidated}">
+							
 								<span th:switch="${userRole}">
+									
+									
 									<span th:case="USER">
 										<a id="logout_button" href="/logout">Odjava</a> 
 										<a href="/private/myComments">Moji komentari</a>
@@ -48,7 +54,6 @@
 									<span th:case="ADMIN">
 										<a id="logout_button" href="/logout">Odjava</a>
 										<a href="/public/submitForm">Novi korisnik</a> 
-										 
 										<a href="/private/myComments">Moji komentari</a> 
 										<a href="/admin/controlCenter">Control Center</a>
 									</span>
@@ -61,8 +66,8 @@
 								</span>
 							</div>
 							<div class="options-list" th:unless="${userValidated}">
-								<a href="public/submitForm?redirect=/">Izradi profil</a>	
-								<a href="/login?redirect=/">Prijava</a>
+								<a href="public/submitForm">Izradi profil</a>	
+								<a href="/login">Prijava</a>
 							</div>
 						</td>
 					</tr>
@@ -100,8 +105,8 @@
 				<a href="/private/submitComment">Napiši komentar</a>
 			</div>
 			<div class="options-list" th:unless="${userValidated}">
-				<a href="public/submitForm?redirect=/">Izradi profil</a>	
-				<a href="/login?redirect=/">Prijava</a>
+				<a href="public/submitForm">Izradi profil</a>	
+				<a href="/login">Prijava</a>
 			</div>
 		</div>
 		<!--============================================================ Comments ===============================================================-->

@@ -33,15 +33,22 @@ public class SubmitFormController {
 		try {
 			
 			if(princ != null) {
+				
 				String username = princ.getName();
+				
 				User currentUser = userRepository.findByUsername(username);
-				UserRoles ur = currentUser.getRole();
-				model.addAttribute("adminRole", ur.name());
-
+				
+				if(currentUser != null) {
+					UserRoles ur = currentUser.getRole();
+					model.addAttribute("adminRole", ur.name());
+				}
+				else {
+					model.addAttribute("adminRole", "guest");
+				}
 			}
 			else
 			{
-				model.addAttribute("adminRole", "GUEST");
+				model.addAttribute("adminRole", "guest");
 			}
 			
 			

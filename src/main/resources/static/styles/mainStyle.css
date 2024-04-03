@@ -47,7 +47,9 @@ body{
 	padding-top:15px;
 	padding-bottom:15px;
 	padding-left:15px;
-	font-weight: bold;
+	font-family: "Lato", sans-serif;
+ 	font-weight: 700;
+ 	font-style: normal;
 	font-style: oblique;
 	color: white;
 }

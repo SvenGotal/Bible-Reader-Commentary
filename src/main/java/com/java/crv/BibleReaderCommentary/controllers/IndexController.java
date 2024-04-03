@@ -39,21 +39,32 @@ public class IndexController {
 			Principal princ) 
 	{	
 		
-		String currentUsername;
+		String currentUsername = "guest";
 		Boolean userValidated = false;
 		/* Take current logged user to adjust options visibility */
 		if(princ != null) {
 			if(princ.getName() != null) {
 				currentUsername = princ.getName();
-				User currentUser = userRepository.findByUsername(currentUsername);		
-				UserRoles currentUserRole = currentUser.getRole();
-				userValidated = currentUserRole.name() != null ? true : false;
-				model.addAttribute("userRole", currentUserRole.name());
-				
+				if(currentUsername != null) {
+					User currentUser = userRepository.findByUsername(currentUsername);	
+					if(currentUser != null) {
+						System.out.println("currentUser != null...");
+						System.out.println("Principal: " + princ.getName() + " currentUser: " + currentUser.getUsername());
+						UserRoles currentUserRole = currentUser.getRole();
+						userValidated = currentUserRole.name() != null ? true : false;
+						model.addAttribute("userRole", currentUserRole.name());
+						model.addAttribute("username", currentUser.getUsername());
+					}
+					else {
+						model.addAttribute("userRole", currentUsername);	
+						model.addAttribute("username", "guest");
+					}
+				}
 			}
 		}
 		model.addAttribute("userValidated", userValidated);
 		model.addAttribute("binding", binding);
+		
 		//model.addAttribute("comments", comments.findCommentaryByPublished(true));
 		model.addAttribute("books", bookRepository.findAll());
 		
