@@ -38,6 +38,7 @@ public class UserSpaceController {
 		ArrayList<Commentary> comments = (ArrayList<Commentary>) commentaryRepository.findAllByUserId(loggedUser.getId());
 		
 		model.addAttribute("comments", comments);
+		model.addAttribute("username", loggedUser.getUsername());
 		if(comments.isEmpty()) {
 			model.addAttribute("noCommentsFound", "Trenutno nemate ni jedan komentar!");
 		}

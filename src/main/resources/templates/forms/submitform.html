@@ -50,9 +50,8 @@
 					<tr th:if="${adminRole == 'ADMIN'}">
 						<td><label>Role: </label></td>
 						<td><input type="text" th:field="*{role}" ></td>
-					</tr>
-								 
-					<tr th:unless="${adminRole}">
+					</tr>		 
+					<tr>
 						<td colspan="2"><button class="submit-user-button" type="submit" onclick="passwordValidation()">Registriraj se</button></td>
 					</tr>
 				</table>

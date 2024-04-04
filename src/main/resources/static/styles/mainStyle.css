@@ -33,6 +33,10 @@ body{
 	float: right;
 }
 
+.user-login-display{
+	text-align: right;
+}
+
 .logo-div{	
 	float: left;
 }
@@ -49,7 +53,6 @@ body{
 	padding-left:15px;
 	font-family: "Lato", sans-serif;
  	font-weight: 700;
- 	font-style: normal;
 	font-style: oblique;
 	color: white;
 }

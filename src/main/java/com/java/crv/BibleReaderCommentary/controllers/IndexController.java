@@ -55,12 +55,14 @@ public class IndexController {
 						model.addAttribute("userRole", currentUserRole.name());
 						model.addAttribute("username", currentUser.getUsername());
 					}
-					else {
-						model.addAttribute("userRole", currentUsername);	
-						model.addAttribute("username", "guest");
-					}
+					
 				}
 			}
+			
+		}
+		else {
+			model.addAttribute("userRole", currentUsername);	
+			model.addAttribute("username", "guest");
 		}
 		model.addAttribute("userValidated", userValidated);
 		model.addAttribute("binding", binding);

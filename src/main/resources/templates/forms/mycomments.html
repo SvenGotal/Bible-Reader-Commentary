@@ -32,11 +32,21 @@
 				</div>
 				<div class="options-div">
 					<div class="options-list">
-						<span>
-							<a id="logout_button" href="/logout">Odjava</a>
-							<a th:unless="${message}" href="/private/submitComment">Napiši komentar</a>
-							<a href="/">Početna</a>
-						</span>
+					<table>
+						<tr>
+							<td class="user-login-display"><label>Korisnik: </label><label th:text="${username}"></label></td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+								<a id="logout_button" href="/logout">Odjava</a>
+								<a th:unless="${message}" href="/private/submitComment">Napiši komentar</a>
+								<a href="/">Početna</a>
+								</span>
+							</td>
+						</tr>
+					</table>
+						
 					</div>
 				</div>
 			</div>

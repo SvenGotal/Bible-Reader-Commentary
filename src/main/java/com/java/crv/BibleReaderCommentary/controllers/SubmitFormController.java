@@ -41,6 +41,7 @@ public class SubmitFormController {
 				if(currentUser != null) {
 					UserRoles ur = currentUser.getRole();
 					model.addAttribute("adminRole", ur.name());
+					
 				}
 				else {
 					model.addAttribute("adminRole", "guest");
@@ -48,7 +49,7 @@ public class SubmitFormController {
 			}
 			else
 			{
-				model.addAttribute("adminRole", "guest");
+				model.addAttribute("username", "guest");
 			}
 			
 			
