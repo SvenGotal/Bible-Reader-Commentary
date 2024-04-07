@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+/*Mobile settings*/
+@media screen and (max-width: 800px){
+	.copyright-image{
+		height: 30%;
+		width: 30%;
+		padding-left: 15px;
+	}
+	
+	body{
+		margin-top: 1px;
+		background-color: #8C2F64;
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+}
+
 html{
 	font-family: Lato;
 }
@@ -68,6 +84,13 @@ body{
 		height: 30%;
 		width: 30%;
 		padding-left: 15px;
+	}
+	
+	body{
+		margin-top: 1px;
+		background-color: #8C2F64;
+		padding-left: 1%;
+		padding-right: 1%;
 	}
 }
 
