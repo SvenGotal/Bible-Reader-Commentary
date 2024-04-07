@@ -6,7 +6,7 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction(){
 	var topbtn = document.getElementById('topBtn');
 	
-	if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+	if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
 		topbtn.style.display = "block";
 	}
 	else{

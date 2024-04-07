@@ -1,28 +1,35 @@
 @charset "UTF-8";
 
-@media screen and (max-width: 767px) and (orientation: landscape){
-	body{
-		transform: rotate(90deg);
- 		transform-origin: top left;
-  		width: 100vh;
-  		overflow-x: hidden;
-  		position: fixed;
-   		top: 0;
-   		left: 0;
-	}
-}
-
 .options-div{
 	padding-top: 1%;
 }
 
 .myComments-subject-row{
 	background-color: #6765A9;
-	text-align: left;
+	text-align: center;
+	color: white;
+}
+
+.myComments-subject-row td{
+	border: none;
 }
 
 .myComments-subject-row th{
 	padding-left: 9%;
+}
+
+.myComments-comment-row{
+	display: none;
+
+}
+
+.myComments-expand-comment-button{
+	border: none;
+	background-color: white;
+	border-radius: 10px;
+	height: 20px;
+	width: 20px;
+	font-weight: bold;
 }
 
 .myComments-td-10percent{
@@ -34,22 +41,30 @@
 	padding-bottom: 20px;
 	max-width: 100%;
 	width: 100%;
+
 }
+
+
 
 .myComments-comments-table td{
 	padding: 2px;
 	text-align: center;
 	width: auto;
+	border: none;
+	
+
 }
 
 .myComments-radio-button{
 	border: 0px;
 	width: 100%;
-	height: 2em;
+	height: 150%;
 }
 
 .myComments-p-align-text-justify{
 	text-align: justify;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .myComments-published{

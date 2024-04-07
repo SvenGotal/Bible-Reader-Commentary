@@ -48,8 +48,6 @@ public class IndexController {
 				if(currentUsername != null) {
 					User currentUser = userRepository.findByUsername(currentUsername);	
 					if(currentUser != null) {
-						System.out.println("currentUser != null...");
-						System.out.println("Principal: " + princ.getName() + " currentUser: " + currentUser.getUsername());
 						UserRoles currentUserRole = currentUser.getRole();
 						userValidated = currentUserRole.name() != null ? true : false;
 						model.addAttribute("userRole", currentUserRole.name());
