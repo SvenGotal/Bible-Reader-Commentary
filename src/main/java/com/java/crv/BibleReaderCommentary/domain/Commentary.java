@@ -30,7 +30,7 @@ public class Commentary {
 	
 	private String subject;	
 	private Boolean published;
-	@Column(length = 2000)
+	@Column(length = 10000)
 	private String text;
 	private String timestamp;
 	private String author;
