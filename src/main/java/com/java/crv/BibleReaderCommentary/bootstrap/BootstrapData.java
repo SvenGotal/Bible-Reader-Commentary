@@ -55,9 +55,14 @@ public class BootstrapData implements CommandLineRunner{
 //			}
 		}
 		
-		BibleImporter reader = new BibleImporter(filepath.toString());
-		Bible bible = reader.loadBible(0);
-		bibleRepo.save(bible);
+		BibleImporter reader = null;
+		Bible bible;
+		
+		if(bibleRepo.count() == 0) {
+			reader = new BibleImporter(filepath.toString());
+			bible = reader.loadBible(0);
+			bibleRepo.save(bible);
+		}
 		
 		if(userRepo.count() == 0) {
 			User admin = new User();
