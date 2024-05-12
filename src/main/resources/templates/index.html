@@ -10,6 +10,7 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>	
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script th:src="@{/scripts/ajax_script.js}"></script>
 	<script th:src="@{/scripts/javascript.js}"></script>
 	<script th:src="@{/scripts/scrollbutton.js}"></script>
@@ -38,7 +39,7 @@
 			<div class="options-div">
 				<table class="options-table">
 					<tr>
-						<td class="user-login-display"><label>Dobrodošao </label><label th:text="${username}"></label></td>
+						<td class="user-login-display"><label ><i style="font-size:24px" class="fa">&#xf007;</i></label>   <label th:text="${username}"></label></td>
 					</tr>					
 					<tr>
 						<td>
