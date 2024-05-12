@@ -84,7 +84,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		requests
 		.requestMatchers("logout").permitAll()
 		.anyRequest().authenticated()
-		).logout(Customizer.withDefaults());
+		).logout( (logout) -> logout.logoutSuccessUrl("/"));
 		
 		return http.build();
 	}
