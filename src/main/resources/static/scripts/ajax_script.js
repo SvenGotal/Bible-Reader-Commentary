@@ -106,8 +106,11 @@ async function fetchVersesAndComments() {
 		
 
 		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
+		var quotation_text = document.getElementById('main_welcome_text');
+		var quotation = document.getElementById('main_welcome_quotation');
 		
-	
+		quotation_text.innerText = '';
+		quotation.innerText = '';
 		
 		versesDisplay.innerHTML = '';
 		commentsDisplay.innerHTML = '';
