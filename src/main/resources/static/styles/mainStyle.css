@@ -133,16 +133,18 @@ body{
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
+
+	width: 100%;
 	text-decoration: none;
 	text-align: center;
 	color: white;
-	border-radius: 10px;
-	border: 1px solid #8C2F64;
+	/*border-radius: 10px;*/
+	/*border: 1px solid #8C2F64;*/
 	background-color: #8C2F64;
 }
 
 .options-list a:hover{
-	border: 1px solid #f5c211;;
+	/*border: 1px solid #f5c211;;*/
 	background-color: #f5c211;
 }
 
