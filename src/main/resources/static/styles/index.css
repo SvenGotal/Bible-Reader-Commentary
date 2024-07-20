@@ -22,14 +22,16 @@
 	margin-left: 1%;
 	margin-right: 1%;
 	height: auto;
-	max-height: 90px;
-}
-
-.main-welcome-text{
 	
 }
 
+.main-welcome-text{
+	height: auto;
+	padding-bottom: 10px;
+}
+
 .main-welcome-quotation{
+	height: auto;
 	font-style: italic;
 	text-align: center;	
 }
@@ -136,46 +138,45 @@
 
 /* Menu */
 .menu1 {
-	
-	width: 100%;
 	background-color: white;
-	margin: 0;
-	display: -ms-grid;
-	display: grid;
-	grid-template-rows: 1fr repeat(4, 0.5fr);
-	grid-row-gap: 25px;
-	padding: 0;
-	list-style: none;
-	clear: both;
-	width: auto;
+	margin: 0px;
+	padding: 0px;
 	text-align: center;
 	height: 0px;
+	list-style: none;
+	background: rgba(0,0,0,0.0);
+	table-layout: fixed;
 	overflow: hidden;
 	transition: height .4s ease;
-	z-index: 120;
+	z-index: 1;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	position: absolute;
+	right: 9%;
 }
 
+.menu1 ul{
+	display: table-row;
+}
+
+.menu1 ul li{
+	
+	text-align: center;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.menu1 a{
+	flex-grow: 1;
+}
+/*
 .menu1 a:first-child {
-	margin-top: 40px;
+	margin-top: 5px;
 }
 
 .menu1 a:last-child {
-	margin-bottom: 40px;
+	margin-bottom: 5px;
 }
+*/
 
-.link1 {
-	width: 100%;
-	margin: 0;
-	padding: 10px 0;
-	font: 700 20px 'Oswald', sans-serif;
-}
 
-.link1:hover {
-	background-color: #fff;
-	color: rgb(61, 61, 61);
-	-webkit-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-}

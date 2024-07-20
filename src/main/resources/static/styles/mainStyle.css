@@ -60,6 +60,7 @@ body{
 
 .logo-div{	
 	float: left;
+	margin: 0px;
 }
 
 .index-logo{
@@ -85,20 +86,7 @@ body{
 	padding-left: 15px;
 }
 
-@media screen and (max-width: 800px){
-	.copyright-image{
-		height: 30%;
-		width: 30%;
-		padding-left: 15px;
-	}
-	
-	body{
-		margin-top: 1px;
-		background-color: #8C2F64;
-		padding-left: 1%;
-		padding-right: 1%;
-	}
-}
+
 
 #bookSelection{
 	text-align: center;
@@ -124,9 +112,19 @@ body{
 	margin: 0.5%;
 }
 
+.options-list{
+	margin-bottom: 30px;
+}
+
+.options-list-hamburger{
+	float: right;
+	margin-left: 40px;
+}
+
 .options-div{
 	float: right;
 	padding-right: 2%;
+	margin-bottom: 30px;
 }
 
 .options-list a{
@@ -146,11 +144,18 @@ body{
 .options-list a:hover{
 	/*border: 1px solid #f5c211;;*/
 	background-color: #f5c211;
+	color: black;
 }
 
 #logout_button{
 	background-color: #6765A9;
 	border: 1px solid #6765A9;
+}
+
+#logout_button:hover{
+	background-color: #f5c211;
+	border: 1px solid #f5c211;
+	color: black;
 }
 
 #topBtn{
@@ -177,5 +182,25 @@ body{
 
 .version-info{
 	text-align: center;
+}
+
+@media screen and (max-width: 800px){
+	.copyright-image{
+		height: 30%;
+		width: 30%;
+		padding-left: 15px;
+	}
+	
+	body{
+		margin-top: 1px;
+		background-color: #8C2F64;
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+	
+	.options-list-hamburger{
+		
+		margin-top: 0px;
+	}
 }
 
