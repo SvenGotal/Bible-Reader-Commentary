@@ -59,9 +59,6 @@ public class IndexController {
 			model.addAttribute("username", "guest");
 		}
 		model.addAttribute("userValidated", userValidated);
-		model.addAttribute("binding", binding);
-		
-		//model.addAttribute("comments", comments.findCommentaryByPublished(true));
 		model.addAttribute("books", bookRepository.findAll());
 		
 		return "index";
