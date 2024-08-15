@@ -43,20 +43,16 @@ public class IndexController {
 		Boolean userValidated = false;
 		/* Take current logged user to adjust options visibility */
 		if(princ != null) {
-			if(princ.getName() != null) {
-				currentUsername = princ.getName();
-				if(currentUsername != null) {
-					User currentUser = userRepository.findByUsername(currentUsername);	
-					if(currentUser != null) {
-						UserRoles currentUserRole = currentUser.getRole();
-						userValidated = currentUserRole.name() != null ? true : false;
-						model.addAttribute("userRole", currentUserRole.name());
-						model.addAttribute("username", currentUser.getUsername());
-					}
-					
+			if((currentUsername = princ.getName()) != null) {
+				User currentUser = userRepository.findByUsername(currentUsername);	
+				if(currentUser != null) {
+					UserRoles currentUserRole = currentUser.getRole();
+					userValidated = currentUserRole.name() != null ? true : false;
+					model.addAttribute("userRole", currentUserRole.name());
+					model.addAttribute("username", currentUser.getUsername());
 				}
 			}
-			
+
 		}
 		else {
 			model.addAttribute("userRole", currentUsername);	
