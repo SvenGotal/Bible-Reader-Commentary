@@ -69,6 +69,7 @@ public class SubmitFormController {
 			RedirectAttributes redirectAttributes,
 			HttpServletRequest request) 
 	{
+		/* Check if BindingResult has stored errors during posting. If yes, simply display webpage */
 		if(bindingResult.hasErrors())
 			return "forms/submitform";
 		
@@ -78,15 +79,17 @@ public class SubmitFormController {
 			return "redirect:/";			
 		}
 		
-		/* Chech if user password and retyped password match */
-		/*if(user.getPassword().trim() != request.getParameter("password_retype").trim()) {
+		/* Validate whether input strings for password match */
+		if(user.getPassword().trim() != request.getParameter("password_retype").trim()) {
 			redirectAttributes.addFlashAttribute("binding", "Passwords did not match!");
 			return "redirect:/";
-		}*/
+		}
 		
+		/* Use encoder bean to encrypt the password, if user has no assigned roles then assign
+		 * the 'user' role as the default role */
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword().trim()));
-		if(user.getRole() == null || user.getRole().name() == "")
+		if(user.getRole() == null)
 			user.setRole(UserRoles.USER);
 		
 		userRepository.save(user);
