@@ -41,12 +41,16 @@ public class SubmitCommentController {
 		this.bookRepository = bookRepository;
 	}
 	
+	/**Sets up the commentary form by loading all books from the book repo and creates a new Commentary object
+	 * and sends it to the model to the frontend.
+	 * */
 	@GetMapping
 	public String getCommentForm(Model model) {
 		model.addAttribute("comment", new Commentary());
 		model.addAttribute("books", bookRepository.findAll());
 		return "forms/submitcomment";
 	}
+	
 	
 	@PostMapping
 	public String addComment(
