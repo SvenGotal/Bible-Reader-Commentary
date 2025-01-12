@@ -51,6 +51,7 @@ public class UserSpaceController {
 	public String editMyComment(
 			@RequestParam("commentId") Long commentId,
 			@RequestParam("editedComment") String editedComment,
+			/*name= is required because multiple arguments are given for @RequestParam annotation*/
 			@RequestParam(name="setPrivateCheckbox", required=false) String commentPublished,
 			@RequestParam("commentSubject") String commentSubject,
 			RedirectAttributes redirectAttributes)
