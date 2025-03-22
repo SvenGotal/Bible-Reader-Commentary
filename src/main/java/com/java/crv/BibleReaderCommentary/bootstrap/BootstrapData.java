@@ -49,10 +49,6 @@ public class BootstrapData implements CommandLineRunner{
 			fileForBibleReader = "/home/sveng/WordProject_Bible.xlsx";
 			filepath = new File(fileForBibleReader);
 			
-//			if(!filepath.exists()) {
-//				fileForBibleReader = "C:\\Users\\sgotal\\Downloads\\WordProject_Bible.xlsx";
-//				filepath = new File(fileForBibleReader);
-//			}
 		}
 		
 		BibleImporter reader = null;
