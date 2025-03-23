@@ -23,8 +23,7 @@ public class ApiController {
 	private BookRepository bookRepository;
 	public ApiController (
 			BookRepository bookRepository,
-			CommentaryRepository commentRepository
-			) 
+			CommentaryRepository commentRepository) 
 	{
 		this.bookRepository = bookRepository;
 	}
