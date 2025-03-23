@@ -50,9 +50,7 @@ public class CommentBroker {
 	public void importCommentary() {
 		
 		try (FileInputStream inputStream = new FileInputStream(filename)){
-			
-			//System.out.println("Starting import...");
-			
+						
 			Workbook workbook = new XSSFWorkbook(filename);
 			
 			/* Get the first sheet in the excel file (required) */
@@ -64,7 +62,6 @@ public class CommentBroker {
 				if(row.getRowNum() == 0) {
 					continue;
 				}
-				//System.out.println("getting cells...");
 				/* Get cells */
 				Cell comment_id = row.getCell(0);
 				Cell comment_subject = row.getCell(1);
@@ -145,18 +142,7 @@ public class CommentBroker {
 			for(Commentary cmnt : repoComments) {
 								
 				Row currentRow = worksheet.createRow(rowCount);
-				
-				/*
-				 * comment_id (0) - Number
-				 * comment_subject (1) String
-				 * comment_published (2) Boolean
-				 * comment_text (3) String
-				 * comment_timestamp (4) String (in db)
-				 * comment_user_id (5) Number
-				 * comment_chapter_id (6) Number
-				 * 
-				 * */
-				
+
 				currentRow.createCell(0).setCellValue(cmnt.getId());
 				currentRow.createCell(1).setCellValue(cmnt.getSubject());
 				currentRow.createCell(2).setCellValue(cmnt.getPublished());

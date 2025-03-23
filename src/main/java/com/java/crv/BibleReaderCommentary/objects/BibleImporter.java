@@ -36,9 +36,7 @@ public class BibleImporter {
 		try(FileInputStream inputStream = new FileInputStream(filename)){
 			Workbook workbook = new XSSFWorkbook(filename);
 			Sheet sheet = workbook.getSheetAt(worksheet);
-			bible.setTranslation(sheet.getSheetName());
-			
-			//System.out.println("Loading translation: " + bible.getTranslation() + "...");
+			bible.setTranslation(sheet.getSheetName());			
 			
 			for(Row row : sheet) {
 				
@@ -58,7 +56,6 @@ public class BibleImporter {
 							book.setBible(bible);
 							bible.getBooks().add(book);
 
-							//System.out.println("Loading book: " + book.getName());
 						}
 						/* Create new chapter, assign  */	
 						chapter = new Chapter();
@@ -67,8 +64,6 @@ public class BibleImporter {
 						chapter.setNumber(ch);
 						chapter.setBook(book);
 						book.getChapters().add(chapter);
-
-						//System.out.println("Load chapter: " + chapter.getNumber());
 						
 					}
 				}	
@@ -83,7 +78,6 @@ public class BibleImporter {
 				verse.setText(verseText);
 				verse.setNumber((int)verseNumberCell.getNumericCellValue());
 				verse.setChapter(chapter);
-				//System.out.println("Verse: " + verse.getNumber());
 				if(chapter != null)
 					chapter.getVerses().add(verse);
 			}
