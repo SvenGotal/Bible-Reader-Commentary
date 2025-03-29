@@ -49,8 +49,17 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		 * /public etc are accessible to everyone. Administrative URLs will be inaccessible by default 
 		 * to unregistered users. */
 
-		http.securityMatcher("/", "/public/**", "/scripts/**", "/images/**", "/styles/**", "/templates/**")
-		.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
+		http.authorizeHttpRequests((requests) -> 
+		requests
+			.requestMatchers("/","/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
+			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
+			.anyRequest()
+			.authenticated())
+				.formLogin(Customizer.withDefaults())
+				.csrf( csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+				.headers( headers -> headers
+						.frameOptions(frame -> frame.disable())
+			);
 		return http.build();
 	}
 	
@@ -91,13 +100,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	}
 	
-	@Bean
-	protected SecurityFilterChain h2Config(HttpSecurity http) throws Exception {
-		http.securityMatcher("/h2-console/**")
-		.authorizeHttpRequests(authorize -> authorize.anyRequest().hasRole(UserRoles.ADMIN.name()));
-		return http.build();
-		
-	}
 	
 	@Bean(name="encoder")
 	protected BCryptPasswordEncoder passwordEncoder() {
