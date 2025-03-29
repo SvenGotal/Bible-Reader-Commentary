@@ -45,23 +45,12 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		
-		/*SecurityFilterChain - configures which URL's are accessible and to whom. Users are discriminated against their roles and allowed
-		 * access only to certain portions of the web app*/
-		
-		//todo allow URL's that fetch book, chapter and verses in index
-		
-		http.authorizeHttpRequests((requests) -> 
-		requests
-			.requestMatchers("/","/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
-			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
-			.anyRequest()
-			.authenticated())
-				.formLogin(Customizer.withDefaults())
-				.csrf( csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-				.headers( headers -> headers
-						.frameOptions(frame -> frame.disable())
-			);
-		
+		/* SecurityFilterChain - configures which URL's are accessible to the public. URLs like index, 
+		 * /public etc are accessible to everyone. Administrative URLs will be inaccessible by default 
+		 * to unregistered users. */
+
+		http.securityMatcher("/", "/public/**", "/scripts/**", "/images/**", "/styles/**", "/templates/**")
+		.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
 		return http.build();
 	}
 	
@@ -100,6 +89,14 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		return http.build();
 	
+	}
+	
+	@Bean
+	protected SecurityFilterChain h2Config(HttpSecurity http) throws Exception {
+		http.securityMatcher("/h2-console/**")
+		.authorizeHttpRequests(authorize -> authorize.anyRequest().hasRole(UserRoles.ADMIN.name()));
+		return http.build();
+		
 	}
 	
 	@Bean(name="encoder")
