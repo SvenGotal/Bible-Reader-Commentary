@@ -78,13 +78,17 @@ public class SubmitFormController {
 			redirectAttributes.addFlashAttribute("binding", "Failed to insert Data!");
 			return "redirect:/";			
 		}
-		
+
 		/* Validate whether input strings for password match */
-		if(user.getPassword().trim() != request.getParameter("password_retype").trim()) {
+		String password = user.getPassword().trim();
+		String passwordRetype = request.getParameter("password_retype").trim();
+		/* Use String.contentEquals(String) for comparing */
+		if(!password.contentEquals(passwordRetype)) {
 			redirectAttributes.addFlashAttribute("binding", "Passwords did not match!");
+			System.out.println("Passwords do not match!" + user.getPassword() + " " + request.getParameter("password_retype"));
 			return "redirect:/";
 		}
-		
+
 		/* Use encoder bean to encrypt the password, if user has no assigned roles then assign
 		 * the 'user' role as the default role */
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
