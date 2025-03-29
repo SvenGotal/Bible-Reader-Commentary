@@ -66,8 +66,7 @@ public class BootstrapData implements CommandLineRunner{
 			admin.setUsername("admin");
 			admin.setPassword(encoder.encode("admin"));
 			admin.setRole(UserRoles.ADMIN);
-			admin.setComments(new ArrayList<Commentary>());
-			
+			admin.setComments(new ArrayList<Commentary>());						
 			
 			System.out.println("Saving data....");		
 			userRepo.save(admin);
@@ -75,6 +74,18 @@ public class BootstrapData implements CommandLineRunner{
 			System.out.println(userRepo.findAll().toString()); 
 	
 		}
+		
+		/* Add simple user for testing */
+		if(userRepo.findByUsername("user") == null) {
+			User user = new User();
+			//user.setId(2000L);
+			user.setUsername("user");
+			user.setPassword(encoder.encode("user"));
+			user.setRole(UserRoles.USER);
+			user.setComments(new ArrayList<Commentary>());
+			userRepo.save(user);
+		}
+		
 				
 	}
 }
