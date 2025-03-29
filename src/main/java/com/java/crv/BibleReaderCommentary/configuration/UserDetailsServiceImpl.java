@@ -101,7 +101,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	}
 	
 	
-	@Bean(name="encoder")
+	@Bean(name="passwordEncoder")
 	protected BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
