@@ -25,104 +25,96 @@ public class SubmitFormController {
 
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
-	
-	public SubmitFormController(UserRepository userRepository, BCryptPasswordEncoder encoder){
+
+	public SubmitFormController(UserRepository userRepository, BCryptPasswordEncoder encoder) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = encoder;
 	}
-	
+
 	@GetMapping("public/submitForm")
-	public String showForm(Model model, Principal princ) {				
-		try {		
-			if(princ != null) {			
-				String username = princ.getName();			
+	public String showForm(Model model, Principal princ) {
+		try {
+			if (princ != null) {
+				String username = princ.getName();
 				User currentUser = userRepository.findByUsername(username);
-				
-				if(currentUser != null) {
+
+				if (currentUser != null) {
 					UserRoles ur = currentUser.getRole();
-					model.addAttribute("adminRole", ur.name());				
-				}
-				else {
+					model.addAttribute("adminRole", ur.name());
+				} else {
 					model.addAttribute("adminRole", "guest");
 				}
-			}
-			else
-			{
+			} else {
 				model.addAttribute("username", "guest");
 			}
-						
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("user", new User());		
+		model.addAttribute("user", new User());
 		return "forms/submitform";
 	}
-	
+
 	@PostMapping("public/submitForm")
-	public String submitForm(
-			@ModelAttribute("user") @Validated User user,
-			BindingResult bindingResult, 
-			Model model,
-			RedirectAttributes redirectAttributes,
-			HttpServletRequest request) 
-	{
-		/* Check if BindingResult has stored errors during posting. If yes, simply display webpage.
-		 * TODO: Rework this logic */
-		if(bindingResult.hasErrors())
+	public String submitForm(@ModelAttribute("user") @Validated User user, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		/*
+		 * Check if BindingResult has stored errors during posting. If yes, simply
+		 * display webpage. TODO: Rework this logic
+		 */
+		if (bindingResult.hasErrors())
 			return "forms/submitform";
-		
+
 		/* Check if field username is empty. */
-		if(!StringUtils.hasText(user.getUsername())) {
+		if (!StringUtils.hasText(user.getUsername())) {
 			redirectAttributes.addFlashAttribute("binding", "Username is empty.");
-			return "redirect:/";			
+			return "redirect:/";
 		}
-		
+
 		/* Check if field password is empty. */
-		if(!StringUtils.hasText(user.getPassword())) {
+		if (!StringUtils.hasText(user.getPassword())) {
 			redirectAttributes.addFlashAttribute("binding", "Password is empty.");
-			return "redirect:/";	
+			return "redirect:/";
 		}
 
 		/* Validate whether input strings for password match. */
 		try {
 			String password = user.getPassword().trim();
 			String passwordRetype = request.getParameter("password_retype").trim();
-			
+
 			/* Use String.contentEquals(String) for comparing. */
-			if(!password.contentEquals(passwordRetype)) {
+			if (!password.contentEquals(passwordRetype)) {
 				redirectAttributes.addFlashAttribute("binding", "Passwords did not match!");
 				return "redirect:/";
 			}
-		}
-		catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			e.printStackTrace();
-		}			
+		}
 
 		/* Use passwordEncoder bean DI to encrypt the password. */
 		try {
-			user.setPassword(passwordEncoder.encode(user.getPassword().trim()));		
-		}
-		catch (IllegalArgumentException e) {
+			user.setPassword(passwordEncoder.encode(user.getPassword().trim()));
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		
-		/* Set the default role to "User" if admin has not specified it during creation. 
-		 * This is the default role when guest is creating a user. */
+
+		/*
+		 * Set the default role to "User" if admin has not specified it during creation.
+		 * This is the default role when guest is creating a user.
+		 */
 		try {
-			if(user.getRole() == null)
+			if (user.getRole() == null)
 				user.setRole(UserRoles.USER);
-		}
-		catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		
+
 		/* Save user to the repository. */
 		userRepository.save(user);
 		return "redirect:/";
 	}
-	
+
 }
