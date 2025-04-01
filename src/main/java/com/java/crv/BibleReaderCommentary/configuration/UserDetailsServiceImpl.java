@@ -28,10 +28,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-
+			/* loadUserByUsername is a custom implementation for the default Spring Boot login
+			 * form. Without it, users logging in will be impossible. Custom implementation is
+			 * required because of the specificity of the UserRepository connected to User model */
 			User user = userRepo.findByUsername(username);
-			
 			if (user == null) {
 				throw new UsernameNotFoundException("User: " + username + " not found...");
 			}
@@ -40,9 +40,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 					.password(user.getPassword())
 					.roles(user.getRole().name())
 					.build();
-
-		
 	}
+	
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		
