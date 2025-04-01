@@ -29,30 +29,31 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		User user = userRepo.findByUsername(username);
-		if (user == null) {
-			//todo implement exception rather than output to console
-			System.out.println("Username not found!");
-		}
+
+			User user = userRepo.findByUsername(username);
+			
+			if (user == null) {
+				throw new UsernameNotFoundException("User: " + username + " not found...");
+			}
+			return org.springframework.security.core.userdetails.User.builder()
+					.username(user.getUsername())
+					.password(user.getPassword())
+					.roles(user.getRole().name())
+					.build();
+
 		
-		return org.springframework.security.core.userdetails.User.builder()
-				.username(user.getUsername())
-				.password(user.getPassword())
-				.roles(user.getRole().name())
-				.build();
 	}
-	
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		
-		/* SecurityFilterChain - configures which URL's are accessible to the public. URLs like index, 
-		 * /public etc are accessible to everyone. Administrative URLs will be inaccessible by default 
-		 * to unregistered users. */
+		/* secConfig configures which URL's are accessible to the public. URLs like index, 
+		 * /public/** etc are accessible to everyone. Administrative URLs will be inaccessible by default 
+		 * to unregistered users. For good measure access to H2 browser console and /admin/** is denied */
 
 		http.authorizeHttpRequests((requests) -> 
 		requests
 			.requestMatchers("/","/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
-			.requestMatchers("/h2-console/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
+			.requestMatchers("/h2-console/**", "/admin/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.anyRequest()
 			.authenticated())
 				.formLogin(Customizer.withDefaults())
