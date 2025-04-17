@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
@@ -45,9 +47,23 @@ public class SubmitCommentController {
 	 * and sends it to the model to the frontend.
 	 * */
 	@GetMapping
-	public String getCommentForm(Model model) {
+	public String getCommentForm(Model model, Principal princ) {
+		/*Send new Commentary, this allows fo*/
 		model.addAttribute("comment", new Commentary());
 		model.addAttribute("books", bookRepository.findAll());
+		
+		/*User validation for the hamburger menu*/
+		/*Retireve the user name from the Principal and retrieve User by username in repo*/
+		String username = princ.getName();
+		User loggedUser = userRepository.findByUsername(username);
+		UserRoles currentUserRole = loggedUser.getRole();
+		Boolean userValidated = loggedUser == null ? false : true;
+		
+		/*Send all the required data to the mycomments View*/
+		model.addAttribute("userRole", currentUserRole.name()); /*Send user role e.g. ADMIN, USER etc...*/
+		model.addAttribute("userValidated", userValidated); 	/*Send whether user is validated*/
+		
+		
 		return "forms/submitcomment";
 	}
 	
