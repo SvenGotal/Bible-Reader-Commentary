@@ -1,92 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>BIBLIJA&ja</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
-	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
-	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitComment.css}"/>
-	
-	<script th:src="@{/scripts/javascript.js}" ></script>
-	<script th:src="@{/scripts/ajax_script.js}"></script>
-	
-	<!-- ######################################################### Google Fonts #########################################################-->	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-	<!--################################################################################################################################################-->
-	
+<title>BIBLIJA&ja</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"
+>
+<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/mainStyle.css}"
+/>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/submitComment.css}"
+/>
+
+<script th:src="@{/scripts/javascript.js}"></script>
+<script th:src="@{/scripts/ajax_script.js}"></script>
+
+<!-- ######################################################### Google Fonts #########################################################-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+	rel="stylesheet"
+>
+<!--################################################################################################################################################-->
+
 </head>
 <body>
-	
+
 	<div class="main-wrapper">
-		<div class = "header-area">
+		<div>
+		<div class="header-area">
 			<div class="comment-logo-div">
 				<img class="comment-logo" th:src="@{/images/Bibilijaija-logo.png}">
 			</div>
-			<div class="options-div">
-				<span class="options-list">
-					<a id="logout_button" href="/logout">Odjava</a>
-					<a href="/?redirect=/">Početna</a>
-					<a href="/private/myComments">Moji komentari</a>
-					
-				</span>
-				
-			
-			</div>
-		
+			<section class="options-list options-list-hamburger">
+				<nav id="navbar" class="navigation" role="navigation">
+					<input id="toggle1" type="checkbox" /> <label class="hamburger1"for="toggle1">
+						<div class="top"></div>
+						<div class="meat"></div>
+						<div class="bottom"></div>
+					</label>
+					<th:block th:if="${userValidated}">
+						<nav class="menu1" th:switch="${userRole}">
+							<th:block th:case="USER">
+								<ul>
+									<li><a href="/?redirect=/">Početna</a></li>
+									<li><a href="/private/myComments">Moji komentari</a></li>
+									<li><a id="logout_button" href="/logout">Odjava</a></li>
+								</ul>
+							</th:block>
+							<th:block th:case="ADMIN">
+								<ul>
+									<li><a href="/?redirect=/">Početna</a></li>
+									<li><a href="/public/submitForm">Novi korisnik</a></li>
+									<li><a href="/admin/controlCenter">Control Center</a></li>
+									<li><a href="/private/myComments">Moji komentari</a></li>
+									<li><a id="logout_button" href="/logout">Odjava</a></li>
+								</ul>
+							</th:block>
+						</nav>
+					</th:block>
+				</nav>
+			</section>
 		</div>
-	
-		<div class="main-form">
-			<form method="post" th:action="@{submitComment}" th:object="${comment}">
-			
-				<div class="selection-comments">
-					<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
-						<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-					</select>
-			
-					<select id="chapterSelection" name="selectedChapter" onchange="insertComment()" disabled>
-						<option selected disabled th:placeholder="'Glava'">Glava</option>		
-					</select>	
-				</div>
-				<div class="input-comments">
-					<div class="comments-title-submit">
-						<label>Naslov:  </label>
-						<input id="commentSubject" type="text" onchange="insertComment()" placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}" /><br/>
-					</div>
-					<div id="wrapper">
-						<div class="comments-make-private">
-							<div class="comments-label">
-								<label id="comments_label">Komentar je privatan:</label>
-							</div>
-							
-							<div class="comments-checkbox">
-								<input id="comments_checkbox" type="checkbox" name="setPrivateCheckbox" value="false">
-							</div>
-						</div>	
-					</div>
-					<div class="comments-text-submit">
-						<textarea id="comment_textarea" type="text" onmouseout="insertComment()" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}" ></textarea><br/>
-					</div>
-				</div>
-				<div class="comment-submit">
-					<button disabled id="submit_button" class="comment-insert" type="submit">Unesi komentar</button>
-				</div>	
-				
-			</form>
-		</div>
-		
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
 
+	</div>
+
+	<div class="main-form">
+		<form method="post" th:action="@{submitComment}" th:object="${comment}">
+			<div class="selection-comments">
+				<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
+					<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+					<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+				</select> <select id="chapterSelection" name="selectedChapter" onchange="insertComment()" disabled>
+					<option selected disabled th:placeholder="'Glava'">Glava</option>
+				</select>
+			</div>
+			<div class="input-comments">
+				<div class="comments-title-submit">
+					<label>Naslov: </label> <input id="commentSubject" type="text"
+						onchange="insertComment()"
+						placeholder="npr. Kako je Bog ljubio svijet" th:field="*{subject}"
+					/><br />
+				</div>
+				<div id="wrapper">
+					<div class="comments-make-private">
+						<div class="comments-label">
+							<label id="comments_label">Komentar je privatan:</label>
+						</div>
+
+						<div class="comments-checkbox">
+							<input id="comments_checkbox" type="checkbox"
+								name="setPrivateCheckbox" value="false"
+							>
+						</div>
+					</div>
+				</div>
+				<div class="comments-text-submit">
+					<textarea id="comment_textarea" type="text"
+						onmouseout="insertComment()"
+						placeholder="Komentar mora imati najmanje 20 znakova i naslov!"
+						th:field="*{text}"
+					></textarea>
+					<br />
+				</div>
+			</div>
+			<div class="comment-submit">
+				<button disabled id="submit_button" class="comment-insert"
+					type="submit"
+				>Unesi komentar</button>
+			</div>
+
+		</form>
+	</div>
+	</div>
 </body>
 </html>
 

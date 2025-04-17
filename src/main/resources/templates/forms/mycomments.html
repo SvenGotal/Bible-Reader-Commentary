@@ -1,133 +1,197 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>BIBLIJA&ja</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
-		
-		<script th:src="@{/scripts/userspace.js}"></script>
-		<script th:src="@{/scripts/scrollbutton.js}"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{/styles/myComments.css}"/>
-		
-		<!-- ######################################################### Google Fonts #########################################################-->	
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-		<!--################################################################################################################################################-->
-	
-		
-	</head>
-	<body>
-	
-		<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
-		
-		<div class="main-wrapper">
-			<!--======================================================= Header =======================================================-->
-			<div class="header-area">
-				<div class="logo-div">
-					<img class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
+<head>
+<title>BIBLIJA&ja</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=yes"
+>
+<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+
+<script th:src="@{/scripts/userspace.js}"></script>
+<script th:src="@{/scripts/scrollbutton.js}"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/mainStyle.css}"
+/>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/myComments.css}"
+/>
+
+<!-- ######################################################### Google Fonts #########################################################-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+	rel="stylesheet"
+>
+<!--################################################################################################################################################-->
+
+
+</head>
+<body>
+
+	<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
+
+	<div class="main-wrapper">
+		<!--======================================================= Header =======================================================-->
+		<div class="header-area">
+			<div class="logo-div">
+				<img class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
+			</div>
+			<div class="options-div">
+				<div class="options-list">
+					<section class="options-list options-list-hamburger">
+						<nav id="navbar" class="navigation" role="navigation">
+							<input id="toggle1" type="checkbox" /> <label class="hamburger1" for="toggle1">
+								<div class="top"></div>
+								<div class="meat"></div>
+								<div class="bottom"></div>
+							</label>
+							<th:block th:if="${userValidated}">
+								<nav class="menu1" th:switch="${userRole}">
+									<th:block th:case="USER">
+										<ul>
+											<li><a href="/?redirect=/">Početna</a></li>
+											<li><a href="/private/submitComment">Napiši komentar</a></li>
+											<li><a id="logout_button" href="/logout">Odjava</a></li>
+										</ul>
+									</th:block>
+									<th:block th:case="ADMIN">
+										<ul>
+											<li><a href="/?redirect=/">Početna</a></li>
+											<li><a href="/public/submitForm">Novi korisnik</a></li>
+											<li><a href="/admin/controlCenter">Control Center</a></li>
+											<li><a href="/private/submitComment">Napiši komentar</a></li>
+											<li><a id="logout_button" href="/logout">Odjava</a></li>
+										</ul>
+									</th:block>
+								</nav>
+							</th:block>
+
+							<th:block th:unless="${userValidated}">
+								<nav class="menu1" th:switch="${userRole}">
+									<ul>
+										<li><a href="public/submitForm">Izradi profil</a></li>
+										<li><a href="/login">Prijava</a></li>
+									</ul>
+								</nav>
+							</th:block>
+						</nav>
+					</section>
 				</div>
-				<div class="options-div">
+			</div>
+		</div>
+		<!--======================================================= No comments found OR message =======================================================-->
+		<div th:if="${noCommentsFound != null OR message != null}"
+			class="comments-area myComments-no-comments-found"
+		>
+			<div>
+				<h1 th:text="${message}"></h1>
+				<h1 th:text="${noCommentsFound}"></h1>
+
+				<div class="comment-edit-options">
 					<div class="options-list">
-					<table>
-						<tr>
-							<td class="user-login-display"><label ><i style="font-size:24px" class="fa">&#xf007;</i></label>   <label th:text="${username}"></label></td>
-						</tr>
-						<tr>
-							<td>
-								<span>
-								<a id="logout_button" href="/logout">Odjava</a>
-								<a th:unless="${message}" href="/private/submitComment">Napiši komentar</a>
-								<a href="/">Početna</a>
-								</span>
+						<span> <a href="/private/submitComment">Napiši komentar</a>
+							<a th:if="${message}" href="/private/myComments">Natrag na
+								moji komentari</a>
+						</span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!--======================================================= Comments found =======================================================-->
+		<div th:unless="${noCommentsFound != null OR message != null}">
+			<div class="comments-area">
+				<table class="myComments-comments-table" id="comment_table">
+
+					<tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
+						<tr class="myComments-subject-row">
+							<td colspan="3"><label th:text="${comment.subject}"></label>
+							</td>
+							<td
+								th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"
+							></td>
+							<td class="myComments-td-10percent">
+								<button class="myComments-expand-comment-button"
+									id="myComments_display_option" onclick="showHideComment(this)"
+								>+</button>
 							</td>
 						</tr>
-					</table>
-						
-					</div>
-				</div>
+						<tr class="myComments-comment-row" id="myComments_comment_row">
+							<td class="myComments-td-10percent"
+								th:text="${comment.timestamp}"
+							></td>
+							<td>
+								<p class="myComments-p-align-text-justify"
+									th:text="${comment.text}"
+								></p>
+							</td>
+
+							<td class="myComments-published myComments-td-10percent"
+								th:if="${comment.published}"
+							>Objavljen</td>
+							<td class="myComments-not-published myComments-td-10percent"
+								th:unless="${comment.published}"
+							>Privatan</td>
+							<td><label>Promijeni: </label><input
+								class="myComments-radio-button" type="radio"
+								th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"
+							></td>
+							<td style="display: none;" th:text="${comment.subject}"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-<!--======================================================= No comments found OR message =======================================================-->
-			<div th:if="${noCommentsFound != null OR message != null}" class="comments-area myComments-no-comments-found" >
-				<div >
-					<h1 th:text="${message}"></h1>
-					<h1 th:text="${noCommentsFound}"></h1>
-					
-					<div class="comment-edit-options">
-						<div class="options-list">
-							<span>
-								<a href="/private/submitComment">Napiši komentar</a>
-								<a th:if="${message}" href="/private/myComments">Natrag na moji komentari</a>
-							</span>
-						</div>
-					</div>
-					
-				</div>								
-				
-			</div>		
-<!--======================================================= Comments found =======================================================-->
-			<div th:unless="${noCommentsFound != null OR message != null}">						
-				<div  class="comments-area">
-					<table class="myComments-comments-table" id="comment_table">
-					
-						 <tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
-						 	<tr class="myComments-subject-row">
-						 		 <td colspan="3">
-						 		 	<label th:text="${comment.subject}"></label>
-						 		 </td>
-						 		 	<td th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}">
-						 		</td>
-						 		 <td class="myComments-td-10percent">
-						 			<button class="myComments-expand-comment-button" id="myComments_display_option" onclick="showHideComment(this)">+</button>
-						 		 </td>
-						 	</tr>
-							<tr class="myComments-comment-row" id="myComments_comment_row">						
-								<td class="myComments-td-10percent" th:text="${comment.timestamp}"></td>
-								<td> <p class="myComments-p-align-text-justify" th:text="${comment.text}"></p> </td>						
-								
-								<td class="myComments-published myComments-td-10percent" th:if="${comment.published}">Objavljen</td>
-								<td class="myComments-not-published myComments-td-10percent" th:unless="${comment.published}">Privatan</td>
-								<td><label>Promijeni: </label><input class="myComments-radio-button" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
-								<td style="display:none;" th:text="${comment.subject}"></td>
-							</tr>
-						</tbody>	
-					</table>	
-				</div>
-				<div style="display:none;" id="commentEditingDiv" class="comment-edit-div">
-					<div>
-						<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
-								<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
-								<input style="display:none;" type="text" id="commentIdEdit" name="commentId">
-								<span>
-									<div class="myComments-subject-and-text-edit">
-										<label>Naslov: </label>
-										<input disabled type="text" id="commentSubjectEdit" name="commentSubject">
-										<br>
-										<textarea disabled id="commentEditingArea" name="editedComment"></textarea>
-									</div>
-								</span>
-								<br>
-								<span>
-									<div class="myComments-publish-and-submit-area">
-										<label>Objavljen: </label>
-										<input disabled class="myComments-publish-checkbox" id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
-										<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
-									</div>
-								</span>
+			<div style="display: none;" id="commentEditingDiv"
+				class="comment-edit-div"
+			>
+				<div>
+					<form method="post" id="formEdit"
+						th:action="@{/private/myCommentsEdit}"
+					>
+						<!-- Hidden input - Commentary Id holder (do not remove or make visible) -->
+						<input style="display: none;" type="text" id="commentIdEdit"
+							name="commentId"
+						> <span>
+							<div class="myComments-subject-and-text-edit">
+								<label>Naslov: </label> <input disabled type="text"
+									id="commentSubjectEdit" name="commentSubject"
+								> <br>
+								<textarea disabled id="commentEditingArea" name="editedComment"></textarea>
+							</div>
+						</span> <br> <span>
+							<div class="myComments-publish-and-submit-area">
+								<label>Objavljen: </label> <input disabled
+									class="myComments-publish-checkbox" id="publishedCheckbox"
+									type="checkbox" name="setPrivateCheckbox"
+								>
+								<button disabled type="button" id="buttonEdit"
+									onclick="submitEditedComment()"
+								>Izmjeni komentar</button>
+							</div>
+						</span>
+					</form>
+					<div class="myComments-delete-area">
+						<form method="post" id="formDelete"
+							th:action="@{/private/myCommentsDelete}"
+						>
+							<input style="display: none;" type="text" id="commentIdDelete"
+								name="commentId"
+							></label>
+							<button disabled type="button" id="buttonDelete"
+								onclick="commentDelete()"
+							>Izbriši komentar</button>
 						</form>
-						<div class="myComments-delete-area">
-							<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-									<input style="display:none;" type="text" id="commentIdDelete" name="commentId"></label>
-									<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
-							</form>
-						</div>
 					</div>
 				</div>
 			</div>
-			
 		</div>
-	</body>
+
+	</div>
+</body>
 </html>
