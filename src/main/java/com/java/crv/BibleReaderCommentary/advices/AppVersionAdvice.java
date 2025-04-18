@@ -6,7 +6,7 @@
  * in a footer in every View - centralized app version info.
  * */
 
-package com.java.crv.BibleReaderCommentary.controllers;
+package com.java.crv.BibleReaderCommentary.advices;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ControllerAdvice;
