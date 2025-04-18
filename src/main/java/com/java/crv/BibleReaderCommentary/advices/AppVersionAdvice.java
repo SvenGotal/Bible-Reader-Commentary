@@ -29,7 +29,7 @@ public class AppVersionAdvice {
 	 *accessed via thymeleaf. */
 	@ModelAttribute
 	public void displayAppVersion(Model model) {
-		model.addAttribute("appVersion", "Version:" + this.appVersion);
+		model.addAttribute("appVersion", this.appVersion);
 	}
 
 }
