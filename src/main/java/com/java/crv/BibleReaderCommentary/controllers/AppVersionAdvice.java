@@ -17,7 +17,7 @@ import org.springframework.ui.Model;
  * 
  * */
 @ControllerAdvice
-public class AppVersionController {
+public class AppVersionAdvice {
 	
 	/*This annotation will pull the data from the application.properties file,
 	 * specifically app.version string.*/
