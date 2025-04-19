@@ -202,6 +202,12 @@ body{
 		
 		margin-top: 0px;
 	}
+	
+	.copyright-image{
+	height: 15%;
+	width: 15%;
+
+	}
 }
 
 /* copied code */
@@ -283,4 +289,6 @@ body{
 .menu1 a{
 	flex-grow: 1;
 }
+
+
 
