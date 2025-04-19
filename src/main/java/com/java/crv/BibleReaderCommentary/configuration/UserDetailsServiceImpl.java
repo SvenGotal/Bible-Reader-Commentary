@@ -41,6 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 					.build();
 	}	
 	
+	/**secConfig is a SecurityFilterChain for configuring security over the entire app.*/
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
 		
@@ -67,6 +68,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		return http.build();
 	}
 	
+	/**Password Encoder bean is used during user creation and in future will be used for password reset
+	 * in userspace form where a user will be able to configure their account.*/
 	@Bean(name="passwordEncoder")
 	protected BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
