@@ -1,6 +1,5 @@
 package com.java.crv.BibleReaderCommentary.configuration;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -40,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 					.password(user.getPassword())
 					.roles(user.getRole().name())
 					.build();
-	}
+	}	
 	
 	@Bean
 	protected SecurityFilterChain secConfig(HttpSecurity http) throws Exception{
@@ -49,57 +48,22 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		 * /public/** etc are accessible to everyone. Administrative URLs will be inaccessible by default 
 		 * to unregistered users. For good measure access to H2 browser console and /admin/** is denied */
 
-		http.authorizeHttpRequests((requests) -> 
-		requests
-			.requestMatchers("/","/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
+		http
+		.authorizeHttpRequests((requests) -> requests
+			.requestMatchers("/", "/login", "/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
 			.requestMatchers("/h2-console/**", "/admin/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
-			.anyRequest()
-			.authenticated())
-				.formLogin(Customizer.withDefaults())
-				.csrf( csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-				.headers( headers -> headers
-						.frameOptions(frame -> frame.disable())
+			.requestMatchers("/private/**").hasAnyRole("USER", "ADMIN", "OWNER")
+			.anyRequest().authenticated())
+			.formLogin(Customizer.withDefaults())
+			.logout(logout -> logout
+					.logoutSuccessUrl("/")
+					.permitAll()
+			)
+			.csrf( csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+					.headers( headers -> headers.frameOptions(frame -> frame.disable())
 			);
 		return http.build();
 	}
-	
-	@Bean
-	protected SecurityFilterChain loginConfig(HttpSecurity http) throws Exception {
-		
-		http.authorizeHttpRequests( (requests) -> 
-		requests
-		.requestMatchers("/login").permitAll()
-		.anyRequest().authenticated()
-		).formLogin(Customizer.withDefaults());
-		
-		return http.build();
-	}
-	
-	@Bean
-	protected SecurityFilterChain logoutConfig(HttpSecurity http) throws Exception{
-		
-		http.authorizeHttpRequests( (requests) -> 
-		requests
-		.requestMatchers("logout").permitAll()
-		.anyRequest().authenticated()
-		).logout( (logout) -> logout.logoutSuccessUrl("/"));
-		
-		return http.build();
-	}
-	
-	@Bean
-	protected SecurityFilterChain usersConfig(HttpSecurity http) throws Exception {
-		
-		http.authorizeHttpRequests( (requests) ->
-		requests.requestMatchers("/private/**")
-		.hasAnyRole(UserRoles.USER.name(), UserRoles.ADMIN.name(), UserRoles.OWNER.name())
-		.anyRequest()
-		.authenticated());
-		
-		return http.build();
-	
-	}
-	
 	
 	@Bean(name="passwordEncoder")
 	protected BCryptPasswordEncoder passwordEncoder() {
