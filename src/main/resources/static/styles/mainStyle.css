@@ -100,6 +100,12 @@ body{
 	margin: 0.5%;
 }
 
+#bookSelection:hover{
+	background-color: #f5c211;
+	color: black;
+	border-color: #f5c211;
+}
+
 #chapterSelection{
 	text-align: center;
 	color: white;
@@ -110,6 +116,12 @@ body{
 	height: 30px;
 	font-weight: bold;
 	margin: 0.5%;
+}
+
+#chapterSelection:hover{
+	background-color: #f5c211;
+	color: black;
+	border-color: #f5c211;
 }
 
 .options-list{
