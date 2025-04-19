@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 
-/**Support controller for inserting app version info into every View available (through Model)
- * 
+/**Support Advice for inserting app version info into every View available (through Model).
+ * App version info is in the footer of every view available to ordinary user.
  * */
 @ControllerAdvice
 public class AppVersionAdvice {
 	
 	/*This annotation will pull the data from the application.properties file,
-	 * specifically app.version string.*/
+	 *specifically app.version string and set the annotated variable (appVersion)
+	 *default value to a string found there.*/
 	@Value("${app.version}")
 	private String appVersion;
 	
