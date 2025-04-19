@@ -54,7 +54,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 			.requestMatchers("/h2-console/**", "/admin/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.requestMatchers("/private/**").hasAnyRole("USER", "ADMIN", "OWNER")
 			.anyRequest().authenticated())
-			.formLogin(Customizer.withDefaults())
+			.formLogin(login -> login
+				.loginPage("/login")
+				.permitAll())
 			.logout(logout -> logout
 					.logoutSuccessUrl("/")
 					.permitAll()
