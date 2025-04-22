@@ -39,7 +39,7 @@ public class BibleImporter {
 			bible.setTranslation(sheet.getSheetName());			
 			
 			for(Row row : sheet) {
-				
+
 				Cell bookCell = row.getCell(0);
 				Cell chapterCell = row.getCell(1);
 				Cell verseCell = row.getCell(2);
@@ -85,10 +85,15 @@ public class BibleImporter {
 			workbook.close();
 			
 		}
-		catch(Exception e) {
-			e.printStackTrace();
+		catch(NullPointerException e) {
 			
-		}			
+			System.out.println("Reached the end of the file...");
+			return bible;
+		}		
+		catch (Exception e){
+			System.out.println("Unknown error, printing stack trace...");
+			e.printStackTrace();
+		}
 		return bible;
 	}
 	
