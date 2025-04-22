@@ -24,10 +24,13 @@ public class BootstrapData implements CommandLineRunner{
 
 	private final UserRepository userRepo;
 	private final BibleRepository bibleRepo;
+	private final BCryptPasswordEncoder encoder;
 	
-	public BootstrapData(UserRepository userRepo, BibleRepository bibleRepo, ChapterRepository chapterRepo, CommentaryRepository commentRepo) {
+	public BootstrapData(UserRepository userRepo, BibleRepository bibleRepo, ChapterRepository chapterRepo, CommentaryRepository commentRepo, BCryptPasswordEncoder encoder) {
 		this.userRepo = userRepo;
 		this.bibleRepo = bibleRepo;
+		this.encoder = encoder;
+		
 	}
 	
 	@Override
@@ -40,7 +43,7 @@ public class BootstrapData implements CommandLineRunner{
 		System.out.println("Working directory: " + working_dir);
 		
 		System.out.println("Commandline runner running....");
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		
 		String fileForBibleReader = "/home/sven/WordProject_Bible.xlsx";
 		File filepath = new File(fileForBibleReader);
