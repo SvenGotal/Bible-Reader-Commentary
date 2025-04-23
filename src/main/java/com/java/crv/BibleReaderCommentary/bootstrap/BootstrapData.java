@@ -73,9 +73,6 @@ public class BootstrapData implements CommandLineRunner{
 		if(bibleDB != null) {
 			System.out.println("Database file found");
 		}
-		else {
-			System.out.println("Database file not found, creating database...");
-		}
 	
 		
 		if(bibleRepo.count() == 0) {
