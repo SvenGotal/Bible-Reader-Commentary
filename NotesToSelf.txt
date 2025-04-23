@@ -3,6 +3,10 @@ check - Ideja: staviti da komentari mogu biti javni i privatni po odabiru korisn
 Ideja: omogućiti međusobno šeranje komentara sa drugim korisnicima 
 check - Ideja: omogućiti korisnicima da modificiraju svoje komentare
 Ideja: onemogućiti ružne riječi via preloadanom listom ružnih riječi pomoću regex-a
-Dodatak: dodati posebni dio za Admine, vidljivost usera, upravljanje userima i komentarima itd.
+check - Dodatak: dodati posebni dio za Admine, vidljivost usera, upravljanje userima i komentarima itd.
 
 spring.datasource.url=jdbc:h2:mem:testdb
+
+H2 SQL Examples:
+SELECT * FROM VERSE 
+WHERE NUMBER = 1 AND TEXT LIKE '%nebo%'
