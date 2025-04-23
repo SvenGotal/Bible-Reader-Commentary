@@ -36,6 +36,9 @@ public class BootstrapData implements CommandLineRunner{
 	
 	@Value("${app.bibleFile.path}")
 	private String bibleFilePath;
+	
+	@Value("${app.database.path}")
+	private String databaseFile;
 	/*---------------------------------------------------------*/
 	
 	public BootstrapData(UserRepository userRepo, BibleRepository bibleRepo, ChapterRepository chapterRepo, CommentaryRepository commentRepo, BCryptPasswordEncoder encoder) {
@@ -48,14 +51,12 @@ public class BootstrapData implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 				
+		System.out.println("Commandline runner running....");
 		//check working dir
 		String working_dir = System.getProperty("user.dir");
 		System.out.println("Bible directory: " + working_dir);
-		
-		System.out.println("Commandline runner running....");
-		
+
 		String fileForBibleReader = this.bibleFilePath;
-		System.out.println("Filepath string initialized...");
 		File filepath = new File(fileForBibleReader);
 		
 		if(!filepath.exists()) {
@@ -63,9 +64,19 @@ public class BootstrapData implements CommandLineRunner{
 			fileForBibleReader = "/home/sveng/WordProject_Bible.xlsx";
 			filepath = new File(fileForBibleReader);	
 		}
+	
 		
 		BibleImporter reader = null;
 		Bible bible;
+		
+		File bibleDB = new File(this.databaseFile);
+		if(bibleDB != null) {
+			System.out.println("Database file found");
+		}
+		else {
+			System.out.println("Database file not found, creating database...");
+		}
+	
 		
 		if(bibleRepo.count() == 0) {
 			reader = new BibleImporter(filepath.toString());
