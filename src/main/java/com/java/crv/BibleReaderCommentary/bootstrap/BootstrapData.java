@@ -85,8 +85,8 @@ public class BootstrapData implements CommandLineRunner{
 		if(userRepo.count() == 0) {
 			System.out.println("User database is empty...");
 			User admin = new User();
-			admin.setUsername(this.seedAdminUsername);
-			admin.setPassword(encoder.encode(this.seedAdminPassword));
+			admin.setUsername("admin");//this.seedAdminUsername);
+			admin.setPassword(encoder.encode("admin")); //this.seedAdminPassword));
 			admin.setRole(UserRoles.ADMIN);
 			admin.setComments(new ArrayList<Commentary>());						
 			userRepo.save(admin);
