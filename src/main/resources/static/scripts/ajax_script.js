@@ -38,6 +38,20 @@ function updateChapters() {
 /* Update chapters when Book is selected in index (publicly readable) */
 function updateIndexChapters() {
 	var selectedBookId = document.getElementById('bookSelection').value;
+	var chapter_selector = document.getElementById('chapter_selector');
+	
+	/*Check for previous child elements - remove residual chapter boxes */
+	if(chapter_selector != null){
+		console.log("chapter selector is found...");
+		while(chapter_selector.hasChildNodes()){
+			chapter_selector.removeChild(chapter_selector.firstChild);
+		}
+		
+		chapter_selector.style.display='block';
+	}
+	else{
+		console.log("chapter selector not found...");
+	}
 
 	console.log("Performing fetch...")
 	// Perform an Ajax request to fetch chapters for the selected book
@@ -58,10 +72,19 @@ function updateIndexChapters() {
 
 			// Add options for each chapter
 			data.forEach(chapter => {
+				/*Create child elements and append them to drop-down select element*/ 
 				var option = document.createElement('option');
 				option.value = chapter.number;
 				option.text = chapter.number;
 				chapterSelection.appendChild(option);
+				
+				/*Create child elements for chapter boxes and append them in chapter_selector element*/
+				var chapterBoxElementDiv = document.createElement('div');
+				var chapterBoxElementAnchor = document.createElement('a');
+				chapterBoxElementAnchor.innerHTML=chapter.number;
+				chapterBoxElementDiv.appendChild(chapterBoxElementAnchor);
+	
+				chapter_selector.appendChild(chapterBoxElementDiv);
 			});
 
 			// Enable the 'chapterSelection' dropdown

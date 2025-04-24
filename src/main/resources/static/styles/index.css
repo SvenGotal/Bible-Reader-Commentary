@@ -90,6 +90,11 @@
 	font-style: oblique;
 }
 
+.chapter-selector-boxes{
+	background-color: blue;
+	display: none;
+}
+
 
 /*
 .menu1 a:first-child {
