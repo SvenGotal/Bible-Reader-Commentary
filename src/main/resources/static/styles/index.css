@@ -91,10 +91,36 @@
 }
 
 .chapter-selector-boxes{
-	background-color: blue;
 	display: none;
+	justify-content: center;
 }
 
+.chapter-selector-boxes div{
+	
+	border: 1px solid #8C2F64;
+	background-color: #8C2F64;
+	color: white;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 2px;
+}
+
+.chapter-selector-boxes div:hover{
+	background-color: #f5c211;
+	color: black;
+	border-color: #f5c211;
+	user-select: none;
+}
+
+.chapter-selector-break {
+	flex-basis: 100%;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
 
 /*
 .menu1 a:first-child {

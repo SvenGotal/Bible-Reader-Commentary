@@ -47,7 +47,7 @@ function updateIndexChapters() {
 			chapter_selector.removeChild(chapter_selector.firstChild);
 		}
 		
-		chapter_selector.style.display='block';
+		chapter_selector.style.display='flex';
 	}
 	else{
 		console.log("chapter selector not found...");
@@ -69,6 +69,8 @@ function updateIndexChapters() {
 			placeholderOption.disabled = true;
 			placeholderOption.selected = true;
 			chapterSelection.appendChild(placeholderOption);
+			
+
 
 			// Add options for each chapter
 			data.forEach(chapter => {
@@ -78,13 +80,23 @@ function updateIndexChapters() {
 				option.text = chapter.number;
 				chapterSelection.appendChild(option);
 				
+				console.log("appending chapter: " + chapter.number);
+				
 				/*Create child elements for chapter boxes and append them in chapter_selector element*/
 				var chapterBoxElementDiv = document.createElement('div');
-				var chapterBoxElementAnchor = document.createElement('a');
-				chapterBoxElementAnchor.innerHTML=chapter.number;
-				chapterBoxElementDiv.appendChild(chapterBoxElementAnchor);
-	
+				chapterBoxElementDiv.classList.add('chapter-selector-div');
+				chapterBoxElementDiv.innerHTML=chapter.number;
+				
+				
 				chapter_selector.appendChild(chapterBoxElementDiv);
+				
+				if(chapter.number % 5 === 0){
+					console.log("appending breaker....");
+					
+					var chapterBoxElementBreak = document.createElement('div');
+					chapterBoxElementBreak.classList.add('chapter-selector-break');
+					chapter_selector.appendChild(chapterBoxElementBreak);
+				}
 			});
 
 			// Enable the 'chapterSelection' dropdown
