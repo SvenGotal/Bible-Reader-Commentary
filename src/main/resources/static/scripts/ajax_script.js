@@ -47,6 +47,8 @@ function updateIndexChapters() {
 			chapter_selector.removeChild(chapter_selector.firstChild);
 		}
 		
+		/*Have the container div for select boxes be grid in it's display, none 
+		(invisible) is defined in index.css for that element*/
 		chapter_selector.style.display='grid';
 	}
 	else{
