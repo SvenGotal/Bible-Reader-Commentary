@@ -42,7 +42,7 @@ function updateIndexChapters() {
 	
 	/*Check for previous child elements - remove residual chapter boxes */
 	if(chapter_selector != null){
-		console.log("chapter selector is found...");
+
 		while(chapter_selector.hasChildNodes()){
 			chapter_selector.removeChild(chapter_selector.firstChild);
 		}
@@ -50,9 +50,6 @@ function updateIndexChapters() {
 		/*Have the container div for select boxes be grid in it's display, none 
 		(invisible) is defined in index.css for that element*/
 		chapter_selector.style.display='grid';
-	}
-	else{
-		console.log("chapter selector not found...");
 	}
 
 	console.log("Performing fetch...")
@@ -81,8 +78,6 @@ function updateIndexChapters() {
 				option.value = chapter.number;
 				option.text = chapter.number;
 				chapterSelection.appendChild(option);
-				
-				console.log("appending chapter: " + chapter.number);
 				
 				/*Create child elements for chapter boxes and append them in chapter_selector element*/
 				var chapterBoxElementDiv = document.createElement('div');
