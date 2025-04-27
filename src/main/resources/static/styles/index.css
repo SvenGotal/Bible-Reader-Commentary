@@ -93,6 +93,8 @@
 .chapter-selector-boxes{
 	display: none;
 	justify-content: center;
+	grid-template-columns: repeat(10, 2%); /* 5 columns */
+	gap: 10px;
 }
 
 .chapter-selector-boxes div{
@@ -116,10 +118,18 @@
 }
 
 .chapter-selector-break {
-	flex-basis: 100%;
+	/*flex-basis: 100%;*/
 	height: 0;
 	margin: 0;
 	padding: 0;
+}
+
+@media screen and (max-width: 800px){
+
+	.chapter-selector-boxes{
+		grid-template-columns: repeat(10, 6%);
+		padding-bottom: 15px;
+	}
 }
 
 /*
