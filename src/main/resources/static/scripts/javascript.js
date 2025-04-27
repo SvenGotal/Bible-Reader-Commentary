@@ -11,7 +11,6 @@ function updateChapterInChapterBoxes(chapterNumber){
 	/*Make sure the onchange event is fired in the chapterSelection once the value and text are updated.*/
 	chapterSelection.dispatchEvent(new Event('change'));
 	
-	console.log("shoot!...");
 }
 
 /*Simple password validation script for comparing whether two passwords are equal. */
