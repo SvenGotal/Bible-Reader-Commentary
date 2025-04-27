@@ -1,3 +1,20 @@
+
+/*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
+**by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
+**created in the ajax_script. */
+function updateChapterInChapterBoxes(chapterNumber){
+	
+	var chapterSelection = document.getElementById('chapterSelection');
+	chapterSelection.value = chapterNumber;
+	chapterSelection.text = chapterNumber;
+	
+	/*Make sure the onchange event is fired in the chapterSelection once the value and text are updated.*/
+	chapterSelection.dispatchEvent(new Event('change'));
+	
+	console.log("shoot!...");
+}
+
+/*Simple password validation script for comparing whether two passwords are equal. */
 function passwordValidation(){
 	var password = document.getElementById("password");
 	var password_retype = document.getElementById("password_retype");
@@ -41,6 +58,8 @@ function insertComment(){
 	}
 	
 }
+
+
 
 
 

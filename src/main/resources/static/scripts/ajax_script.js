@@ -83,6 +83,7 @@ function updateIndexChapters() {
 				var chapterBoxElementDiv = document.createElement('div');
 				chapterBoxElementDiv.classList.add('chapter-selector-div');
 				chapterBoxElementDiv.innerHTML=chapter.number;
+				chapterBoxElementDiv.setAttribute('onclick','updateChapterInChapterBoxes(' + chapter.number + ')');
 				
 				
 				chapter_selector.appendChild(chapterBoxElementDiv);
