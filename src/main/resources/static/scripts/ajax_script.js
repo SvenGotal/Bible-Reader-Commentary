@@ -90,14 +90,6 @@ function updateIndexChapters() {
 				
 				chapter_selector.appendChild(chapterBoxElementDiv);
 				
-				/*
-				if(chapter.number % 5 === 0){
-					console.log("appending breaker....");
-					
-					var chapterBoxElementBreak = document.createElement('div');
-					chapterBoxElementBreak.classList.add('chapter-selector-break');
-					chapter_selector.appendChild(chapterBoxElementBreak);
-				}*/
 			});
 
 			// Enable the 'chapterSelection' dropdown
