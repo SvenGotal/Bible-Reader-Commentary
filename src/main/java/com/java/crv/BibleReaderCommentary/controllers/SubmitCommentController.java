@@ -56,7 +56,7 @@ public class SubmitCommentController {
 		@RequestParam(name="bookId", defaultValue="0") Long bookId,
 		@RequestParam(name="chapterId", defaultValue="0") Long chapterId) 
 	{
-		/*
+		/* Get bookId and chapterId from URL - if found thymeleaf will load script. */
 		if(bookId != 0 && chapterId != 0) {
 			Chapter defaultChapter = chapterRepository.findById(chapterId).get();
 			Book defaultBook = bookRepository.findById(bookId).get();
@@ -65,7 +65,7 @@ public class SubmitCommentController {
 			model.addAttribute("defaultChapter", defaultChapter);
 			
 		}
-*/
+
 		/*Fetch all Books and post them to the frontend*/
 		model.addAttribute("books", bookRepository.findAll());
 

@@ -1,5 +1,6 @@
 /**
- * 
+ * Script for loading the submit comment page, if user selected book and chapter on index page then
+ * those values will default into the submit comment page and be pre-selected.
  */
 
 function getParameterFromURL(paramName){

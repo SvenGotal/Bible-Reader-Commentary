@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script th:src="@{/scripts/javascript.js}"></script>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
-	<script th:src="@{/scripts/load_submitComment_script.js}"></script>
+	<script th:if="${defaultBook}" th:src="@{/scripts/load_submitComment_script.js}"></script>
 	
 	
 	<!--/*######################################################### Google Fonts #########################################################*/-->
@@ -73,22 +73,12 @@
 		<form method="post" th:action="@{submitComment/post}" th:object="${comment}">
 			<div class="selection-comments">
 				<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
-					<th:block th:if="${defaultBook}">
-						<option selected th:name="${defaultBook.name}" th:value="${defaultBook.id}" th:text="${defaultBook.name}"></option>
-					</th:block>
-					<th:block th:unless="${defaultBook}">
 						<option selected disabled th:placeholder="'Odaberite knjigu'" value=-1>Odaberite knjigu</option>
-					</th:block>
 						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 				</select> 
 					
 				<select id="chapterSelection" name="selectedChapter" disabled>
-					<th:block th:if="${defaultChapter}">
-						<option selected th:text="${defaultChapter.number}" th:value="${defaultChapter.id}"></option>
-					</th:block>
-					<th:block th:unless="${defaultChapter}">
 						<option selected disabled th:placeholder="'Glava'" value=-1>Glava</option>
-					</th:block>
 				</select>
 			</div>
 			<div class="input-comments">
