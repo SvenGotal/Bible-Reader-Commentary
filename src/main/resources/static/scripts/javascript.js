@@ -57,5 +57,10 @@ function insertComment(){
 	
 }
 
+function redirectToIndex(){
+	
+	window.location.href = "/";
+	
+}
 
 

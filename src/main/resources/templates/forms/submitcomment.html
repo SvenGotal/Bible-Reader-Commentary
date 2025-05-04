@@ -32,8 +32,8 @@
 	<div class="main-wrapper">
 		<div>
 			<div class="header-area">
-				<div class="comment-logo-div">
-					<img class="comment-logo" th:src="@{/images/Bibilijaija-logo.png}">
+				<div onclick="redirectToIndex()" class="logo-div">
+					<img  class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
 				</div>
 			<!--/*======================================================= Hamburger menu =======================================================*/-->
 			<section class="options-list options-list-hamburger">
@@ -47,7 +47,7 @@
 						<nav class="menu1" th:switch="${userRole}">
 							<th:block th:case="USER">
 								<ul>
-									<li><a href="/?redirect=/">Početna</a></li>
+									<li><a href="/">Početna</a></li>
 									<li><a href="/private/myComments">Moji komentari</a></li>
 									<li><a id="logout_button" href="/logout">Odjava</a></li>
 								</ul>

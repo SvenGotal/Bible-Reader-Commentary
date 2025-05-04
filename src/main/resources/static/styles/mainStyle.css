@@ -61,6 +61,7 @@ body{
 .logo-div{	
 	float: left;
 	margin: 0px;
+	cursor: pointer;
 }
 
 .index-logo{
