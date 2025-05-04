@@ -29,10 +29,8 @@ setTimeout(function () {
 	
 	if(chapterId && bookId){
 		const chapterSelection = document.getElementById("chapterSelection");
-		console.log("chapter Id found...: " + chapterId);
 		
 		if(chapterSelection){
-			console.log("chapter select element found...");
 			chapterSelection.value = chapterId;
 			chapterSelection.dispatchEvent(new Event('change', {bubbles : true}));
 		}
