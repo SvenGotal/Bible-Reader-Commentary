@@ -24,6 +24,7 @@
 	<script th:src="@{/scripts/ajax_script.js}"></script>
 	<script th:src="@{/scripts/javascript.js}"></script>
 	<script th:src="@{/scripts/scrollbutton.js}"></script>
+	<script th:src="@{/scripts/data_transfer_script.js}"></script>
 
 	<!--/*######################################################### Google Fonts #########################################################*/-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,11 +85,12 @@
 				<!--/*======================================================= Select Buttons =======================================================*/-->
 				<form method="post">
 					<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
-						<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
+						<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
 						<!--/* For each Book in a Book list that controller gives creates an option element */-->
 						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
-					</select> <select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled >
-						<option selected disabled th:placeholder="'Glava'">Glava</option>
+					</select> 
+					<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled >
+						<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
 					</select>
 				</form>
 				<!--/*======================================================= /Select Buttons =======================================================*/-->
@@ -112,9 +114,11 @@
 			</div>
 		</div>
 		<div class="lower-separator">
-			<div class="options-list" th:if="${userValidated}">
-				<a href="/private/submitComment">Napiši komentar</a>
-			</div>
+			<form  method="get">
+				<div class="options-list" th:if="${userValidated}">
+					<a href="#" id="Index_writeCommentButton">Napiši komentar</a>
+				</div>
+			</form>
 			<div class="options-list" th:unless="${userValidated}">
 				<a href="public/submitForm">Izradi profil</a> <a href="/login">Prijava</a>
 			</div>

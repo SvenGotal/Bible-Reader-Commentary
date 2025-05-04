@@ -16,8 +16,11 @@
 	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitComment.css}"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script th:src="@{/scripts/javascript.js}"></script>
 	<script th:src="@{/scripts/ajax_script.js}"></script>
+	<script th:src="@{/scripts/load_submitComment_script.js}"></script>
+	
 	
 	<!--/*######################################################### Google Fonts #########################################################*/-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,13 +70,25 @@
 	</div>
 	<!--/*======================================================= Comment Writing Area =======================================================*/-->
 	<div class="main-form">
-		<form method="post" th:action="@{submitComment}" th:object="${comment}">
+		<form method="post" th:action="@{submitComment/post}" th:object="${comment}">
 			<div class="selection-comments">
 				<select id="bookSelection" name="selectedBook" onchange="updateChapters()">
-					<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-					<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-				</select> <select id="chapterSelection" name="selectedChapter" onchange="insertComment()" disabled>
-					<option selected disabled th:placeholder="'Glava'">Glava</option>
+					<th:block th:if="${defaultBook}">
+						<option selected th:name="${defaultBook.name}" th:value="${defaultBook.id}" th:text="${defaultBook.name}"></option>
+					</th:block>
+					<th:block th:unless="${defaultBook}">
+						<option selected disabled th:placeholder="'Odaberite knjigu'" value=-1>Odaberite knjigu</option>
+					</th:block>
+						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+				</select> 
+					
+				<select id="chapterSelection" name="selectedChapter" disabled>
+					<th:block th:if="${defaultChapter}">
+						<option selected th:text="${defaultChapter.number}" th:value="${defaultChapter.id}"></option>
+					</th:block>
+					<th:block th:unless="${defaultChapter}">
+						<option selected disabled th:placeholder="'Glava'" value=-1>Glava</option>
+					</th:block>
 				</select>
 			</div>
 			<div class="input-comments">
@@ -91,12 +106,12 @@
 					</div>
 				</div>
 				<div class="comments-text-submit">
-					<textarea id="comment_textarea" type="text" onmouseout="insertComment()" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}"></textarea>
+					<textarea id="comment_textarea" type="text" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}"></textarea>
 					<br/>
 				</div>
 			</div>
 			<div class="comment-submit">
-				<button disabled id="submit_button" class="comment-insert" type="submit">Unesi komentar</button>
+				<button disabled id="submit_button" class="comment-insert" onmouseout="insertComment()" type="submit">Unesi komentar</button>
 			</div>
 		</form>
 	</div>

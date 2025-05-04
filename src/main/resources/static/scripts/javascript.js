@@ -28,7 +28,6 @@ function passwordValidation(){
 	}
 }
 
-/* not working adjust later */
 function insertComment(){
 	
 	var subject = document.getElementById('commentSubject');
@@ -38,7 +37,7 @@ function insertComment(){
 	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapter = document.getElementById('chapterSelection');
 	
-	if(selectedBook.selectedIndex !== 0 || selectedChapter.selectedIndex !== 0){
+	if(selectedBook.value !== -1 || selectedChapter.value !== -1){
 		
 		if(subject.value === '' || text.value === ''){
 			
@@ -57,9 +56,6 @@ function insertComment(){
 	}
 	
 }
-
-
-
 
 
 

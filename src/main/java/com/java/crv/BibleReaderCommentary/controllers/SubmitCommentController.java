@@ -19,38 +19,60 @@ import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
+import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/private/submitComment")
 public class SubmitCommentController {
 	
 	private CommentaryRepository commentaryRepository;
 	private UserRepository userRepository;
 	private BookRepository bookRepository;
+	private ChapterRepository chapterRepository;
 	
 	public SubmitCommentController(
 			CommentaryRepository commentaryRepository, 
 			UserRepository userRepository, 
-			BookRepository bookRepository 
+			BookRepository bookRepository,
+			ChapterRepository chapterRepository
 			) 
 	{
 		this.commentaryRepository = commentaryRepository;
 		this.userRepository = userRepository;
 		this.bookRepository = bookRepository;
+		this.chapterRepository = chapterRepository;
 	}
 	
 	/**Sets up the commentary form by loading all books from the book repo and creates a new Commentary object
 	 * and sends it to the model to the frontend.
 	 * */
-	@GetMapping
-	public String getCommentForm(Model model, Principal princ) {
-		/*Send new Commentary, this allows fo*/
-		model.addAttribute("comment", new Commentary());
+	@GetMapping("/private/submitComment")
+	public String getCommentForm(
+		Model model, 
+		Principal princ, 
+		@RequestParam(name="bookId", defaultValue="0") Long bookId,
+		@RequestParam(name="chapterId", defaultValue="0") Long chapterId) 
+	{
+		/*
+		if(bookId != 0 && chapterId != 0) {
+			Chapter defaultChapter = chapterRepository.findById(chapterId).get();
+			Book defaultBook = bookRepository.findById(bookId).get();
+			
+			model.addAttribute("defaultBook", defaultBook);
+			model.addAttribute("defaultChapter", defaultChapter);
+			
+		}
+*/
+		/*Fetch all Books and post them to the frontend*/
 		model.addAttribute("books", bookRepository.findAll());
+
+		
+		/*Create new Commentary, this object will be used for user input and stored in the database.*/
+		model.addAttribute("comment", new Commentary());
+		
 		
 		/*User validation for the hamburger menu*/
 		/*Retireve the user name from the Principal and retrieve User by username in repo*/
@@ -63,12 +85,13 @@ public class SubmitCommentController {
 		model.addAttribute("userRole", currentUserRole.name()); /*Send user role e.g. ADMIN, USER etc...*/
 		model.addAttribute("userValidated", userValidated); 	/*Send whether user is validated*/
 		
+		System.out.println("Controller fired..." + bookId + " : " + chapterId);
 		
 		return "forms/submitcomment";
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/private/submitComment/post")
 	public String addComment(
 			@ModelAttribute("comment") Commentary comment,
 			@RequestParam(name="setPrivateCheckbox", required=false) String setPrivateCheckbox,
@@ -80,6 +103,7 @@ public class SubmitCommentController {
 	{	
 		/* Fetch all books to populate user selection */
 		model.addAttribute("books", bookRepository.findAll());
+		
 		
 		// Validate if there are binding issues
 		if(validation.hasErrors()) {
@@ -105,9 +129,11 @@ public class SubmitCommentController {
 			redirectAttributes.addFlashAttribute("binding", "Morate odabrati knjigu!");
 			return "redirect:/";
 		}
-		
+
 		/* Search for Chapter by number property in the Book object from the persistence */
 		Chapter selectedChapter = new Chapter();
+		
+
 		if(request.getParameter("selectedChapter") != null) {
 			int chapterNumber = Integer.parseInt(request.getParameter("selectedChapter"));
 			selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
@@ -137,6 +163,7 @@ public class SubmitCommentController {
 			redirectAttributes.addFlashAttribute("binding", "Komentar kraći od 20 slova neće biti unesen. ");
 			return "redirect:/";
 		}
+		
 		comment.setAuthor();
 		/* Store comment into persistence */
 		commentaryRepository.save(comment);	
