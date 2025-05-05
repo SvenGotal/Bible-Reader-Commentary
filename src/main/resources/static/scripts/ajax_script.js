@@ -155,10 +155,13 @@ async function fetchVersesAndComments() {
 			var tbody = document.createElement('tbody');
 			var h3 = document.createElement('h3');
 			var rowSubject = document.createElement('tr');
+			rowSubject.classList.add("word-break");
 			var rowText = document.createElement('tr');
+			rowText.classList.add("word-break");
 			var rowAuthor = document.createElement('tr');
 			
 			var tdSubject = document.createElement('td');
+			tdSubject.classList.add("word-break");
 			var tdText = document.createElement('td');
 			var tdAuthor = document.createElement('td');
 			
@@ -186,6 +189,7 @@ async function fetchVersesAndComments() {
 			tbody.appendChild(rowAuthor);
 			
 			table.appendChild(tbody);
+			
 			
 			commentsDisplay.appendChild(table);
 		
