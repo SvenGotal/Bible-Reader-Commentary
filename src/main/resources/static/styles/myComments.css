@@ -23,6 +23,12 @@
 
 }
 
+.comments-area {
+	max-width: 100%;
+ 	width: 100%;
+	overflow-x: auto;
+}
+
 .myComments-expand-comment-button{
 	border: none;
 	background-color: white;
@@ -34,6 +40,7 @@
 
 .myComments-td-10percent{
 	max-width: 10%;
+	overflow-x: auto;
 }
 
 .myComments-comments-table{
@@ -41,10 +48,14 @@
 	padding-bottom: 20px;
 	max-width: 100%;
 	width: 100%;
-
+	table-layout: fixed;
 }
 
-
+.word-break{
+	overflow-x: auto;
+	word-break: break-word;
+  	overflow-wrap: break-word;
+}
 
 .myComments-comments-table td{
 	padding: 2px;
@@ -57,7 +68,7 @@
 
 .myComments-radio-button{
 	border: 0px;
-	width: 100%;
+	width: 10%;
 	height: 150%;
 }
 
@@ -65,6 +76,9 @@
 	text-align: justify;
 	padding-left: 5px;
 	padding-right: 5px;
+	overflow-x: auto;
+	word-break: break-word;
+  	overflow-wrap: break-word;
 }
 
 .myComments-published{
@@ -193,6 +207,5 @@
 	margin-top: 20%;
 	margin-bottom: 10px;
 }
-
 
 

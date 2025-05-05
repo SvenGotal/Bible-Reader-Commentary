@@ -102,21 +102,22 @@
 				<table class="myComments-comments-table" id="comment_table">
 					<tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
 						<tr class="myComments-subject-row">
-							<td colspan="3"><label th:text="${comment.subject}"></label></td>
-							<td th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></td>
-							<td class="myComments-td-10percent">
+							<td class="myComments-td-10percent word-break" th:text="${comment.timestamp}"></td>
+							<td class="word-break" colspan="3"><label th:text="${comment.subject}"></label></td>
+							<td class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></td>
+							<td class="myComments-td-10percent word-break">
 								<button class="myComments-expand-comment-button"id="myComments_display_option" onclick="showHideComment(this)">+</button>
 							</td>
 						</tr>
-						<tr class="myComments-comment-row" id="myComments_comment_row">
-							<td class="myComments-td-10percent" th:text="${comment.timestamp}"></td>
-							<td>
-								<p class="myComments-p-align-text-justify" th:text="${comment.text}"></p>
+						<tr class="myComments-comment-row word-break" id="myComments_comment_row">
+							<td colspan="4">
+								<p class="myComments-p-align-text-justify word-break" th:text="${comment.text}"></p>
 							</td>
-							<td class="myComments-published myComments-td-10percent" th:if="${comment.published}">Objavljen</td>
-							<td class="myComments-not-published myComments-td-10percent" th:unless="${comment.published}">Privatan</td>
-							<td><label>Promijeni: </label><input class="myComments-radio-button" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
-							<td style="display: none;" th:text="${comment.subject}"></td></tr>
+							<td class="myComments-published myComments-td-10percent word-break" th:if="${comment.published}">Objavljen</td>
+							<td class="myComments-not-published myComments-td-10percent word-break" th:unless="${comment.published}">Privatan</td>
+							<td><label>Promijeni: </label><input class="myComments-radio-button word-break" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
+							<td style="display: none;" th:text="${comment.subject}"></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

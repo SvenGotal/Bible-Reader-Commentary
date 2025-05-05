@@ -1,7 +1,7 @@
 const PUBLISHED = "Objavljen";
-const PUBLISHED_SLOT = 2;
-const TEXT_SLOT = 1;
-const SUBJECT_SLOT = 4;
+const PUBLISHED_SLOT = 1;
+const TEXT_SLOT = 0;
+const SUBJECT_SLOT = 3;
 
 function modifyComment(){
 	
