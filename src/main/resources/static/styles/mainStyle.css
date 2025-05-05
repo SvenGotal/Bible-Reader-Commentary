@@ -303,5 +303,9 @@ body{
 	flex-grow: 1;
 }
 
-
+.word-break{
+	overflow-x: auto;
+	word-break: break-word;
+  	overflow-wrap: break-word;
+}
 

@@ -51,12 +51,6 @@
 	table-layout: fixed;
 }
 
-.word-break{
-	overflow-x: auto;
-	word-break: break-word;
-  	overflow-wrap: break-word;
-}
-
 .myComments-comments-table td{
 	padding: 2px;
 	text-align: center;
