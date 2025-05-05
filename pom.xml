@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.java.crv</groupId>
 	<artifactId>Bible-Reader-Commentary</artifactId>
-	<version>1.4.4</version>
+	<version>1.4.5</version>
 	<name>Bible-Reader-Commentary</name>
 	<description>BIBLIJA i Ja</description>
 	<properties>
