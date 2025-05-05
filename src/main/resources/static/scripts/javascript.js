@@ -63,4 +63,22 @@ function redirectToIndex(){
 	
 }
 
+function highlightChapterBox(chapterSelection){
+	
+	const chapter_selector = document.getElementById('chapter_selector');
+	const chapterBoxes = Array.from(chapter_selector.children).filter(child => child.tagName === 'DIV');
+	
+	chapterBoxes.forEach( div => {
+		div.className= 'chapter-selector-div';
+	})
+		
+
+	
+	const chapterId = chapterSelection.value;
+	const chapterBoxId = "chapterBox"+ chapterId;
+	
+	var highlightedChapterBox = document.getElementById(chapterBoxId);
+	highlightedChapterBox.className= 'highlight-chapter-box';
+}
+
 
