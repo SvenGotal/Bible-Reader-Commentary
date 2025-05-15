@@ -43,10 +43,8 @@
 		</div>
 	</div>
 	<!--/*======================================================= Footer =======================================================*/-->
-	<div class="footer-area">		
-		<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.png}" > /2024</p>
-		<p class="version-info" th:text="${appVersion}"></p>		
+	<div th:replace="fragments/BRC-Footer :: BRC-Footer">
+		<!--/* Footer fragment */-->
 	</div>
-	
 </body>
 </html>
