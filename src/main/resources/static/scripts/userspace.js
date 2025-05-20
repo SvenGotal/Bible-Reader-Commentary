@@ -35,7 +35,7 @@ function modifyComment(){
 			rowValues.push(td.textContent);
 		});
 		
-		textArea.textContent = rowValues[TEXT_SLOT];
+		textArea.textContent = rowValues[TEXT_SLOT].trim();
 		subjectArea.value = rowValues[SUBJECT_SLOT];
 		commentMakePrivateOrPublic(rowValues[PUBLISHED_SLOT]);
 	}
