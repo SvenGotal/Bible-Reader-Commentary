@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.6</version>
+		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.java.crv</groupId>
 	<artifactId>Bible-Reader-Commentary</artifactId>
-	<version>1.4.5</version>
+	<version>1.4.7</version>
 	<name>Bible-Reader-Commentary</name>
 	<description>BIBLIJA i Ja</description>
 	<properties>
