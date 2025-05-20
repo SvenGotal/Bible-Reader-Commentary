@@ -42,46 +42,10 @@
 			</div>
 			<!--/*======================================================= Options menu =======================================================*/-->
 			<div class="options-div">
-				<!--/*======================================================= Hamburger menu =======================================================*/-->
-				<section class="options-list options-list-hamburger">
-					<nav id="navbar" class="navigation" role="navigation">
-						<input id="toggle1" type="checkbox" /> 
-						<label class="hamburger1" for="toggle1">
-							<div class="top"></div>
-							<div class="meat"></div>
-							<div class="bottom"></div>
-						</label>
-						<th:block th:if="${userValidated}">
-							<nav class="menu1" th:switch="${userRole}">
-								<th:block th:case="USER">
-									<ul>
-										<li><a href="/private/myComments">Moji komentari</a></li>
-										<li><a href="/private/submitComment">Napiši komentar</a></li>
-										<li><a id="logout_button" href="/logout">Odjava</a></li>
-									</ul>
-								</th:block>
-								<th:block th:case="ADMIN">
-									<ul>
-										<li><a href="/public/submitForm">Novi korisnik</a></li>
-										<li><a href="/private/myComments">Moji komentari</a></li>
-										<li><a href="/admin/controlCenter">Control Center</a></li>
-										<li><a href="/private/submitComment">Napiši komentar</a></li>
-										<li><a id="logout_button" href="/logout">Odjava</a></li>
-									</ul>
-								</th:block>
-							</nav>
-						</th:block>
-						<th:block th:unless="${userValidated}">
-							<nav class="menu1" th:switch="${userRole}">
-								<ul>
-									<li><a href="public/submitForm">Izradi profil</a></li> 
-									<li><a href="/login">Prijava</a></li>
-								</ul>
-							</nav>
-						</th:block>
-					</nav>
-				</section>
-				<!--/*======================================================= /Hamburger menu =======================================================*/-->
+				<div th:replace="fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options">
+					<!--/*======================================================= Hamburger menu =======================================================*/-->
+				</div>
+				
 				<!--/*======================================================= Select Buttons =======================================================*/-->
 				<form method="post">
 					<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
