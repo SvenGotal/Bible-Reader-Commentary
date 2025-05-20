@@ -85,6 +85,7 @@
 	height: 400px;
 	font-size: 16px;
 	resize: none;
+	font-family: Arial;
 }
 
 .comment-logo-div{
@@ -127,7 +128,6 @@
 .header-area-submit-comment{
 	margin-bottom: 2%;
 }
-
 
 
 
