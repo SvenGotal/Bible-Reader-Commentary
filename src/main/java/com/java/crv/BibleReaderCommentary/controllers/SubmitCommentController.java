@@ -84,7 +84,6 @@ public class SubmitCommentController {
 		model.addAttribute("userRole", currentUserRole.name()); /*Send user role e.g. ADMIN, USER etc...*/
 		model.addAttribute("userValidated", userValidated); 	/*Send whether user is validated*/
 		
-		System.out.println("Controller fired..." + bookId + " : " + chapterId);
 		
 		return "forms/submitcomment";
 	}
