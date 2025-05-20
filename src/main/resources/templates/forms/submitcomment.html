@@ -32,11 +32,11 @@
 	<div class="main-wrapper">
 		<div>
 			<div class="header-area">
-				<div onclick="redirectToIndex()" class="logo-div">
-					<img  class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
+				<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+					<!--/* BRC logo here /fragments/BRC-Logo.html */-->
 				</div>
 				<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
-					<!--/*======================================================= Hamburger menu =======================================================*/-->
+					<!--/* BRC hamburger options here /fragments/BRC-Hamburger-Options.html */-->
 				</div>
 			</div>
 		</div>

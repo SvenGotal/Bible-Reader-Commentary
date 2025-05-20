@@ -1,0 +1,8 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="BRC-User-Icon">
+	<img class="user-icon" th:src="@{/images/user-solid.svg}">
+		<div >
+			<a th:if="${currentlyLoggedUser}" th:text="${currentlyLoggedUser.username}"></a>
+			<a th:unless="${currentlyLoggedUser}" th:text="guest"></a>
+		</div>
+</div>

@@ -32,8 +32,8 @@
 	<div class="main-wrapper">
 		<!--/*======================================================= Header =======================================================*/-->
 		<div class="header-area">
-			<div class="logo-div" onclick="redirectToIndex()">
-				<img class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
+			<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+				<!--/* BRC logo here /fragments/BRC-Logo.html */-->
 			</div>
 			<div class="options-div">
 				<div class="options-list">

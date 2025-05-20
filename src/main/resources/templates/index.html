@@ -37,9 +37,17 @@
 	<div class="main-wrapper">
 		<!--/*======================================================= Header =======================================================*/-->
 		<div class="header-area">
-			<div class="logo-div">
-				<img class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
+		
+			<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+				<!--/* BRC logo here /fragments/BRC-Logo.html */-->
 			</div>
+	
+			<div th:replace="~{fragments/BRC-User-Icon}">
+				<!--/* User icon and username here /fragments/BRC-User-Icon.html */-->
+			</div>
+			
+			
+			
 			<!--/*======================================================= Options menu =======================================================*/-->
 			<div class="options-div">
 				<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">

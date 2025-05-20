@@ -1,20 +1,6 @@
 @charset "UTF-8";
 
 /*Mobile settings*/
-@media screen and (max-width: 800px){
-	.copyright-image{
-		height: 30%;
-		width: 30%;
-		padding-left: 15px;
-	}
-	
-	body{
-		margin-top: 1px;
-		background-color: #8C2F64;
-		padding-left: 1%;
-		padding-right: 1%;
-	}
-}
 
 html{
 	font-family: Lato;
@@ -197,31 +183,6 @@ body{
 	text-align: center;
 }
 
-@media screen and (max-width: 800px){
-	.copyright-image{
-		height: 30%;
-		width: 30%;
-		padding-left: 15px;
-	}
-	
-	body{
-		margin-top: 1px;
-		background-color: #8C2F64;
-		padding-left: 1%;
-		padding-right: 1%;
-	}
-	
-	.options-list-hamburger{
-		
-		margin-top: 0px;
-	}
-	
-	.copyright-image{
-	height: 15%;
-	width: 15%;
-
-	}
-}
 
 /* copied code */
 .hamburger1 {
@@ -309,5 +270,49 @@ body{
   	overflow-wrap: break-word;
 }
 
+.user-icon{
+	height: 3%;
+	width: 3%;
+}
+
+@media screen and (max-width: 800px){
+	.copyright-image{
+		height: 30%;
+		width: 30%;
+		padding-left: 15px;
+	}
+	
+	body{
+		margin-top: 1px;
+		background-color: #8C2F64;
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+	
+	.copyright-image{
+		height: 30%;
+		width: 30%;
+		padding-left: 15px;
+	}
+	
+	body{
+		margin-top: 1px;
+		background-color: #8C2F64;
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+	
+
+	.options-list-hamburger{
+		margin-top: 0px;
+
+	}
+	
+	.copyright-image{
+	height: 15%;
+	width: 15%;
+
+	}
+}
 
 

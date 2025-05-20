@@ -29,8 +29,8 @@
 <body>
 	<div class="main-wrapper">
 		<div class="header-area">
-			<div class="logo-div">
-				<img class="index-logo" onclick="redirectToIndex()" th:src="@{/images/Bibilijaija-logo.png}">
+			<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+				<!--/* BRC logo here /fragments/BRC-Logo.html */-->
 			</div>
 			<div class="greet-div">
 				<h1>Dobrodošao!</h1>
