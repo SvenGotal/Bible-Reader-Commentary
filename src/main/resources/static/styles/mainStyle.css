@@ -29,6 +29,12 @@ body{
 	padding-top: 10px;
 	padding-bottom: 30px;
 	height: auto;
+	display: table;
+	width: 100%;
+}
+
+.header-row{
+	display: table-row;
 }
 
 .header-area a{
@@ -45,14 +51,15 @@ body{
 }
 
 .logo-div{	
-	float: left;
+
 	margin: 0px;
 	cursor: pointer;
+	display: table-cell;
 }
 
 .index-logo{
-	width: 50%;
-	height: 50%;	
+	width: 28%;
+	height: 28%;	
 }
 
 .footer-area{
@@ -124,6 +131,7 @@ body{
 	float: right;
 	padding-right: 2%;
 	margin-bottom: 30px;
+	display: table-row;
 }
 
 .options-list a{
@@ -271,8 +279,18 @@ body{
 }
 
 .user-icon{
-	height: 3%;
-	width: 3%;
+	height: 12%;
+	width: 12%;
+}
+
+.header-cell{
+	display: table-cell;
+
+}
+
+.hamburger-div{
+	display: table-cell;
+
 }
 
 @media screen and (max-width: 800px){
@@ -305,13 +323,11 @@ body{
 
 	.options-list-hamburger{
 		margin-top: 0px;
-
 	}
 	
 	.copyright-image{
-	height: 15%;
-	width: 15%;
-
+		height: 15%;
+		width: 15%;
 	}
 }
 
