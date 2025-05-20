@@ -202,4 +202,12 @@
 	margin-bottom: 10px;
 }
 
+@media screen and (max-width: 800px){
+
+	.myComments-radio-button{
+		border: 0px;
+    width: 100%;
+    height: 2em;
+	}
+}
 
