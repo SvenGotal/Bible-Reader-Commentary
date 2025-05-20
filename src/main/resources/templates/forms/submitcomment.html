@@ -35,7 +35,7 @@
 				<div onclick="redirectToIndex()" class="logo-div">
 					<img  class="index-logo" th:src="@{/images/Bibilijaija-logo.png}">
 				</div>
-				<div th:replace="fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options">
+				<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
 					<!--/*======================================================= Hamburger menu =======================================================*/-->
 				</div>
 			</div>
@@ -80,7 +80,7 @@
 	<!--/*======================================================= /Comment Writing Area =======================================================*/-->
 	</div>
 	<!--/*======================================================= Footer =======================================================*/-->
-	<div th:replace="fragments/BRC-Footer :: BRC-Footer">
+	<div th:replace="~{fragments/BRC-Footer.html :: BRC-Footer}">
 		<!--/* Footer fragment */-->
 	</div>
 </body>
