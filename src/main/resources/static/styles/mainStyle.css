@@ -31,11 +31,21 @@ body{
 	height: auto;
 	display: table;
 	width: 100%;
+
 }
 
 .header-row{
-	display: table-row;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
+.header-row-dashboard{
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
 
 .header-area a{
 	float: right;
@@ -50,16 +60,16 @@ body{
 	padding-right: 10px;
 }
 
-.logo-div{	
-
+.logo-div{
 	margin: 0px;
-	cursor: pointer;
 	display: table-cell;
 }
 
 .index-logo{
-	width: 28%;
-	height: 28%;	
+	padding-left: 10px;
+	width: 40%;
+	height: 40%;	
+	cursor: pointer;
 }
 
 .footer-area{
@@ -128,10 +138,11 @@ body{
 }
 
 .options-div{
-	float: right;
 	padding-right: 2%;
-	margin-bottom: 30px;
-	display: table-row;
+	padding-left: 60%;
+	padding-top: 5px;
+	padding-bottom: 15px;
+
 }
 
 .options-list a{
@@ -279,8 +290,8 @@ body{
 }
 
 .user-icon{
-	height: 12%;
-	width: 12%;
+	height: 60%;
+	width: 60%;
 }
 
 .header-cell{

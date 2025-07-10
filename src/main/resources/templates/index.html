@@ -38,44 +38,51 @@
 		<!--/*======================================================= Header =======================================================*/-->
 		<div class="header-area">
 			<div class="header-row">
-				<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
-					<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+			
+				<div class="header-row-logo">
+					<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+						<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+					</div>
 				</div>
-		
-				<div th:replace="~{fragments/BRC-User-Icon}">
-					<!--/* User icon and username here /fragments/BRC-User-Icon.html */-->
-				</div>
-	
-				<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
-					<!--/*======================================================= Hamburger menu =======================================================*/-->
+				
+				<div class="header-row-dashboard">
+					<div th:replace="~{fragments/BRC-User-Icon}">
+						<!--/* User icon and username here /fragments/BRC-User-Icon.html */-->
+					</div>
+				
+					<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
+						<!--/*======================================================= Hamburger menu =======================================================*/-->
+					</div>
 				</div>
 			</div>
 		</div>
 			
 			<!--/*======================================================= Options menu =======================================================*/-->
-		<div class="options-div">
-		
+		<div class="select-and-separator-container">
+			<div class="options-div">
 			
-			<!--/*======================================================= Select Buttons =======================================================*/-->
-			<form method="post">
-				<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
-					<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
-					<!--/* For each Book in a Book list that controller gives creates an option element */-->
-					<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
-				</select> 
-				<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
-					<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
-				</select>
-			</form>
-			<!--/*======================================================= /Select Buttons =======================================================*/-->
-		</div>
-		
-		<!--/*======================================================= /Header ======================================================*/-->
-		<div class="upper-separator">
-			<h2 id="upper_separator_text"></h2>
-			<p class="main-welcome-text" id="main_welcome_text">"Jer Bog tako uzljubi svijet te dade Sina svojega jedinorođenoga da svaki koji vjeruje u njega ne propadne, nego ima život vječni."</p>
-			<p class="main-welcome-quotation" id="main_welcome_quotation"> Evanđelje po Ivanu 3:16
-			</p>
+				
+				<!--/*======================================================= Select Buttons =======================================================*/-->
+				<form method="post">
+					<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+						<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
+						<!--/* For each Book in a Book list that controller gives creates an option element */-->
+						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
+					</select> 
+					<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
+						<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
+					</select>
+				</form>
+				<!--/*======================================================= /Select Buttons =======================================================*/-->
+			</div>
+			
+			<!--/*======================================================= /Header ======================================================*/-->
+			<div class="upper-separator">
+				<h2 id="upper_separator_text"></h2>
+				<p class="main-welcome-text" id="main_welcome_text">"Jer Bog tako uzljubi svijet te dade Sina svojega jedinorođenoga da svaki koji vjeruje u njega ne propadne, nego ima život vječni."</p>
+				<p class="main-welcome-quotation" id="main_welcome_quotation"> Evanđelje po Ivanu 3:16
+				</p>
+			</div>
 		</div>
 		<!--/*=========================================================== Verses ============================================================*/-->
 		<div id="bible_display">
