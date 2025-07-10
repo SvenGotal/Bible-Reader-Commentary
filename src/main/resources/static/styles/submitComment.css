@@ -98,6 +98,7 @@
 }
 
 .comment-insert{
+	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
@@ -110,8 +111,15 @@
 }
 
 .comment-submit{
+	
+	display: flex;
+	justify-content: center;
 	margin-top: 1%;
-	margin-left: 45%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	
+	
 }
 
 #submit_button:disabled{

@@ -28,7 +28,7 @@ function passwordValidation(){
 	}
 }
 
-function insertComment(){
+function checkUserInputs(){
 	
 	var subject = document.getElementById('commentSubject');
 	var text = document.getElementById('comment_textarea');
@@ -37,23 +37,36 @@ function insertComment(){
 	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapter = document.getElementById('chapterSelection');
 	
+	var toastMessageBox = document.getElementById("toast_message");
+	
 	if(selectedBook.value !== -1 || selectedChapter.value !== -1){
+		
+		toastMessageBox.innerText = "Potrebno je izabrati knjigu i poglavlje.";
+		toastMessageBox.style.display = "block";
 		
 		if(subject.value === '' || text.value === ''){
 			
 			submitButton.disabled = true;
+			toastMessageBox.innerText = "Potrebno je upisati naslov i tekst.";
+			toastMessageBox.style.display = "block";
 			
 		}
 		else{
 			if(text.value.length < 20){
-				var warn = window.prompt("Tekst mora sadržavati minimalno 20 znakova.");
+				toastMessageBox.innerText = "Tekst mora sadržavati minimalno 20 znakova.";
+				toastMessageBox.style.display = "block";
+				
 				submitButton.disabled = true;
 			}
 			else{
 				submitButton.disabled = false;
+				toastMessageBox.style.display = "none";
 			}
 		}
 	}
+	toastMessageBox.classList.remove('toast-message-show');
+	void toastMessageBox.offsetWidth;
+	toastMessageBox.classList.add('toast-message-show');
 	
 }
 
