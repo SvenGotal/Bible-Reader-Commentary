@@ -352,9 +352,9 @@ body{
 .toast-message{
 	display: none;
 	position: fixed;
-	bottom: 23%;
+	/*bottom: 23%;*/
 	padding: 5px;
-	right: 45%;
+	right: 43%;
 	z-index: 99;
 	font-size: 120%;
 	border: none;
