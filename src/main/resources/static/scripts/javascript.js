@@ -30,40 +30,67 @@ function passwordValidation(){
 
 function checkUserInputs(){
 	
+	const messageStart = "Potrebno je:"
+	const messageSelected = "\n*Odabrati knjigu i naslov.";
+	const messageSubject = "\n*Upisati naslov komentara";
+	const messageComment = "\n*Upisati tekst komentara (više od 20 znakova).";
+	const messageSet = new Set();
+	messageSet.add(messageStart);
+	
 	var subject = document.getElementById('commentSubject');
 	var text = document.getElementById('comment_textarea');
-	var submitButton = document.getElementById("submit_button");
+	var submitCommentButton = document.getElementById("submit_button");
 	
 	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapter = document.getElementById('chapterSelection');
 	
 	var toastMessageBox = document.getElementById("toast_message");
 	
-	if(selectedBook.value !== -1 || selectedChapter.value !== -1){
-		
-		toastMessageBox.innerText = "Potrebno je izabrati knjigu i poglavlje.";
-		toastMessageBox.style.display = "block";
-		
-		if(subject.value === '' || text.value === ''){
-			
-			submitButton.disabled = true;
-			toastMessageBox.innerText = "Potrebno je upisati naslov i tekst.";
-			toastMessageBox.style.display = "block";
-			
-		}
-		else{
-			if(text.value.length < 20){
-				toastMessageBox.innerText = "Tekst mora sadržavati minimalno 20 znakova.";
-				toastMessageBox.style.display = "block";
-				
-				submitButton.disabled = true;
-			}
-			else{
-				submitButton.disabled = false;
-				toastMessageBox.style.display = "none";
-			}
-		}
+	const submitCommentButtonPosition = submitCommentButton.getBoundingClientRect();
+	toastMessageBox.style.top = (submitCommentButtonPosition.top - (2* submitCommentButtonPosition.height)) + 'px'; 
+	
+	var hasSelected = true;
+	var hasSubject = true;
+	var hasComment = true;
+	
+	if(selectedBook.value < 0 || selectedChapter.value < 0){
+		hasSelected = false;
+		messageSet.add(messageSelected);
 	}
+	else{
+		messageSet.delete(messageSelected);
+	}
+	if(subject.value === ''){
+		hasSubject = false;
+		messageSet.add(messageSubject);
+	}
+	else{
+		messageSet.delete(messageSubject);
+	}
+	if(text.value.length < 20){
+		hasComment = false;
+		messageSet.add(messageComment);
+	}
+	else{
+		messageSet.delete(messageComment);
+	}
+	
+	if( !hasSelected || !hasSubject || !hasComment )
+	{
+		submitCommentButton.disabled = true;
+		var messageBoxText = "";
+		messageSet.forEach( message => {
+			messageBoxText += message;
+		});
+		
+		toastMessageBox.innerText = messageBoxText;
+		toastMessageBox.style.display = "block";
+	}
+	else{
+		toastMessageBox.style.display = "none";
+		submitCommentButton.disabled = false;
+	}
+	
 	toastMessageBox.classList.remove('toast-message-show');
 	void toastMessageBox.offsetWidth;
 	toastMessageBox.classList.add('toast-message-show');
