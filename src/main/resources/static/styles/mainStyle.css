@@ -44,6 +44,7 @@ body{
 	display: flex;
 	gap: 10px;
 	align-items: center;
+
 }
 
 
@@ -296,8 +297,8 @@ body{
 }
 
 .header-cell{
-	display: table-cell;
-
+	text-align: center;
+	align-items: justify;
 }
 
 .hamburger-div{
@@ -340,6 +341,11 @@ body{
 	.copyright-image{
 		height: 15%;
 		width: 15%;
+	}
+	
+	.logo-div{
+		width: auto;
+		max-width: 50%;
 	}
 }
 
