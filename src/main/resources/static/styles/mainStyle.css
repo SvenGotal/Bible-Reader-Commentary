@@ -62,7 +62,8 @@ body{
 
 .logo-div{
 	margin: 0px;
-	display: table-cell;
+	display: block;
+	max-width: 40%;
 }
 
 .index-logo{
@@ -354,7 +355,7 @@ body{
 	outline: none;
 	background-color: grey;
 	color: white;
-	width: 10%;
+	width: auto;
 	height: auto;
 	text-align: center;
 	border-radius: 10%;
