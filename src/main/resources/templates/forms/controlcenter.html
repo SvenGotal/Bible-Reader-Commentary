@@ -1,56 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
 		<title>Administration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+		<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/control_panel.css}"/>	
+		<script th:src="@{/scripts/javascript.js}"></script>
+		<!--/*######################################################### Google Fonts #########################################################*/-->	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+		<!--/*################################################################################################################################################*/-->
 	</head>
-	<body>
+	<body>	
+		<div class="main-wrapper">
 		
-		<table>
-		<tr>
-			<td>
+			<div class="options-menu">
+				<a href="/">&#8810 Nazad na index</a>
+				<a href="/h2-console">&#9921 Otvori bazu podataka</a>
+				<a href="/"><img class="user-icon" th:src="@{/images/user-icon-white.ico}"> Korisnici</a>
+				<a href="/">&#9998 Komentari</a>
+				
+			</div>
+			
+			<div class="statistics-overview">
+				<div class="users-overview">						
+						<a class="statistics-label">Korisnici:</a>
+						<a class="statistics-number" th:text="${allProfilesInADatabase}"></a>										
+				</div>				
+				<div class="comments-overview">
+					<a class="statistics-label">Komentari:</a>
+					<a class="statistics-number" th:text="${numberOfWrittenCommentsInTheDatabase}"></a>
+				</div>
+			</div>
+			<!--/*================================== Database Controls ==================================*/-->
+			<div class="controls-main-title">
+				<a>Baza podataka:</a>
+			</div>
+			<div class="database-controls">
+				<div class="database-upload">
+					<form th:action="@{/admin/restoreDatabase}" method="post" enctype="multipart/form-data">
+						<label for="fileInput">Odaberi .zip file za restore baze</label>
+						<input type="file" id="fileInput" name="fileInput" accept=".zip">			
+						<button type="submit">Upload</button>
+					</form>	
+				</div>
+				<div class="database-download">				
+					<form th:action="@{/admin/backupDatabase}" method="get" enctype="multipart/form-data">	
+						<button type="submit">Preuzmi bazu podataka</button>
+					</form>						
+				</div>			
+			</div>
+			<!--/*================================== Bible Controls ==================================*/-->
+			<div class="bible-controls">
 				<form th:action="@{/admin/uploadBible}" method="post" enctype="multipart/form-data">
 					<label for="fileInput">Odaberi .xlsx file za upload Biblije</label>
 					<input type="file" id="fileInput" name="fileInput" accept=".xlsx, .ods, .pdf">			
 					<button type="submit">Upload</button>
-				</form>					
-			</td>
-		</tr>
-		<tr><td><br></td></tr>
-		<tr>
-			<td>
-				<form th:action="@{/admin/uploadComments}" method="post" enctype="multipart/form-data">
-					<label for="fileInput">Odaberi .xlsx file za upload komentara</label>
-					<input type="file" id="fileInput" name="fileInput" accept=".xlsx, .ods, .pdf">			
-					<button type="submit">Upload</button>
-				</form>			
-			</td>
-			<td>
-				<form th:action="@{/admin/downloadComments}" method="get" enctype="multipart/form-data">	
-					<button type="submit">Preuzmi komentare</button>
-				</form>				
-			</td>
-		</tr>
-		<tr><td><br></td></tr>	
-		<tr>
-			<td>
-				<form th:action="@{/admin/restoreDatabase}" method="post" enctype="multipart/form-data">
-					<label for="fileInput">Odaberi .zip file za restore baze</label>
-					<input type="file" id="fileInput" name="fileInput" accept=".zip">			
-					<button type="submit">Upload</button>
-				</form>			
-			</td>
-			<td>
-				<form th:action="@{/admin/backupDatabase}" method="get" enctype="multipart/form-data">	
-					<button type="submit">Napravi backup baze</button>
-				</form>				
-			</td>
-		</tr>
-		</table>
+				</form>	
+			</div>
+			<!--/*================================== Commentary Controls ==================================*/-->
+			<div class="commentary-controls">
+				<div class="commentary-upload">
+					<form th:action="@{/admin/uploadComments}" method="post" enctype="multipart/form-data">
+						<label for="fileInput">Odaberi .xlsx file za upload komentara</label>
+						<input type="file" id="fileInput" name="fileInput" accept=".xlsx, .ods, .pdf">			
+						<button type="submit">Upload</button>
+					</form>		
+				</div>	
+				<div class="commentary-download">
+					<form th:action="@{/admin/downloadComments}" method="get" enctype="multipart/form-data">	
+						<button type="submit">Preuzmi komentare</button>
+					</form>	
+				</div>			
+			</div>
+			
+			
 		
-		
-		
-		
-		
+		</div>
 	</body>
 </html>

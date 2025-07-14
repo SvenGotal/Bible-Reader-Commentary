@@ -73,5 +73,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	protected BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	
 }
