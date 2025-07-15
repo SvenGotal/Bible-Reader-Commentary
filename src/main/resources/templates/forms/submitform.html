@@ -32,7 +32,10 @@
 			<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
 				<!--/* BRC logo here /fragments/BRC-Logo.html */-->
 			</div>
-			<div class="greet-div">
+			<div th:if="${userAlreadyExistsErrorMessage}" class="greet-div">
+				<h1 th:text="${userAlreadyExistsErrorMessage}"></h1>
+			</div>
+			<div th:unless="${userAlreadyExistsErrorMessage}" class="greet-div">
 				<h1>Dobro došao!</h1>
 			</div>
 		</div>

@@ -109,6 +109,17 @@ public class SubmitFormController {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			if (userRepository.existsByUsername(user.getUsername())) {
+				String userAlreadyExistsErrorMessage = "Korisnik sa tim imenom već postoji!";
+				model.addAttribute("userAlreadyExistsErrorMessage", userAlreadyExistsErrorMessage);
+				return "forms/submitform";
+			}
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 
 		/* Save user to the repository. */
 		userRepository.save(user);
