@@ -1,8 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
@@ -44,7 +43,17 @@ public class ControlCenterUserController {
 	@PostMapping("/admin/deleteUserFromDatabase")
 	public String deleteUserFromDatabase (@RequestParam Long userId, Model model){
 
+		String errorDeletingUser = "User deletion error!";
+		String errorDeletingAdminMessage = "Unable to delete Admin.";
+		String errorDeletingUserComments = "Comments could not be deleted.";
+		
 		User userToDelete = userRepository.findById(userId).get();
+		
+		if(userToDelete.getRole() == UserRoles.ADMIN || userToDelete.getRole() == UserRoles.OWNER) {
+			
+			model.addAttribute("errorDeletingAdminMessage", errorDeletingAdminMessage);
+			return "redirect:/admin/usercontrol";
+		}
 		/* Try deleting all comments before user can be removed from the database */
 
 		if(userToDelete != null) {
@@ -58,6 +67,8 @@ public class ControlCenterUserController {
 			}
 			catch(NullPointerException e) {
 				e.printStackTrace();
+				model.addAttribute("errorDeletingUserComments", errorDeletingUserComments);
+				return "redirect:/admin/usercontrol";
 			}
 
 			try {
@@ -65,15 +76,11 @@ public class ControlCenterUserController {
 			}
 			catch(NullPointerException e) {
 				e.printStackTrace();
+				model.addAttribute("errorDeletingUser", errorDeletingUser);
+				return "redirect:/admin/usercontrol";
 			}
 
-		}
-		else {
-			String errorDeletingUser = "User deletion error!";
-			model.addAttribute("errorDeletingUser", errorDeletingUser);
-		}
-		
-
+		}		
 		return "redirect:/admin/usercontrol";
 	}
 
