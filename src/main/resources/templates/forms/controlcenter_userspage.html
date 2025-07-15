@@ -8,6 +8,7 @@
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/control_panel.css}"/>	
 		<script th:src="@{/scripts/javascript.js}"></script>
+		<script th:src="@{/scripts/control_center_script.js}"></script>
 		<!--/*######################################################### Google Fonts #########################################################*/-->	
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,39 +21,42 @@
 				<!--/* BRC CC menu here /fragments/BRC-CC-Menu.html */-->
 		</div>
 		<div class="users-display-wrapper">
-			<div class="users-display-overhead statistics-overview">
+			<div th:if="${errorDeletingUser}" class="users-display-overhead statistics-overview">
+				<a class="statistics-label">Error message: </a>
+				<a class="statistics-number" th:text="${errorDeletingUser}"></a>
+			</div>
+			<div th:unless="${errorDeletingUser}" class="users-display-overhead statistics-overview">
 				<a class="statistics-label">Broj korisnika u bazi podataka: </a>
 				<a class="statistics-number" th:text="${allUsersInADatabaseList.size()}"></a>
 			</div>
-			<table class="data-display-table">
-				<tbody>
-					<tr>
-						<th>#</th>
-						<th>User ID:</th>
-						<th>User name:</th>
-						<th>Email:</th>
-						<th>Role:</th>
-						<th>Number of posts:</th>
-					</tr>
-					<tr th:each="user, iterstat : ${allUsersInADatabaseList}">
-						<td th:text="${iterstat.count}"></td>
-						<td th:text="${user.id}"></td>
-						<td th:text="${user.username}"></td>
-						<td th:text="${user.email}"></td>
-						<td th:text="${user.role}"></td>
-						<td th:text="${user.comments.size()}"></td>
-					</tr>
-				
-				
-				
-				
+				<table class="data-display-table">
+					<tbody>
+						<tr>
+							<th>#</th>
+							<th>User ID:</th>
+							<th>User name:</th>
+							<th>Email:</th>
+							<th>Role:</th>
+							<th>Number of posts:</th>
+							<th>Delete user:</th>
+						</tr>
+						<tr th:each="user, iterstat : ${allUsersInADatabaseList}">
+							<td th:text="${iterstat.count}"></td>
+							<td th:text="${user.id}"></td>
+							<td th:text="${user.username}"></td>
+							<td th:text="${user.email}"></td>
+							<td th:text="${user.role}"></td>
+							<td th:text="${user.comments.size()}"></td>
+							<td> 
+								<form th:id="'deleteUserForm' + ${user.id}" method="post" th:action="@{/admin/deleteUserFromDatabase}"> 
+									<input id="hiddenInput" style="display:none;" name="userId" th:value="${user.id}">
+									<input name="userId" id="deleteUserButton" type="button" value="Delete" th:data-user-id="${user.id}" onclick="deleteUser(this)"> 
+								</form>
+							</td>
+						</tr>
 				</tbody>									
-			
 			</table>				
-	
 		</div>
-	
 	</div>
-
 </body>
 </html>
