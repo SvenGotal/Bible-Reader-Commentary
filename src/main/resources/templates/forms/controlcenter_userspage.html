@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+		<title>Administration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+		<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/control_panel.css}"/>	
+		<script th:src="@{/scripts/javascript.js}"></script>
+		<!--/*######################################################### Google Fonts #########################################################*/-->	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+		<!--/*################################################################################################################################################*/-->
+</head>
+<body>
+	<div class="main-wrapper">
+		<div th:replace="~{fragments/BRC-CC-Menu :: BRC-CC-Menu}">>
+				<!--/* BRC CC menu here /fragments/BRC-CC-Menu.html */-->
+		</div>
+		<div class="users-display-wrapper">
+			<div class="users-display-overhead statistics-overview">
+				<a class="statistics-label">Broj korisnika u bazi podataka: </a>
+				<a class="statistics-number" th:text="${allUsersInADatabaseList.size()}"></a>
+			</div>
+			<table class="data-display-table">
+				<tbody>
+					<tr>
+						<th>#</th>
+						<th>User ID:</th>
+						<th>User name:</th>
+						<th>Email:</th>
+						<th>Role:</th>
+						<th>Number of posts:</th>
+					</tr>
+					<tr th:each="user, iterstat : ${allUsersInADatabaseList}">
+						<td th:text="${iterstat.count}"></td>
+						<td th:text="${user.id}"></td>
+						<td th:text="${user.username}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.role}"></td>
+						<td th:text="${user.comments.size()}"></td>
+					</tr>
+				
+				
+				
+				
+				</tbody>									
+			
+			</table>				
+	
+		</div>
+	
+	</div>
+
+</body>
+</html>
