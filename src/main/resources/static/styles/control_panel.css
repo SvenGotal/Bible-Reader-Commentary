@@ -8,7 +8,6 @@ body{
 	margin-top: 0px;
 	background-color: grey;
 	
-	height: 20000px;
 }
 
 .main-wrapper{
@@ -122,11 +121,34 @@ body{
 }
 
 .data-display-table th, .data-display-table td{
-	border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+	border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
     border-left: none;
     border-right: none;
     text-align: left;
 }
 
+.data-display-table th{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.word-break{
+	overflow-x: auto;
+	word-break: break-word;
+  	overflow-wrap: break-word;
+}
+
+.comment-data-table{
+	width: 100%;
+	max-width: 100%;
+}
+
+.line-number-td{
+	padding-right: 9px;
+}
+
+.fixed-position{
+	
+}
 
