@@ -14,12 +14,11 @@ import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Controller
 public class ControlCenterCommentController {
-	private UserRepository userRepository;
 	private CommentaryRepository commentaryRepository;
 
 	
-	public ControlCenterCommentController(UserRepository userRepository, CommentaryRepository commentaryRepository) {
-		this.userRepository = userRepository;
+	public ControlCenterCommentController(CommentaryRepository commentaryRepository) {
+
 		this.commentaryRepository = commentaryRepository;
 	}
 	
