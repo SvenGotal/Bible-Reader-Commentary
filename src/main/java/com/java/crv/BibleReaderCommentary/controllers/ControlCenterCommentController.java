@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
-import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
+
 
 @Controller
 public class ControlCenterCommentController {
