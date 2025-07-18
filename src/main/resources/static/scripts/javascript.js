@@ -8,8 +8,8 @@ let userMouseX;
 let userMouseY;
 document.addEventListener("mousemove", function(event) {
 	
-	const userMouseX = event.clientX;
-	const userMouseY = event.clientY;
+	userMouseX = event.clientX;
+	userMouseY = event.clientY;
 	
 });
 
@@ -134,13 +134,30 @@ function highlightChapterBox(chapterSelection){
 
 function shareThisComment(shareCommentButton){
 	
-	const linkCopiedMessage = "Link copied!";
+	const linkCopiedSuccessMessage = "Link copied!";
+	const linkCopiedErrorMessage = "Error copying link!";
 	const commentId = shareCommentButton.dataset.commentId;
 	const toastMessage = document.getElementById("toast_message");
 	
+	toastMessage.innerText = "";
+	
 	const link = window.location.origin +'/public/comment/' + commentId;
-	navigator.clipboard.writeText(link);
-
+	
+	if(link !== ""){
+		navigator.clipboard.writeText(link);
+		toastMessage.innerText = linkCopiedSuccessMessage;
+	}
+	else{
+		toastMessage.innerText = linkCopiedErrorMessage;
+	}
+			
+	toastMessage.style.left = userMouseX+10 +"px";
+	toastMessage.style.top = userMouseY+10 +"px";
+		
+	toastMessage.style.display = "inline";
+	toastMessage.classList.remove('toast-message-show');
+	void toastMessage.offsetWidth;
+	toastMessage.classList.add('toast-message-show');
 }
 
 
