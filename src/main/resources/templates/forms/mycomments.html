@@ -29,6 +29,7 @@
 </head>
 <body>
 	<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
+	<div id="toast_message" class="toast-message toast-message-show"></div>
 	<div class="main-wrapper">
 		<!--/*======================================================= Header =======================================================*/-->
 		<div class="header-area">
@@ -73,7 +74,8 @@
 							<td class="word-break" colspan="3"><label th:text="${comment.subject}"></label></td>
 							<td class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></td>
 							<td class="myComments-td-10percent word-break">
-								<button class="myComments-expand-comment-button"id="myComments_display_option" onclick="showHideComment(this)">+</button>
+								<button class="myComments-expand-comment-button" id="myComments_display_option" onclick="showHideComment(this)">+</button>
+								<button class="myComments-expand-comment-button" id="mycomments_share_comment_button" th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">↗</button>
 							</td>
 						</tr>
 						<tr class="myComments-comment-row word-break" id="myComments_comment_row">

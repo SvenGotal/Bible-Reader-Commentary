@@ -1,0 +1,64 @@
+<!--/* logout.html
+*	This is a custom page for logout action. Users will be signed out of the system.
+*
+*	Author: Sven Gotal
+*	Date of Creation: 2024
+*	Date of last update: 19.04.2025
+*	Dependency: Thymeleaf, login_logout.css, mainStyle.css
+*/-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>BIBLIJA&ja Login</title>
+	<meta charset="utf-8" />
+	<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"http-equiv="Content-Type"/>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/mainStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/login_logout.css}" />
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--/*######################################################### Google Fonts #########################################################*/-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<!--/*################################################################################################################################################*/-->
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="header-area">
+			<div class="header-area">
+				<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+					<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+				</div>
+			</div>
+		</div>
+		<div class="shared-comment-wrapper">
+			<div th:if="${commentToShare}" class="comment-display-table">
+				<table>
+					<tbody>
+						<tr>
+							<th th:text="${commentToShare.subject}"></th>																		
+						</tr>
+						<tr>
+							<td><p th:text="${commentToShare.text}">  </p></td>
+							<td><p th:text="${commentToShare.author}">   </p></td>
+						</tr>
+					
+					
+					
+					
+					</tbody>
+				
+				
+				</table>
+				
+			</div>
+		</div>
+	</div>
+	<!--/*======================================================= Footer =======================================================*/-->
+	<div th:replace="~{fragments/BRC-Footer.html :: BRC-Footer}">
+		<!--/* Footer fragment */-->
+	</div>
+</body>
+</html>

@@ -2,6 +2,17 @@
 /*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
 **by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
 **created in the ajax_script. */
+
+/* User mouse tracker: */
+let userMouseX;
+let userMouseY;
+document.addEventListener("mousemove", function(event) {
+	
+	const userMouseX = event.clientX;
+	const userMouseY = event.clientY;
+	
+});
+
 function updateChapterInChapterBoxes(chapterNumber){
 	
 	var chapterSelection = document.getElementById('chapterSelection');
@@ -119,6 +130,17 @@ function highlightChapterBox(chapterSelection){
 	
 	var highlightedChapterBox = document.getElementById(chapterBoxId);
 	highlightedChapterBox.className= 'highlight-chapter-box';
+}
+
+function shareThisComment(shareCommentButton){
+	
+	const linkCopiedMessage = "Link copied!";
+	const commentId = shareCommentButton.dataset.commentId;
+	const toastMessage = document.getElementById("toast_message");
+	
+	const link = window.location.origin +'/public/comment/' + commentId;
+	navigator.clipboard.writeText(link);
+
 }
 
 
