@@ -1,0 +1,23 @@
+@charset "US-ASCII";
+
+.shared-comment-subject{
+	width: 100%;
+	background-color: #6765A9;
+	color: white;
+}
+
+.shared-comment-text{
+	text-align:left;
+	padding-left: 1em;
+	padding-right: 1em;
+	width: auto;
+	max-width: 98em;
+}
+
+.shared-comment-author{
+	text-align: left;
+	font-style: italic;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	padding-left: 1em;
+}

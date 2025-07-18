@@ -287,9 +287,16 @@ body{
 }
 
 .word-break{
-	overflow-x: auto;
+	/*overflow-x: auto;*/
+	
 	word-break: break-word;
   	overflow-wrap: break-word;
+
+}
+
+.pre-wrap{
+	white-space: pre-wrap;
+	font-family: inherit;
 }
 
 .user-icon{
@@ -441,6 +448,10 @@ body{
   }
 }
 
+
+.shared-comment-wrapper{
+	text-align: center;
+}
 
 
 

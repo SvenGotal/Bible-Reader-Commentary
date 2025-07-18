@@ -16,7 +16,7 @@
 	<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type"/>
 	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
-	<link rel="stylesheet" type="text/css"	th:href="@{/styles/login_logout.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/shared_comment.css}"/>
 	<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--/*######################################################### Google Fonts #########################################################*/-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,18 +34,11 @@
 			</div>
 		</div>
 		<div class="shared-comment-wrapper">
-			<div th:if="${commentToShare}" class="comment-display-table">
+			<div th:if="${commentToShare}">
+				<h2 class="shared-comment-subject" th:text="${commentToShare.subject + ' | ' + commentToShare.chapter.book.name + ':' + commentToShare.chapter.number}"></h2>
 
-
-
-				<p th:text="${commentToShare.subject}"></p>
-
-				<p th:text="${commentToShare.text}"></p>
-				<p th:text="${commentToShare.author}"></p>
-
-
-
-
+				<pre class="shared-comment-text pre-wrap" th:text="${commentToShare.text}"></pre>
+				<p class="shared-comment-author" th:text="${commentToShare.author + ' ' + commentToShare.timestamp}"></p>
 
 			</div>
 		</div>

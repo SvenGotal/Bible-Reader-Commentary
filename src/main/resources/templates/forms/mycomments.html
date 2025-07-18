@@ -80,7 +80,7 @@
 						</tr>
 						<tr class="myComments-comment-row word-break" id="myComments_comment_row">
 							<td colspan="4">
-								<p class="myComments-p-align-text-justify word-break" th:text="${comment.text}"></p>
+								<pre class="myComments-p-align-text-justify word-break pre-wrap" th:text="${comment.text}"></pre>
 							</td>
 							<td class="myComments-published myComments-td-10percent word-break" th:if="${comment.published}">Objavljen</td>
 							<td class="myComments-not-published myComments-td-10percent word-break" th:unless="${comment.published}">Privatan</td>
