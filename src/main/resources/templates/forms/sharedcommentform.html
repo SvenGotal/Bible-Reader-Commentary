@@ -50,8 +50,7 @@
 		<div class="lower-separator buttons-wrapper">
 			<form  method="get">
 				<div th:if="${currentlyLoggedUser}" class="options-list" >
-					<a href="#" id="Index_writeCommentButton" th:text="${'Napiši komentar na ' + commentToShare.chapter.book.name + ' ' + commentToShare.chapter.number}">Napiši komentar</a> <a href="/">Početna</a>
-					
+					<a href="#" id="Index_writeCommentButton" th:text="${'Napiši komentar na ' + commentToShare.chapter.book.name + ' ' + commentToShare.chapter.number}">Napiši komentar</a> <a href="/">Početna</a>					
 				</div>
 			</form>
 			<div th:unless="${currentlyLoggedUser}" class="options-list" >
