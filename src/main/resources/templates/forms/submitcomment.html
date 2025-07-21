@@ -83,10 +83,10 @@
 					</div>
 				</div>
 				<div class="comments-text-submit">
-					<textarea id="comment_textarea" type="text" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" th:field="*{text}"></textarea>
+					<textarea id="comment_textarea" type="text" placeholder="Komentar mora imati najmanje 20 znakova i naslov!" ></textarea>
 					<br/>
 					<!-- Hidden input to store the actual HTML to submit -->
-					<input type="hidden" name="commentContent" id="commentContent">
+					<input type="hidden" name="commentContent" id="commentContent" th:field="*{text}">
 					<!-- Container for the Quill editor -->
 					<div id="quillEditor" style="height: 200px;"></div>
 				</div>

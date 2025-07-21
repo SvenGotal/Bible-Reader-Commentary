@@ -166,12 +166,15 @@ async function fetchVersesAndComments() {
 			var tdText = document.createElement('td');
 			var tdAuthor = document.createElement('td');
 			
+			var richText = document.createElement('div');
+			tdText.appendChild(richText);
+			
 			h3.innerText = comment.subject;
 			h3.style.cssText = 'padding-bottom: 2px;';
 			
 			tdSubject.appendChild(h3);
 			tdSubject.style.cssText = 'padding-left: 15px;';	
-			tdText.innerText = comment.text;
+			richText.innerHTML = comment.text;
 			tdText.style.cssText = 'padding-left: 15px;';
 			tdAuthor.innerText = comment.author + ' : ' + comment.timestamp;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
