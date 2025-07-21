@@ -16,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 
@@ -30,7 +31,7 @@ public class Commentary {
 	
 	private String subject;	
 	private Boolean published;
-	@Column(length = 10000)
+	@Lob
 	private String text;
 	private String timestamp;
 	private String author;
