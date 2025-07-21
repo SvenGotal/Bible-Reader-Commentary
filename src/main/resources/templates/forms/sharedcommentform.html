@@ -18,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/shared_comment.css}"/>
 	<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script th:src="@{/scripts/data_transfer_script.js}"></script>
 	<!--/*######################################################### Google Fonts #########################################################*/-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,12 +35,27 @@
 			</div>
 		</div>
 		<div class="shared-comment-wrapper">
+			<div class="hidden-container">
+				<input type="hidden" id="bookSelection" th:value="${commentToShare.chapter.book.id}">
+				<input type="hidden" id="chapterSelection" th:value="${commentToShare.chapter.id}">
+			</div>
 			<div th:if="${commentToShare}">
-				<h2 class="shared-comment-subject" th:text="${commentToShare.subject + ' | ' + commentToShare.chapter.book.name + ':' + commentToShare.chapter.number}"></h2>
+				<h2 class="shared-comment-subject" th:text="${commentToShare.subject + ' | ' + commentToShare.chapter.book.name + ' ' + commentToShare.chapter.number}"></h2>
 
 				<pre class="shared-comment-text pre-wrap" th:text="${commentToShare.text}"></pre>
 				<p class="shared-comment-author" th:text="${commentToShare.author + ' ' + commentToShare.timestamp}"></p>
 
+			</div>
+		</div>
+		<div class="lower-separator buttons-wrapper">
+			<form  method="get">
+				<div th:if="${currentlyLoggedUser}" class="options-list" >
+					<a href="#" id="Index_writeCommentButton" th:text="${'Napiši komentar na ' + commentToShare.chapter.book.name + ' ' + commentToShare.chapter.number}">Napiši komentar</a> <a href="/">Početna</a>
+					
+				</div>
+			</form>
+			<div th:unless="${currentlyLoggedUser}" class="options-list" >
+				<a href="public/submitForm">Izradi profil</a> <a href="/login">Prijava</a> <a href="/">Početna</a>
 			</div>
 		</div>
 	</div>
