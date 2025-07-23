@@ -3,6 +3,12 @@ const PUBLISHED_SLOT = 1;
 const TEXT_SLOT = 0;
 const SUBJECT_SLOT = 3;
 
+function modifyQuillComment(){
+	
+	
+	
+}
+
 function modifyComment(){
 	
 	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
