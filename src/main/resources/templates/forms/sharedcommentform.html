@@ -42,7 +42,7 @@
 			<div th:if="${commentToShare}">
 				<h2 class="shared-comment-subject" th:text="${commentToShare.subject + ' | ' + commentToShare.chapter.book.name + ' ' + commentToShare.chapter.number}"></h2>
 
-				<pre class="shared-comment-text pre-wrap" th:text="${commentToShare.text}"></pre>
+				<div class="shared-comment-text pre-wrap" th:utext="${commentToShare.text}"></div>
 				<p class="shared-comment-author" th:text="${commentToShare.author + ' ' + commentToShare.timestamp}"></p>
 
 			</div>
