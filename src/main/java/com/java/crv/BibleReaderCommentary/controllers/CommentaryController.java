@@ -3,7 +3,10 @@ package com.java.crv.BibleReaderCommentary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
@@ -39,6 +42,57 @@ public class CommentaryController {
 		
 		
 		return "/forms/sharedcommentform";
+	}
+	
+	@PostMapping("/private/myCommentsEdit")
+	public String editExistingComment(@ModelAttribute("comment") Commentary comment, RedirectAttributes redirectAttributes) {
+		
+		Long commentId;
+		Commentary editedComment;
+		Commentary databaseComment;
+		
+		try {
+			if(comment.getText().isEmpty()) {
+				redirectAttributes.addFlashAttribute("message", "Error, comment failed to post...");
+			}
+			
+			
+			commentId = comment.getId();
+			if(commentId == null) {
+				redirectAttributes.addFlashAttribute("message", "Error, comment id missing...");
+				return "redirect:/private/myComments";
+			}
+			
+			databaseComment = commentaryRepository.findById(commentId).get();
+			editedComment = comment;
+			
+			if(databaseComment.getText() == null) {
+				redirectAttributes.addFlashAttribute("message", "Error, comment not found in database...");
+				return "redirect:/private/myComments";
+			}
+			
+			Boolean commentSubjectsMatch = editedComment.getSubject().trim().equals( databaseComment.getSubject().trim());
+			System.out.println(commentSubjectsMatch);
+			Boolean commentTextsMatch = editedComment.getText().trim().equals(databaseComment.getText().trim());
+			System.out.println(commentTextsMatch);
+			
+			if(!commentSubjectsMatch) {
+				databaseComment.setSubject(editedComment.getSubject().trim());
+			}
+			
+			if(!commentTextsMatch) {
+				databaseComment.setText(editedComment.getText().trim());
+			}
+			databaseComment.setPublished(editedComment.getPublished());
+			
+			commentaryRepository.save(databaseComment);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		return "redirect:/private/myComments";
 	}
 	
 }

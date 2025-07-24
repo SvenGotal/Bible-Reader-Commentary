@@ -56,11 +56,13 @@ public class UserSpaceController {
 		}
 		model.addAttribute("username", loggedUser.getUsername()); /*Send username*/
 		
+		model.addAttribute("comment", new Commentary());
+		
 		return "forms/mycomments";
 	}
 	
 	//todo create PostMapping method, also fetch Commentary Id from displayed comments.
-	@PostMapping("/private/myCommentsEdit")
+	/*@PostMapping("/private/myCommentsEdit")
 	public String editMyComment(
 			@RequestParam("commentId") Long commentId,
 			@RequestParam("editedComment") String editedComment,
@@ -91,7 +93,7 @@ public class UserSpaceController {
 		
 		
 		return "redirect:/private/myComments";
-	}
+	}*/
 	
 	@PostMapping("/private/myCommentsDelete")
 	public String deleteMyComment(

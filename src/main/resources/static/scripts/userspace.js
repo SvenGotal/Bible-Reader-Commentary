@@ -13,18 +13,23 @@ function modifyThisComment(modifyButton){
 	
 	const commentEditingSubjectElement = document.getElementById("comment_subject_content");
 	commentEditingSubjectElement.value = commentSubjectElement.textContent;
-	
-	console.log(commentSubjectElement.textContent);
-	
+	const commentEditingIdHolder = document.getElementById("comment_id_holder");
+	commentEditingIdHolder.value = selectedCommentId;
+
 	const commentEditingPublishedElement = document.getElementById("comment_published_content");
 	commentEditingPublishedElement.checked = commentPublishedElement.dataset.isPublished === "true" ? true : false;
 	window.quill.root.innerHTML = commentTextElement.innerHTML;
 	
-	
-	
+	const commentEditingDiv = document.getElementById("commentEditingDiv");
+	commentEditingDiv.style.display = "block";
+	commentEditingDiv.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
 	
 }
 
+/* DEAD CODE
 function modifyComment(){
 	
 	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
@@ -62,7 +67,7 @@ function modifyComment(){
 		commentMakePrivateOrPublic(rowValues[PUBLISHED_SLOT]);
 	}
 }
-
+*/
 function submitEditedComment(){
 	var formEdit = document.getElementById("formEdit");
 	var prompt = window.confirm("Jeste li sigurni da želite izmijeniti komentar?");
