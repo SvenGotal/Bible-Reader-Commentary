@@ -57,7 +57,7 @@
 
 .myComments-comments-table td{
 	padding: 2px;
-	text-align: center;
+
 	width: auto;
 	border: none;
 	
@@ -78,6 +78,8 @@
 	word-break: break-word;
   	overflow-wrap: break-word;
 }
+
+
 
 .myComments-published{
 	font-weight: bold;
