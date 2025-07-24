@@ -1,9 +1,10 @@
 /**
  * 
  */
+var quill;
 
- document.addEventListener('DOMContentLoaded', function () {
-var quill = new Quill('#quillEditor', {
+document.addEventListener('DOMContentLoaded', function () {
+quill = new Quill('#quillEditor', {
 						    theme: 'snow',
 						    placeholder: 'Write your comment here...',
 						    modules: {

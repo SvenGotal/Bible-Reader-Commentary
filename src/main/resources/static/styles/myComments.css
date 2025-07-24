@@ -88,7 +88,12 @@
 .myComments-not-published{
 	font-weight: bold;
 	color: #8C2F64;
-	font-size: 125%;
+
+}
+
+.myComments-is-published{
+	font-weight: bold;
+	color: #6FB350;
 }
 
 .myComments-no-comments-found{
@@ -106,6 +111,7 @@
 .comment-edit-div{
 	width:100%;
 	padding-bottom: 20px;
+	padding-top: 20px;
 }
 
 #commentEditingArea{
@@ -222,4 +228,26 @@
 .myComments-share-comment-button:hover{
 	background-color: #f5c211;
 }
+
+.comment-edit-subject-grid{
+	background-color: #6865A7;
+	border: none;
+	color: white;
+	width: 99%;
+	text-align: center;
+}
+
+.comment-edit-subject-grid:hover{
+	background-color: white;
+	color: black;
+}
+
+
+
+
+
+
+
+
+
 

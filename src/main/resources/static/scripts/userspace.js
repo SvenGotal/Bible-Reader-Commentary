@@ -3,7 +3,23 @@ const PUBLISHED_SLOT = 1;
 const TEXT_SLOT = 0;
 const SUBJECT_SLOT = 3;
 
-function modifyQuillComment(){
+function modifyThisComment(modifyButton){
+	
+	const selectedCommentId = modifyButton.dataset.commentId;
+	
+	const commentSubjectElement = document.getElementById("subject_" + selectedCommentId);
+	const commentPublishedElement = document.getElementById("published_" + selectedCommentId);
+	const commentTextElement = document.getElementById("text_" + selectedCommentId);
+	
+	const commentEditingSubjectElement = document.getElementById("comment_subject_content");
+	commentEditingSubjectElement.value = commentSubjectElement.textContent;
+	
+	console.log(commentSubjectElement.textContent);
+	
+	const commentEditingPublishedElement = document.getElementById("comment_published_content");
+	commentEditingPublishedElement.checked = commentPublishedElement.dataset.isPublished === "true" ? true : false;
+	window.quill.root.innerHTML = commentTextElement.innerHTML;
+	
 	
 	
 	

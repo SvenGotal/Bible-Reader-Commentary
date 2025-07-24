@@ -76,59 +76,53 @@
 				<table class="myComments-comments-table" id="comment_table">
 					<tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">
 						<tr class="myComments-subject-row">
-							<td class="myComments-td-10percent word-break" th:text="${comment.timestamp}"></td>
-							<td class="word-break" colspan="4"><label th:text="${comment.subject}"></label></td>							
-							<td class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></td>
-							<td class="myComments-td-10percent word-break" th:if="${comment.published}">Objavljen</td>
-							<td class="myComments-not-published myComments-td-10percent word-break" th:unless="${comment.published}">Privatan</td>
+							<td th:id="${'timestamp_' + comment.id}" class="word-break" th:text="${comment.timestamp}"></td>
+							<td class="word-break" colspan="5"><label th:id="${'subject_' + comment.id}" th:text="${comment.subject}"></label></td>							
+							<td th:id="${'book_chapter_' + comment.id}" class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></td>
+							<td th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}" class="myComments-is-published word-break">Public</td>
+							<td th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}" class="myComments-not-published word-break">Private</td>
 							<td class="myComments-td-10percent word-break">
 								<button class="myComments-expand-comment-button" id="myComments_display_option" onclick="showHideComment(this)">+</button>
 								<button class="myComments-expand-comment-button" id="mycomments_share_comment_button" th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">↗</button>
+								<button class="myComments-expand-comment-button" id="mycomments_edit_comment_button" th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">&#x1F527;</button>
 							</td>
 						</tr>
 						<tr class="myComments-comment-row word-break" id="myComments_comment_row">
-							<td colspan="7">
-								<div class="myComments-p-align-text-justify word-break pre-wrap" th:utext="${comment.text}"></div>
-							</td>
-							
-							<td><label>Promijeni: </label><input class="myComments-radio-button word-break" type="radio" th:attr="id=${comment.id}, name=${'commentSelect'}, onclick=${'modifyComment()'}"></td>
-							<td style="display: none;" th:text="${comment.subject}"></td>
+							<td colspan="9">
+								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}" class="myComments-p-align-text-justify word-break pre-wrap" ></div>
+							</td>												
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<!--/*======================================================= Comments Editing Area =======================================================*/-->
-			<div style="display: none;" id="commentEditingDiv" class="comment-edit-div">
+			<div  id="commentEditingDiv" class="comment-edit-div">
 				<div>
 					<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}">
-						<!--/* Hidden input - Commentary Id holder (do not remove or make visible) */-->
-						<input style="display: none;" type="text" id="commentIdEdit" name="commentId"> 
-						<span>
-							<div class="myComments-subject-and-text-edit">
-								<label>Naslov: </label> <input disabled type="text" id="commentSubjectEdit" name="commentSubject"> 
-								<br>
-								<div id="commentEditingArea">  
-									<!-- Hidden input to store the actual HTML to submit -->
-									<input type="hidden" name="commentContent" id="commentContent" th:field="*{text}">
-									<!-- Container for the Quill editor -->
-									<div id="quillEditor" style="height: 200px;"></div>
-								</div>
-							</div>
-						</span> 
-						<br> 
-						<span>
-							<div class="myComments-publish-and-submit-area">
-								<label>Objavljen: </label> <input disabled class="myComments-publish-checkbox" id="publishedCheckbox" type="checkbox" name="setPrivateCheckbox">
-								<button disabled type="button" id="buttonEdit" onclick="submitEditedComment()">Izmjeni komentar</button>
-							</div>
-						</span>
+						<div class="comment-subject-and-published-wrapper">
+							<table class="myComments-comments-table">
+								<tbody class="myComments-subject-row">
+									<tr>
+										<td><label>Naslov: </label></td>
+										<td><input type="text" class="comment-edit-subject-grid" id="comment_subject_content"/></td>
+										<td><label>Javni komentar: </label></td>
+										<td><input type="checkbox" id="comment_published_content"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="quill-editor-wrapper">
+							<!-- Hidden input to store the actual HTML to submit -->
+							<input type="hidden" name="commentContent" id="commentContent" >
+							<!-- Container for the Quill editor -->
+							<div id="quillEditor" style="height: auto;"></div>
+						</div>
+						<div class="comment-edit-buttons-wrapper">
+						
+						
+						</div>
 					</form>
-					<div class="myComments-delete-area">
-						<form method="post" id="formDelete" th:action="@{/private/myCommentsDelete}">
-							<input style="display: none;" type="text" id="commentIdDelete" name="commentId">
-							<button disabled type="button" id="buttonDelete" onclick="commentDelete()">Izbriši komentar</button>
-						</form>
-					</div>
+					
 				</div>
 			</div>			
 		</div>
