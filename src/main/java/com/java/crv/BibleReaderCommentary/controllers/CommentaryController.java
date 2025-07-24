@@ -2,6 +2,7 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,9 +73,7 @@ public class CommentaryController {
 			}
 			
 			Boolean commentSubjectsMatch = editedComment.getSubject().trim().equals( databaseComment.getSubject().trim());
-			System.out.println(commentSubjectsMatch);
 			Boolean commentTextsMatch = editedComment.getText().trim().equals(databaseComment.getText().trim());
-			System.out.println(commentTextsMatch);
 			
 			if(!commentSubjectsMatch) {
 				databaseComment.setSubject(editedComment.getSubject().trim());
@@ -92,6 +91,37 @@ public class CommentaryController {
 		}
 
 		
+		return "redirect:/private/myComments";
+	}
+	
+	@DeleteMapping("/private/myComments/deleteComment")
+	public String deleteExistingComment(@ModelAttribute("comment") Commentary comment, RedirectAttributes redirectAttributes) {
+		
+		Long commentId;
+		
+		try {
+						
+			commentId = comment.getId();
+			System.out.println("fired");
+			System.out.println(commentId);
+			if(commentId == null) {
+				redirectAttributes.addFlashAttribute("message", "Error, comment id missing...");
+				return "redirect:/private/myComments";
+			}
+			
+			commentaryRepository.deleteById(commentId);
+			
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("message", "Error, comment missing in database...");
+			return "redirect:/private/myComments";
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("message", "Unknown error...");
+			return "redirect:/private/myComments";
+		}
 		return "redirect:/private/myComments";
 	}
 	

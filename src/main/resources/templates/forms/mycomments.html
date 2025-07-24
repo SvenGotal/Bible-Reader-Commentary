@@ -122,7 +122,7 @@
 							<table class="myComments-comments-table">
 								<tbody class="myComments-subject-row">
 									<tr>
-										<td><button type="submit">Delete</button></td>
+										<td><form th:object="${comment}" th:action="@{/private/myComments/deleteComment}" th:method="delete"><input type="hidden" th:field="*{id}" id="commentEditingIdHolder"/><button type="submit">Delete</button></form></td>
 										<td><button type="submit" onclick="submitEditedComment()">Save</button></td>
 									</tr>
 								</tbody>
