@@ -83,14 +83,28 @@
 							<td th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}" class="myComments-not-published word-break">Private</td>
 							<td class="myComments-td-10percent word-break">
 								<button class="myComments-expand-comment-button"  th:data-comment-id="${comment.id}" onclick="showHideComment(this)">+</button>
-								<button class="myComments-expand-comment-button"  th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">↗</button>
-								<button class="myComments-expand-comment-button"  th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">&#x1F527;</button>
+								
+								
 							</td>
 						</tr>
 						<tr class="myComments-comment-row word-break" id="myComments_comment_row">
 							<td colspan="9">
 								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>
 							</td>												
+						</tr>
+						<tr class="myComments-delete-button-row" id="myComments_delete_button_row">
+							<td colspan="3" class="delete-comment-button-wrapper">
+								<form th:action="@{/private/myComments/deleteComment}" method="post" th:id="${'commentDeleteForm_' + comment.id}" >
+									<input type="hidden" th:name="commentId" th:value="${comment.id}" id="commentEditingIdHolder"/>
+									<button th:id="${comment.id}" onclick="deleteComment(this)">Delete</button>
+								</form>
+							</td>
+							<td colspan="3" class="share-comment-button-wrapper">
+								<button   th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">Podijeli</button>
+							</td>
+							<td colspan="3" class="edit-comment-button-wrapper">
+								<button   th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">Promijeni komentar</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -122,7 +136,7 @@
 							<table class="myComments-comments-table">
 								<tbody class="myComments-subject-row">
 									<tr>
-										<td><form th:object="${comment}" th:action="@{/private/myComments/deleteComment}" th:method="delete"><input type="hidden" th:field="*{id}" id="commentEditingIdHolder"/><button type="submit">Delete</button></form></td>
+										<td></td>
 										<td><button type="submit" onclick="submitEditedComment()">Save</button></td>
 									</tr>
 								</tbody>

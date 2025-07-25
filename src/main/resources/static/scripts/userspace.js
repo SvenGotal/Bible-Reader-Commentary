@@ -10,6 +10,7 @@ function modifyThisComment(modifyButton){
 	const commentSubjectElement = document.getElementById("subject_" + selectedCommentId);
 	const commentPublishedElement = document.getElementById("published_" + selectedCommentId);
 	const commentTextElement = document.getElementById("text_" + selectedCommentId);
+	const commentTextHolder = document.getElementById("commentContent");
 	
 	const commentEditingSubjectElement = document.getElementById("comment_subject_content");
 	commentEditingSubjectElement.value = commentSubjectElement.textContent;
@@ -18,6 +19,7 @@ function modifyThisComment(modifyButton){
 
 	const commentEditingPublishedElement = document.getElementById("comment_published_content");
 	commentEditingPublishedElement.checked = commentPublishedElement.dataset.isPublished === "true" ? true : false;
+	commentTextHolder.value = commentTextElement.innerHTML;
 	window.quill.root.innerHTML = commentTextElement.innerHTML;
 	
 	const commentEditingDiv = document.getElementById("commentEditingDiv");
@@ -26,6 +28,29 @@ function modifyThisComment(modifyButton){
 			behavior: 'smooth',
 			block: 'start'
 		});
+	
+}
+
+function deleteComment(deleteCommentButton){
+	
+	const commentEditingIdHolder = document.getElementById("comment_id_holder");
+	const deleteUserForm = document.getElementById("commentDeleteForm_" + deleteCommentButton.id);
+	
+	var prompt = window.confirm("Jeste li sigurni da želite izbrisati komentar?");
+	
+	commentEditingIdHolder.value = deleteCommentButton
+		
+		if(prompt){
+			
+			deleteUserForm.submit();
+		}
+		else{
+			console.log("cancelled comment deletion...");
+			deleteUserForm.addEventListener("submit", function(event) {
+ 			 // Stop the form from submitting
+ 			 event.preventDefault();
+			});
+		}
 	
 }
 
@@ -133,17 +158,21 @@ function showHideComment(button){
 	
 	var buttonRow = button.parentNode.parentNode;
 	var commentRow = buttonRow.nextElementSibling;
+	var deleteButtonRow = commentRow.nextElementSibling;
 	
 	if(commentRow){
 		
 		if(button.textContent === '+'){
 			commentRow.style.display = "table-row";
+			deleteButtonRow.style.display = "table-row";
 			button.text = '-';
 			button.textContent = '-';
 			commentRow.style.width = "100%";
+			deleteButtonRow.style.width = "100%";
 		}
 		else if(button.textContent === '-'){
 			commentRow.style.display = "none";
+			deleteButtonRow.style.display = "none";
 			button.text = '+';
 			button.textContent = '+';
 		}

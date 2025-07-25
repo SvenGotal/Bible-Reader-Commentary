@@ -2,11 +2,11 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
@@ -55,8 +55,9 @@ public class CommentaryController {
 		try {
 			if(comment.getText().isEmpty()) {
 				redirectAttributes.addFlashAttribute("message", "Error, comment failed to post...");
+				return "redirect:/private/myComments";
 			}
-			
+			System.out.println(comment.getText());
 			
 			commentId = comment.getId();
 			if(commentId == null) {
@@ -94,16 +95,10 @@ public class CommentaryController {
 		return "redirect:/private/myComments";
 	}
 	
-	@DeleteMapping("/private/myComments/deleteComment")
-	public String deleteExistingComment(@ModelAttribute("comment") Commentary comment, RedirectAttributes redirectAttributes) {
-		
-		Long commentId;
+	@PostMapping("/private/myComments/deleteComment")
+	public String deleteExistingComment(@RequestParam Long commentId, Model model, RedirectAttributes redirectAttributes) {
 		
 		try {
-						
-			commentId = comment.getId();
-			System.out.println("fired");
-			System.out.println(commentId);
 			if(commentId == null) {
 				redirectAttributes.addFlashAttribute("message", "Error, comment id missing...");
 				return "redirect:/private/myComments";
