@@ -10,7 +10,7 @@ function modifyThisComment(modifyButton){
 	const commentSubjectElement = document.getElementById("subject_" + selectedCommentId);
 	const commentPublishedElement = document.getElementById("published_" + selectedCommentId);
 	const commentTextElement = document.getElementById("text_" + selectedCommentId);
-	const commentTextHolder = document.getElementById("commentContent");
+	
 	
 	const commentEditingSubjectElement = document.getElementById("comment_subject_content");
 	commentEditingSubjectElement.value = commentSubjectElement.textContent;
@@ -19,7 +19,7 @@ function modifyThisComment(modifyButton){
 
 	const commentEditingPublishedElement = document.getElementById("comment_published_content");
 	commentEditingPublishedElement.checked = commentPublishedElement.dataset.isPublished === "true" ? true : false;
-	commentTextHolder.value = commentTextElement.innerHTML;
+	
 	window.quill.root.innerHTML = commentTextElement.innerHTML;
 	
 	const commentEditingDiv = document.getElementById("commentEditingDiv");
@@ -94,10 +94,13 @@ function modifyComment(){
 }
 */
 function submitEditedComment(){
-	var formEdit = document.getElementById("formEdit");
+	var formEdit = document.getElementById("formEdit");	
 	var prompt = window.confirm("Jeste li sigurni da želite izmijeniti komentar?");
 	
+	
 		if(prompt){
+			var content = document.querySelector('#commentContent');
+			content.value = quill.root.innerHTML;
 			formEdit.submit();
 		}
 		else{
