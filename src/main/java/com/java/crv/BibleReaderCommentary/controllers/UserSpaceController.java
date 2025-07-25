@@ -61,40 +61,6 @@ public class UserSpaceController {
 		return "forms/mycomments";
 	}
 	
-	//todo create PostMapping method, also fetch Commentary Id from displayed comments.
-	/*@PostMapping("/private/myCommentsEdit")
-	public String editMyComment(
-			@RequestParam("commentId") Long commentId,
-			@RequestParam("editedComment") String editedComment,
-			@RequestParam(name="setPrivateCheckbox", required=false) String commentPublished,
-			@RequestParam("commentSubject") String commentSubject,
-			RedirectAttributes redirectAttributes)
-	{
-		
-		try {
-			Commentary comment = commentaryRepository.findById(commentId).get();
-			
-			comment.setText(editedComment.trim());
-			comment.setSubject(commentSubject);
-			
-			if(commentPublished == null || commentPublished == "") {
-				comment.setPublished(false);
-			}
-			else {
-				comment.setPublished(true);
-			}
-			
-			commentaryRepository.save(comment);
-			redirectAttributes.addFlashAttribute("message", "Uspješno ste izmijenili svoj komentar!");
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		return "redirect:/private/myComments";
-	}*/
-	
 	@PostMapping("/private/myCommentsDelete")
 	public String deleteMyComment(
 			@RequestParam("commentId") Long commentIdDelete, 

@@ -57,7 +57,6 @@ public class CommentaryController {
 				redirectAttributes.addFlashAttribute("message", "Error, comment failed to post...");
 				return "redirect:/private/myComments";
 			}
-			System.out.println(comment.getText());
 			
 			commentId = comment.getId();
 			if(commentId == null) {

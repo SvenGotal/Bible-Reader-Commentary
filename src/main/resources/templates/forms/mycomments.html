@@ -92,18 +92,18 @@
 								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>
 							</td>												
 						</tr>
-						<tr class="myComments-delete-button-row" id="myComments_delete_button_row">
+						<tr class="myComments-option-buttons-row" id="myComments_delete_button_row">
 							<td colspan="3" class="delete-comment-button-wrapper">
 								<form th:action="@{/private/myComments/deleteComment}" method="post" th:id="${'commentDeleteForm_' + comment.id}" >
 									<input type="hidden" th:name="commentId" th:value="${comment.id}" id="commentEditingIdHolder"/>
-									<button th:id="${comment.id}" onclick="deleteComment(this)">Delete</button>
-								</form>
+									<button class="options-button" th:id="${comment.id}" onclick="deleteComment(this)">Delete</button>
+								</form>																																
 							</td>
 							<td colspan="3" class="share-comment-button-wrapper">
-								<button   th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">Podijeli</button>
+								<button class="options-button" th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">Share</button>
 							</td>
 							<td colspan="3" class="edit-comment-button-wrapper">
-								<button   th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">Promijeni komentar</button>
+								<button class="options-button" th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">Edit</button>
 							</td>
 						</tr>
 					</tbody>

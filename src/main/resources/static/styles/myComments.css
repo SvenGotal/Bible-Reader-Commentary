@@ -23,23 +23,29 @@
 
 }
 
-.myComments-delete-button-row{
+.myComments-option-buttons-row{
 	display: none;
 	width: 100%;
 	text-align: center;
+	background-color: white;
+	margin-bottom: 15px;
 }
 
-.delete-comment-button-wrapper{
-	background-color: #AC312B;
+.options-button{
+	background-color: #8C2F64;
+	color: white;
+	border: none;
+	font-weight: bold;
+	width: 50%;
+	height: 30px;
+	font-size: 100%;
 }
 
-.share-comment-button-wrapper{
+.options-button:hover{
 	background-color: #f5c211;
 }
 
-.edit-comment-button-wrapper{
-	background-color: #6FB350;
-}
+
 
 .comments-area {
 	max-width: 100%;
