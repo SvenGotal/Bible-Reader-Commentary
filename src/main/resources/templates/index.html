@@ -73,6 +73,12 @@
 			</div>
 			
 			<!--/*======================================================= /Header ======================================================*/-->
+			<div th:if="${announcements}" class="upper-separator">
+				<h2 id="upper_separator_text"></h2>
+				<div th:each="announcement : ${announcements}">
+					<p th:utext="${announcement.announcementText}" class="main-welcome-text" id="main_welcome_text"></p>
+				</div>
+			</div>
 			<div class="upper-separator">
 				<h2 id="upper_separator_text"></h2>
 				<p class="main-welcome-text" id="main_welcome_text">"Jer Bog tako uzljubi svijet te dade Sina svojega jedinorođenoga da svaki koji vjeruje u njega ne propadne, nego ima život vječni."</p>
