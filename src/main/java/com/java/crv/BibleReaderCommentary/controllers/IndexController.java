@@ -1,13 +1,18 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
+import com.java.crv.BibleReaderCommentary.repositories.AnnouncementMessageRepository;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
@@ -23,14 +28,17 @@ public class IndexController {
 		
 	private UserRepository userRepository;
 	private BookRepository bookRepository;
+	private AnnouncementMessageRepository announcementMessageRepository;
 	
 	public IndexController(CommentaryRepository comments, 
 			UserRepository userRepository, 
-			BookRepository bookRepository
+			BookRepository bookRepository,
+			AnnouncementMessageRepository announcementMessageRepository
 			) 
 	{
 		this.userRepository = userRepository;
 		this.bookRepository = bookRepository;
+		this.announcementMessageRepository = announcementMessageRepository;
 	}
 	
 	/**getIndex method will only return index in the near future. Binding will become verseOfTheDay
@@ -71,6 +79,15 @@ public class IndexController {
 		 * Books are being statically served in two places (index.html and submitcomment.html) it
 		 * is be likely that this code will be moved to it's own Advice. */
 		model.addAttribute("books", bookRepository.findAll());
+		
+		try {
+			ArrayList<AnnouncementMessage> announcements = new ArrayList<AnnouncementMessage>();
+			announcements = (ArrayList<AnnouncementMessage>)announcementMessageRepository.findAllByAnnouncementIsActive(true);
+			model.addAttribute("announcements", announcements);
+		}
+		catch(NullPointerException e) {
+			
+		}
 		
 		return "index";
 	}
