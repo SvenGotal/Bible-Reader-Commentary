@@ -49,7 +49,7 @@ function checkUserInputs(){
 	messageSet.add(messageStart);
 	
 	var subject = document.getElementById('commentSubject');
-	var text = document.getElementById('comment_textarea');
+	var text = document.getElementById('commentContent');
 	var submitCommentButton = document.getElementById("submit_button");
 	
 	var selectedBook = document.getElementById('bookSelection');
