@@ -115,12 +115,12 @@
 					<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}" th:object="${comment}">
 						<div class="comment-subject-and-published-wrapper">
 							<table class="myComments-comments-table">
-								<tbody class="myComments-subject-row">
-									<tr>
+								<tbody >
+									<tr class="myComments-subject-row">
 										<td><label>Naslov: </label></td>
-										<td><input th:field="*{subject}" type="text" class="comment-edit-subject-grid" id="comment_subject_content"/></td>
+										<td class="comment-edit-subject-grid"><input th:field="*{subject}" type="text" class="comment-edit-subject-grid" id="comment_subject_content"/></td>
 										<td><label>Javni komentar: </label></td>
-										<td><input th:field="*{published}" type="checkbox" id="comment_published_content"/></td>
+										<td class="comment-edit-checkbox-grid"><input th:field="*{published}" type="checkbox" id="comment_published_content" /></td>
 									</tr>
 								</tbody>
 							</table>
@@ -134,10 +134,10 @@
 						</div>
 						<div class="comment-edit-buttons-wrapper">
 							<table class="myComments-comments-table">
-								<tbody class="myComments-subject-row">
-									<tr>
+								<tbody>
+									<tr class="myComments-subject-row">
 										<td></td>
-										<td><button type="submit" onclick="submitEditedComment()">Save</button></td>
+										<td class="no-background-color"><button class="options-button" type="submit" onclick="submitEditedComment()">Save</button></td>
 									</tr>
 								</tbody>
 							</table>
