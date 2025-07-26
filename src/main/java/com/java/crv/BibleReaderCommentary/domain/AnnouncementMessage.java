@@ -22,9 +22,10 @@ public class AnnouncementMessage {
 	private String announcementText;
 	private Boolean announcementIsActive;
 	
-	public AnnouncementMessage(Long id, String announcementText) {
+	public AnnouncementMessage(Long id, String announcementText, Boolean announcementIsActive) {
 		this.id = id;
 		this.announcementText = announcementText;
+		this.announcementIsActive = announcementIsActive;
 	}
 	
 	public void setId(Long id) {
