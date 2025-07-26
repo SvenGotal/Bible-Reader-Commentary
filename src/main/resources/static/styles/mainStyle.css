@@ -463,5 +463,20 @@ body{
   text-align: justify;
 }
 
+.announcement-wrapper{
+	display: flex;
+  	justify-content: center;
+ 	align-items: center;  
+	color: black;
+	float: center;
+}
+
+.announcement-display{
+	background-color: #f5c211;
+	width:50%;
+	text-align: center;
+}
+
+
 
 
