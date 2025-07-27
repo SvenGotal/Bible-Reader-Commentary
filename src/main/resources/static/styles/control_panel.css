@@ -148,7 +148,25 @@ body{
 	padding-right: 9px;
 }
 
-.fixed-position{
-	
+.separator{
+	margin-top: 25px;
+	margin-bottom: 15px;
 }
+
+.announcement-form-wrapper{
+	max-width:60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

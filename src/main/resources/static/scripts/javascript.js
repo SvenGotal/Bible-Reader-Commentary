@@ -1,4 +1,4 @@
-
+ 
 /*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
 **by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
 **created in the ajax_script. */
@@ -160,5 +160,31 @@ function shareThisComment(shareCommentButton){
 	void toastMessage.offsetWidth;
 	toastMessage.classList.add('toast-message-show');
 }
+
+/* Unfinished code */
+function dismissAnnouncementButton(button){
+	const announcementDiv = document.getElementById("announcement_" + button.dataset.announcementId);
+	
+	if(!announcementDiv){
+		console.log("announcement not found: " + button.dataset.announcementId);
+	}
+	
+	let dismissed = getCookie("dismissedAnnouncements");
+	let dismissedIds = dismissed ? dismissed.split(",") : [];
+	
+	if(!document.cookie.includes("announcementDismissed=true")){
+		announcementDiv.style.display = "flex";
+	}
+	else{
+		announcementDiv.style.display = "none";
+	}
+	
+}
+
+
+
+
+
+
 
 

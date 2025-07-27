@@ -15,11 +15,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
 import com.java.crv.BibleReaderCommentary.domain.Bible;
 import com.java.crv.BibleReaderCommentary.objects.BibleImporter;
 import com.java.crv.BibleReaderCommentary.objects.CommentBroker;
@@ -52,8 +54,9 @@ public class ControlCenterController {
 	}
 	
 	@GetMapping("/admin/controlCenter")
-	public String getCCForm() {
+	public String getCCForm(Model model) {
 		
+		model.addAttribute("newAnnouncementMessage", new AnnouncementMessage());
 		return "forms/controlcenter";
 		
 	}

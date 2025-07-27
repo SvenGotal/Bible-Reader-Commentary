@@ -8,11 +8,19 @@
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/control_panel.css}"/>	
 		<script th:src="@{/scripts/javascript.js}"></script>
+		<script th:src="@{/scripts/control_center_script.js}"></script>
+		<script th:src="@{/scripts/quill_init_script.js}"></script>
 		<!--/*######################################################### Google Fonts #########################################################*/-->	
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
 		<!--/*################################################################################################################################################*/-->
+		
+		<!-- Quill styles -->
+		<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+		<!-- Quill JS -->
+		<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+		
 	</head>
 	<body>	
 		<div class="main-wrapper">
@@ -73,13 +81,59 @@
 				</div>			
 			</div>
 			<div class="announcement-control-wrapper">
-						
-			
-			
-			
-			</div>
-			
-		
+				<div class="separator">
+					<h2>Announcement control panel</h2>
+				</div>
+				<table class="data-display-table">
+					<tbody>
+						<tr>
+							<th>#</th>
+							<th>Announcement ID:</th>
+							<th>Announcement text:</th>
+							<th colspan="3">Panel</th>
+						</tr>
+						<tr th:each="announcement, iterstat : ${listOfAllAnnouncements}">
+							<td th:text="${iterstat.count}"></td>
+							<td th:text="${announcement.id}"></td>
+							<td th:text="${announcement.announcementText}"></td>
+							<td th:text="${'Active: ' + announcement.announcementIsActive}"></td>
+							<td>
+								<div>
+									<form  th:id="'deleteAnnouncement_' + ${announcement.id}" method="post" th:action="@{/admin/AnnouncementMessage/delete}"> 
+										<input id="hiddenInput" type="hidden" name="announcementId" th:value="${announcement.id}">
+										<input id="deleteAnnouncementButton" type="button" value="Delete" th:data-announcement-id="${announcement.id}" onclick="deleteAnnouncement(this)"/> 
+									</form>							
+								</div> 
+							</td>
+							<td>
+								<div>
+									<div th:if="${errorMessage}" th:utext="${errorMessage}">
+										
+									</div>
+									<form th:id="'changeAnnouncementActiveStatus_' + ${announcement.id}" method="post" th:action="@{/admin/AnnouncementMessage/flipStatus}">
+										<input type="hidden" name="announcementId" th:value="${announcement.id}" />
+										<input id="flipAnnouncementStatusButton" type="button" value="Change Status" th:data-announcement-id="${announcement.id}" onclick="flipAnnouncementStatus(this)" />
+									</form>																
+								</div>
+							</td>
+						</tr>
+					</tbody>									
+				</table>
+				<div class="separator">
+					<h2>Create new announcement</h2>
+				</div>
+				<div th:if="${successMessage}" th:utext="${successMessage}">
+				
+				</div>
+				<div class="announcement-form-wrapper">
+					<form th:object="${newAnnouncementMessage}" method="post" th:action="@{/admin/announcementMessage/add}">
+						<input type="hidden" name="commentContent" id="commentContent" th:field="*{announcementText}" />
+						<div id="quillEditor" style="height: 200px;"></div>
+						<button type="submit" value="Save" onclick="saveDataFromQuill()">Save</button>
+						<input type="checkbox" th:field="*{announcementIsActive}"/>
+					</form>				
+				</div>																	
+			</div>					
 		</div>
 	</body>
 </html>
