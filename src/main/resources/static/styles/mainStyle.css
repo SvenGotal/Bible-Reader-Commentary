@@ -476,7 +476,27 @@ body{
 .announcement-display{
 	background-color: #f5c211;
 	width:50%;
+	
+}
 
+.announcement-text-holder{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.announcement-close-button-holder{
+	text-align: right;
+	padding-bottom: 0px;
+	margin-bottom: -20px;
+}
+
+.announcement-close-button{
+	border: 1px solid grey;
+	border-radius: 50%;
+	width: 23px;
+	height: 23px;
+	max-width: 23px;
+	max-height: 23px;
 }
 
 

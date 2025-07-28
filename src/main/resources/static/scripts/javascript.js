@@ -179,7 +179,7 @@ function dismissAnnouncementButton(button){
         dismissedIds.push(announcementId);
         announcementDiv.style.display = "none";
     }
-    document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=31536000`;
+    document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=604800`; // cookie lives for 1 week
 }
 
 function getCookie(name) {

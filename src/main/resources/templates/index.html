@@ -53,8 +53,11 @@
 			</div>
 			<div  th:if="${announcements}" class="announcement-wrapper">
 				<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
-					<p th:utext="${announcement.announcementText}" class="main-welcome-text" id="main_welcome_text"></p>
-					<button type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+					<div class="announcement-close-button-holder">
+						<button class="announcement-close-button" type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+					</div>
+					<div class="announcement-text-holder" th:utext="${announcement.announcementText}" id="main_welcome_text"></div>
+										
 				</div>
 			</div>
 		</div>
