@@ -1,5 +1,7 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,17 +29,20 @@ public class CommentaryController {
 		String errorCannotFindCommentMessage = "Komentar nije pronađen ili ne postoji.";
 		
 		try {
-			Commentary commentToShare = commentaryRepository.findById(id).get();
+			Commentary commentToShare = commentaryRepository.findById(id).orElse(null);
 			
 			if(commentToShare != null) {
 				model.addAttribute("commentToShare", commentToShare);
 			}
 			else {
-				model.addAttribute("errorCannotFindCommentMessage)", errorCannotFindCommentMessage);
+				model.addAttribute("errorCannotFindCommentMessage", errorCannotFindCommentMessage);
 			}
 			
 		}
 		catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
 		
