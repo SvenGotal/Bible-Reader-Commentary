@@ -21,7 +21,7 @@ public class CommentaryController {
 		this.commentaryRepository = commentaryRepository;
 	}
 	
-	@GetMapping("public/comment/{id}")
+	@GetMapping("/public/comment/{id}")
 	public String getSharedCommentForm(@PathVariable Long id, Model model) {
 		
 		String errorCannotFindCommentMessage = "Komentar nije pronađen ili ne postoji.";
