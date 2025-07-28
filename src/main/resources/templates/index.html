@@ -54,7 +54,7 @@
 			<div  th:if="${announcements}" class="announcement-wrapper">
 				<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
 					<p th:utext="${announcement.announcementText}" class="main-welcome-text" id="main_welcome_text"></p>
-					<button th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+					<button type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
 				</div>
 			</div>
 		</div>

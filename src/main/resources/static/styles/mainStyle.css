@@ -464,7 +464,7 @@ body{
 }
 
 .announcement-wrapper{
-	display: none;
+	display: flex;
   	justify-content: center;
  	align-items: center;  
 	color: black;

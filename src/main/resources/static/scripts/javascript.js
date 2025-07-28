@@ -163,27 +163,43 @@ function shareThisComment(shareCommentButton){
 
 /* Unfinished code */
 function dismissAnnouncementButton(button){
-	const announcementDiv = document.getElementById("announcement_" + button.dataset.announcementId);
-	
+	const announcementId = button.dataset.announcementId;
+	const announcementDiv = document.getElementById("announcement_" + announcementId);
+		
 	if(!announcementDiv){
 		console.log("announcement not found: " + button.dataset.announcementId);
 	}
 	
+	announcementDiv.style.display = "none";
+	
 	let dismissed = getCookie("dismissedAnnouncements");
 	let dismissedIds = dismissed ? dismissed.split(",") : [];
 	
-	if(!document.cookie.includes("announcementDismissed=true")){
-		announcementDiv.style.display = "flex";
-	}
-	else{
-		announcementDiv.style.display = "none";
-	}
-	
+	if (!dismissedIds.includes(announcementId)) {
+        dismissedIds.push(announcementId);
+        announcementDiv.style.display = "none";
+    }
+    document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=31536000`;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const dismissed = getCookie("dismissedAnnouncements");
+    const dismissedIds = dismissed ? dismissed.split(",") : [];
 
-
+    dismissedIds.forEach(id => {
+        const div = document.getElementById("announcement_" + id);
+        if (div) {
+            div.style.display = "none";
+        }
+    });
+});
 
 
 
