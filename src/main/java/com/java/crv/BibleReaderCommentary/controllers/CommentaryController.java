@@ -47,7 +47,7 @@ public class CommentaryController {
 		}
 		
 		
-		return "/forms/sharedcommentform";
+		return "forms/sharedcommentform";
 	}
 	
 	@PostMapping("/private/myCommentsEdit")
