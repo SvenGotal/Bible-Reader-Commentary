@@ -436,11 +436,14 @@ body{
 	}
 	
 	.select-buttons-holder{
-  		flex-direction: column;
-  		flex: 2;
+  		padding-left: 5%;
 	}
 	.select-flex{
 		width: 60%;
+	}
+	
+	.search-filter-holder{
+	padding-right: 4%;
 	}
 }
 
