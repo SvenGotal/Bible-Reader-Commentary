@@ -66,19 +66,31 @@
 			
 		<div class="select-and-separator-container">
 			<div class="options-div">
-			
+				<div class="search-filter-holder">
+					<a><label>Pretraži: </label></a>
+					<input id="index_search_bar" type="text" />
+					<div class="hidden-filter-div" id="index_hidden_filter_form">
+						<form>
+							<label>Pretraži stihove:</label><input id="radio_search_bible" name="filterRadio" type="radio"/>
+							<br>
+							<label>Pretraži komentare: </label><input id="radio_search_comments" name="filterRadio" type="radio"/>
+						</form>
+					</div>
+				</div>
 				
 				<!--/*======================================================= Select Buttons =======================================================*/-->
-				<form method="post">
-					<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
-						<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
-						<!--/* For each Book in a Book list that controller gives creates an option element */-->
-						<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
-					</select> 
-					<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
-						<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
-					</select>
-				</form>
+				<div class="select-buttons-holder">
+					<form method="post">
+						<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+							<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
+							<!--/* For each Book in a Book list that controller gives creates an option element */-->
+							<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
+						</select> 
+						<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
+							<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
+						</select>
+					</form>
+				</div>
 				<!--/*======================================================= /Select Buttons =======================================================*/-->
 			</div>
 			

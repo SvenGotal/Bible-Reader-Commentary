@@ -4,15 +4,21 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById('Index_writeCommentButton').addEventListener('click', function(event) {
-	event.preventDefault();
-	var bookId = document.getElementById('bookSelection').value;
-	var chapterId = document.getElementById('chapterSelection').value;
-  
-	window.location.href = '/private/submitComment?bookId=' + encodeURIComponent(bookId) + '&chapterId=' + encodeURIComponent(chapterId);
-	});	
-	
-	
+	try{
+		document.getElementById('Index_writeCommentButton').addEventListener('click', function(event) {
+		
+		event.preventDefault();
+		var bookId = document.getElementById('bookSelection').value;
+		var chapterId = document.getElementById('chapterSelection').value;
+		 	 
+		window.location.href = '/private/submitComment?bookId=' + encodeURIComponent(bookId) + '&chapterId=' + encodeURIComponent(chapterId);
+		});	
+		
+	}
+	catch(error){
+		//console.error(error);	
+		console.log("comment writing unavailable to guest users...");	
+	}		
 })
 
 
