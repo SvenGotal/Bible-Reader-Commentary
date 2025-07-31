@@ -162,17 +162,7 @@ body{
 	
 }
 
-.hidden-filter-div{
-	display: none;
-	position: absolute;
-	margin: 10px;
-	background-color: #6FB350;
-	max-width: 15%;
-	max-height: 60px;
-	padding: 10px;
-	font-weight: bold;
-	border-radius: 15px;
-}
+
 
 .options-list a{
 	font-weight: bold;
