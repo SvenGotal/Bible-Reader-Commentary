@@ -161,7 +161,6 @@ function shareThisComment(shareCommentButton){
 	toastMessage.classList.add('toast-message-show');
 }
 
-/* Unfinished code */
 function dismissAnnouncementButton(button){
 	const announcementId = button.dataset.announcementId;
 	const announcementDiv = document.getElementById("announcement_" + announcementId);
@@ -187,41 +186,6 @@ function getCookie(name) {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
-
-/* Add event listeners for search bar and hidden div with filters */
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("index_search_bar");
-    const filterContainer = document.getElementById("index_hidden_filter_form");
-
-    // Show filters on focus
-    searchInput.addEventListener("focus", () => {
-        filterContainer.style.display = "block";
-    });
-
-// Hide hidden filter div when clicking outside
-document.addEventListener("click", function (event) {
-	const isClickInsideSearch = searchInput.contains(event.target);
-	const isClickInsideFilter = filterContainer.contains(event.target);
-
-	if (!isClickInsideSearch && !isClickInsideFilter) {
-		filterContainer.style.display = "none";
-    }
-    });
-});
-
-/*  */
-document.addEventListener("DOMContentLoaded", () => {
-    const dismissed = getCookie("dismissedAnnouncements");
-    const dismissedIds = dismissed ? dismissed.split(",") : [];
-
-    dismissedIds.forEach(id => {
-        const div = document.getElementById("announcement_" + id);
-        if (div) {
-            div.style.display = "none";
-        }
-    });
-});
-
 
 
 
