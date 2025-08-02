@@ -206,6 +206,13 @@ async function fetchVersesAndComments() {
 
 }
 
+function fetchFiltered(inputText){
+	
+	if(inputText.value.length >= 3){
+		
+	}
+	
+}
 
 
 

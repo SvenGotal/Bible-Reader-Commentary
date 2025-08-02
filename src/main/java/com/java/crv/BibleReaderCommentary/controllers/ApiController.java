@@ -110,5 +110,17 @@ public class ApiController {
 		return Collections.emptyList();
 	}
 	
+	@GetMapping("/public/fetchFiltered/comments")
+	@ResponseBody
+	public List<Commentary> fetchFilteredComments(){
+		return null;
+	}
+	
+	@GetMapping("/public/fetchFiltered/verses")
+	@ResponseBody
+	public List<Verse> fetchFilteredVerses(){
+		return null;
+	}
+	
 
 }
