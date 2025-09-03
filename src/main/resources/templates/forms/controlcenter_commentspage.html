@@ -44,19 +44,26 @@
 							<th>Delete comment:</th>
 						</tr>
 						<tr th:each="comment, iterstat : ${allCommentsInADatabaseList}">
-							<td th:text="${iterstat.count}" class="line-number-td"></td>
-							<td th:text="${comment.id}"></td>
-							<td th:text="${comment.getUser().getId()}"></td>
-							<td th:text="${comment.author}"></td>
-							<td th:text="${comment.subject}"></td>
-							<td th:text="${comment.text}" class="word-break" ></td>
-							<td th:text="${comment.published}"></td>
+							<td colspan="7">
+								<details>
+									<summary>							
+										<a th:text="${iterstat.count}" class="line-number-td"></a>
+										<a th:text="${comment.id}"></a>
+										<a th:text="${comment.getUser().getId()}"></a>
+										<a th:text="${comment.author}"></a>
+										<a th:text="${comment.subject}"></a>
+									</summary>							
+									<div th:utext="${comment.text}" class="word-break" ></div>
+									<a th:text="${'Objavljen: ' + comment.published}"></a>							
+								</details>
+							</td>
 							<td>
-								<form th:id="'deleteCommentForm' + ${comment.id}" method="post" th:action="@{/private/myComments/deleteComment}"> 
-									<input id="hiddenInput" type="hidden" name="commentId" th:value="${comment.id}">
-									<input name="commentId" id="deletecommentButton" type="button" value="Delete" th:data-user-id="${comment.id}" onclick="deleteComment(this)"> 
-								</form>							
-								
+								<div>
+									<form th:id="'deleteCommentForm' + ${comment.id}" method="post" th:action="@{/private/myComments/deleteComment}"> 
+										<input id="hiddenInput" type="hidden" name="commentId" th:value="${comment.id}">
+										<input name="commentId" id="deletecommentButton" type="button" value="Delete" th:data-user-id="${comment.id}" onclick="deleteComment(this)"> 
+									</form>															
+								</div>						
 							</td>
 						</tr>
 				</tbody>									
