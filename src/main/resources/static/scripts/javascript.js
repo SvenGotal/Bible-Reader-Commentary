@@ -187,5 +187,28 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-
+function showHideComment(button){
+	
+	var buttonRow = button.parentNode.parentNode;
+	var commentRow = buttonRow.nextElementSibling;
+	var deleteButtonRow = commentRow.nextElementSibling;
+	
+	if(commentRow){
+		
+		if(button.textContent === '+'){
+			commentRow.style.display = "table-row";
+			deleteButtonRow.style.display = "table-row";
+			button.text = '-';
+			button.textContent = '-';
+			commentRow.style.width = "100%";
+			deleteButtonRow.style.width = "100%";
+		}
+		else if(button.textContent === '-'){
+			commentRow.style.display = "none";
+			deleteButtonRow.style.display = "none";
+			button.text = '+';
+			button.textContent = '+';
+		}
+	}
+}
 
