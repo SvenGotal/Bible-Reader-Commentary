@@ -492,7 +492,7 @@ body{
 }
 
 .announcement-wrapper{
-	display: flex;
+	display: block;
   	justify-content: center;
  	align-items: center;  
 	color: black;
@@ -503,13 +503,14 @@ body{
 
 .announcement-display{
 	background-color: #f5c211;
-	width:50%;
-	
+	width:100%;
+	border-radius: 15px;
 }
 
 .announcement-text-holder{
 	margin-top: 0px;
 	padding-top: 0px;
+	padding-bottom: 30px;
 }
 
 .announcement-close-button-holder{
