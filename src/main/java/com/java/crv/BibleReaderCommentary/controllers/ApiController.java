@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,16 +15,15 @@ import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
+import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
-import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Controller
 public class ApiController {
 	
 	private BookRepository bookRepository;
-	public ApiController (
-			BookRepository bookRepository,
-			CommentaryRepository commentRepository) 
+	
+	public ApiController (BookRepository bookRepository) 
 	{
 		this.bookRepository = bookRepository;
 	}
@@ -82,9 +82,10 @@ public class ApiController {
 	
 	@GetMapping("/public/fetchPublicComments")
 	@ResponseBody
-	public List<Commentary> fetchPublicComments(@RequestParam Long bookId, @RequestParam int chapterNumber){
-		
-		//todo separate only public and Book-Chapter related comments.
+	public List<Commentary> fetchPublicComments(
+			@RequestParam Long bookId, 
+			@RequestParam int chapterNumber,
+			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){		
 		
 		try {
 			
@@ -93,10 +94,10 @@ public class ApiController {
 			Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
 			
 			List<Commentary> getComments = selectedChapter.getComments();
-			ArrayList<Commentary> publicComments = new ArrayList<Commentary>();
+			ArrayList<Commentary> publicComments = new ArrayList<Commentary>();			
 			
 			for(Commentary comment : getComments) {
-				if(comment.getPublished()) {
+				if(comment.getPublished() || comment.getAuthor() == currentlyLoggedUser.getUsername()) {
 					publicComments.add(comment);
 				}
 			}
