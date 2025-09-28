@@ -133,11 +133,15 @@ async function fetchVersesAndComments() {
 		
 
 		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
-		var quotation_text = document.getElementById('main_welcome_text');
-		var quotation = document.getElementById('main_welcome_quotation');
 		
-		quotation_text.innerText = '';
-		quotation.innerText = '';
+		try{
+			var quotation_text = document.getElementById('main_welcome_text');
+			var quotation = document.getElementById('main_welcome_quotation');
+		
+			quotation_text.remove();
+			quotation.remove();
+		}
+		catch{}
 		
 		versesDisplay.innerHTML = '';
 		commentsDisplay.innerHTML = '';
@@ -153,26 +157,30 @@ async function fetchVersesAndComments() {
 		caughtComments.forEach(comment => {
 			
 			var table = document.createElement('table');
-			table.classList.add("myComments-comments-table");
+			table.classList.add("comments-expandable-table");
 			var tbody = document.createElement('tbody');
-			var h3 = document.createElement('h3');
+			var h3 = document.createElement('h4');			
 			var rowHeader = document.createElement('tr');
-			rowHeader.classList.add("myComments-subject-row");
+			rowHeader.classList.add("comments-expandable-table-row");
+			rowHeader.classList.add("max-height");
 			var rowText = document.createElement('tr');
 			rowText.classList.add("word-break");
 			var rowAuthor = document.createElement('tr');
 			
-			var tdTimestamp = document.createElement('td');
-			tdTimestamp.colSpan = "1";
+
 			var tdAuthor = document.createElement('td');
 			tdAuthor.colSpan = "1";
 			var tdTitle = document.createElement('td');
-			tdTitle.classList.add("word-break");
-			tdTitle.colSpan = "1";
+			tdTitle.classList.add("comment-expandable-table-subject-td");
+			tdTitle.colSpan = "2";
 			var tdExpandButton = document.createElement('td');
 			var expandButton = document.createElement('button');
 			tdExpandButton.colSpan = "1";
-			expandButton.classList.add("myComments-expand-comment-button");
+			expandButton.classList.add("comments-expandable-table-comment-button");
+			tdExpandButton.classList.add("width-2-percent");
+			tdExpandButton.classList.add("comment-expandable-table-subject-td");
+			tdExpandButton.classList.add("align-center");
+			
 			expandButton.innerHTML = "+";
 			expandButton.addEventListener('click', function(event) {showHideIndexComment(this)});
 			tdExpandButton.appendChild(expandButton);
@@ -186,27 +194,29 @@ async function fetchVersesAndComments() {
 			h3.innerText = comment.subject;
 			h3.style.cssText = 'padding-bottom: 2px;';
 			
-			tdTimestamp.innerHTML = comment.timestamp;
+
 			tdTitle.appendChild(h3);
 			tdTitle.style.cssText = 'padding-left: 15px;';	
 			richText.innerHTML = comment.text;
 			tdText.style.cssText = 'padding-left: 15px;';
-			tdAuthor.innerText = comment.author;
+			tdAuthor.innerText = comment.author + " | " + comment.timestamp;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
 			
 			
 			rowHeader.appendChild(tdTitle);
-			rowHeader.appendChild(tdAuthor);
-			rowHeader.appendChild(tdTimestamp);
+			//rowHeader.appendChild(tdAuthor);
+			//rowHeader.appendChild(tdTimestamp);
 			rowHeader.appendChild(tdExpandButton);
-			rowHeader.style.cssText = 'height: 35px;'
+			
 			rowText.appendChild(tdText);
 			
 			
-			rowHeader.classList.add('comments-rowSubject');
-			rowText.classList.add('comments-rowText');
+			rowHeader.classList.add('comments-expandable-table-row');
+			rowText.classList.add('comments-expandable-table-row');
 			rowText.style.cssText = 'display: none;';
-			rowAuthor.classList.add('comments-rowAuthor');
+			
+			rowAuthor.classList.add('comments-expandable-table-row');
+			rowAuthor.appendChild(tdAuthor);
 			
 			tbody.appendChild(rowHeader);
 			tbody.appendChild(rowText);

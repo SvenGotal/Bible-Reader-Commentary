@@ -589,4 +589,51 @@ body{
 	background-color: #f5c211;
 }
 
+.comments-expandable-table{
+	border: none;
+	size: 90%;
+}
 
+.comments-expandable-table-row{
+	border: none;
+	size: 100%;
+}
+
+.comments-expandable-table td{
+	border: none;	
+}
+
+.comment-expandable-table-subject-td{
+	background-color: #6765A9;
+	color: white;
+	padding: 1px;
+}
+
+.comments-expandable-table-comment-button{
+	color: black;
+	border: none;
+	background-color: white;
+	border-radius: 10px;
+	height: 20px;
+	width: 20px;
+	font-weight: bold;
+	
+}
+
+.width-2-percent{
+	width: 2%;
+	max-width: 2%;
+}
+
+.align-center{
+	text-align: center;
+}
+
+.max-height{
+	height: 15px;
+	max-height: 15px;
+}
+
+.comments-expandable-table-comment-button:hover{
+	background-color: #f5c211;
+}

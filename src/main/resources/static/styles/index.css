@@ -69,8 +69,8 @@
 }
 
 .comments-area td{
-	padding-top: 8px;
-	padding-bottom: 8px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .comments-rowSubject{
@@ -82,8 +82,8 @@
 }
 
 .comments-rowSubject h3{
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	padding-left: 15px;
 	background-color: #6765A9;
 }
