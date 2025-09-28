@@ -151,7 +151,7 @@ body{
 }
 
 .select-buttons-holder{
-	width: 50%;
+	width: 90%;
 	display: flex;
   	justify-content: right;
 }
@@ -425,7 +425,9 @@ body{
 	
 	.select-buttons-holder{
   		padding-left: 5%;
-  		width: 40%;
+  		width: auto;
+  		display: flex;
+  		justify-content: left;
 	}
 	.select-flex{
 		width: 60%;
