@@ -528,6 +528,8 @@ body{
 	max-height: 23px;
 }
 
+
+
 .myComments-subject-row{
 	background-color: #6765A9;
 	text-align: center;
@@ -573,6 +575,18 @@ body{
 	background-color: #f5c211;
 }
 
+.myComments-expand-comment-button{
+	color: black;
+	border: none;
+	background-color: white;
+	border-radius: 10px;
+	height: 20px;
+	width: 20px;
+	font-weight: bold;
+}
 
+.myComments-expand-comment-button:hover{
+	background-color: #f5c211;
+}
 
 

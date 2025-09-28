@@ -153,42 +153,62 @@ async function fetchVersesAndComments() {
 		caughtComments.forEach(comment => {
 			
 			var table = document.createElement('table');
+			table.classList.add("myComments-comments-table");
 			var tbody = document.createElement('tbody');
 			var h3 = document.createElement('h3');
-			var rowSubject = document.createElement('tr');
-			rowSubject.classList.add("word-break");
+			var rowHeader = document.createElement('tr');
+			rowHeader.classList.add("myComments-subject-row");
 			var rowText = document.createElement('tr');
 			rowText.classList.add("word-break");
 			var rowAuthor = document.createElement('tr');
 			
-			var tdSubject = document.createElement('td');
-			tdSubject.classList.add("word-break");
-			var tdText = document.createElement('td');
+			var tdTimestamp = document.createElement('td');
+			tdTimestamp.colSpan = "1";
 			var tdAuthor = document.createElement('td');
+			tdAuthor.colSpan = "1";
+			var tdTitle = document.createElement('td');
+			tdTitle.classList.add("word-break");
+			tdTitle.colSpan = "1";
+			var tdExpandButton = document.createElement('td');
+			var expandButton = document.createElement('button');
+			tdExpandButton.colSpan = "1";
+			expandButton.classList.add("myComments-expand-comment-button");
+			expandButton.innerHTML = "+";
+			expandButton.addEventListener('click', function(event) {showHideIndexComment(this)});
+			tdExpandButton.appendChild(expandButton);
+			var tdText = document.createElement('td');
+			
 			
 			var richText = document.createElement('div');
 			tdText.appendChild(richText);
+			tdText.colSpan = "4";
 			
 			h3.innerText = comment.subject;
 			h3.style.cssText = 'padding-bottom: 2px;';
 			
-			tdSubject.appendChild(h3);
-			tdSubject.style.cssText = 'padding-left: 15px;';	
+			tdTimestamp.innerHTML = comment.timestamp;
+			tdTitle.appendChild(h3);
+			tdTitle.style.cssText = 'padding-left: 15px;';	
 			richText.innerHTML = comment.text;
 			tdText.style.cssText = 'padding-left: 15px;';
-			tdAuthor.innerText = comment.author + ' : ' + comment.timestamp;
+			tdAuthor.innerText = comment.author;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
 			
-			rowSubject.appendChild(tdSubject);
-			rowSubject.style.cssText = 'height: 35px;'
-			rowText.appendChild(tdText);
-			rowAuthor.appendChild(tdAuthor);
 			
-			rowSubject.classList.add('comments-rowSubject');
+			rowHeader.appendChild(tdTitle);
+			rowHeader.appendChild(tdAuthor);
+			rowHeader.appendChild(tdTimestamp);
+			rowHeader.appendChild(tdExpandButton);
+			rowHeader.style.cssText = 'height: 35px;'
+			rowText.appendChild(tdText);
+			
+			
+			rowHeader.classList.add('comments-rowSubject');
 			rowText.classList.add('comments-rowText');
+			rowText.style.cssText = 'display: none;';
 			rowAuthor.classList.add('comments-rowAuthor');
 			
-			tbody.appendChild(rowSubject);
+			tbody.appendChild(rowHeader);
 			tbody.appendChild(rowText);
 			tbody.appendChild(rowAuthor);
 			

@@ -12,18 +12,7 @@
 	overflow-x: auto;
 }
 
-.myComments-expand-comment-button{
-	border: none;
-	background-color: white;
-	border-radius: 10px;
-	height: 20px;
-	width: 20px;
-	font-weight: bold;
-}
 
-.myComments-expand-comment-button:hover{
-	background-color: #f5c211;
-}
 
 .myComments-td-10percent{
 	max-width: 10%;
