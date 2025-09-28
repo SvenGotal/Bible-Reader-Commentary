@@ -173,6 +173,7 @@ async function fetchVersesAndComments() {
 			var tdTitle = document.createElement('td');
 			tdTitle.classList.add("comment-expandable-table-subject-td");
 			tdTitle.colSpan = "2";
+			
 			var tdExpandButton = document.createElement('td');
 			var expandButton = document.createElement('button');
 			tdExpandButton.colSpan = "1";
@@ -201,6 +202,12 @@ async function fetchVersesAndComments() {
 			tdText.style.cssText = 'padding-left: 15px;';
 			tdAuthor.innerText = comment.author + " | " + comment.timestamp;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
+			
+			if(comment.published == false){
+				tdTitle.classList.remove("comment-expandable-table-subject-td");
+				tdTitle.classList.add("comment-expandable-table-subject-private-td");
+				tdAuthor.innerText = comment.author + "| PRIVATE | " + comment.timestamp;
+			}
 			
 			
 			rowHeader.appendChild(tdTitle);

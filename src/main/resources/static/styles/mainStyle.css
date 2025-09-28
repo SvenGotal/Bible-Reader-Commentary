@@ -637,3 +637,19 @@ body{
 .comments-expandable-table-comment-button:hover{
 	background-color: #f5c211;
 }
+
+.comment-expandable-table-subject-private-td{
+	background-color: #8C2F64;
+	font-weight: bold;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
