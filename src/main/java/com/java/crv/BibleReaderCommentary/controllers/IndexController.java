@@ -86,7 +86,7 @@ public class IndexController {
 			model.addAttribute("announcements", announcements);
 		}
 		catch(NullPointerException e) {
-			
+			e.printStackTrace();
 		}
 		
 		return "index";
