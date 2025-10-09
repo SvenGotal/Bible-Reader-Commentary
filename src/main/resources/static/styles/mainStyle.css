@@ -523,6 +523,7 @@ body{
 }
 
 .announcement-display{
+	display: none;
 	background-color: #f5c211;
 	width:100%;
 	border-radius: 15px;

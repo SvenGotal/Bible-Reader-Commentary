@@ -1,4 +1,3 @@
-c 
 /*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
 **by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
 **created in the ajax_script. */
@@ -168,6 +167,7 @@ function dismissAnnouncementButton(button){
 		
 	if(!announcementDiv){
 		console.log("announcement not found: " + button.dataset.announcementId);
+		return;
 	}
 	
 	announcementDiv.style.display = "none";
@@ -185,13 +185,24 @@ function dismissAnnouncementButton(button){
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    if (parts.length === 2) {
+		return parts.pop().split(';').shift();
+	}
 }
 
+/* Event on document load, scan through active announcements and make them visible, depending on 
+*  whether the user had them dismissed before or not. */
 document.addEventListener("DOMContentLoaded", function() {
 
+	var announcementsToShow = document.getElementsByClassName("announcement-display");
+	var dismissedAnnouncements = getCookie("dismissedAnnouncements");
+	var dismissedIds = dismissedAnnouncements ? dismissedAnnouncements.split(",") : [];
 	
-	
+	for(const announcement of announcementsToShow){
+		if(!dismissedIds.includes(announcement.id)){
+			announcement.style.display = "block";
+		}
+	}					
 });
 
 function showHideIndexComment(button){
