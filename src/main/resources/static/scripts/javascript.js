@@ -190,8 +190,6 @@ function getCookie(name) {
 	}
 }
 
-/* Event on document load, scan through active announcements and make them visible, depending on 
-*  whether the user had them dismissed before or not. */
 document.addEventListener("DOMContentLoaded", function() {
 
 	var announcementsToShow = document.getElementsByClassName("announcement-display");
