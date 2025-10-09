@@ -97,7 +97,7 @@ public class ApiController {
 			ArrayList<Commentary> publicComments = new ArrayList<Commentary>();			
 			
 			for(Commentary comment : getComments) {
-				if(comment.getPublished() || comment.getAuthor() == currentlyLoggedUser.getUsername()) {
+				if(comment.getPublished() || comment.getUser().getId() == currentlyLoggedUser.getId()) {
 					publicComments.add(comment);
 				}
 			}
