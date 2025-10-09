@@ -1,4 +1,4 @@
- 
+c 
 /*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
 **by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
 **created in the ajax_script. */
@@ -163,7 +163,8 @@ function shareThisComment(shareCommentButton){
 
 function dismissAnnouncementButton(button){
 	const announcementId = button.dataset.announcementId;
-	const announcementDiv = document.getElementById("announcement_" + announcementId);
+	const announcementToDismissId = "announcement_" + announcementId;
+	const announcementDiv = document.getElementById(announcementToDismissId);
 		
 	if(!announcementDiv){
 		console.log("announcement not found: " + button.dataset.announcementId);
@@ -174,8 +175,8 @@ function dismissAnnouncementButton(button){
 	let dismissed = getCookie("dismissedAnnouncements");
 	let dismissedIds = dismissed ? dismissed.split(",") : [];
 	
-	if (!dismissedIds.includes(announcementId)) {
-        dismissedIds.push(announcementId);
+	if (!dismissedIds.includes(announcementToDismissId)) {
+        dismissedIds.push(announcementToDismissId);
         announcementDiv.style.display = "none";
     }
     document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=604800`; // cookie lives for 1 week
@@ -186,6 +187,12 @@ function getCookie(name) {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+	
+	
+});
 
 function showHideIndexComment(button){
 	
