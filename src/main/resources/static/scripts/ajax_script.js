@@ -251,6 +251,46 @@ function fetchFiltered(inputText){
 	
 }
 
+async function updateCommentedBooks(){
+	
+	/* Get the checkbox element */
+	const showOnlyCommentedBooksCheckBox = document.getElementById("filter_only_commented");
+	
+	/* If checkbox is checked - then fetch only books that contain commentary */
+	if(showOnlyCommentedBooksCheckBox.checked){
+		
+		/* Clean the existing options from book element */
+		const bookSelectionElement = document.getElementById("bookSelection");
+		bookSelectionElement.innerHTML = "";
+		
+		/* Create a new placeholder option and append it to the element */
+		var placeholderOption = document.createElement('option');
+		placeholderOption.value = '';
+		placeholderOption.text = 'Odaberite knjigu';
+		bookSelectionElement.appendChild(placeholderOption);
+		
+		/* Proceed with the fetch */
+		try{
+			/* Fetch books from URL in APIController */
+			const fetchCommentedBooks = await fetch('/public/fetchCommentedBooks');
+			const caughtBooks = await fetchCommentedBooks.json();
+			console.log("fetching books...");
+			/* Foreach book, create an option element then append it to book selection */
+			caughtBooks.forEach(book => {				
+				var bookOption = document.createElement('option');
+				bookOption.text = book.name;
+				bookOption.value = book.id;
+				bookSelectionElement.appendChild(bookOption);
+				
+			});
+		}
+		catch(e){
+			console.log("error loading books from database...");
+			console.log(e.message);
+		}
+	}
+	
+}
 
 
 

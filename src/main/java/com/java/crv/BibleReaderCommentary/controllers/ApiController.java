@@ -111,6 +111,35 @@ public class ApiController {
 		return Collections.emptyList();
 	}
 	
+	@GetMapping("/public/fetchCommentedBooks")
+	@ResponseBody
+	public List<Book> fetchCommentedBooks() {
+		
+		ArrayList<Book> listOfAllBooks = new ArrayList<Book>();
+		ArrayList<Book> listOfFilteredBooks = new ArrayList<Book>();
+		
+		try {
+			System.out.println("inside try...");
+			listOfAllBooks = (ArrayList<Book>) bookRepository.findAll();
+			
+			listOfAllBooks.forEach(book -> {
+				System.out.println("doing foreach...");
+				List<Chapter> listOfChapters = book.getChapters();
+				listOfChapters.forEach(chapter -> {
+					System.out.println("going through chapters...");
+					if(chapter.getComments() != Collections.EMPTY_LIST) {
+						listOfFilteredBooks.add(book);
+						System.out.println("book added to filtered list...");
+					}/* Moram dodavati knjige u listu, trenutno dodaje tu knjigu za svaki put kad pronađe chapter */
+				});
+			});						
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		return listOfFilteredBooks;
+	}
+	
 	@GetMapping("/public/fetchFiltered/comments")
 	@ResponseBody
 	public List<Commentary> fetchFilteredComments(){
