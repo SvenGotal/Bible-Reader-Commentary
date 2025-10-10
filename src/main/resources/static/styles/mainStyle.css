@@ -519,10 +519,9 @@ body{
 	color: black;
 	float: center;
 	margin: 0px;
-	padding: 0px;
 }
 
-.announcement-display{
+.announcement-display{	
 	display: none;
 	background-color: #f5c211;
 	width:100%;
@@ -530,8 +529,8 @@ body{
 }
 
 .announcement-text-holder{
-	margin-top: 0px;
-	padding-top: 0px;
+	padding: 10px;
+	margin-top: 10px;
 	padding-bottom: 30px;
 }
 
