@@ -142,18 +142,26 @@ body{
 }
 
 .options-div{
-	padding-right: 2%;
+	padding-right: 4%;
 	padding-top: 5px;
 	padding-bottom: 15px;
-	display: flex;
   	justify-content: center;
- 	align-items: center;  
+ 	align-items: right;  
 }
 
 .select-buttons-holder{
-	width: 90%;
+
 	display: flex;
+	flex-direction: row;
   	justify-content: right;
+}
+
+.filter-only-commented-wrapper{
+	margin-top: 10px;
+}
+
+input[type=checkbox]{
+	transform: scale(1.5,1.5);
 }
 
 .search-filter-holder{
