@@ -69,6 +69,12 @@
 						<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
 							<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
 						</select>
+						<div class="filter-only-commented-wrapper">
+							<details>
+								<summary>Opcije</summary>
+								<span><a>Prikaži samo komentirane tekstove: </a><input type="checkbox" id="filter_only_commented" onchange="updateCommentedBooks()"></span>
+							</details>
+						</div>
 					</form>
 				</div>
 				<!--/*======================================================= /Select Buttons =======================================================*/-->
