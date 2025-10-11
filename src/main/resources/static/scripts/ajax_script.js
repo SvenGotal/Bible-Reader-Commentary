@@ -39,6 +39,7 @@ function updateChapters() {
 function updateIndexChapters() {
 	var selectedBookId = document.getElementById('bookSelection').value;
 	var chapter_selector = document.getElementById('chapter_selector');
+	var filterCheckbox = document.getElementById('filter_only_commented');
 	
 	/*Check for previous child elements - remove residual chapter boxes */
 	if(chapter_selector != null){
@@ -52,7 +53,6 @@ function updateIndexChapters() {
 		chapter_selector.style.display='grid';
 	}
 
-	console.log("Performing fetch...")
 	// Perform an Ajax request to fetch chapters for the selected book
 	fetch('public/fetchChapters?bookId=' + selectedBookId)
 		.then(response => response.json())

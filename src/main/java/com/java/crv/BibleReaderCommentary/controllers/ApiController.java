@@ -2,6 +2,7 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,20 +18,23 @@ import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
+import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Controller
 public class ApiController {
 	
 	private BookRepository bookRepository;
+	private CommentaryRepository commentaryRepository;
 	
-	public ApiController (BookRepository bookRepository) 
+	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository) 
 	{
 		this.bookRepository = bookRepository;
+		this.commentaryRepository = commentaryRepository;
 	}
 	
 	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
     @ResponseBody
-    public List<Chapter> fetchChapters(@RequestParam Long bookId) {
+    public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false) Boolean checkBox) {
         
 		Optional<Book> bk = bookRepository.findById(bookId);
 		ArrayList<Chapter> chapters;
@@ -113,31 +117,22 @@ public class ApiController {
 	
 	@GetMapping("/public/fetchCommentedBooks")
 	@ResponseBody
-	public List<Book> fetchCommentedBooks() {
+	public LinkedHashSet<Book> fetchCommentedBooks() {
 		
-		ArrayList<Book> listOfAllBooks = new ArrayList<Book>();
-		ArrayList<Book> listOfFilteredBooks = new ArrayList<Book>();
+		LinkedHashSet<Book> setOfFilteredBooks = new LinkedHashSet<Book>();
 		
 		try {
-			System.out.println("inside try...");
-			listOfAllBooks = (ArrayList<Book>) bookRepository.findAll();
-			
-			listOfAllBooks.forEach(book -> {
-				System.out.println("doing foreach...");
-				List<Chapter> listOfChapters = book.getChapters();
-				listOfChapters.forEach(chapter -> {
-					System.out.println("going through chapters...");
-					if(chapter.getComments() != Collections.EMPTY_LIST) {
-						listOfFilteredBooks.add(book);
-						System.out.println("book added to filtered list...");
-					}/* Moram dodavati knjige u listu, trenutno dodaje tu knjigu za svaki put kad pronađe chapter */
-				});
-			});						
+			ArrayList<Commentary> listOfAllComments = (ArrayList<Commentary>) commentaryRepository.findAll();
+			listOfAllComments.forEach(comment -> {
+				setOfFilteredBooks.add(comment.getChapter().getBook());
+			});
 		}
 		catch(NullPointerException e) {
 			e.printStackTrace();
 		}
-		return listOfFilteredBooks;
+		
+		
+		return setOfFilteredBooks;
 	}
 	
 	@GetMapping("/public/fetchFiltered/comments")
