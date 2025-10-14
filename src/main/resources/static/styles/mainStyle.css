@@ -153,7 +153,7 @@ body{
 
 	display: flex;
 	flex-direction: row;
-  	justify-content: right;
+  	justify-content: center;
 }
 
 .filter-only-commented-wrapper{
@@ -178,7 +178,7 @@ input[type=checkbox]{
 	text-decoration: none;
 	text-align: center;
 	color: white;
-	background-color: #8C2F64;
+	background-color: #6FB350;
 }
 
 .options-list a:hover{
