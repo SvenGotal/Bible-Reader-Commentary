@@ -147,25 +147,12 @@
 }
 
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 400px){
 
 	.chapter-selector-boxes{
-		grid-template-columns: repeat(10, 6%);
-		padding-bottom: 15px;
-		justify-content: center;
-		padding-right: 0%;
-		
+		max-width: 100%;
 	}
 }
 
-/*
-.menu1 a:first-child {
-	margin-top: 5px;
-}
-
-.menu1 a:last-child {
-	margin-bottom: 5px;
-}
-*/
 
 
