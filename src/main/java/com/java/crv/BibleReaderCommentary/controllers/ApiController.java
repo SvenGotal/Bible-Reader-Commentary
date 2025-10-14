@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
+import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Controller
@@ -25,37 +27,52 @@ public class ApiController {
 	
 	private BookRepository bookRepository;
 	private CommentaryRepository commentaryRepository;
+	private ChapterRepository chapterRepository;
 	
-	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository) 
+	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository, ChapterRepository chapterRepository) 
 	{
 		this.bookRepository = bookRepository;
 		this.commentaryRepository = commentaryRepository;
+		this.chapterRepository = chapterRepository;
 	}
 	
 	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
     @ResponseBody
-    public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false) Boolean filterCommented) {
+    public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false, defaultValue = "false") Boolean filterCommented) {
         
-		Optional<Book> bk = bookRepository.findById(bookId);
-		ArrayList<Chapter> chapters;
-		
-		if(bk.isPresent()) {
-			List<Chapter> list = bk.get().getChapters(); 
-			chapters = new ArrayList<Chapter>();
+		try {
 			
-			for(Chapter ch : list) {
+			if(filterCommented) {
+				ArrayList<Chapter> listOfAllChapters = (ArrayList<Chapter>) chapterRepository.findByBookId(bookId);
+				ArrayList<Chapter> listOfFilteredChapters = new ArrayList<Chapter>();
+				listOfAllChapters.forEach( chapter -> {
+					if(!chapter.getComments().isEmpty()) {
+						
+						final AtomicBoolean containsPublicComments = new AtomicBoolean(false);
+						chapter.getComments().forEach(comment -> {
+							if(comment.getPublished()) {
+								containsPublicComments.set(true);
+							}
+						});	
+						if(containsPublicComments.get()) {
+							listOfFilteredChapters.add(chapter);
+						}
+					}
+				});				
 				
-				Chapter chapt = new Chapter();
-				chapt.setId(ch.getId());
-				chapt.setNumber(ch.getNumber());
-				chapters.add(chapt);
+				return listOfFilteredChapters;
+			}
+			else {
+				ArrayList<Chapter> listOfAllChaptersInSelectedBook = (ArrayList<Chapter>) chapterRepository.findByBookId(bookId);
+				return listOfAllChaptersInSelectedBook;
 			}
 			
-			
-			return chapters;
 		}
-		else       
+		catch(NullPointerException e) {
+			e.printStackTrace();
 			return Collections.emptyList();
+		}
+		
     }
 	
 	@GetMapping("/public/fetchVerses")
@@ -124,7 +141,10 @@ public class ApiController {
 		try {
 			ArrayList<Commentary> listOfAllComments = (ArrayList<Commentary>) commentaryRepository.findAll();
 			listOfAllComments.forEach(comment -> {
-				setOfFilteredBooks.add(comment.getChapter().getBook());
+				if(comment.getPublished()) {
+					setOfFilteredBooks.add(comment.getChapter().getBook());
+				}
+				
 			});
 		}
 		catch(NullPointerException e) {
