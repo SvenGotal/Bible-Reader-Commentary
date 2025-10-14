@@ -41,6 +41,8 @@ function updateIndexChapters() {
 	var chapter_selector = document.getElementById('chapter_selector');
 	var filterCheckbox = document.getElementById('filter_only_commented');
 	
+	var checkParameter = filterCheckbox.checked ? true : false;
+	
 	/*Check for previous child elements - remove residual chapter boxes */
 	if(chapter_selector != null){
 
@@ -54,7 +56,7 @@ function updateIndexChapters() {
 	}
 
 	// Perform an Ajax request to fetch chapters for the selected book
-	fetch('public/fetchChapters?bookId=' + selectedBookId)
+	fetch('public/fetchChapters?bookId=' + selectedBookId + "&filterCommented=" + checkParameter)
 		.then(response => response.json())
 		.then(data => {
 			// Populate the 'chapterSelection' dropdown based on the response

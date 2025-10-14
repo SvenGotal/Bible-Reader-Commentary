@@ -34,7 +34,7 @@ public class ApiController {
 	
 	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
     @ResponseBody
-    public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false) Boolean checkBox) {
+    public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false) Boolean filterCommented) {
         
 		Optional<Book> bk = bookRepository.findById(bookId);
 		ArrayList<Chapter> chapters;
