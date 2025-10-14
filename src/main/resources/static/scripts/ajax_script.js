@@ -52,7 +52,7 @@ function updateIndexChapters() {
 		
 		/*Have the container div for select boxes be grid in it's display, none 
 		(invisible) is defined in index.css for that element*/
-		chapter_selector.style.display='grid';
+		chapter_selector.style.display='flex';
 	}
 
 	// Perform an Ajax request to fetch chapters for the selected book

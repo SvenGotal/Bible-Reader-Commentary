@@ -92,13 +92,26 @@
 	font-style: oblique;
 }
 
+.chapter-selector-boxes-wrapper{
+	display: flex;
+	justify-content: center;
+}
+
 .chapter-selector-boxes{
-	display: none;
-	justify-content: right;
-	grid-template-columns: repeat(10, 2%); /* 5 columns */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	gap: 10px;
-	padding-right: 20%;
+	flex-wrap: wrap;
 	padding-bottom: 20px;
+	padding-top: 20px;
+	max-width: 30%;
+}
+
+#bible_display{
+	display: flex;
+	flex-direction: column;
+	justify-content: justify;
 }
 
 .highlight-chapter-box{
