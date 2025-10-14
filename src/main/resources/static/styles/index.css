@@ -95,6 +95,9 @@
 .chapter-selector-boxes-wrapper{
 	display: flex;
 	justify-content: center;
+	max-height: 130px;
+	overflow: auto;
+	margin-bottom: 15px;
 }
 
 .chapter-selector-boxes{
