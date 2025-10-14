@@ -155,6 +155,12 @@ public class ApiController {
 		return setOfFilteredBooks;
 	}
 	
+	@GetMapping("/public/fetchAllBooks")
+	@ResponseBody
+	public List<Book> fetchAllBooks () {
+		return (List<Book>) bookRepository.findAll();
+	}
+	
 	@GetMapping("/public/fetchFiltered/comments")
 	@ResponseBody
 	public List<Commentary> fetchFilteredComments(){
