@@ -101,7 +101,7 @@ body{
 	border-radius: 10px;
 	border: 1px solid #6FB350;
 	background-color: #6FB350;
-	width: 65%;
+	max-width: 50%;
 	height: 30px;
 	font-weight: bold;
 	margin: 0.5%;
@@ -133,6 +133,9 @@ body{
 }
 
 .options-list{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	margin-bottom: 30px;
 }
 
@@ -142,11 +145,37 @@ body{
 }
 
 .options-div{
-	padding-right: 4%;
+	display: flex;
 	padding-top: 5px;
 	padding-bottom: 15px;
   	justify-content: center;
  	align-items: right;  
+}
+
+.select-buttons-form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.details-center{
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+	
+.details-size{
+	max-width: 100%;
+}
+	
+.summary-center{
+	align-items: center;
+	justify-content: center;
+}
+	
+.summary-width{
+	max-width: 80%;
 }
 
 .select-buttons-holder{
@@ -157,6 +186,8 @@ body{
 }
 
 .filter-only-commented-wrapper{
+	flex-direction: row;
+	justify-content: center;
 	margin-top: 10px;
 }
 
@@ -170,11 +201,13 @@ input[type=checkbox]{
 	
 }
 
+
+
 .options-list a{
+	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
-	width: 100%;
 	text-decoration: none;
 	text-align: center;
 	color: white;
@@ -405,7 +438,20 @@ input[type=checkbox]{
 	}
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 400px){
+
+	.select-buttons-form{
+		align-items: center;
+		flex-direction: column;
+		max-width: 400px;
+	}
+	
+	.filter-only-commented-wrapper{
+		max-width: 80%;
+		align-items: center;
+	}
+	
+	
 	
 	.user-icon{
 		display: flex;
@@ -432,10 +478,12 @@ input[type=checkbox]{
 	}
 	
 	.select-buttons-holder{
-  		padding-left: 5%;
-  		width: auto;
+		flex-direction: column;
+
+
   		display: flex;
-  		justify-content: left;
+  		justify-content: center;
+  		flex-wrap: wrap;
 	}
 	.select-flex{
 		width: 60%;
@@ -673,7 +721,29 @@ input[type=checkbox]{
 	color: white;
 }
 
+.details-size{
+	width: 500px;
+}
 
+details[open] span {
+	animation: slowAnime 0.3s linear forwards;
+}
+
+@keyframes slowAnime{
+	
+	0% {
+		opacity: 0;
+		transform: translatey(-15px);
+	}
+	50% {
+		opacity: 0.5;
+		transform: translatey(-7px);
+	}
+	100% {
+		opacity: 1;
+		transform: translatey(0);
+	}
+}
 
 
 

@@ -69,7 +69,7 @@
 			<div class="options-div">				
 				<!--/*======================================================= Select Buttons =======================================================*/-->
 				<div class="select-buttons-holder">
-					<form method="post">
+					<form method="post" class="select-buttons-form">
 						<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
 							<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
 							<!--/* For each Book in a Book list that controller gives creates an option element */-->
@@ -79,9 +79,9 @@
 							<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
 						</select>
 						<div class="filter-only-commented-wrapper">
-							<details>
-								<summary>Opcije</summary>
-								<span><a>Prikaži samo komentirane tekstove: </a><input type="checkbox" id="filter_only_commented" onchange="updateCommentedBooks()"></span>
+							<details class="details-size details-center">
+								<summary class="summary-center summary-width">Opcije</summary>
+								<span><a>Prikaži samo komentirani tekst: </a><input type="checkbox" id="filter_only_commented" onchange="updateCommentedBooks()"></span>
 							</details>
 						</div>
 					</form>
