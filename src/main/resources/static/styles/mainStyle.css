@@ -144,6 +144,17 @@ body{
 	margin-left: 40px;
 }
 
+.options-list-hamburger a{
+	font-weight: bold;
+	padding: 6px;
+	margin: 2px;
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	background-color: #6FB350;
+}
+
 .options-div{
 	display: flex;
 	padding-top: 5px;
