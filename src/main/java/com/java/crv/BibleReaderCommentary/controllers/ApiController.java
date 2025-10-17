@@ -164,15 +164,15 @@ public class ApiController {
 		return (List<Book>) bookRepository.findAll();
 	}
 	
-	@GetMapping("/public/fetchFiltered/comments")
+	@GetMapping("/public/fetchAllChapters")
 	@ResponseBody
-	public List<Commentary> fetchFilteredComments(){
-		return null;
+	public List<Chapter> fetchFilteredComments(@RequestParam Long chapterId){
+		return chapterRepository.findAllById(chapterId);
 	}
 	
-	@GetMapping("/public/fetchAllVerses")
+	@GetMapping("/public/fetchChapterVerses")
 	@ResponseBody
-	public List<Verse> fetchFilteredVerses(@RequestParam Long chapterId){
+	public List<Verse> fetchChapterVerses(@RequestParam Long chapterId){
 		
 		return verseRepository.findByChapterId(chapterId);
 		

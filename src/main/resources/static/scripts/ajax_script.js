@@ -336,7 +336,7 @@ async function fetchAllVerses(){
 	versesDisplay.innerHTML = '';
 	
 	try{
-		const fetchAllVerses = await fetch("/public/fetchAllVerses?chapterId=" + selectedChapterNumber);
+		const fetchAllVerses = await fetch("/public/fetchChapterVerses?chapterId=" + selectedChapterNumber);
 		const caughtVerses = await fetchAllVerses.json();
 		
 		
