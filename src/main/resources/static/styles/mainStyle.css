@@ -132,6 +132,13 @@ body{
 	border-color: #f5c211;
 }
 
+.bible-area{
+	column-gap: 25px;
+	column-count:2;
+	padding: 2%;
+	margin-top: 0;
+}
+
 .options-list{
 	display: flex;
 	flex-direction: row;

@@ -35,6 +35,6 @@ setTimeout(function () {
 			chapterSelection.dispatchEvent(new Event('change', {bubbles : true}));
 		}
 	}	
-}, 200);
+}, 1800);
 
 

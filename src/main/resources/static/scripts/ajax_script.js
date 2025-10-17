@@ -22,7 +22,7 @@ function updateChapters() {
 			// Add options for each chapter
 			data.forEach(chapter => {
 				var option = document.createElement('option');
-				option.value = chapter.number;
+				option.value = chapter.id;
 				option.text = chapter.number;
 				chapterSelection.appendChild(option);
 			});
@@ -39,9 +39,18 @@ function updateChapters() {
 function updateIndexChapters() {
 	var selectedBookId = document.getElementById('bookSelection').value;
 	var chapter_selector = document.getElementById('chapter_selector');
-	var filterCheckbox = document.getElementById('filter_only_commented');
+	var filterCheckbox; var checkParameter;
 	
-	var checkParameter = filterCheckbox.checked ? true : false;
+	try{
+		filterCheckbox = document.getElementById('filter_only_commented');
+		checkParameter = filterCheckbox.checked ? true : false;
+	}
+	catch(e){
+		console.log(e.message);
+		checkParameter = false;
+	}
+	
+	
 	
 	/*Check for previous child elements - remove residual chapter boxes */
 	if(chapter_selector != null){
@@ -319,6 +328,29 @@ async function updateCommentedBooks(){
 	
 }
 
+async function fetchAllVerses(){
+	
+	var chapterSelectElement = document.getElementById('chapterSelection')
+	var selectedChapterNumber = chapterSelectElement.value;
+	var versesDisplay = document.getElementById("bible_text");
+	versesDisplay.innerHTML = '';
+	
+	try{
+		const fetchAllVerses = await fetch("/public/fetchAllVerses?chapterId=" + selectedChapterNumber);
+		const caughtVerses = await fetchAllVerses.json();
+		
+		
+		
+		caughtVerses.forEach(verse => {
+			var paragraph = document.createElement('p');
+			paragraph.textContent = verse.number + ' ' + verse.text;
+			versesDisplay.append(paragraph);
+		});
+	}
+	catch(e){
+		console.log(e.message);
+	}
+}
 
 
 

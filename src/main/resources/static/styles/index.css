@@ -49,12 +49,7 @@
 	text-align: center;
 }
 
-.bible-area{
-	column-gap: 25px;
-	column-count:2;
-	padding: 2%;
-	margin-top: 0;
-}
+
 
 .bible-area p{
 	width: 100%;

@@ -21,6 +21,7 @@ import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
+import com.java.crv.BibleReaderCommentary.repositories.VerseRepository;
 
 @Controller
 public class ApiController {
@@ -28,12 +29,14 @@ public class ApiController {
 	private BookRepository bookRepository;
 	private CommentaryRepository commentaryRepository;
 	private ChapterRepository chapterRepository;
+	private VerseRepository verseRepository;
 	
-	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository, ChapterRepository chapterRepository) 
+	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository, ChapterRepository chapterRepository, VerseRepository verseRepository) 
 	{
 		this.bookRepository = bookRepository;
 		this.commentaryRepository = commentaryRepository;
 		this.chapterRepository = chapterRepository;
+		this.verseRepository = verseRepository;
 	}
 	
 	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
@@ -77,7 +80,7 @@ public class ApiController {
 	
 	@GetMapping("/public/fetchVerses")
 	@ResponseBody
-	public List<Verse> fetchVerses(@RequestParam Long bookId, @RequestParam int chapterNumber){
+	public List<Verse> fetchIndexVerses(@RequestParam Long bookId, @RequestParam int chapterNumber){
 		
 		/* Find Book by id */
 		Optional<Book> bk = bookRepository.findById(bookId);
@@ -167,10 +170,12 @@ public class ApiController {
 		return null;
 	}
 	
-	@GetMapping("/public/fetchFiltered/verses")
+	@GetMapping("/public/fetchAllVerses")
 	@ResponseBody
-	public List<Verse> fetchFilteredVerses(){
-		return null;
+	public List<Verse> fetchFilteredVerses(@RequestParam Long chapterId){
+		
+		return verseRepository.findByChapterId(chapterId);
+		
 	}
 	
 
