@@ -86,16 +86,17 @@ function updateIndexChapters() {
 			data.forEach(chapter => {
 				/*Create child elements and append them to drop-down select element*/ 
 				var option = document.createElement('option');
-				option.value = chapter.number;
+				option.value = chapter.id;
 				option.text = chapter.number;
+				
 				chapterSelection.appendChild(option);
 				
 				/*Create child elements for chapter boxes and append them in chapter_selector element*/
 				var chapterBoxElementDiv = document.createElement('div');
 				chapterBoxElementDiv.classList.add('chapter-selector-div');
 				chapterBoxElementDiv.innerHTML=chapter.number;
-				chapterBoxElementDiv.id = "chapterBox"+chapter.number;
-				chapterBoxElementDiv.setAttribute('onclick','updateChapterInChapterBoxes(' + chapter.number + ')');
+				chapterBoxElementDiv.id = "chapterBox"+chapter.id;
+				chapterBoxElementDiv.setAttribute('onclick','updateChapterInChapterBoxes(' + chapter.id + ')');
 				
 				
 				chapter_selector.appendChild(chapterBoxElementDiv);
@@ -115,7 +116,7 @@ async function fetchVersesAndComments() {
 
 	var selectedBookId = document.getElementById('bookSelection').value;
 	var selectedBook = document.getElementById('bookSelection');
-	var selectedChapterNumber = document.getElementById('chapterSelection').value;
+	var selectedChapterId = document.getElementById('chapterSelection').value;
 	var commentsDisplay = document.getElementById('comments_text');
 	var versesDisplay = document.getElementById('bible_text');
 	
@@ -129,21 +130,15 @@ async function fetchVersesAndComments() {
 
 		
 		var params = new URLSearchParams();
-		params.append('bookId', selectedBookId);
-		params.append('chapterNumber', selectedChapterNumber);
-
+		params.append('chapterId', selectedChapterId);
 		
-		const fetchVerses = await fetch('/public/fetchVerses?' + params.toString());
+		const fetchVerses = await fetch('/public/fetchChapterVerses?' + params.toString());
 		const caughtVerses = await fetchVerses.json();
-		
-
-	
-		const fetchComments = await fetch('/public/fetchPublicComments?' + params.toString());
-		
+			
+		const fetchComments = await fetch('/public/fetchPublicComments?' + params.toString());		
 		const caughtComments = await fetchComments.json();
 		
-
-		upper_separator_text.innerText = selectedBookName + ' ' + selectedChapterNumber;
+		
 		
 		try{
 			var quotation_text = document.getElementById('main_welcome_text');

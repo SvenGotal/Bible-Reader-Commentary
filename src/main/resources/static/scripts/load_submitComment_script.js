@@ -11,23 +11,13 @@ function getParameterFromURL(paramName){
  document.addEventListener('DOMContentLoaded', function() {
 	
 	const bookId = getParameterFromURL("bookId");
-	const chapterId = getParameterFromURL("chapterId");
 	
 	if(bookId){
 		const bookSelection = document.getElementById("bookSelection");
 		if(bookSelection){
 			bookSelection.value = bookId;
 			bookSelection.dispatchEvent(new Event('change'));
-		}
-	}
-	
-	wait(200);
-	
-	if(chapterId){
-		const chapterSelection = document.getElementById("chapterSelection");
-		if(chapterSelection){
-			chapterSelection.value = chapterId;
-			chapterSelection.dispatchEvent(new Event('change'));
+			
 		}
 	}
 });
@@ -35,7 +25,7 @@ function getParameterFromURL(paramName){
 function wait(ms){
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-/*
+
 setTimeout(function () {
 	
 	const bookId = getParameterFromURL("bookId");
@@ -48,8 +38,10 @@ setTimeout(function () {
 		if(chapterSelection){
 			chapterSelection.value = chapterId;
 			chapterSelection.dispatchEvent(new Event('change', {bubbles : true}));
+			
+
 		}
 	}	
 }, 3000);
 
-*/
+
