@@ -2,10 +2,11 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,59 +81,40 @@ public class ApiController {
 	
 	@GetMapping("/public/fetchVerses")
 	@ResponseBody
-	public List<Verse> fetchIndexVerses(@RequestParam Long bookId, @RequestParam int chapterNumber){
+	public List<Verse> fetchIndexVerses(@RequestParam Long chapterNumber){
 		
-		/* Find Book by id */
-		Optional<Book> bk = bookRepository.findById(bookId);
-		Chapter selectedChapter = new Chapter();
-		
-		if(bk.isPresent()) {
-			List<Chapter> chpt = bk.get().getChapters();
-			
-			/* Find Chapter by it's number */
-			for(Chapter ch : chpt) {
-
-				if(ch.getNumber() == chapterNumber) {
-					selectedChapter = ch;
-					break;
-				}
-			}	
-			/* Fetch Verses from chapter into a list */
-			List<Verse> foundVerses = selectedChapter.getVerses();
-			return foundVerses;
-		}		
-		return Collections.emptyList();
+		try {
+			return chapterRepository.findById(chapterNumber).get().getVerses();
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
 	}
 	
 	@GetMapping("/public/fetchPublicComments")
 	@ResponseBody
-	public List<Commentary> fetchPublicComments(
-			@RequestParam Long bookId, 
-			@RequestParam int chapterNumber,
+	public List<Commentary> fetchAllPublicAndUsersComments(
+			@RequestParam Long chapterId,
 			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){		
 		
 		try {
 			
-			Book selectedBook = bookRepository.findById(bookId).get();
-			
-			Chapter selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
-			
-			List<Commentary> getComments = selectedChapter.getComments();
-			ArrayList<Commentary> publicComments = new ArrayList<Commentary>();			
-			
-			for(Commentary comment : getComments) {
-				if(comment.getPublished() || comment.getUser().getId() == currentlyLoggedUser.getId()) {
-					publicComments.add(comment);
-				}
-			}
-			
-			return publicComments;
-		} catch (Exception e) {
+			Predicate<Commentary> isPublished = comment -> comment.getPublished();
+			Predicate<Commentary> belongsToLoggedUser = comment -> comment.getUser().getId() == currentlyLoggedUser.getId();	
 
-			e.printStackTrace();
+			
+			return commentaryRepository.findAllByChapterId(chapterId)
+					.stream()
+					.filter(isPublished.or(belongsToLoggedUser))
+					.sorted(Comparator.comparing(Commentary::getId).reversed())
+					.toList();
+					
 		}
-		
-		return Collections.emptyList();
+		catch(NullPointerException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
 	}
 	
 	@GetMapping("/public/fetchCommentedBooks")
