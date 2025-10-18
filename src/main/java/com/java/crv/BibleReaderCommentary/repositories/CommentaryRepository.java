@@ -10,4 +10,5 @@ public interface CommentaryRepository extends CrudRepository<Commentary, Long> {
 	List<Commentary> findAllByPublished(Boolean published);
 	List<Commentary> findAllCommentaryById(Long commentaryId);
 	List<Commentary> findAllByUserId(Long userId);
+	List<Commentary> findAllByChapterId(Long chapterId);
 }
