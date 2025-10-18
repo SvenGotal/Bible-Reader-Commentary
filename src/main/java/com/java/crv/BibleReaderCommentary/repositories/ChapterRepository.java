@@ -1,6 +1,8 @@
 package com.java.crv.BibleReaderCommentary.repositories;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
@@ -9,4 +11,5 @@ import com.java.crv.BibleReaderCommentary.domain.Chapter;
 public interface ChapterRepository extends CrudRepository<Chapter, Long>{
 	List<Chapter> findByBookId(Long bookId);
 	List<Chapter> findAllById(Long chapterId);
+	Optional<Chapter> findById(Long chapterId);
 }
