@@ -31,26 +31,30 @@ public class Book {
 	public Bible getBible() {
 		return bible;
 	}
-	public void setBible(Bible bible) {
+	public Book setBible(Bible bible) {
 		this.bible = bible;
+		return this;
 	}
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public Book setId(Long id) {
 		this.id = id;
+		return this;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public Book setName(String name) {
 		this.name = name;
+		return this;
 	}
 	public List<Chapter> getChapters() {
 		return chapters;
 	}
-	public void setChapters(List<Chapter> chapters) {
+	public Book setChapters(List<Chapter> chapters) {
 		this.chapters = chapters;
+		return this;
 	}
 	
 	public Chapter getChapterByNumber(int number) {
