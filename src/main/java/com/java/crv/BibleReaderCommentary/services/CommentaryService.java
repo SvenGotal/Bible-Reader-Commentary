@@ -19,18 +19,18 @@ public class CommentaryService {
 	}
 
 	public List<Commentary> getAllPublicCommentary(){	
-		return fetchAllCommentsFromRepository();
+		return getAllCommentaryFromRepository();
 	}
 	
 	public List<Commentary> getFilteredCommentary(Predicate<Commentary> predicate){
-		return fetchAllCommentsFromRepository().stream().filter(predicate).toList();
+		return getAllCommentaryFromRepository().stream().filter(predicate).toList();
 	}
 	
 	public List<Commentary> getFilteredCommentary(Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
-		return fetchAllCommentsFromRepository().stream().filter(predicate1.or(predicate2)).toList();
+		return getAllCommentaryFromRepository().stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
-	private List<Commentary> fetchAllCommentsFromRepository(){
+	private List<Commentary> getAllCommentaryFromRepository(){
 		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).toList();
 	}
 }

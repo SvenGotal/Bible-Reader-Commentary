@@ -30,7 +30,7 @@ public class BookService {
 	
 	/**
 	 * Returns the Book object from the repository by it's id. If not found throws Book [id] not found
-	 * @return Book if found
+	 * @return Book
 	 * @throws BookNotFoundException*/
 	public Book getBookById(Long id) {
 		return bookRepository
@@ -38,18 +38,22 @@ public class BookService {
 				.orElseThrow(() -> new BookNotFoundException("Book with id: " + id + " not found..."));
 	}
 	
-	public LinkedHashSet<Book> GetBooksThatContainComments(){
+	/**
+	 * Returns a unique set of books that contain published comments and returns private comments that
+	 * belong to a specific user.
+	 * @return LikedHashSet<Book>
+	 */
+	public LinkedHashSet<Book> getBooksThatContainComments(Long userId){
 		LinkedHashSet<Book> setOfFilteredBooks = new LinkedHashSet<Book>();
 		
-		List<Commentary> listOfAllPublishedComments = commentaryService.getFilteredCommentary(comment -> comment.getPublished());
+		List<Commentary> listOfAllPublishedComments = commentaryService
+				.getFilteredCommentary(comment -> Boolean.TRUE.equals(comment.getPublished()),  comment -> comment.getUser().getId().equals(userId));
 		
 		listOfAllPublishedComments.forEach(comment -> {
 			setOfFilteredBooks.add(comment.getChapter().getBook());
 		});
 		
-		return setOfFilteredBooks;
-		
-		
+		return setOfFilteredBooks;				
 	}
 	
 	
