@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @ControllerAdvice
@@ -26,6 +27,7 @@ public class LoggedUserAdvice {
 				User currentlyLoggedUser = userRepository.findByUsername(principal.getName());
 				model.addAttribute("currentlyLoggedUser", currentlyLoggedUser);
 			}
+
 			
 		}
 		catch(NullPointerException e) {

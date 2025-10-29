@@ -41,9 +41,9 @@ public class IndexController {
 		this.announcementMessageRepository = announcementMessageRepository;
 	}
 	
-//	/**getIndex method will only return index in the near future. Binding will become verseOfTheDay
-//	 * and Principal and any user authentication will be moved to separate Advice.
-//	 * */
+	/**getIndex method will only return index in the near future. Binding will become verseOfTheDay
+	 * and Principal and any user authentication will be moved to separate Advice.
+	 * */
 //	@GetMapping("/")
 //	public String getIndex(@ModelAttribute("binding") String binding,
 //			Model model,

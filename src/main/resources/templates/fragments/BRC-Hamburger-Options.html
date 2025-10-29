@@ -10,8 +10,8 @@
 				<div class="meat"></div>
 				<div class="bottom"></div>
 			</label>
-			<th:block th:if="${userValidated}">
-				<nav class="menu1" th:switch="${userRole}">
+			<th:block th:if="${currentlyLoggedUser != null}">
+				<nav class="menu1" th:switch="${currentlyLoggedUser.getRole.name}">
 					<th:block th:case="USER">
 						<ul>
 							<li><a href="/">Početna</a></li>
@@ -34,8 +34,8 @@
 					</th:block>
 				</nav>
 			</th:block>
-			<th:block th:unless="${userValidated}">
-				<nav class="menu1" th:switch="${userRole}">
+			<th:block th:unless="${currentlyLoggedUser}">
+				<nav class="menu1">
 					<ul>
 						<li><a href="public/submitForm">Izradi profil</a></li> 
 						<li><a href="/login">Prijava</a></li>
