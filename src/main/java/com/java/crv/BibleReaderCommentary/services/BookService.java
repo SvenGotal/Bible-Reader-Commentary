@@ -2,6 +2,7 @@ package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
@@ -43,8 +44,8 @@ public class BookService {
 	 * belong to a specific user.
 	 * @return LikedHashSet<Book>
 	 */
-	public LinkedHashSet<Book> getBooksThatContainComments(Long userId){
-		LinkedHashSet<Book> setOfFilteredBooks = new LinkedHashSet<Book>();
+	public Set<Book> getBooksThatContainComments(Long userId){
+		Set<Book> setOfFilteredBooks = new LinkedHashSet<Book>();
 		
 		List<Commentary> listOfAllPublishedComments = commentaryService
 				.getFilteredCommentary(comment -> Boolean.TRUE.equals(comment.getPublished()),  comment -> comment.getUser().getId().equals(userId));
