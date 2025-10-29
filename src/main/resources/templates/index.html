@@ -102,11 +102,11 @@
 		</div>
 		<div class="lower-separator">
 			<form  method="get">
-				<div class="options-list" th:if="${userValidated}">
+				<div class="options-list" th:if="${currentlyLoggedUser}">
 					<a href="#" id="Index_writeCommentButton">Napiši komentar</a>
 				</div>
 			</form>
-			<div class="options-list" th:unless="${userValidated}">
+			<div class="options-list" th:unless="${currentlyLoggedUser}">
 				<a href="public/submitForm">Izradi profil</a> <a href="/login">Prijava</a>
 			</div>
 		</div>
