@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
+import com.java.crv.BibleReaderCommentary.services.UserService;
 
 @ControllerAdvice
 public class LoggedUserAdvice {
 	
-	private UserRepository userRepository;
+	private UserService userService;
 	
-	public LoggedUserAdvice(UserRepository userRepository) {
-		this.userRepository = userRepository; 
+	public LoggedUserAdvice(UserService userService) {
+		this.userService = userService; 
 	}
 
 	@ModelAttribute
@@ -24,7 +25,7 @@ public class LoggedUserAdvice {
 		
 		try {
 			if(principal != null) {
-				User currentlyLoggedUser = userRepository.findByUsername(principal.getName());
+				User currentlyLoggedUser = userService.getUserByUsername(principal.getName());
 				model.addAttribute("currentlyLoggedUser", currentlyLoggedUser);
 			}
 
