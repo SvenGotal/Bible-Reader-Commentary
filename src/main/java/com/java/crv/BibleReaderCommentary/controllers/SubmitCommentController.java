@@ -133,8 +133,8 @@ public class SubmitCommentController {
 		
 
 		if(request.getParameter("selectedChapter") != null) {
-			int chapterNumber = Integer.parseInt(request.getParameter("selectedChapter"));
-			selectedChapter = selectedBook.getChapterByNumber(chapterNumber);
+			Long chapterNumber = Long.parseLong(request.getParameter("selectedChapter"));
+			selectedChapter = chapterRepository.findById(chapterNumber).get();
 			/* Set found Chapter in the Book to the Commentary object 'comment' */
 			comment.setChapter(selectedChapter);
 		}
