@@ -114,15 +114,11 @@ function updateIndexChapters() {
 /* Fetch Verses and Comments for selected Chapter in index (publicly readable) */
 async function fetchVersesAndComments() {
 
-	var selectedBookId = document.getElementById('bookSelection').value;
-	var selectedBook = document.getElementById('bookSelection');
 	var selectedChapterId = document.getElementById('chapterSelection').value;
 	var commentsDisplay = document.getElementById('comments_text');
 	var versesDisplay = document.getElementById('bible_text');
-	
 	var upper_separator_text = document.getElementById('upper_separator_text');
-	var selectedBookOption = selectedBook.options[selectedBook.selectedIndex];
-	var selectedBookName = selectedBookOption.text;
+
 	upper_separator_text.innerText = '';
 	
 
