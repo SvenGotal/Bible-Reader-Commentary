@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Service
@@ -30,9 +31,22 @@ public class CommentaryService {
 		return getAllCommentaryFromRepository().stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
+	public Commentary getCommentaryByIf(Long id) {
+		return commentaryRepository.findById(id).orElseThrow(() -> new CommentaryNotFoundException("Comment with id: " + id + " not found..."));
+	}
+	
+	public void saveCommentary(Commentary cmnt) {
+		commentaryRepository.save(cmnt);
+	}
+	
+	public void deleteCommentaryById(Long id) {
+		commentaryRepository.deleteById(id);
+	}
+	
 	private List<Commentary> getAllCommentaryFromRepository(){
 		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).toList();
 	}
+	
 }
 
 
