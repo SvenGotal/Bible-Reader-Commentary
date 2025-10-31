@@ -1,8 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.security.Principal;
-import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -116,17 +114,7 @@ public class SubmitCommentController {
 			return "redirect:/";
 		}
 		
-		/* Find Book with specified id. Book's numbers (1,2,3, etc) 
-		 * correspond to their Id's in the database */
-		Book selectedBook = new Book();
-		if(request.getParameter("selectedBook") != null) {
-			Optional<Book> book = bookRepository.findById(Long.parseLong(request.getParameter("selectedBook")));
-			selectedBook = book.get();
-		}
-		else {
-			redirectAttributes.addFlashAttribute("binding", "Morate odabrati knjigu!");
-			return "redirect:/";
-		}
+
 
 		/* Search for Chapter by number property in the Book object from the persistence */
 		Chapter selectedChapter = new Chapter();
