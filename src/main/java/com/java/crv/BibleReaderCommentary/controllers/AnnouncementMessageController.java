@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
-import com.java.crv.BibleReaderCommentary.repositories.AnnouncementMessageRepository;
+import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 
 @Controller
 public class AnnouncementMessageController {
 	
-	private AnnouncementMessageRepository announcementMessageRepository;
+	private ServerAnnouncementService serverAnnouncementService;
 	
-	public AnnouncementMessageController(AnnouncementMessageRepository amr) {
-		this.announcementMessageRepository = amr;
+	public AnnouncementMessageController(ServerAnnouncementService serverAnnouncementService) {
+		this.serverAnnouncementService = serverAnnouncementService;
 	}
 	
 	@PostMapping("/admin/announcementMessage/add")
@@ -27,7 +27,7 @@ public class AnnouncementMessageController {
 		
 		try {
 			AnnouncementMessage messageToAdd = announcementMessage;
-			announcementMessageRepository.save(messageToAdd);
+			serverAnnouncementService.saveAnnouncementMessage(messageToAdd);
 			model.addAttribute("successMessage", successMessage);
 		}
 		catch(NullPointerException e) {
@@ -44,7 +44,7 @@ public class AnnouncementMessageController {
 	public String deleteAnnouncementMessageFromDatabase(@RequestParam Long announcementId) {
 		
 		try {
-			announcementMessageRepository.deleteById(announcementId);
+			serverAnnouncementService.deleteAnnouncementMessage(announcementId);
 			return "redirect:/admin/controlCenter";
 		}
 		catch(NullPointerException e) {
@@ -59,7 +59,7 @@ public class AnnouncementMessageController {
 		String errorMessageFailedToFindInDB = "system error: announcement does not exist in database...";
 		
 		try {
-			AnnouncementMessage msg = announcementMessageRepository.findById(announcementId).get();
+			AnnouncementMessage msg = serverAnnouncementService.getAnnouncementMessageById(announcementId); 
 			if(msg.getAnnouncementIsActive()) {
 				msg.setAnnouncementIsActive(false);
 			}
@@ -67,7 +67,7 @@ public class AnnouncementMessageController {
 				msg.setAnnouncementIsActive(true);
 			}
 			
-			announcementMessageRepository.save(msg);
+			serverAnnouncementService.saveAnnouncementMessage(msg);
 		}
 		catch(NullPointerException e) {
 			e.printStackTrace();
