@@ -28,16 +28,16 @@ public class BootstrapData implements CommandLineRunner{
 	private final BCryptPasswordEncoder encoder;
 	
 	/*Fetches the initial data from application.properties file*/
-	@Value("${app.seedUser.username}")
+	@Value("${app.seedUserUsername}")
 	private String seedAdminUsername;
 	
-	@Value("${app.seedUser.password}")
+	@Value("${app.seedUserPassword}")
 	private String seedAdminPassword;
 	
-	@Value("${app.bibleFile.path}")
+	@Value("${app.bibleFilePath}")
 	private String bibleFilePath;
 	
-	@Value("${app.database.path}")
+	@Value("${app.databasePath}")
 	private String databaseFile;
 	/*---------------------------------------------------------*/
 	
