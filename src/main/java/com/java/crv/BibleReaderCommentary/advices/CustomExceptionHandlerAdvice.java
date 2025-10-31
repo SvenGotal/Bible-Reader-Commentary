@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.java.crv.BibleReaderCommentary.exceptions.AnnouncementMessageNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 
@@ -19,4 +20,10 @@ public class CustomExceptionHandlerAdvice {
 	public void handleUserNotFound(UserNotFoundException e, Model model){
 		model.addAttribute("ErrorMsg", e.getMessage());
 	}
+	
+	@ExceptionHandler(AnnouncementMessageNotFoundException.class)
+		public void handleAnnouncementMessageNotFound(AnnouncementMessageNotFoundException e, Model model) {
+		model.addAttribute("ErrorMsg", e.getMessage());
+	}
+	
 }
