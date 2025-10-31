@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
-import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
+import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
+import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 
 @Controller
 public class CommentaryController {
-	private CommentaryRepository commentaryRepository;
+	private CommentaryService commentaryService;
 
 	
-	public CommentaryController(CommentaryRepository commentaryRepository) {
-		this.commentaryRepository = commentaryRepository;
+	public CommentaryController(CommentaryService commentaryService) {
+		this.commentaryService = commentaryService;
 	}
 	
 	@GetMapping("/public/comment/{id}")
@@ -29,7 +30,7 @@ public class CommentaryController {
 		String errorCannotFindCommentMessage = "Komentar nije pronađen ili ne postoji.";
 		
 		try {
-			Commentary commentToShare = commentaryRepository.findById(id).orElse(null);
+			Commentary commentToShare = commentaryService.getCommentaryByIf(id);
 			
 			if(commentToShare != null) {
 				model.addAttribute("commentToShare", commentToShare);
@@ -37,6 +38,9 @@ public class CommentaryController {
 			else {
 				model.addAttribute("errorCannotFindCommentMessage", errorCannotFindCommentMessage);
 			}
+			
+		}
+		catch(CommentaryNotFoundException e) {
 			
 		}
 		catch (NullPointerException e) {
@@ -69,7 +73,7 @@ public class CommentaryController {
 				return "redirect:/private/myComments";
 			}
 			
-			databaseComment = commentaryRepository.findById(commentId).get();
+			databaseComment = commentaryService.getCommentaryByIf(commentId);
 			editedComment = comment;
 			
 			if(databaseComment.getText() == null) {
@@ -89,7 +93,7 @@ public class CommentaryController {
 			}
 			databaseComment.setPublished(editedComment.getPublished());
 			
-			commentaryRepository.save(databaseComment);
+			commentaryService.saveCommentary(databaseComment);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -108,7 +112,7 @@ public class CommentaryController {
 				return "redirect:/private/myComments";
 			}
 			
-			commentaryRepository.deleteById(commentId);
+			commentaryService.deleteCommentaryById(commentId);
 			
 		}
 		catch(NullPointerException e) {
