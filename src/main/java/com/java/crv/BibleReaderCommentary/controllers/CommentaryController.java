@@ -40,9 +40,6 @@ public class CommentaryController {
 			}
 			
 		}
-		catch(CommentaryNotFoundException e) {
-			
-		}
 		catch (NullPointerException e) {
 			e.printStackTrace();
 		}
