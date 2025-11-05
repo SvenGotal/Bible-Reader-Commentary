@@ -3,6 +3,8 @@ package com.java.crv.BibleReaderCommentary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
 import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 
@@ -26,6 +28,17 @@ public class FormLoaderController {
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
 		
 		return "index";
+	}
+	
+	/**
+	 * Control Center page loader
+	 * */
+	@GetMapping("/admin/controlCenter")
+	public String getCCForm(Model model) {
+		
+		model.addAttribute("newAnnouncementMessage", new AnnouncementMessage());
+		return "forms/controlcenter";
+		
 	}
 	
 	/**

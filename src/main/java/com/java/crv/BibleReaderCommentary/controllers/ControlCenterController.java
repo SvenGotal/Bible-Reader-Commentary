@@ -53,13 +53,7 @@ public class ControlCenterController {
 		this.chapterRepository = chapterRepository;
 	}
 	
-	@GetMapping("/admin/controlCenter")
-	public String getCCForm(Model model) {
-		
-		model.addAttribute("newAnnouncementMessage", new AnnouncementMessage());
-		return "forms/controlcenter";
-		
-	}
+	
 	
 	@PostMapping ("/admin/uploadBible")
 	public String uploadBible(@RequestPart("fileInput") MultipartFile file) {
