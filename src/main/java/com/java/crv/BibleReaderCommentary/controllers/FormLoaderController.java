@@ -16,7 +16,9 @@ public class FormLoaderController {
 		this.bookService = bookService;
 		this.serverAnnouncementService = serverAnnouncementService;
 	}
-	
+	/**
+	 * Index loader
+	 * */
 	@GetMapping("/")
 	public String loadIndexPage(Model model) {				
 	
@@ -26,9 +28,28 @@ public class FormLoaderController {
 		return "index";
 	}
 	
+	/**
+	 * User Homepage loader
+	 * */
 	@GetMapping("/private/myHomepage")
 	public String loadUserHomepage() {
 		return "forms/user_homepage.html";
 	}
+	
+	/**
+	 * Login form loader
+	 * */
+	@GetMapping("/login")
+	public String loginUser() {
+		return "forms/login";
+	}
+	
+	/**
+	 * Logout form loader
+	 * */
+	@GetMapping("/logout")
+	public String logoutUser() {
+		return "forms/logout";
+	}	
 
 }
