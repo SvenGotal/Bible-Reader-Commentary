@@ -18,10 +18,19 @@ public class ChapterService {
 		this.chapterRepository = chapterRepository;
 	}
 
-	public Chapter getChapterById (Long id){
-		
+	/**
+	 * Get Chapter by it's id (Long)
+	 * @return single Chapter if found
+	 * */
+	public Chapter getChapterById (Long id){	
 		return chapterRepository.findById(id).orElseThrow(() -> new ChapterNotFoundException("Chapter with id: " + id + " not found."));
 	}
 	
-	
+	/**
+	 * Get all Chapters that contain id of a single Book (Long)
+	 * @return list of Chapters
+	 * */
+	public List<Chapter> getChaptersByBookId(Long id){	
+		return chapterRepository.findByBookId(id);
+	}
 }
