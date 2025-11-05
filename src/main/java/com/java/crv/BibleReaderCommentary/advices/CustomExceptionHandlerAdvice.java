@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.java.crv.BibleReaderCommentary.exceptions.AnnouncementMessageNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.ChapterNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 
@@ -34,6 +35,12 @@ public class CustomExceptionHandlerAdvice {
 	public String handleCommentaryNotFound(CommentaryNotFoundException e, Model model) {
 		model.addAttribute("ErrorMsg", e.getMessage());
 		return "errors/errorView";
+	}
+	
+	@ExceptionHandler(ChapterNotFoundException.class)
+	public String handleChapterNotFoundException(ChapterNotFoundException e, Model model) {
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/errorViev";
 	}
 	
 }
