@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.StreamSupport;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
@@ -15,9 +17,11 @@ import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 public class UserService {
 	
 	private UserRepository userRepository;
+	private final BCryptPasswordEncoder passwordEncoder;
 	
-	public UserService(UserRepository userRepository) {
+	public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	/**
@@ -40,10 +44,18 @@ public class UserService {
 	 * Get only one User from the database, by the user's id.
 	 * @return User
 	 * */
-	public User getUserById(Long id) {
-		
+	public User getUserById(Long id) {	
 		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found: " + id));
-
+	}
+	
+	public void saveUser(String username, String password, String email, UserRoles userRole) {
+		
+		userRepository.save(new User()
+				.setUsername(username.trim())
+				.setPassword(passwordEncoder.encode(password).trim())
+				.setEmail(email.trim())
+				.setRole(userRole));
+		
 	}
 	
 }

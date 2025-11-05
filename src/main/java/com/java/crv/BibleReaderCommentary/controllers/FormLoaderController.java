@@ -6,18 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
 import com.java.crv.BibleReaderCommentary.services.BookService;
+import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 
 @Controller
 public class FormLoaderController {
 	
 	private BookService bookService;
+	private ChapterService chapterService;
 	private ServerAnnouncementService serverAnnouncementService;
 	
-	public FormLoaderController (BookService bookService, ServerAnnouncementService serverAnnouncementService) {
+	public FormLoaderController (BookService bookService, ChapterService chapterService, ServerAnnouncementService serverAnnouncementService) {
 		this.bookService = bookService;
+		this.chapterService = chapterService;
 		this.serverAnnouncementService = serverAnnouncementService;
 	}
+	
+	
 	/**
 	 * Index loader
 	 * */
