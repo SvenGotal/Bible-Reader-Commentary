@@ -3,8 +3,10 @@ package com.java.crv.BibleReaderCommentary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
+import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
@@ -33,6 +35,21 @@ public class FormLoaderController {
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
 		
 		return "index";
+	}
+	
+	@GetMapping("public/submitForm")
+	public String loadUserCreationForm(Model model, @ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser) {
+		if(currentlyLoggedUser != null) {
+			if(currentlyLoggedUser.getRole() != null) {
+				model.addAttribute("adminRole", currentlyLoggedUser.getRole().name());
+			}
+			else {
+				model.addAttribute("adminRole", "GUEST");
+			}
+		}
+		
+		model.addAttribute("user", new User());
+		return "forms/submitform";
 	}
 	
 	/**

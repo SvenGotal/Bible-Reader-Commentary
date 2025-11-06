@@ -1,18 +1,17 @@
 package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.StreamSupport;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
-@SuppressWarnings("unused")
 @Service
 public class UserService {
 	
@@ -50,9 +49,16 @@ public class UserService {
 	
 	public void saveUser(String username, String password, String email, UserRoles userRole) {
 		
+		if(!StringUtils.hasText(username)) throw new UserNotFoundException("Username is empty...");
+		if(!StringUtils.hasText(password)) throw new UserNotFoundException("Password is empty...");
+		if(!StringUtils.hasText(email)) throw new UserNotFoundException("Email is empty...");
+		if(userRole == null) userRole = UserRoles.USER;
+		
+		if(userRepository.findByUsername(username.trim()) != null) throw new UserNotFoundException("User already exists...");
+		
 		userRepository.save(new User()
 				.setUsername(username.trim())
-				.setPassword(passwordEncoder.encode(password).trim())
+				.setPassword(passwordEncoder.encode(password))
 				.setEmail(email.trim())
 				.setRole(userRole));
 		
