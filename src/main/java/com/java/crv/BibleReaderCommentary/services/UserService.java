@@ -47,6 +47,10 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found: " + id));
 	}
 	
+	/**
+	 * Save user into the database.
+	 * @param
+	 * */
 	public void saveUser(String username, String password, String email, UserRoles userRole) {
 		
 		if(!StringUtils.hasText(username)) throw new UserNotFoundException("Username is empty...");
