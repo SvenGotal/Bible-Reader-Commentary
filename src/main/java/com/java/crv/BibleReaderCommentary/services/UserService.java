@@ -9,7 +9,9 @@ import org.springframework.util.StringUtils;
 
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
+import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Service
@@ -51,21 +53,23 @@ public class UserService {
 	 * Save user into the database.
 	 * @param
 	 * */
-	public void saveUser(String username, String password, String email, UserRoles userRole) {
+	public User saveUser(String username, String password, String email, UserRoles userRole) {
 		
-		if(!StringUtils.hasText(username)) throw new UserNotFoundException("Username is empty...");
-		if(!StringUtils.hasText(password)) throw new UserNotFoundException("Password is empty...");
-		if(!StringUtils.hasText(email)) throw new UserNotFoundException("Email is empty...");
-		if(userRole == null) userRole = UserRoles.USER;
+		if(!StringUtils.hasText(username)) throw new UserParameterValidationException("Username is empty...");
+		if(!StringUtils.hasText(password)) throw new UserParameterValidationException("Password is empty...");
+		if(!StringUtils.hasText(email)) throw new UserParameterValidationException("Email is empty...");
+		if(userRole == null) userRole = UserRoles.USER; // default user's role to USER
 		
-		if(userRepository.findByUsername(username.trim()) != null) throw new UserNotFoundException("User already exists...");
+		String newUsername = username.trim();
+		String newPassword = passwordEncoder.encode(password);
+		String newEmail = email.trim().toLowerCase();
 		
-		userRepository.save(new User()
-				.setUsername(username.trim())
-				.setPassword(passwordEncoder.encode(password))
-				.setEmail(email.trim())
-				.setRole(userRole));
+		/* findByUsername returns User instead of Optional */
+		if(userRepository.findByUsername(newUsername) != null) throw new UserAlreadyExistsException("User already exists...");
 		
+		User newUser = new User().setUsername(newUsername).setPassword(newPassword).setEmail(newEmail).setRole(userRole);
+		
+		return userRepository.save(newUser);						 
 	}
 	
 }
