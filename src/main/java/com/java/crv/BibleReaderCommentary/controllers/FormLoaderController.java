@@ -1,21 +1,16 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.services.BookService;
-import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 
@@ -23,13 +18,11 @@ import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 public class FormLoaderController {
 	
 	private BookService bookService;
-	private ChapterService chapterService;
 	private CommentaryService commentaryService;
 	private ServerAnnouncementService serverAnnouncementService;
 	
-	public FormLoaderController (BookService bookService, ChapterService chapterService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService) {
+	public FormLoaderController (BookService bookService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService) {
 		this.bookService = bookService;
-		this.chapterService = chapterService;
 		this.commentaryService = commentaryService;
 		this.serverAnnouncementService = serverAnnouncementService;
 	}

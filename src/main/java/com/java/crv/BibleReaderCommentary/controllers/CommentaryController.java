@@ -59,19 +59,11 @@ public class CommentaryController {
 	}
 	
 	@PostMapping("/private/myCommentMakePublicOrPrivate")
-	public String makeMyCommentPublicOrPrivate(
-			@RequestParam("commentId") Long commentIdDelete, 
-			@RequestParam("setPrivateCheckbox") Boolean commentBoolean) 
-	{
+	public String makeMyCommentPublicOrPrivate(@RequestParam("commentId") Long commentIdDelete, @RequestParam("setPrivateCheckbox") Boolean commentBoolean) {
 		
-		try {
-			Commentary comment = commentaryService.getCommentaryById(commentIdDelete);
-			comment.setPublished(commentBoolean);
-			commentaryService.saveCommentary(comment);
-		}
-		catch(IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+		Commentary comment = commentaryService.getCommentaryById(commentIdDelete);
+		comment.setPublished(commentBoolean);
+		commentaryService.saveCommentary(comment);
 		
 		return "redirect:/private/myComments";
 	}
