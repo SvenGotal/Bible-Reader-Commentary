@@ -37,6 +37,9 @@ public class FormLoaderController {
 		return "index";
 	}
 	
+	/**
+	 * User creation form loader
+	 * */
 	@GetMapping("public/submitForm")
 	public String loadUserCreationForm(Model model, @ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser) {
 		if(currentlyLoggedUser != null) {
