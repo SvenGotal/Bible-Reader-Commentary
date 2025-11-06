@@ -8,7 +8,9 @@ import com.java.crv.BibleReaderCommentary.exceptions.AnnouncementMessageNotFound
 import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.ChapterNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
 
 @ControllerAdvice
 public class CustomExceptionHandlerAdvice {
@@ -21,6 +23,18 @@ public class CustomExceptionHandlerAdvice {
 	
 	@ExceptionHandler(UserNotFoundException.class)
 	public String handleUserNotFound(UserNotFoundException e, Model model){
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/errorView";
+	}
+	
+	@ExceptionHandler(UserParameterValidationException.class)
+	public String handleUserParameterValidation(UserParameterValidationException e, Model model) {
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/errorView";
+	}
+	
+	@ExceptionHandler(UserAlreadyExistsException.class)
+	public String handleUserAlreadyExists(UserAlreadyExistsException e, Model model) {
 		model.addAttribute("ErrorMsg", e.getMessage());
 		return "errors/errorView";
 	}
@@ -42,5 +56,6 @@ public class CustomExceptionHandlerAdvice {
 		model.addAttribute("ErrorMsg", e.getMessage());
 		return "errors/errorViev";
 	}
+	
 	
 }
