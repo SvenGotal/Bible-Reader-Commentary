@@ -56,7 +56,7 @@
 		</div>
 		<!--/*======================================================= /Header =======================================================*/-->
 		<!--/*======================================================= Comments Not Found Area =======================================================*/-->
-		<div th:if="${noCommentsFound != null OR message != null}" class="comments-area myComments-no-comments-found">
+		<div th:if="${noCommentsFound != null OR serverMessage != null}" class="comments-area myComments-no-comments-found">
 			<div>
 				<h1 th:text="${message}"></h1>
 				<h1 th:text="${noCommentsFound}"></h1>
@@ -71,7 +71,7 @@
 			</div>
 		</div>
 		<!--/*======================================================= Comments Found Area =======================================================*/-->
-		<div th:unless="${noCommentsFound != null OR message != null}">
+		<div th:unless="${noCommentsFound != null OR serverMessage != null}">
 			<div class="comments-area">
 				<table class="myComments-comments-table" id="comment_table">
 					<tbody th:each="comment : ${comments}" th:attr="id=${comment.id}">

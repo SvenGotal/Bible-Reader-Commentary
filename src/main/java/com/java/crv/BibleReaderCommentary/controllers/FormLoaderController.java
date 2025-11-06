@@ -1,14 +1,22 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.AnnouncementMessage;
+import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
+import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
 
 @Controller
@@ -16,11 +24,13 @@ public class FormLoaderController {
 	
 	private BookService bookService;
 	private ChapterService chapterService;
+	private CommentaryService commentaryService;
 	private ServerAnnouncementService serverAnnouncementService;
 	
-	public FormLoaderController (BookService bookService, ChapterService chapterService, ServerAnnouncementService serverAnnouncementService) {
+	public FormLoaderController (BookService bookService, ChapterService chapterService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService) {
 		this.bookService = bookService;
 		this.chapterService = chapterService;
+		this.commentaryService = commentaryService;
 		this.serverAnnouncementService = serverAnnouncementService;
 	}
 	
@@ -53,6 +63,35 @@ public class FormLoaderController {
 		
 		model.addAttribute("user", new User());
 		return "forms/submitform";
+	}
+	
+	/**
+	 * User's comments page loader
+	 * */
+	@GetMapping("/private/myComments")
+	public String getMyCommentsForm(Model model, @ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser) {
+					
+		if(currentlyLoggedUser == null || currentlyLoggedUser.getId() == null) {
+			model.addAttribute("serverMessage", "Something went wrong, user is null...");
+			return "redirect/mycomments";
+		}
+		
+		UserRoles userRole = currentlyLoggedUser.getRole();
+		Long userId = currentlyLoggedUser.getId();
+		
+		model.addAttribute("userRole", userRole.name()); /*Send user role e.g. ADMIN, USER etc...*/
+
+		List<Commentary> usersRepoComments = commentaryService.getUsersCommentaryById(userId);
+		
+		if(usersRepoComments.isEmpty()) {
+			model.addAttribute("noCommentsFound", "Trenutno nemate ni jedan komentar!");
+		}
+		else {
+			model.addAttribute("comments", usersRepoComments);
+		}	
+		model.addAttribute("comment", new Commentary());
+		
+		return "forms/mycomments";
 	}
 	
 	/**

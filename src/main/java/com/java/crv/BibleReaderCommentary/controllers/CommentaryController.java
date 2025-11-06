@@ -29,7 +29,7 @@ public class CommentaryController {
 		String errorCannotFindCommentMessage = "Komentar nije pronađen ili ne postoji.";
 		
 		try {
-			Commentary commentToShare = commentaryService.getCommentaryByIf(id);
+			Commentary commentToShare = commentaryService.getCommentaryById(id);
 			
 			if(commentToShare != null) {
 				model.addAttribute("commentToShare", commentToShare);
@@ -50,6 +50,34 @@ public class CommentaryController {
 		return "forms/sharedcommentform";
 	}
 	
+	@PostMapping("/private/myCommentsDelete")
+	public String deleteMyComment(@RequestParam("commentId") Long commentIdDelete) {
+		
+		commentaryService.deleteCommentaryById(commentIdDelete);			
+
+		return "redirect:/private/myComments";
+	}
+	
+	@PostMapping("/private/myCommentMakePublicOrPrivate")
+	public String makeMyCommentPublicOrPrivate(
+			@RequestParam("commentId") Long commentIdDelete, 
+			@RequestParam("setPrivateCheckbox") Boolean commentBoolean) 
+	{
+		
+		try {
+			Commentary comment = commentaryService.getCommentaryById(commentIdDelete);
+			comment.setPublished(commentBoolean);
+			commentaryService.saveCommentary(comment);
+		}
+		catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/private/myComments";
+	}
+	
+	
+	/* REDO WHEN TIME AVAILBALE */
 	@PostMapping("/private/myCommentsEdit")
 	public String editExistingComment(@ModelAttribute("comment") Commentary comment, RedirectAttributes redirectAttributes) {
 		
@@ -69,7 +97,7 @@ public class CommentaryController {
 				return "redirect:/private/myComments";
 			}
 			
-			databaseComment = commentaryService.getCommentaryByIf(commentId);
+			databaseComment = commentaryService.getCommentaryById(commentId);
 			editedComment = comment;
 			
 			if(databaseComment.getText() == null) {

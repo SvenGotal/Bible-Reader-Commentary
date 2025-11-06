@@ -31,9 +31,14 @@ public class CommentaryService {
 		return getAllCommentaryFromRepository().stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
-	public Commentary getCommentaryByIf(Long id) {
+	public List<Commentary> getUsersCommentaryById(Long userId){		
+		return commentaryRepository.findAllByUserId(userId);		
+	}
+	
+	public Commentary getCommentaryById(Long id) {
 		return commentaryRepository.findById(id).orElseThrow(() -> new CommentaryNotFoundException("Comment with id: " + id + " not found..."));
 	}
+	
 	
 	public void saveCommentary(Commentary cmnt) {
 		commentaryRepository.save(cmnt);
