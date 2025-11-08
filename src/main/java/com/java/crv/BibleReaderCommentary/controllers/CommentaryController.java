@@ -1,11 +1,9 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
-import java.security.Principal;
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class CommentaryController {
@@ -101,7 +97,7 @@ public class CommentaryController {
 	}
 
 	
-	/* REDO WHEN TIME AVAILBALE */
+	/* REDO WHEN TIME AVAILABLE */
 	@PostMapping("/private/myCommentsEdit")
 	public String editExistingComment(@ModelAttribute("comment") Commentary comment, RedirectAttributes redirectAttributes) {
 		
