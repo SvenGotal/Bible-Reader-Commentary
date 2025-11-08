@@ -8,6 +8,7 @@ import com.java.crv.BibleReaderCommentary.exceptions.AnnouncementMessageNotFound
 import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.ChapterNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
@@ -47,6 +48,12 @@ public class CustomExceptionHandlerAdvice {
 	
 	@ExceptionHandler(CommentaryNotFoundException.class)
 	public String handleCommentaryNotFound(CommentaryNotFoundException e, Model model) {
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/errorView";
+	}
+	
+	@ExceptionHandler(CommentaryParameterBindingException.class)
+	public String handleCommentParameterBinding(CommentaryParameterBindingException e, Model model) {
 		model.addAttribute("ErrorMsg", e.getMessage());
 		return "errors/errorView";
 	}

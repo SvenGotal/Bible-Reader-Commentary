@@ -82,7 +82,7 @@ public class CommentaryController {
 			return "redirect:errors/errorView";
 		}
 		
-		boolean isPublished = submittedComment.getPublished();
+		boolean isPublished = Boolean.TRUE.equals(submittedComment.getPublished());
 		if(isPublished || !isPublished) {
 			submittedComment.setPublished(!isPublished);
 		}

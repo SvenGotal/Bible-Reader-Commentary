@@ -5,9 +5,11 @@ import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
+import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Service
@@ -41,6 +43,12 @@ public class CommentaryService {
 	
 	
 	public void saveCommentary(Commentary cmnt) {
+		
+		if(!StringUtils.hasText(cmnt.getSubject())) throw new CommentaryParameterBindingException("Comment subject is empty or null...");
+		if(!StringUtils.hasText(cmnt.getText())) throw new CommentaryParameterBindingException("Comment content is empty, it contains no text or less than 20 characters...");
+		if(!StringUtils.hasText(cmnt.getAuthor())) throw new CommentaryParameterBindingException("Comment author is unknown, user is either null or author field failed to set...");
+		
+		
 		commentaryRepository.save(cmnt);
 	}
 	
