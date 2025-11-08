@@ -1,6 +1,10 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
@@ -50,6 +55,30 @@ public class CommentaryController {
 		
 		return "forms/sharedcommentform";
 	}
+	
+	@GetMapping("/public/fetchPublicComments")
+	@ResponseBody
+	public List<Commentary> fetchAllPublicAndUsersComments(
+			@RequestParam Long chapterId,
+			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){		
+		
+		try {
+			
+			Predicate<Commentary> isPublished = comment -> comment.getPublished();
+			Predicate<Commentary> belongsToLoggedUser = comment -> comment.getUser().getId() == currentlyLoggedUser.getId();	
+
+			
+			return commentaryService.getFilteredCommentary(chapterId, isPublished, belongsToLoggedUser);
+
+					
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
+	
+	
 	
 	@PostMapping("/private/myCommentsDelete")
 	public String deleteMyComment(@RequestParam("commentId") Long commentIdDelete) {

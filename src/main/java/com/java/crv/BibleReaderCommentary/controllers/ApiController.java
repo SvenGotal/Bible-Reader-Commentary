@@ -40,7 +40,7 @@ public class ApiController {
 		this.verseRepository = verseRepository;
 	}
 	
-	@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
+	//@GetMapping({"/submitComment/fetchChapters", "/public/fetchChapters"})
     @ResponseBody
     public List<Chapter> fetchChapters(@RequestParam Long bookId, @RequestParam(required = false, defaultValue = "false") Boolean filterCommented) {
         
@@ -92,59 +92,10 @@ public class ApiController {
 		}
 	}
 	
-	@GetMapping("/public/fetchPublicComments")
-	@ResponseBody
-	public List<Commentary> fetchAllPublicAndUsersComments(
-			@RequestParam Long chapterId,
-			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){		
-		
-		try {
-			
-			Predicate<Commentary> isPublished = comment -> comment.getPublished();
-			Predicate<Commentary> belongsToLoggedUser = comment -> comment.getUser().getId() == currentlyLoggedUser.getId();	
-
-			
-			return commentaryRepository.findAllByChapterId(chapterId)
-					.stream()
-					.filter(isPublished.or(belongsToLoggedUser))
-					.sorted(Comparator.comparing(Commentary::getId).reversed())
-					.toList();
-					
-		}
-		catch(NullPointerException e) {
-			e.printStackTrace();
-			return Collections.emptyList();
-		}
-	}
 	
-	@GetMapping("/public/fetchCommentedBooks")
-	@ResponseBody
-	public LinkedHashSet<Book> fetchCommentedBooks() {
-		
-		LinkedHashSet<Book> setOfFilteredBooks = new LinkedHashSet<Book>();
-		
-		try {
-			ArrayList<Commentary> listOfAllComments = (ArrayList<Commentary>) commentaryRepository.findAll();
-			listOfAllComments.forEach(comment -> {
-				if(comment.getPublished()) {
-					setOfFilteredBooks.add(comment.getChapter().getBook());
-				}
-				
-			});
-		}
-		catch(NullPointerException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return setOfFilteredBooks;
-	}
 	
-	@GetMapping("/public/fetchAllBooks")
-	@ResponseBody
-	public List<Book> fetchAllBooks () {
-		return (List<Book>) bookRepository.findAll();
-	}
+	
+	
 	
 	@GetMapping("/public/fetchAllChapters")
 	@ResponseBody

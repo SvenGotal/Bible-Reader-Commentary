@@ -20,17 +20,25 @@ public class CommentaryService {
 	public CommentaryService(CommentaryRepository commentaryRepository) {
 		this.commentaryRepository = commentaryRepository;
 	}
-
-	public List<Commentary> getAllPublicCommentary(){	
+	
+	public List<Commentary> getAllPublicAndPrivateCommentary(){
 		return getAllCommentaryFromRepository();
 	}
-	
-	public List<Commentary> getFilteredCommentary(Predicate<Commentary> predicate){
-		return getAllCommentaryFromRepository().stream().filter(predicate).toList();
+
+	public List<Commentary> getAllPublicCommentary(){	
+		return getAllCommentaryFromRepository().stream().filter( (Commentary comment) -> comment.getPublished()).toList();
 	}
 	
-	public List<Commentary> getFilteredCommentary(Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
-		return getAllCommentaryFromRepository().stream().filter(predicate1.or(predicate2)).toList();
+	public List<Commentary> getAllPrivateCommentary(){
+		return getAllCommentaryFromRepository().stream().filter((Commentary comment) -> !comment.getPublished()).toList();
+	}
+	
+	public List<Commentary> getFilteredCommentary(Long chapterId, Predicate<Commentary> predicate){
+		return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate).toList();
+	}
+	
+	public List<Commentary> getFilteredCommentary(Long chapterId, Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
+		return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
 	public List<Commentary> getUsersCommentaryById(Long userId){		
