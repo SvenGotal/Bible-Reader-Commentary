@@ -1,9 +1,11 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.security.Principal;
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class CommentaryController {
@@ -68,6 +73,33 @@ public class CommentaryController {
 		return "redirect:/private/myComments";
 	}
 	
+	@PostMapping("/private/submitComment/post")
+	public String addComment(@ModelAttribute("comment") Commentary submittedComment, @ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser, Model model) {
+
+		if(currentlyLoggedUser == null) {
+			model.addAttribute("ErrorMsg", "Failed to submit comment. User is null, currently logged user binding error...");
+			return "redirect:errors/errorView";
+		}
+		
+		if(submittedComment == null) {
+			model.addAttribute("ErrorMsg", "Failed to submit comment. Thymeleaf binding error, controller received null Commentary...");
+			return "redirect:errors/errorView";
+		}
+		
+		boolean isPublished = submittedComment.getPublished();
+		if(isPublished || !isPublished) {
+			submittedComment.setPublished(!isPublished);
+		}
+		
+		submittedComment.setAuthor(currentlyLoggedUser.getUsername());
+		submittedComment.setUser(currentlyLoggedUser);
+		
+		commentaryService.saveCommentary(submittedComment);		
+		
+		return "redirect:/";
+
+	}
+
 	
 	/* REDO WHEN TIME AVAILBALE */
 	@PostMapping("/private/myCommentsEdit")

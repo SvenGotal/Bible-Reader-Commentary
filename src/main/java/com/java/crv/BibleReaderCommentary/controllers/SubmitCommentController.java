@@ -46,7 +46,7 @@ public class SubmitCommentController {
 	/**Sets up the commentary form by loading all books from the book repo and creates a new Commentary object
 	 * and sends it to the model to the frontend.
 	 * */
-	@GetMapping("/private/submitComment")
+	//@GetMapping("/private/submitComment")
 	public String getCommentForm(
 		Model model, 
 		Principal princ, 
@@ -87,7 +87,7 @@ public class SubmitCommentController {
 	}
 	
 	
-	@PostMapping("/private/submitComment/post")
+	//@PostMapping("/private/submitComment/post")
 	public String addComment(
 			@ModelAttribute("comment") Commentary comment,
 			@RequestParam(name="setPrivateCheckbox", required=false) String setPrivateCheckbox,

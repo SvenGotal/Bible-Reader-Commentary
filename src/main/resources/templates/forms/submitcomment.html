@@ -64,7 +64,7 @@
 							<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
 					</select> 
 					
-					<select id="chapterSelection" name="selectedChapter" onchange="fetchAllVerses()" disabled>
+					<select id="chapterSelection" name="selectedChapter" onchange="fetchAllVerses()" th:field="*{chapter.id}" disabled>
 							<option selected disabled th:placeholder="'Glava'" value=-1>Glava</option>
 					</select>
 				</div>
@@ -78,7 +78,7 @@
 							<label id="comments_label">Komentar je privatan:</label>
 						</div>
 						<div class="comments-checkbox">
-							<input id="comments_checkbox" type="checkbox" name="setPrivateCheckbox" value="false">
+							<input id="comments_checkbox" type="checkbox" name="setPrivateCheckbox" th:field="*{published}" value="false">
 						</div>
 					</div>
 				</div>
