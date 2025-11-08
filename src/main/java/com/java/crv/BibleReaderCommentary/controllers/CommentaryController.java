@@ -168,11 +168,7 @@ public class CommentaryController {
 			redirectAttributes.addFlashAttribute("message", "Error, comment missing in database...");
 			return "redirect:/private/myComments";
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-			redirectAttributes.addFlashAttribute("message", "Unknown error...");
-			return "redirect:/private/myComments";
-		}
+
 		return "redirect:/private/myComments";
 	}
 	
