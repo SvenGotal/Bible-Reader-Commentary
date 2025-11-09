@@ -24,14 +24,12 @@ public class BookController {
 	public List<Book> fetchAllBooks () {
 		return (List<Book>) bookService.getAllBookData();
 	}
-
 	
 	@GetMapping("/public/fetchCommentedBooks")
 	@ResponseBody
 	public List<Book> fetchCommentedBooks(@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser) {
 				
-		
+		// TODO: when unsigned user searches only commented books, if book contains one private comment, it is shown in the select.
 		return bookService.getBooksThatContainComments(currentlyLoggedUser.getId());
-	}
-	
+	}	
 }
