@@ -1,7 +1,7 @@
 package com.java.crv.BibleReaderCommentary.services;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class ChapterService {
 	 * Get all Chapters that contain id of a single Book (Long)
 	 * @return list of Chapters
 	 * */
-	public List<Chapter> getChaptersByBookId(Long bookId){	
+	public List<Chapter> getAllChaptersByBookId(Long bookId){	
 		return chapterRepository.findByBookId(bookId);
 	}
 	
@@ -43,15 +43,20 @@ public class ChapterService {
 		return StreamSupport.stream(chapterRepository.findAll().spliterator(), false).filter(chapter -> !chapter.getComments().isEmpty()).toList();
 	}
 	
-	public List<Chapter> getChaptersThatContainComments(Long bookId){
+	public List<Chapter> getChaptersThatContainCommentsByBookId(Long bookId){
 		
-		Set<Chapter> setOfChaptersWithComments = new HashSet<Chapter>();
-		List<Chapter> listOfAllChapters = chapterRepository.findByBookId(bookId);
+		Set<Chapter> setOfChaptersWithComments = new LinkedHashSet<Chapter>();
+		List<Chapter> listOfAllChapters = chapterRepository.findByBookId(bookId).stream().filter(chapter -> !chapter.getComments().isEmpty()).toList();
 		listOfAllChapters.forEach(chapter -> setOfChaptersWithComments.add(chapter));
 		
 		
 		return setOfChaptersWithComments.stream().collect(Collectors.toList());
 	}
 	
-
+	public List<Chapter> getChaptersThatContainOnlyPublicComments(Long bookId){
+		return chapterRepository.findByBookId(bookId)
+				.stream()
+				.filter(chapter -> !chapter.getComments().isEmpty())
+				.filter(chapter -> chapter.getComments().stream().anyMatch(comment -> comment.getPublished())).toList();
+	}
 }
