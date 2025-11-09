@@ -1,7 +1,6 @@
 package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,7 +9,6 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
-import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 
@@ -18,12 +16,10 @@ import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 public class BookService {
 
 	private BookRepository bookRepository;
-	private CommentaryService commentaryService;
 	private ChapterService chapterService;
 	
-	public BookService(BookRepository bookRepository, CommentaryService commentaryService, ChapterService chapterService) {
+	public BookService(BookRepository bookRepository, ChapterService chapterService) {
 		this.bookRepository = bookRepository;
-		this.commentaryService = commentaryService;
 		this.chapterService = chapterService;
 	}
 	/**
