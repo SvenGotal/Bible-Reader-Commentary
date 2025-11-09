@@ -22,6 +22,7 @@ public class BookService {
 		this.bookRepository = bookRepository;
 		this.chapterService = chapterService;
 	}
+	
 	/**
 	 * Gets all the book objects in the BookRepository, unfiltered.
 	 * @return List<Book>
@@ -52,16 +53,8 @@ public class BookService {
 		List<Chapter> allChaptersWithComments = chapterService.getAllChaptersThatContainComments().stream().filter( chapter -> !chapter.getComments().isEmpty()).toList();		
 		allChaptersWithComments.forEach(chapter -> setOfBooksThatContainComments.add(chapter.getBook()));
 		
-		return setOfBooksThatContainComments.stream().collect(Collectors.toList());
-		
-		
-	}
-	
-	
-	
-	
-	
-	
+		return setOfBooksThatContainComments.stream().collect(Collectors.toList());				
+	}						
 }
 
 
