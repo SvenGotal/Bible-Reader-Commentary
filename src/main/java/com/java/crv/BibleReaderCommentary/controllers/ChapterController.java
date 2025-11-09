@@ -26,15 +26,16 @@ public class ChapterController {
 	@ResponseBody
 	public List<Chapter> fetchChapters(@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser, @RequestParam Long bookId, @RequestParam(required = false, defaultValue = "false") Boolean filterCommented){
 		
-
-		if(currentlyLoggedUser != null & filterCommented)
-		{
+		if(currentlyLoggedUser != null & filterCommented){
 			return chapterService.getChaptersThatContainPublicAndAllUsersComments(bookId, currentlyLoggedUser.getId());
 		}
-		
-		return chapterService.getChaptersThatContainOnlyPublicComments(bookId);
-		
-		
-		
+		else if(currentlyLoggedUser == null & filterCommented) {
+			return chapterService.getChaptersThatContainOnlyPublicComments(bookId);
+		}
+		else {
+			return chapterService.getAllChaptersByBookId(bookId);
+		}							
 	}
+	
+	
 }
