@@ -54,6 +54,10 @@ public class CommentaryService {
 		return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
+	public List<Commentary> getFilteredCommentary(Long bookId, Long userId, Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
+		return getAllCommentaryFromRepositoryByBookId(bookId).stream().filter(predicate1.or(predicate2)).toList();
+	}
+	
 	public List<Commentary> getUsersCommentaryById(Long userId){		
 		return commentaryRepository.findAllByUserId(userId);		
 	}
@@ -79,6 +83,10 @@ public class CommentaryService {
 	
 	private List<Commentary> getAllCommentaryFromRepository(){
 		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).toList();
+	}
+	
+	private List<Commentary> getAllCommentaryFromRepositoryByBookId(Long bookId){
+		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).filter(comment -> comment.getChapter().getBook().getId() == bookId).toList();
 	}
 	
 }

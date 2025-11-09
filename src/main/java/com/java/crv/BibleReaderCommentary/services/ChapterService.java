@@ -3,6 +3,7 @@ package com.java.crv.BibleReaderCommentary.services;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -41,10 +42,18 @@ public class ChapterService {
 		return chapterRepository.findByBookId(bookId);
 	}
 	
+	/**
+	 * Get all Chapter elements that contain Commentary elements in their Commentary list
+	 * @return list of Chapters
+	 * */
 	public List<Chapter> getAllChaptersThatContainComments(){
 		return StreamSupport.stream(chapterRepository.findAll().spliterator(), false).filter(chapter -> !chapter.getComments().isEmpty()).toList();
 	}
 	
+	/**
+	 * Gets all chapters by their Book id that contain comments
+	 * @return list of Chapters
+	 * */
 	public List<Chapter> getChaptersThatContainCommentsByBookId(Long bookId){
 		
 		Set<Chapter> setOfChaptersWithComments = new LinkedHashSet<Chapter>();
@@ -55,6 +64,10 @@ public class ChapterService {
 		return setOfChaptersWithComments.stream().collect(Collectors.toList());
 	}
 	
+	/**
+	 * Gets all chapters that are public and if the Chapter contains at least one public comment
+	 * @return List of Chapters with at least one public comment
+	 * */
 	public List<Chapter> getChaptersThatContainOnlyPublicComments(Long bookId){
 		return chapterRepository.findByBookId(bookId)
 				.stream()
@@ -62,14 +75,21 @@ public class ChapterService {
 				.filter(chapter -> chapter.getComments().stream().anyMatch(comment -> comment.getPublished())).toList();
 	}
 	
+	/**
+	 * 
+	 * Gets all chapters that contain all public comments and all users private comments
+	 * @return List of chapters with public and user's private commentary
+	 * */
 	public List<Chapter> getChaptersThatContainPublicAndAllUsersComments(Long bookId, Long userId){
+
+		Predicate<Commentary> isPublished = comment -> comment.getPublished();
+		Predicate<Commentary> belongsToUser = comment -> comment.getUser().getId() == userId;
 		
-		List<Commentary> listOfAllUsersComments = commentaryService.getAllUsersPrivateAndAllPublicCommentary(userId);
-		Set<Chapter> setOfChapters = listOfAllUsersComments
+		Set<Chapter> setOfChapters = commentaryService.getFilteredCommentary(bookId, userId, isPublished, belongsToUser)
 				.stream()
 				.map(Commentary::getChapter)
 				.filter(chapt -> chapt.getBook().getId() == bookId)
-				.collect(Collectors.toSet());   // new LinkedHashSet<Chapter>();
+				.collect(Collectors.toSet());
 								
 		return setOfChapters.stream().collect(Collectors.toList());
 		
