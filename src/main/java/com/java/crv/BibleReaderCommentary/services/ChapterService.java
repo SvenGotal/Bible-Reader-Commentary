@@ -1,6 +1,5 @@
 package com.java.crv.BibleReaderCommentary.services;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +9,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
+import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.exceptions.ChapterNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 
@@ -17,10 +17,12 @@ import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
 public class ChapterService {
 	
 	private ChapterRepository chapterRepository;
+	private CommentaryService commentaryService;
 	
-	public ChapterService(ChapterRepository chapterRepository) {
+	public ChapterService(ChapterRepository chapterRepository, CommentaryService commentaryService) {
 		
 		this.chapterRepository = chapterRepository;
+		this.commentaryService = commentaryService;
 	}
 
 	/**
@@ -58,5 +60,18 @@ public class ChapterService {
 				.stream()
 				.filter(chapter -> !chapter.getComments().isEmpty())
 				.filter(chapter -> chapter.getComments().stream().anyMatch(comment -> comment.getPublished())).toList();
+	}
+	
+	public List<Chapter> getChaptersThatContainPublicAndAllUsersComments(Long bookId, Long userId){
+		
+		List<Commentary> listOfAllUsersComments = commentaryService.getAllUsersPrivateAndAllPublicCommentary(userId);
+		Set<Chapter> setOfChapters = listOfAllUsersComments
+				.stream()
+				.map(Commentary::getChapter)
+				.filter(chapt -> chapt.getBook().getId() == bookId)
+				.collect(Collectors.toSet());   // new LinkedHashSet<Chapter>();
+								
+		return setOfChapters.stream().collect(Collectors.toList());
+		
 	}
 }

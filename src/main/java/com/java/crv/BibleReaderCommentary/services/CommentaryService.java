@@ -33,6 +33,19 @@ public class CommentaryService {
 		return getAllCommentaryFromRepository().stream().filter((Commentary comment) -> !comment.getPublished()).toList();
 	}
 	
+	public List<Commentary> getAllUsersPrivateCommentary(Long userId){
+		return commentaryRepository.findAllByUserId(userId);		
+	}
+	
+	public List<Commentary> getAllUsersPrivateAndAllPublicCommentary(Long userId){
+		Predicate<Commentary> isPublished = comment -> comment.getPublished();
+		Predicate<Commentary> belongsToUser = comment -> comment.getUser().getId() == userId;
+		return getAllCommentaryFromRepository()
+				.stream()
+				.filter(isPublished.or(belongsToUser))
+				.toList();
+	}
+	
 	public List<Commentary> getFilteredCommentary(Long chapterId, Predicate<Commentary> predicate){
 		return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate).toList();
 	}
