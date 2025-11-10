@@ -2,40 +2,28 @@ package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Predicate;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
-import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.Verse;
-import com.java.crv.BibleReaderCommentary.domain.User;
-import com.java.crv.BibleReaderCommentary.repositories.BookRepository;
 import com.java.crv.BibleReaderCommentary.repositories.ChapterRepository;
-import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.VerseRepository;
 
 @Controller
 public class ApiController {
 	
-	private BookRepository bookRepository;
-	private CommentaryRepository commentaryRepository;
+
 	private ChapterRepository chapterRepository;
 	private VerseRepository verseRepository;
 	
-	public ApiController (BookRepository bookRepository, CommentaryRepository commentaryRepository, ChapterRepository chapterRepository, VerseRepository verseRepository) 
+	public ApiController (ChapterRepository chapterRepository, VerseRepository verseRepository) 
 	{
-		this.bookRepository = bookRepository;
-		this.commentaryRepository = commentaryRepository;
+
 		this.chapterRepository = chapterRepository;
 		this.verseRepository = verseRepository;
 	}
