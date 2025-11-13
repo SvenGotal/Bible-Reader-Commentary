@@ -76,7 +76,6 @@ public class ChapterService {
 	}
 	
 	/**
-	 * 
 	 * Gets all chapters that contain all public comments and all users private comments
 	 * @return List of chapters with public and user's private commentary
 	 * */
