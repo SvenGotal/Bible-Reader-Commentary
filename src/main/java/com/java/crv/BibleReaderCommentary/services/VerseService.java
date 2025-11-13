@@ -16,6 +16,10 @@ public class VerseService {
 		this.verseRepository = verseRepository;
 	}
 	
+	/**
+	 * Gets all verses contained within the verse repository by Chapter id.
+	 * @return List of Verse elements from the chapter
+	 * */
 	public List<Verse> getAllChapterVerses(Long chapterId){
 		return verseRepository.findByChapterId(chapterId);
 	}
