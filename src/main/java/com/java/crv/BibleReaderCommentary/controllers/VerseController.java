@@ -19,11 +19,11 @@ public class VerseController {
 		this.verseService = verseService;
 	}
 	
-	@GetMapping("/public/fetchVerses")
+	@GetMapping("/public/fetchChapterVerses")
 	@ResponseBody
-	public List<Verse> fetchIndexVerses(@RequestParam Long chapterNumber){
+	public List<Verse> fetchIndexVerses(@RequestParam Long chapterId){
 		
-		return verseService.getAllChapterVerses(chapterNumber);
+		return verseService.getAllChapterVerses(chapterId);
 		
 	}
 }
