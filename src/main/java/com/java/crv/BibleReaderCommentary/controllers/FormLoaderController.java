@@ -44,7 +44,7 @@ public class FormLoaderController {
 		model.addAttribute("books", bookService.getAllBookData());
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
 		
-		return "homepage";
+		return "index";
 	}
 	
 	/**
