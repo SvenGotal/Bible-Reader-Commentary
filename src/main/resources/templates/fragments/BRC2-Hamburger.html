@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<section th:fragment="BRC2-Hamburger">
+		<nav>
+			<input id="hamburger_toggle" type="checkbox">
+			<label class="hamburger" for="hamburger_toggle">
+				<div class="hamburger-top"></div>
+				<div class="hamburger-middle"></div>
+				<div class="hamburger-bottom"></div>
+			</label>
+			<th:block th:if="${currentlyLoggedUser != null}">
+				<nav class="hamburger-menu" th:switch="${currentlyLoggedUser.getRole.name}">
+					<th:block th:case="USER">
+						<ul>
+							<li><a href="/">Početna</a></li>
+							<li><a href="/private/myComments">Moji komentari</a></li>
+							<li><a href="/private/myHomepage">Moja stranica</a></li>
+							<li><a href="/private/submitComment">Napiši komentar</a></li>
+							<li><a id="logout_button" href="/logout">Odjava</a></li>
+						</ul>
+					</th:block>
+					<th:block th:case="ADMIN">
+						<ul>
+							<li><a href="/">Početna</a></li>
+							<li><a href="/public/submitForm">Novi korisnik</a></li>
+							<li><a href="/private/myComments">Moji komentari</a></li>
+							<li><a href="/private/myHomepage">Moja stranica</a></li>
+							<li><a href="/admin/controlCenter">Control Center</a></li>
+							<li><a href="/private/submitComment">Napiši komentar</a></li>
+							<li><a id="logout_button" href="/logout">Odjava</a></li>
+						</ul>
+					</th:block>
+				</nav>
+			</th:block>
+			<th:block th:unless="${currentlyLoggedUser}">
+				<nav class="menu1">
+					<ul>
+						<li><a href="public/submitForm">Izradi profil</a></li> 
+						<li><a href="/login">Prijava</a></li>
+					</ul>
+				</nav>
+			</th:block>
+		</nav>
+	
+	</section>
+</body>
+</html>

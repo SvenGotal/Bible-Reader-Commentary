@@ -67,3 +67,127 @@
   font-variation-settings:
     "wdth" 100;
 }
+
+.BRC2-header-container{
+	display: flex;
+	flex-direction: row;
+}
+
+.BRC2-logo-wrapper{
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.BRC2-options-wrapper{
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.hamburger-menu{
+	background-color: white;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	height: 0px;
+	list-style: none;
+	background: rgba(0,0,0,0.0);
+	table-layout: fixed;
+	overflow: hidden;
+	transition: height .4s ease;
+	z-index: 1;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	position: absolute;
+	right: 9%;
+}
+
+.hamburger {
+	height: 45px;
+	margin: 10px;
+	display: -ms-grid;
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	justify-items: center;
+	z-index: 120;
+}
+
+.hamburger div {
+	background-color: rgb(61, 61, 61);
+	position: relative;
+	width: 40px;
+	height: 5px;
+	margin-top: 7px;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#hamburger_toggle{
+	display: none;
+}
+
+#hamburger_toggle:checked+.hamburger .hamburger-top {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	margin-top: 22.5px;
+}
+
+#hamburger_toggle:checked+.hamburger .hamburger-middle {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	margin-top: -5px;
+}
+
+#hamburger_toggle:checked+.hamburger .hamburger-bottom {
+	-webkit-transform: scale(0);
+	transform: scale(0);
+}
+
+#hamburger_toggle:checked ~ .hamburger-menu {
+	height: 340px;
+}
+
+.hamburger-menu {
+	background-color: white;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	height: 0px;
+	list-style: none;
+	background: rgba(0,0,0,0.0);
+	table-layout: fixed;
+	overflow: hidden;
+	transition: height .4s ease;
+	z-index: 1;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	position: absolute;
+	right: 9%;
+}
+
+.hamburger-menu ul{
+	display: table-row;
+}
+
+.hamburger-menu ul li{
+	
+	text-align: center;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.hamburger-menu a{
+	flex-grow: 1;
+}
+
+
+
+
+
+
+
+
+
