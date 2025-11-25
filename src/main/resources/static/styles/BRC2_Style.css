@@ -13,6 +13,12 @@
 
 */
 
+
+body{
+	padding: 0;
+	margin: 0;
+}
+
 .lato-regular {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -69,6 +75,8 @@
 }
 
 .BRC2-header-container{
+	padding-top: 10px;
+	padding-bottom: 10px;
 	display: flex;
 	flex-direction: row;
 }
@@ -88,13 +96,13 @@
 }
 
 .hamburger-menu{
-	background-color: white;
+	background-color: rgba(108, 100, 174, 0.7); /*#918AD8;*/
 	margin: 0px;
 	padding: 0px;
 	text-align: center;
 	height: 0px;
 	list-style: none;
-	background: rgba(0,0,0,0.0);
+	width: 20%;
 	table-layout: fixed;
 	overflow: hidden;
 	transition: height .4s ease;
@@ -102,7 +110,7 @@
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	position: absolute;
-	right: 9%;
+
 }
 
 .hamburger {
@@ -116,13 +124,14 @@
 }
 
 .hamburger div {
-	background-color: rgb(61, 61, 61);
+	background-color: rgb(108, 100, 174);
 	position: relative;
 	width: 40px;
 	height: 5px;
 	margin-top: 7px;
 	-webkit-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
+	border-radius: 10px;
 }
 
 #hamburger_toggle{
@@ -148,42 +157,32 @@
 
 #hamburger_toggle:checked ~ .hamburger-menu {
 	height: 340px;
+	width: 100%;
 }
 
-.hamburger-menu {
-	background-color: white;
-	margin: 0px;
-	padding: 0px;
-	text-align: center;
-	height: 0px;
-	list-style: none;
-	background: rgba(0,0,0,0.0);
-	table-layout: fixed;
-	overflow: hidden;
-	transition: height .4s ease;
-	z-index: 1;
-	-webkit-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-	position: absolute;
-	right: 9%;
-}
+
 
 .hamburger-menu ul{
 	display: table-row;
 }
 
 .hamburger-menu ul li{
-	
+
 	text-align: center;
 	margin-left: 5px;
 	margin-right: 5px;
 }
 
 .hamburger-menu a{
+	text-decoration: none;
 	flex-grow: 1;
+	color: white;
 }
 
-
+.main-wrapper{
+	padding: 0;
+	margin: 0;
+}
 
 
 

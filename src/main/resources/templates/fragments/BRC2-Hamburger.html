@@ -14,7 +14,7 @@
 				<div class="hamburger-bottom"></div>
 			</label>
 			<th:block th:if="${currentlyLoggedUser != null}">
-				<nav class="hamburger-menu" th:switch="${currentlyLoggedUser.getRole.name}">
+				<nav class="hamburger-menu roboto-title" th:switch="${currentlyLoggedUser.getRole.name}">
 					<th:block th:case="USER">
 						<ul>
 							<li><a href="/">Početna</a></li>
@@ -38,9 +38,9 @@
 				</nav>
 			</th:block>
 			<th:block th:unless="${currentlyLoggedUser}">
-				<nav class="menu1">
+				<nav class="hamburger-menu roboto-title">
 					<ul>
-						<li><a href="public/submitForm">Izradi profil</a></li> 
+						<li><a href="public/submitForm">Registracija</a></li> 
 						<li><a href="/login">Prijava</a></li>
 					</ul>
 				</nav>
