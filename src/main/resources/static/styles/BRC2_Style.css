@@ -95,6 +95,12 @@ body{
 	text-align: center;
 }
 
+.BRC-hamburger-wrapper{
+	max-width: 50px;
+	max-height: 50px;
+	padding: 0;
+}
+
 .hamburger-menu{
 	background-color: rgba(108, 100, 174, 0.7); /*#918AD8;*/
 	margin: 0px;
@@ -103,14 +109,17 @@ body{
 	height: 0px;
 	list-style: none;
 	width: 20%;
+	max-width: 20%;
 	table-layout: fixed;
 	overflow: hidden;
 	transition: height .4s ease;
-	z-index: 1;
+	z-index: 2;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	position: absolute;
-
+	right: 78%;
+	margin-top: 10px;
+	padding-left: 2%;
 }
 
 .hamburger {
@@ -168,24 +177,42 @@ body{
 
 .hamburger-menu ul li{
 
-	text-align: center;
+	text-align: left;
 	margin-left: 5px;
 	margin-right: 5px;
+	padding-top: 10px;
 }
 
 .hamburger-menu a{
 	text-decoration: none;
 	flex-grow: 1;
 	color: white;
+	font-family: "Lato", sans-serif;
+ 	font-weight: 400;
+ 	font-style: normal;
+ 	font-size: 30px;
 }
 
 .main-wrapper{
 	padding: 0;
 	margin: 0;
+
 }
 
+.main-bg-image{
+	z-index: 0;
+	position: absolute;
+}
 
-
+.main-bg-image-text-container{
+	position: relative;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+	color: white;
+	padding-top: 4%;
+}
 
 
 
