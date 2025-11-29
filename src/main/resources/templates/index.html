@@ -11,7 +11,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
 		<script th:src="@{/scripts/BRC_script.js}"></script>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 	</head>
 		
@@ -23,20 +23,38 @@
 			
 			<main>
 				<div class="main-wrapper">
-					<img class="main-bg-image" th:src="@{/images/homepage_bg.avif}">
+					<div class="main-bg-image-wrapper">
+						<img class="main-bg-image" th:src="@{/images/homepage_bg.avif}">
+					</div>
 					<div class="main-bg-image-text-container">
 						<div class="main-quotation-wrapper">
 							<div class="main-quote-text-wrapper">
-								<p class="quotation-text lato-regular">Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, 
+								<p class="quotation-text montserrat-paragraph">Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, 
 								odgajanje u pravednosti, da čovjek Božji bude vrstan, za svako dobro djelo podoban.</p>
 							</div>
 							<div class="main-quote-reference-wrapper">
-								<p class="quotation-reference lato-black">2. TIMOTEJU 3:16</p>
+								<p class="quotation-reference montserrat-paragraph-bold">2. TIMOTEJU 3:16</p>
 							</div>
 						</div>
-						<!-- <img th:src="@{/images/icon_black_bible_book.tiff}"> -->
 					</div>
+					<div class="main-bible-read-button-wrapper">
+						<button class="BRC2-buttons montserrat-paragraph">Čitaj Bibliju</button>
 					
+					</div>
+					<div class="main-boxes-wrapper">
+						<div class="main-box-meet">
+					
+						</div>
+						<div class="main-box-about">
+						
+						</div>
+						<div class="main-box-suggestion">
+						
+						</div>
+						<div class="main-box-bible-about">
+						
+						</div>
+					</div>
 				
 				</div>
 			

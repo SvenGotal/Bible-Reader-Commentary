@@ -3,7 +3,7 @@
 	<div th:fragment="BRC-User-Icon" class="header-cell">
 		<img class="user-icon" th:src="@{/images/user-solid.svg}">	
 	</div>
-	<div class="user-icon-username word-break">
+	<div class="user-icon-username word-break montserrat-paragraph">
 		<a th:if="${currentlyLoggedUser}" th:text="${currentlyLoggedUser.username}"></a>
 		<a th:unless="${currentlyLoggedUser}" th:text="guest"></a>
 	</div>

@@ -19,6 +19,12 @@ body{
 	margin: 0;
 }
 
+.lato-light {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
 .lato-regular {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -53,7 +59,7 @@ body{
 .montserrat-title {
  	font-family: "Montserrat", sans-serif;
  	font-optical-sizing: auto;
- 	font-weight: 400;
+ 	font-weight: 600;
  	font-style: bold;
 }
 
@@ -63,6 +69,13 @@ body{
   	font-weight: 400;
   	font-style: normal;
 	
+}
+
+.montserrat-paragraph-bold{
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+  	font-weight: 800;
+
 }
  
 .roboto-title {
@@ -75,10 +88,12 @@ body{
 }
 
 .BRC2-header-container{
+	background-color: white;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	display: flex;
 	flex-direction: row;
+	z-index: 10;
 }
 
 .BRC2-logo-wrapper{
@@ -104,7 +119,7 @@ body{
 }
 
 .hamburger-menu{
-	background-color: rgba(108, 100, 174, 0.7); /*#918AD8;*/
+	background-color: rgba(108, 100, 174, 0.8); /*#918AD8;*/
 	margin: 0px;
 	padding: 0px;
 	text-align: center;
@@ -115,7 +130,7 @@ body{
 	table-layout: fixed;
 	overflow: hidden;
 	transition: height .4s ease;
-	z-index: 2;
+	z-index: 10;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	position: absolute;
@@ -171,6 +186,10 @@ body{
 	width: 100%;
 }
 
+#hamburger_toggle:checked .main-bg-image-wrapper{
+	background-color: #918AD8;
+	z-index: 10;
+}
 
 
 .hamburger-menu ul{
@@ -221,9 +240,12 @@ body{
 
 }
 
+
 .main-bg-image{
-	z-index: 0;
+	z-index: -10;
+	display: block;
 	position: absolute;
+	margin-top: -150px;
 }
 
 .main-bg-image-text-container{
@@ -246,16 +268,17 @@ body{
 
 .quotation-text{
 	font-size: 125%;
+	
 }
 
 .quotation-reference{
 	letter-spacing: 0.2em;
-	 
+	font-size: 80%;
 }
 
 .main-quote-text-wrapper{
-	max-width: 30%;
-	width: 30%;
+	max-width: 40%;
+	width: 40%;
 }
 
 .word-break{
@@ -306,6 +329,15 @@ body{
 	/* ========== */
 }
 
+.BRC2-buttons{
+	background-color: white;
+	color: black;
+	padding: 13px 25px 13px 25px;
+	border: none;
+	border-radius: 20px;
+
+}
+
 .closeButton-bottom{
 	 transform: translate(0%, 0%) rotate(45deg);
 	 /* CROSS FORM */
@@ -330,13 +362,43 @@ body{
 	cursor: pointer;
 }
 
+.main-bible-read-button-wrapper{
+	padding-top: 2%;
+	margin-bottom: 3%;
+	text-align: center;
+}
 
+.main-boxes-wrapper{
+	display: flex;
+	flex-direction: row;
+}
 
+.main-boxes-wrapper div{
+	width: 25vw;
+	aspect-ratio: 1 / 1;
+}
 
+.main-box-meet{
+	background-color: #F1CD69;
+}
 
+.main-box-about{
+	background-color: #7BBE6E;
+}
 
+.main-box-suggestion{
+	background-color: #918AD8;
+}
 
-
+.main-box-bible-about{
+	background-color: #CA4B97;
+}
+/*
+main-yellow-color: #F1CD69
+	main-green-color: #7BBE6E
+	main-blue-color: #918AD8
+	main-violet-color: #CA4B97
+*/
 
 
 
