@@ -15,7 +15,7 @@
 				<div class="hamburger-bottom"></div>
 			</label>
 			<th:block th:if="${currentlyLoggedUser != null}">
-				<nav class="hamburger-menu roboto-title" th:switch="${currentlyLoggedUser.getRole.name}">
+				<nav id="hamburger_menu" class="hamburger-menu roboto-title" th:switch="${currentlyLoggedUser.getRole.name}">
 					<th:block th:case="USER">
 						<ul>
 							<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>

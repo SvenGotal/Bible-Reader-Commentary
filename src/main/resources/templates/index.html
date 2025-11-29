@@ -9,6 +9,8 @@
 		<link rel="stylesheet" type="text/css"th:href="@{/styles/BRC2_Style.css}"/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<script th:src="@{/scripts/BRC_script.js}"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 	</head>
@@ -23,7 +25,16 @@
 				<div class="main-wrapper">
 					<img class="main-bg-image" th:src="@{/images/homepage_bg.avif}">
 					<div class="main-bg-image-text-container">
-						<h1 class="lato-black">NASLOV</h1>
+						<div class="main-quotation-wrapper">
+							<div class="main-quote-text-wrapper">
+								<p class="quotation-text lato-regular">Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, 
+								odgajanje u pravednosti, da čovjek Božji bude vrstan, za svako dobro djelo podoban.</p>
+							</div>
+							<div class="main-quote-reference-wrapper">
+								<p class="quotation-reference lato-black">2. TIMOTEJU 3:16</p>
+							</div>
+						</div>
+						<!-- <img th:src="@{/images/icon_black_bible_book.tiff}"> -->
 					</div>
 					
 				

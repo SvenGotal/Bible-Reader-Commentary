@@ -236,6 +236,28 @@ body{
 	padding-top: 4%;
 }
 
+.main-quotation-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+}
+
+.quotation-text{
+	font-size: 125%;
+}
+
+.quotation-reference{
+	letter-spacing: 0.2em;
+	 
+}
+
+.main-quote-text-wrapper{
+	max-width: 30%;
+	width: 30%;
+}
+
 .word-break{
 	word-break: break-word;
   	overflow-wrap: break-word;
