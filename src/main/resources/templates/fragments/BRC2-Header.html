@@ -9,13 +9,16 @@
 	<header th:fragment="BRC2-Header">
 		<div class="BRC2-header-container">
 			<div class="BRC2-logo-wrapper">
-				<img th:src="@{/images/Bibilijaija logo-2.avif}">
+				<a href="/"><img  th:src="@{/images/Bibilijaija logo-2.avif}"></a>
 			</div>
 
-			<div class="BRC2-options-wrapper">
+			<div class="BRC2-options-wrapper">			
+				<div th:replace="~{fragments/BRC-User-Icon}" class="BRC2-user-icon-wrapper">
+					<!--/* USER ICON FRAGMENT HERE */-->
+				</div>
 				<div th:replace="~{fragments/BRC2-Hamburger :: BRC2-Hamburger}"  class="BRC2-hamburger-wrapper">
 					<!--/* HAMBURGER FRAGMENT HERE */-->
-				</div>
+				</div>							
 			</div>
 		</div>
 	</header>

@@ -5,9 +5,9 @@
 
 </head>
 <body>
-	<section th:fragment="BRC2-Hamburger">
-	<div class="BRC-hamburger-wrapper">
-		<nav>
+	<section >
+	<div th:fragment="BRC2-Hamburger" class="BRC-hamburger-wrapper">
+
 			<input id="hamburger_toggle" type="checkbox">
 			<label class="hamburger" for="hamburger_toggle">
 				<div class="hamburger-top"></div>
@@ -18,6 +18,7 @@
 				<nav class="hamburger-menu roboto-title" th:switch="${currentlyLoggedUser.getRole.name}">
 					<th:block th:case="USER">
 						<ul>
+							<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
 							<li><a href="/">Početna</a></li>
 							<li><a href="/private/myComments">Moji komentari</a></li>
 							<li><a href="/private/myHomepage">Moja stranica</a></li>
@@ -27,6 +28,7 @@
 					</th:block>
 					<th:block th:case="ADMIN">
 						<ul>
+							<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
 							<li><a href="/">Početna</a></li>
 							<li><a href="/public/submitForm">Novi korisnik</a></li>
 							<li><a href="/private/myComments">Moji komentari</a></li>
@@ -41,12 +43,13 @@
 			<th:block th:unless="${currentlyLoggedUser}">
 				<nav class="hamburger-menu roboto-title">
 					<ul>
+						<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
 						<li><a href="public/submitForm">Registracija</a></li> 
 						<li><a href="/login">Prijava</a></li>
 					</ul>
 				</nav>
 			</th:block>
-		</nav>
+
 	</div>
 	</section>
 </body>
