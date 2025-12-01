@@ -19,23 +19,23 @@
 					<th:block th:case="USER">
 						<ul>
 							<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
-							<li><a href="/">Početna</a></li>
-							<li><a href="/private/myComments">Moji komentari</a></li>
-							<li><a href="/private/myHomepage">Moja stranica</a></li>
-							<li><a href="/private/submitComment">Napiši komentar</a></li>
-							<li><a id="logout_button" href="/logout">Odjava</a></li>
+							<li><a class="hamburger-option-homepage" href="/">Početna</a></li>
+							<li><a class="hamburger-option-option" href="/private/myComments">Moji komentari</a></li>
+							<li><a class="hamburger-option-option" href="/private/myHomepage">Moja stranica</a></li>
+							<li><a class="hamburger-option-option" href="/private/submitComment">Napiši komentar</a></li>
+							<li><a class="hamburger-option-logout" id="logout_button" href="/logout">Odjava &#x27B2;</a></li>
 						</ul>
 					</th:block>
 					<th:block th:case="ADMIN">
 						<ul>
 							<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
-							<li><a href="/">Početna</a></li>
-							<li><a href="/public/submitForm">Novi korisnik</a></li>
-							<li><a href="/private/myComments">Moji komentari</a></li>
-							<li><a href="/private/myHomepage">Moja stranica</a></li>
-							<li><a href="/admin/controlCenter">Control Center</a></li>
-							<li><a href="/private/submitComment">Napiši komentar</a></li>
-							<li><a id="logout_button" href="/logout">Odjava</a></li>
+							<li><a class="hamburger-option-homepage" href="/">Početna</a></li>
+							<li><a class="hamburger-option-option" href="/public/submitForm">Novi korisnik</a></li>
+							<li><a class="hamburger-option-option" href="/private/myComments">Moji komentari</a></li>
+							<li><a class="hamburger-option-option" href="/private/myHomepage">Moja stranica</a></li>
+							<li><a class="hamburger-option-option" href="/admin/controlCenter">Control Center</a></li>
+							<li><a class="hamburger-option-option" href="/private/submitComment">Napiši komentar</a></li>
+							<li><a class="hamburger-option-logout" id="logout_button" href="/logout">Odjava &#x27B2;</a></li>
 						</ul>
 					</th:block>
 				</nav>
@@ -44,8 +44,9 @@
 				<nav class="hamburger-menu roboto-title">
 					<ul>
 						<li><div th:replace="~{fragments/BRC2-CloseButton}"></div></li>
-						<li><a href="public/submitForm">Registracija</a></li> 
-						<li><a href="/login">Prijava</a></li>
+						<li><a class="hamburger-option-homepage" href="/">Početna</a></li>
+						<li><a class="hamburger-option-option"  href="public/submitForm">Registracija</a></li> 
+						<li><a class="hamburger-option-login" href="/login">Prijava</a></li>
 					</ul>
 				</nav>
 			</th:block>

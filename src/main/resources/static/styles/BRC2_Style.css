@@ -63,6 +63,13 @@ body{
  	font-style: bold;
 }
 
+.montserrat-button{
+	font-family: "Montserrat", sans-serif;
+ 	font-optical-sizing: auto;
+ 	font-weight: 500;
+ 	font-style: bold;
+}
+
 .montserrat-paragraph{
 	font-family: "Montserrat", sans-serif;
 	font-optical-sizing: auto;
@@ -154,8 +161,8 @@ body{
 	width: 40px;
 	height: 5px;
 	margin-top: 7px;
-	-webkit-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	border-radius: 10px;
 }
 
@@ -182,8 +189,9 @@ body{
 
 #hamburger_toggle:checked ~ .hamburger-menu {
 	max-height: 65%;
-	height: 420px;
+	height: auto;
 	width: 100%;
+	padding-bottom: 15px;
 }
 
 #hamburger_toggle:checked .main-bg-image-wrapper{
@@ -207,11 +215,26 @@ body{
 .hamburger-menu a{
 	text-decoration: none;
 	flex-grow: 1;
-	color: white;
 	font-family: "Lato", sans-serif;
  	font-weight: 400;
  	font-style: normal;
  	font-size: 30px;
+}
+
+.hamburger-option-homepage{
+	color: #7BBE6E;
+}
+
+.hamburger-option-option{
+	color: white;
+}
+
+.hamburger-option-logout{
+	color: #CA4B97;
+}
+
+.hamburger-option-login{
+	color: #F1CD69;
 }
 
 .user-icon-username-wrapper{
@@ -276,6 +299,11 @@ body{
 	font-size: 80%;
 }
 
+.main-box-title{
+	letter-spacing: 0.3em;
+	font-size: 115%;
+}
+
 .main-quote-text-wrapper{
 	max-width: 40%;
 	width: 40%;
@@ -331,11 +359,33 @@ body{
 
 .BRC2-buttons{
 	background-color: white;
-	color: black;
+	color: #404040;
 	padding: 13px 25px 13px 25px;
 	border: none;
 	border-radius: 20px;
+	max-width: 130px;
+}
 
+.BRC2-buttons:hover{
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+#button_meet:hover{
+	color: #F1CD69;
+}
+
+#button_about:hover{
+	color: #7BBE6E;
+}
+
+#button_suggestion:hover{
+	color: #918AD8;
+}
+
+#button_bible_about:hover{
+	color: #CA4B97;
 }
 
 .closeButton-bottom{
@@ -363,9 +413,32 @@ body{
 }
 
 .main-bible-read-button-wrapper{
-	padding-top: 2%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	
+}
+
+.bible-read-button{
+	max-width: 10%;
+	max-height: 50px;
+	margin-top: 2%;
 	margin-bottom: 3%;
 	text-align: center;
+}
+
+.bible-read-button:hover .button-bible-read-span{
+	background-image: linear-gradient(
+    90deg,
+    #F1CD69, /* main-yellow-color */
+    #7BBE6E, /* main-green-color */
+    #918AD8, /* main-blue-color */
+    #CA4B97  /* main-violet-color */
+  );
+  -webkit-background-clip: text; /* needed for WebKit (Chrome, Safari) */
+  background-clip: text;
+  color: transparent; 
+
 }
 
 .main-boxes-wrapper{
@@ -375,7 +448,7 @@ body{
 
 .main-boxes-wrapper div{
 	width: 25vw;
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 1 / 0.7;
 }
 
 .main-box-meet{
@@ -392,6 +465,29 @@ body{
 
 .main-box-bible-about{
 	background-color: #CA4B97;
+}
+
+.main-box-rollout-wrapper{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	size: 100%;
+	color: white;
+}
+
+.main-box-button-wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 25vw;
+	height: 10%;
+	padding-bottom: 9%;
+}
+
+.main-box-paragraph{
+	max-width: 70%;
 }
 /*
 main-yellow-color: #F1CD69
