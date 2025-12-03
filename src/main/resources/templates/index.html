@@ -44,8 +44,11 @@
 					</div>
 					<div class="main-boxes-wrapper">
 						<div class="main-box-meet">
+							<div class="main-box-image-wrapper">
+								<img th:src="@{images/icon-mug-white.png}">
+							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
-								<img>
+								
 								<p class="main-box-title montserrat-paragraph-bold">SASTANAK</p>
 								<p class="main-box-paragraph">Želiš znati više o utjecaju Biblije na osobni život? Ugovori sastanak...</p>								
 							</div>
@@ -54,18 +57,22 @@
 							</div>
 						</div>
 						<div class="main-box-about">
+							<div class="main-box-image-wrapper">
+								<img th:src="@{images/icon-megaphone-white.png}">
+							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
-								<img>
 								<p class="main-box-title montserrat-paragraph-bold">O NAMA</p>
-								<p class="main-box-paragraph">Iza projekta stoje kršćani reformatorske baštine, s ciljem promicanje osobnog odnosa s Bogom kroz Bibliju.</p>								
+								<p class="main-box-paragraph">Iza projekta stoje kršćani reformatorske baštine, s ciljem promicanja osobnog odnosa s Bogom kroz Bibliju.</p>								
 							</div>
 							<div class="main-box-button-wrapper">
 								<button id="button_about" class="BRC2-buttons montserrat-button"><span class="button-main-box">Suradnici</span></button>
 							</div>
 						</div>
 						<div class="main-box-suggestion">
-							<div class="main-box-rollout-wrapper montserrat-paragraph">
-								<img>
+							<div class="main-box-image-wrapper">
+								<img th:src="@{images/icon-pen-white.png}">
+							</div>
+							<div class="main-box-rollout-wrapper montserrat-paragraph">						
 								<p class="main-box-title montserrat-paragraph-bold">PRIJEDLOZI</p>
 								<p class="main-box-paragraph">Piši nam svoje dojmove i prijedloge, rado ćemo ih saslušati.</p>							
 							</div>
@@ -74,8 +81,10 @@
 							</div>
 						</div>
 						<div class="main-box-bible-about">
+							<div class="main-box-image-wrapper">
+								<img th:src="@{images/icon-bible-white.png}">
+							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
-								<img>
 								<p class="main-box-title montserrat-paragraph-bold">O PRIJEVODU</p>
 								<p class="main-box-paragraph">Biblija&#x26;ja koristi prijevod Ivana ev. Šarića</p>								
 							</div>
@@ -84,10 +93,54 @@
 							</div>
 						</div>
 					</div>
-				
-				</div>
-			
-			
+					<div class="main-information-wrapper">
+						<div class="info-contact-wrapper">
+							<div class="info-box info-address-box">
+								<div class="info-box-title montserrat-light">
+									<p>Adresa</p>
+								</div>
+								<div class="info-box-text montserrat-paragraph">
+									<p>Šubićeva 20, 2 kat</p>
+									<p>10000 Zagreb</p>
+								</div>
+							</div>
+							<div class="info-box info-contact-box">
+								<div class="info-box-title montserrat-light">
+									<p>Kontakt</p>									
+								</div>
+								<div class="info-box-text montserrat-paragraph">
+									<p><a class="contact-link" href="mailto:info@crkva-radosne-vijesti.hr">info@crkva-radosne-vijesti.hr</a></p>
+									<p><a class="contact-link" target=”_blank” href="https://crkva-radosne-vijesti.hr/">crkva-radosne-vijesti.hr</a></p>
+								</div>
+								
+							</div>
+							<div class="info-box info-service-box">
+								<div class="info-box-title montserrat-light">
+									<p>Bogoslužje</p>
+								</div>
+								<div class="info-box-text montserrat-paragraph">
+									<p>Nedjeljom    10:00 - 12:00</p>
+									<p>Dvorana u prizemlju</p>
+									<p class="info-small-lettering">(*info o terminima bogoslužja provjeriti na službenim stranicama)</p>
+								</div>
+							</div>
+						</div>						
+						<div class="info-location-wrapper">
+							<div class="mapouter" style="position:relative; text-align:right; width:900px; height:450px;">
+ 								<div class="gmap_canvas" style="overflow:hidden; background:none!important; width:900px; height:450px;">
+   									<iframe width="900px" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?q=%C5%A1ubi%C4%87eva%2020%2C%2010000%20zagreb&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+  								</div>
+ 								<a href="https://norsumediagroup.com/embed-google-map-website-free" target="_blank" rel="noopener noreferrer" class="gme-generated-link">Embed Map on Website for Free</a>
+  								<style>.mapouter{position:relative;text-align:right;} .gmap_canvas{overflow:hidden;background:none!important;} .gmap_canvas iframe{width:100%;height:100%;} .mapouter a{display:block;font-size:0.85em;text-align:center;padding:5px 0;color:#6c757d;text-decoration:none;} .gme-generated-link{display:none!important;}</style>
+							</div>
+						</div>
+					</div>
+					<div class="main-impressions-gallery">
+						<div class="gallery-left-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
+						<div class="gallery-main-window-wrapper"></div>
+						<div class="gallery-right-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-right-arrow-white.svg}" alt="&#62;"></div>
+					</div>
+				</div>						
 			</main>
 			
 			<footer> <!--/* FOOTER FRAGMENT HERE */-->

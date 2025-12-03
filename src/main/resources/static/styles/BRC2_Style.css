@@ -74,8 +74,14 @@ body{
 	font-family: "Montserrat", sans-serif;
 	font-optical-sizing: auto;
   	font-weight: 400;
+  	font-style: normal;	
+}
+
+.montserrat-light{
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+  	font-weight: 300;
   	font-style: normal;
-	
 }
 
 .montserrat-paragraph-bold{
@@ -101,6 +107,7 @@ body{
 	display: flex;
 	flex-direction: row;
 	z-index: 10;
+
 }
 
 .BRC2-logo-wrapper{
@@ -117,6 +124,11 @@ body{
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+}
+
+.BRC-User-Icon{
+	max-width: 30px;
+	height: 50px;
 }
 
 .BRC-hamburger-wrapper{
@@ -189,7 +201,7 @@ body{
 
 #hamburger_toggle:checked ~ .hamburger-menu {
 	max-height: 65%;
-	height: auto;
+	height: 420px;
 	width: 100%;
 	padding-bottom: 15px;
 }
@@ -254,6 +266,15 @@ body{
 
 .user-icon-username{
 	display: block;
+}
+
+.user-icon-username-wrapper:hover{
+	border-radius: 50%;
+	background-color: black;
+}
+
+.user-icon-username-wrapper:hover .user-icon-username{
+	color: transparent;
 }
 
 
@@ -448,23 +469,42 @@ body{
 
 .main-boxes-wrapper div{
 	width: 25vw;
-	aspect-ratio: 1 / 0.7;
+	aspect-ratio: 1 / 0.8;
+
 }
 
 .main-box-meet{
+	padding-top: 30px;
 	background-color: #F1CD69;
 }
 
 .main-box-about{
+	padding-top: 30px;
 	background-color: #7BBE6E;
 }
 
 .main-box-suggestion{
+	padding-top: 30px;
 	background-color: #918AD8;
 }
 
 .main-box-bible-about{
+	padding-top: 30px;
 	background-color: #CA4B97;
+}
+
+.main-box-image-wrapper{
+	display: flex;
+	flex-direction: center;
+	align-items: center;
+	justify-content: center;
+	width: 25vw;
+	max-height: 30%;
+}
+
+.main-box-image-wrapper img{
+	max-width: 60%;
+	max-height: 60%;
 }
 
 .main-box-rollout-wrapper{
@@ -473,8 +513,9 @@ body{
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	size: 100%;
+	max-height: 45%;
 	color: white;
+	padding-bottom: 10px;
 }
 
 .main-box-button-wrapper{
@@ -487,7 +528,7 @@ body{
 }
 
 .main-box-paragraph{
-	max-width: 70%;
+	max-width: 50%;
 }
 /*
 main-yellow-color: #F1CD69
@@ -495,6 +536,102 @@ main-yellow-color: #F1CD69
 	main-blue-color: #918AD8
 	main-violet-color: #CA4B97
 */
+
+.main-information-wrapper{
+	padding-top: 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.info-contact-wrapper{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	max-width: 60%;
+}
+
+.info-box{
+	align-items: center;
+	text-align: center;
+	width: 33vw;
+}
+
+.info-box-title{
+	font-size: 160%;
+	color: #6A63AB;
+}
+
+.contact-link{
+	text-decoration: none;
+	color: black;
+}
+
+.info-small-lettering{
+	font-weight: italic;
+	font-size: 65%;
+}
+
+.main-impressions-gallery{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	background-color: #6A63AB;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 260px;
+	max-height: 260px;
+}
+
+.gallery-left-arrow-wrapper{
+	width: 10%;
+	max-width: 10%;
+	color: white;
+	font-size: 550%;
+}
+
+.gallery-main-window-wrapper{
+	width: 80%;
+	max-width: 80%;
+	color: white;
+}
+
+.icon-arrow{
+	height: 50px;
+	width: 50px;
+}
+
+.icon-arrow:hover{
+	opacity: 0.7;
+}
+
+.gallery-right-arrow-wrapper{
+	width: 10%;
+	max-width: 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
