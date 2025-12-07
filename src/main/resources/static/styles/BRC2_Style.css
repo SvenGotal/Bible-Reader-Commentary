@@ -606,6 +606,7 @@ main-yellow-color: #F1CD69
 
 .icon-arrow:hover{
 	opacity: 0.7;
+	cursor: pointer;
 }
 
 .gallery-right-arrow-wrapper{
