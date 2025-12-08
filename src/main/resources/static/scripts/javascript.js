@@ -170,14 +170,14 @@ function dismissAnnouncementButton(button){
 		return;
 	}
 	
-	announcementDiv.style.display = "none";
+	announcementDiv.style.height = "0px";
 	
 	let dismissed = getCookie("dismissedAnnouncements");
 	let dismissedIds = dismissed ? dismissed.split(",") : [];
 	
 	if (!dismissedIds.includes(announcementToDismissId)) {
         dismissedIds.push(announcementToDismissId);
-        announcementDiv.style.display = "none";
+        announcementDiv.style.height = "0px";
     }
     document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=604800`; // cookie lives for 1 week
 }

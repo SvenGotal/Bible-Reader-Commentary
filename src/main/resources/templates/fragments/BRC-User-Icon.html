@@ -1,7 +1,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div class="user-icon-username-wrapper">
 	<div th:fragment="BRC-User-Icon" class="header-cell">
-		<img class="user-icon" th:src="@{images/user-icon-black-halo.png}">	
+		<img th:if="${currentlyLoggedUser}" class="user-icon" th:src="@{images/icon-user-logged-lavender.svg}">
+		<img th:unless="${currentlyLoggedUser}" class="user-icon" th:src="@{images/icon-user-guest-lavender.svg}">
 	</div>
 	<div class="user-icon-username word-break montserrat-paragraph">
 		<a th:if="${currentlyLoggedUser}" th:text="${currentlyLoggedUser.username}"></a>

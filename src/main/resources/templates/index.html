@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css"th:href="@{/styles/BRC2_Style.css}"/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		
+		<script th:src="@{/scripts/javascript.js}"></script>
 		<script th:src="@{/scripts/BRC_script.js}"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
@@ -20,7 +20,14 @@
 			<header th:replace="~{fragments/BRC2-Header :: BRC2-Header}"> 
 				<!--/* HEADER FRAGMENT HERE */-->				
 			</header>
-			
+			<div  th:if="${announcements}" class="announcement-wrapper">
+				<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
+				<div class="announcement-close-button-holder">
+					<button class="announcement-close-button" type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+				</div>
+					<div class="announcement-text-holder" th:utext="${announcement.announcementText}" id="main_welcome_text"></div>						
+				</div>
+			</div>
 			<main>
 				<div class="main-wrapper">
 					<div class="main-bg-image-wrapper">
@@ -39,7 +46,7 @@
 					</div>
 					<div class="main-bible-read-button-wrapper">
 						<div id="button_bible_read" class="bible-read-button">							
-							<button class="BRC2-buttons montserrat-button"><span class="button-bible-read-span">Čitaj Bibliju</span></button>
+							<a href="/private/myHomepage"><button class="BRC2-buttons montserrat-button"><span class="button-bible-read-span">Čitaj Bibliju</span></button></a>
 						</div>					
 					</div>
 					<div class="main-boxes-wrapper">
@@ -135,17 +142,25 @@
 							</div>
 						</div>
 					</div>
-					<div class="main-impressions-gallery">
+					<div id="impressions_gallery_window" class="main-impressions-gallery">
 						<div class="gallery-left-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
-						<div class="gallery-main-window-wrapper"></div>
+						<div class="gallery-main-window-wrapper montserrat-paragraph">
+							<p>Ime prezime</p>
+							<div class="impressions-gallery-separator-line"></div>
+							<p>"Biblija&ja je omogućila da imamo pregled naših osobnih razmišljanja o biblijskim tekstovima uvijek na dohvat ruke"</p>
+							<div class="gallery-buttons-wrapper">
+								<div></div>														
+							</div>
+						</div>
 						<div class="gallery-right-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-right-arrow-white.svg}" alt="&#62;"></div>
 					</div>
 				</div>						
 			</main>
 			
 			<footer> <!--/* FOOTER FRAGMENT HERE */-->
-			
-			
+				<div class="copyright-logo-wrapper">
+					<img th:src="@{images/CRV-logo-black.avif}" alt="Crkva Radosne Vijesti logo">
+				</div>			
 			</footer>									
 		</div>				
 	</body>
