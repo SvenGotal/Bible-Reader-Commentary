@@ -50,7 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 		http
 		.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/", "/login", "/public/**","/scripts/**","/images/**","/styles/**","/templates/**").permitAll()
+			.requestMatchers("/", "/login", "/public/**","/scripts/**","/images/**","/styles/**","/templates/**","/errors/**").permitAll()
 			.requestMatchers("/h2-console/**", "/admin/**").hasAnyRole(UserRoles.OWNER.name(),UserRoles.ADMIN.name())
 			.requestMatchers("/private/**").hasAnyRole("USER", "ADMIN", "OWNER")
 			.anyRequest().authenticated())

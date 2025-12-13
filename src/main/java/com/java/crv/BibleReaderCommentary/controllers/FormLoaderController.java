@@ -13,6 +13,7 @@ import com.java.crv.BibleReaderCommentary.domain.Book;
 import com.java.crv.BibleReaderCommentary.domain.Chapter;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domain.UserFeedback;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
@@ -43,6 +44,7 @@ public class FormLoaderController {
 	
 		model.addAttribute("books", bookService.getAllBookData());
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
+		model.addAttribute("userFeedback", new UserFeedback());
 		
 		return "index";
 	}
@@ -155,4 +157,8 @@ public class FormLoaderController {
 		return "forms/logout";
 	}	
 
+	@GetMapping("/errors/errorView")
+	public String getErrorView() {
+		return "errors/errorView";
+	}
 }

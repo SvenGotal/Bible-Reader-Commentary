@@ -36,11 +36,12 @@
 					<div class="main-bg-image-text-container">
 						<div class="main-quotation-wrapper">
 							<div class="main-quote-text-wrapper">
-								<p class="quotation-text montserrat-paragraph">Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, 
+								<p th:if="${SuccessMsg}" th:text="${SuccessMsg}" class="quotation-text montserrat-paragraph"></p>
+								<p th:unless="${SuccessMsg}" class="quotation-text montserrat-paragraph">Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, 
 								odgajanje u pravednosti, da čovjek Božji bude vrstan, za svako dobro djelo podoban.</p>
 							</div>
 							<div class="main-quote-reference-wrapper">
-								<p class="quotation-reference montserrat-paragraph-bold">2. TIMOTEJU 3:16</p>
+								<p th:unless="${SuccessMsg}" class="quotation-reference montserrat-paragraph-bold">2. TIMOTEJU 3:16</p>
 							</div>
 						</div>
 					</div>
@@ -84,7 +85,7 @@
 								<p class="main-box-paragraph">Piši nam svoje dojmove i prijedloge, rado ćemo ih saslušati.</p>							
 							</div>
 							<div class="main-box-button-wrapper">
-								<button id="button_suggestion" class="BRC2-buttons montserrat-button"><span class="button-main-box">Prijedlog</span></button>
+								<button id="button_suggestion" class="BRC2-buttons montserrat-button" onclick="toggleUserFeedbackForm()"><span class="button-main-box" >Prijedlog</span></button>
 							</div>
 						</div>
 						<div class="main-box-bible-about">
@@ -99,7 +100,29 @@
 								<button id="button_bible_about" class="BRC2-buttons montserrat-button"><span class="button-main-box">Saznaj više</span></button>
 							</div>
 						</div>
+					</div>										
+					
+					<div id="main_user_feedback_input_wrapper" class="main-userfeedback-input-wrapper">
+						<form class="user-feedback-form" method="POST" th:action="@{/public/addNewUserFeedback}" th:object="${userFeedback}">
+							<input id="feedback_userinfo" th:field="*{userInfo}" type="text" placeholder="ime prezime/potpis" class="feedback-userinfo">
+							<textarea id="feedback_textarea" th:field="*{feedbackText}" placeholder="Vaš dojam, prijedlog ili kritika..." class="feedback-textbox"></textarea>
+							<div class="feedback-checkbox-wrapper">
+								<a class="montserrat-paragraph">Objavi javno: </a>
+								<input th:field="*{feedbackIsActive}" type="checkbox" value="true">	
+							</div>
+							
+							<div class="feedback-buttons-wrapper">
+								<button class="BRC2-buttons montserrat-button feedback-button" type="submit" onclick="validateFeedbackInput()">Potvrdi</button>
+								<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleUserFeedbackForm()">
+							</div>
+										
+						</form>						
 					</div>
+					<div id="feedback_message_box" class="feedback-message-box">
+						<p id="feedback_message_box_paragraph" class="message-box-paragraph montserrat-paragraph"></p>
+						<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleFeedbackMessageBox()">
+					</div>
+					
 					<div class="main-information-wrapper">
 						<div class="info-contact-wrapper">
 							<div class="info-box info-address-box">
@@ -131,7 +154,8 @@
 									<p class="info-small-lettering">(*info o terminima bogoslužja provjeriti na službenim stranicama)</p>
 								</div>
 							</div>
-						</div>						
+						</div>	
+						<!-- 					
 						<div class="info-location-wrapper">
 							<div class="mapouter" style="position:relative; text-align:right; width:900px; height:450px;">
  								<div class="gmap_canvas" style="overflow:hidden; background:none!important; width:900px; height:450px;">
@@ -141,6 +165,7 @@
   								<style>.mapouter{position:relative;text-align:right;} .gmap_canvas{overflow:hidden;background:none!important;} .gmap_canvas iframe{width:100%;height:100%;} .mapouter a{display:block;font-size:0.85em;text-align:center;padding:5px 0;color:#6c757d;text-decoration:none;} .gme-generated-link{display:none!important;}</style>
 							</div>
 						</div>
+						 -->
 					</div>
 					<div id="impressions_gallery_window" class="main-impressions-gallery">
 						<div class="gallery-left-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
