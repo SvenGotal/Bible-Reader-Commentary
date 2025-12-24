@@ -32,4 +32,12 @@ public class UserFeedbackService {
 		UserFeedback saved = userFeedbackRepository.save(uf);
 		return saved.getId() != null;		
 	}
+	
+	/**
+	 * Returns all user feedback that is public.
+	 * @return returns a list of all public feedbacks.
+	 * */
+	public List<UserFeedback> getAllPublicUserFeedback(){
+		return StreamSupport.stream(userFeedbackRepository.findAll().spliterator(), false).filter( uf -> uf.getFeedbackIsActive()).toList();
+	}
 }

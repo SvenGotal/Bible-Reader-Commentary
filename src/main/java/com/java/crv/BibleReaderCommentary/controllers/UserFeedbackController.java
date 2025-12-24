@@ -49,6 +49,7 @@ public class UserFeedbackController {
 		redirectAttributes.addFlashAttribute("SuccessMsg", "Vaš komentar je uspješno pohranjen!");
 		return "redirect:/";
 	}
+	
 }
 
 

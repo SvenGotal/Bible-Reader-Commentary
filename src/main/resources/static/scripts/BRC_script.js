@@ -2,6 +2,10 @@
  * 
  */
 
+function redirect(url){
+	window.location.href = url;
+}
+
  function closeMenu(){
 	try{
 		var hamburgerToggle = document.getElementById("hamburger_toggle");		
@@ -34,7 +38,7 @@
 		feedback_message_box.classList.toggle('open');
 
 	}
- }
+}
  
  function toggleFeedbackMessageBox(){
 	var feedback_message_box = document.getElementById("feedback_message_box");

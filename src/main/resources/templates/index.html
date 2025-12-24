@@ -11,6 +11,8 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<script th:src="@{/scripts/javascript.js}"></script>
 		<script th:src="@{/scripts/BRC_script.js}"></script>
+		<script th:src="@{/scripts/htmx.min.js}"></script>
+		<script th:src="@{/scripts/homepage_carousel_script.js}"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 	</head>
@@ -50,10 +52,10 @@
 							<a href="/private/myHomepage"><button class="BRC2-buttons montserrat-button"><span class="button-bible-read-span">Čitaj Bibliju</span></button></a>
 						</div>					
 					</div>
-					<div class="main-boxes-wrapper">
-						<div class="main-box-meet">
+					<div class="main-boxes-wrapper" >
+						<div class="main-box-meet main-boxes-section">
 							<div class="main-box-image-wrapper">
-								<img th:src="@{images/icon-mug-white.png}">
+								<img class="main-box-img" th:src="@{images/icon-mug-white.png}">
 							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
 								
@@ -61,24 +63,24 @@
 								<p class="main-box-paragraph">Želiš znati više o utjecaju Biblije na osobni život? Ugovori sastanak...</p>								
 							</div>
 							<div class="main-box-button-wrapper">
-								<button id="button_meet" class="BRC2-buttons montserrat-button"><span class="button-main-box">Kontakt</span></button>
+								<a href="mailto:info@crkva-radosne-vijesti.hr"><button id="button_meet" class="BRC2-buttons montserrat-button"><span class="button-main-box">Kontakt</span></button></a>
 							</div>
 						</div>
-						<div class="main-box-about">
+						<div class="main-box-about main-boxes-section">
 							<div class="main-box-image-wrapper">
-								<img th:src="@{images/icon-megaphone-white.png}">
+								<img class="main-box-img" th:src="@{images/icon-megaphone-white.png}">
 							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
 								<p class="main-box-title montserrat-paragraph-bold">O NAMA</p>
 								<p class="main-box-paragraph">Iza projekta stoje kršćani reformatorske baštine, s ciljem promicanja osobnog odnosa s Bogom kroz Bibliju.</p>								
 							</div>
 							<div class="main-box-button-wrapper">
-								<button id="button_about" class="BRC2-buttons montserrat-button"><span class="button-main-box">Suradnici</span></button>
+								<button id="button_about" class="BRC2-buttons montserrat-button" onclick="redirect('https://crkva-radosne-vijesti.hr')"><span class="button-main-box">Suradnici</span></button>
 							</div>
 						</div>
-						<div class="main-box-suggestion">
+						<div class="main-box-suggestion main-boxes-section">
 							<div class="main-box-image-wrapper">
-								<img th:src="@{images/icon-pen-white.png}">
+								<img class="main-box-img" th:src="@{images/icon-pen-white.png}">
 							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">						
 								<p class="main-box-title montserrat-paragraph-bold">PRIJEDLOZI</p>
@@ -87,10 +89,31 @@
 							<div class="main-box-button-wrapper">
 								<button id="button_suggestion" class="BRC2-buttons montserrat-button" onclick="toggleUserFeedbackForm()"><span class="button-main-box" >Prijedlog</span></button>
 							</div>
+							
+							<div id="main_user_feedback_input_wrapper" class="main-userfeedback-input-wrapper">
+								<form class="user-feedback-form" method="POST" th:action="@{/public/addNewUserFeedback}" th:object="${userFeedback}">
+									<input id="feedback_userinfo" th:field="*{userInfo}" type="text" placeholder="ime prezime/potpis" class="feedback-userinfo">
+									<textarea id="feedback_textarea" th:field="*{feedbackText}" placeholder="Vaš dojam, prijedlog ili kritika..." class="feedback-textbox"></textarea>
+									<div class="feedback-checkbox-wrapper">
+										<a class="montserrat-paragraph feedback-checkbox">Objavi javno: </a>
+										<input th:field="*{feedbackIsActive}" type="checkbox" value="true">	
+									</div>
+									
+									<div class="feedback-buttons-wrapper">
+										<button class="BRC2-buttons montserrat-button feedback-button" type="submit" onclick="validateFeedbackInput()">Potvrdi</button>
+										<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleUserFeedbackForm()">
+									</div>
+											
+								</form>						
+							</div>
+							<div id="feedback_message_box" class="feedback-message-box">
+								<p id="feedback_message_box_paragraph" class="message-box-paragraph montserrat-paragraph"></p>
+								<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleFeedbackMessageBox()">
+							</div>
 						</div>
-						<div class="main-box-bible-about">
+						<div class="main-box-bible-about main-boxes-section">
 							<div class="main-box-image-wrapper">
-								<img th:src="@{images/icon-bible-white.png}">
+								<img class="main-box-img" th:src="@{images/icon-bible-white.png}">
 							</div>
 							<div class="main-box-rollout-wrapper montserrat-paragraph">
 								<p class="main-box-title montserrat-paragraph-bold">O PRIJEVODU</p>
@@ -101,28 +124,6 @@
 							</div>
 						</div>
 					</div>										
-					
-					<div id="main_user_feedback_input_wrapper" class="main-userfeedback-input-wrapper">
-						<form class="user-feedback-form" method="POST" th:action="@{/public/addNewUserFeedback}" th:object="${userFeedback}">
-							<input id="feedback_userinfo" th:field="*{userInfo}" type="text" placeholder="ime prezime/potpis" class="feedback-userinfo">
-							<textarea id="feedback_textarea" th:field="*{feedbackText}" placeholder="Vaš dojam, prijedlog ili kritika..." class="feedback-textbox"></textarea>
-							<div class="feedback-checkbox-wrapper">
-								<a class="montserrat-paragraph">Objavi javno: </a>
-								<input th:field="*{feedbackIsActive}" type="checkbox" value="true">	
-							</div>
-							
-							<div class="feedback-buttons-wrapper">
-								<button class="BRC2-buttons montserrat-button feedback-button" type="submit" onclick="validateFeedbackInput()">Potvrdi</button>
-								<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleUserFeedbackForm()">
-							</div>
-										
-						</form>						
-					</div>
-					<div id="feedback_message_box" class="feedback-message-box">
-						<p id="feedback_message_box_paragraph" class="message-box-paragraph montserrat-paragraph"></p>
-						<img class="BRC-close-button" th:src="@{/images/icon-close-black-on-transparent-xcircle.svg}" onclick="toggleFeedbackMessageBox()">
-					</div>
-					
 					<div class="main-information-wrapper">
 						<div class="info-contact-wrapper">
 							<div class="info-box info-address-box">
@@ -130,7 +131,7 @@
 									<p>Adresa</p>
 								</div>
 								<div class="info-box-text montserrat-paragraph">
-									<p>Šubićeva 20, 2 kat</p>
+									<p>Šubićeva 20, 2. kat</p>
 									<p>10000 Zagreb</p>
 								</div>
 							</div>
@@ -168,25 +169,28 @@
 						 -->
 					</div>
 					<div id="impressions_gallery_window" class="main-impressions-gallery">
-						<div class="gallery-left-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
+						<div class="gallery-left-arrow-wrapper"><img id="gallery_previous" class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
 						<div class="gallery-main-window-wrapper montserrat-paragraph">
-							<p>Ime prezime</p>
-							<div class="impressions-gallery-separator-line"></div>
-							<p>"Biblija&ja je omogućila da imamo pregled naših osobnih razmišljanja o biblijskim tekstovima uvijek na dohvat ruke"</p>
-							<div class="gallery-buttons-wrapper">
-								<div></div>														
+							<input id="gallery_iterator" type="hidden" value=0>
+							<div th:each="feedback : ${allUserFeedbacks}" th:id="${feedback.id}" class="gallery-main-writing" th:attr="data-id=${feedback.id}">
+								<p th:utext="${feedback.userInfo}"></p>
+								<div class="impressions-gallery-separator-line"></div>
+								<p th:text="${feedback.feedbackText}"></p>
+							</div>
+							<div class="gallery-dot-wrapper">
+								<div th:each="feedback : ${allUserFeedbacks}" th:id="${'dot_' + feedback.id}" class="gallery-dot-indicator" onclick="dotSelector(this)" ></div>
 							</div>
 						</div>
-						<div class="gallery-right-arrow-wrapper"><img class="icon-arrow" th:src="@{images/icon-right-arrow-white.svg}" alt="&#62;"></div>
+						<div class="gallery-right-arrow-wrapper"><img id="gallery-next" class="icon-arrow" th:src="@{images/icon-right-arrow-white.svg}" alt="&#62;"></div>
 					</div>
-				</div>						
+				</div>
 			</main>
 			
 			<footer> <!--/* FOOTER FRAGMENT HERE */-->
 				<div class="copyright-logo-wrapper">
 					<img th:src="@{images/CRV-logo-black.avif}" alt="Crkva Radosne Vijesti logo">
-				</div>			
-			</footer>									
+				</div>
+			</footer>
 		</div>				
 	</body>
 </html>

@@ -19,6 +19,7 @@ import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
+import com.java.crv.BibleReaderCommentary.services.UserFeedbackService;
 
 @Controller
 public class FormLoaderController {
@@ -27,12 +28,14 @@ public class FormLoaderController {
 	private ChapterService chapterService;
 	private CommentaryService commentaryService;
 	private ServerAnnouncementService serverAnnouncementService;
+	private UserFeedbackService userFeedbackService;
 	
-	public FormLoaderController (BookService bookService, ChapterService chapterService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService) {
+	public FormLoaderController (BookService bookService, ChapterService chapterService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService, UserFeedbackService userFeedbackService) {
 		this.bookService = bookService;
 		this.chapterService = chapterService;
 		this.commentaryService = commentaryService;
 		this.serverAnnouncementService = serverAnnouncementService;
+		this.userFeedbackService = userFeedbackService;
 	}
 	
 	
@@ -45,6 +48,7 @@ public class FormLoaderController {
 		model.addAttribute("books", bookService.getAllBookData());
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
 		model.addAttribute("userFeedback", new UserFeedback());
+		model.addAttribute("allUserFeedbacks", userFeedbackService.getAllUserFeedbackInDatabase());
 		
 		return "index";
 	}
