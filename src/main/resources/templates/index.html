@@ -158,15 +158,13 @@
 						</div>	
 											
 						<div class="info-location-wrapper">
-							<div class="mapouter" style="position:relative; text-align:right; width:900px; height:450px;">
- 								<div class="gmap_canvas" style="overflow:hidden; background:none!important; width:900px; height:450px;">
-   									<iframe width="900px" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?q=%C5%A1ubi%C4%87eva%2020%2C%2010000%20zagreb&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+							<div class="mapouter" >
+ 								<div class="gmap_canvas" >
+   									<iframe class="iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?q=%C5%A1ubi%C4%87eva%2020%2C%2010000%20zagreb&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
   								</div>
  								<a href="https://norsumediagroup.com/embed-google-map-website-free" target="_blank" rel="noopener noreferrer" class="gme-generated-link">Embed Map on Website for Free</a>
-  								<style>.mapouter{position:relative;text-align:right;} .gmap_canvas{overflow:hidden;background:none!important;} .gmap_canvas iframe{width:100%;height:100%;} .mapouter a{display:block;font-size:0.85em;text-align:center;padding:5px 0;color:#6c757d;text-decoration:none;} .gme-generated-link{display:none!important;}</style>
 							</div>
 						</div>
-						
 					</div>
 					<div id="impressions_gallery_window" class="main-impressions-gallery">
 						<div class="gallery-left-arrow-wrapper"><img id="gallery_previous" class="icon-arrow" th:src="@{images/icon-left-arrow-white.svg}" alt="&#60;"></div>
@@ -187,8 +185,8 @@
 			</main>
 			
 			<footer> <!--/* FOOTER FRAGMENT HERE */-->
-				<div class="copyright-logo-wrapper">
-					<img th:src="@{images/CRV-logo-black.avif}" alt="Crkva Radosne Vijesti logo">
+				<div th:replace="~{fragments/BRC2-Footer}" class="copyright-logo-wrapper">
+					
 				</div>
 			</footer>
 		</div>				
