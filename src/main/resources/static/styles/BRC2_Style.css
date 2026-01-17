@@ -316,16 +316,25 @@ body{
 
 }
 
+.main-banner{
+	position: relative;
+}
+
+.main-bg-image-wrapper{
+	position: relative;
+}
 
 .main-bg-image{
 	z-index: -10;
 	display: block;
 	position: absolute;
 	max-width: 100%;
+	position: relative;
 }
 
 .main-bg-image-text-container{
-	position: relative;
+	display: flex;
+	position: absolute;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
