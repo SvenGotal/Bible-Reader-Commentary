@@ -318,6 +318,84 @@ body{
 
 .main-banner{
 	position: relative;
+	display: flex;
+	overflow: hidden;
+	max-height: 400px;
+	height: auto;
+	align-items: center;
+	justify-content: center;
+}
+
+.banner-text-wrapper{
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	max-width: 40%;
+	width: 17%;
+	margin: 40px;
+}
+
+.banner-title{
+	color: white;
+	font-size: 300%;
+	letter-spacing: 0.1em;
+}
+
+.log-button-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 15px;
+}
+
+.log-button{
+	background-color: #7BBE6E;
+	color: white;/*#404040;*/
+	font-size: 90%;
+	padding: 13px 25px 13px 25px;
+	border: none;
+	border-radius: 20px;
+	width: 230px;
+	letter-spacing: 0.2em;
+}
+
+.log-button:hover{
+	background-color: #918AD8;
+	opacity: 0.7;
+
+
+}
+
+.log-form{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.log-form-text{
+	color: white;
+	
+}
+
+.login-user-info-boxes{
+	max-height: 30px;
+	height: 30px;
+	text-decoration: none;
+	border: none;
+}
+
+.login-user-info-boxes:hover{
+	background-color: #918AD8;
+}
+
+.bg-image{
+	position: absolute;
+	z-index: 0;
+	top: -100px;
 }
 
 .main-bg-image-wrapper{
