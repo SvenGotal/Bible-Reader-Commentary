@@ -1060,24 +1060,6 @@ footer{
 	}
 }
 
-.bg-image-wrapper{
-	max-height: 500px;
-	z-index: 0;
-	overflow: hidden;
-	position: relative;
-}
-
-.bg-image{
-	max-height: 100%;
-	max-width: 100%;
-	height: auto;
-	/*display: block;*/
-	object-fit: cover;
-	z-index: 0;
-}
-
-
-
 
 
 
