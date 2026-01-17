@@ -332,6 +332,7 @@ body{
 	z-index: 1;
 	color: white;
 	padding-top: 4%;
+	overflow: none;
 }
 
 .main-quotation-wrapper{
@@ -1059,7 +1060,21 @@ footer{
 	}
 }
 
+.bg-image-wrapper{
+	max-height: 500px;
+	z-index: 0;
+	overflow: hidden;
+	position: relative;
+}
 
+.bg-image{
+	max-height: 100%;
+	max-width: 100%;
+	height: auto;
+	/*display: block;*/
+	object-fit: cover;
+	z-index: 0;
+}
 
 
 
