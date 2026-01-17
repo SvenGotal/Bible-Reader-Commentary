@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>BIBLIJA&#x26;ja</title> 
+		<meta charset="utf-8" />		
+		<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"http-equiv="Content-Type"/>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+		<link rel="stylesheet" type="text/css"th:href="@{/styles/BRC2_Style.css}"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<script th:src="@{/scripts/javascript.js}"></script>
+		<script th:src="@{/scripts/BRC_script.js}"></script>
+		<script th:src="@{/scripts/htmx.min.js}"></script>
+		<script th:src="@{/scripts/homepage_carousel_script.js}"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+	</head>
+		
+	<body>
+		<div class="BRC2-body-container">
+			<header th:replace="~{fragments/BRC2-Header :: BRC2-Header}"> 
+				<!--/* HEADER FRAGMENT HERE */-->				
+			</header>
+			<div  th:if="${announcements}" class="announcement-wrapper">
+				<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
+				<div class="announcement-close-button-holder">
+					<button class="announcement-close-button" type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+				</div>
+					<div class="announcement-text-holder" th:utext="${announcement.announcementText}" id="main_welcome_text"></div>						
+				</div>
+			</div>
+			<main>
+				<div class="main-wrapper">
+					<div class="bg-image-wrapper">
+						<img class="bg-image" th:src="@{/images/login_pic.avif}">
+						<div class="main-bg-image-text-container">
+							<div class="main-quotation-wrapper">
+								<div class="main-quote-text-wrapper">
+									<h1>Dobro došli</h1>
+								</div>							
+							</div>
+						</div>
+						<div class="main-bible-read-button-wrapper">
+							<div id="button_bible_read" class="bible-read-button">							
+								<a href="/private/myHomepage"><button class="BRC2-buttons montserrat-button"><span class="button-bible-read-span">Prijava</span></button></a>
+							</div>					
+						</div>		
+					</div>													
+				</div>
+			</main>
+			
+			<footer> <!--/* FOOTER FRAGMENT HERE */-->
+				<div th:replace="~{fragments/BRC2-Footer}" class="copyright-logo-wrapper">
+					
+				</div>
+			</footer>
+		</div>				
+	</body>
+</html>
