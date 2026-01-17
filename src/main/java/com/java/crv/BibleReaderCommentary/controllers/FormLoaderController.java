@@ -150,7 +150,7 @@ public class FormLoaderController {
 	 * */
 	@GetMapping("/login")
 	public String loginUser() {
-		return "forms/login";
+		return "forms/BRC2_login";
 	}
 	
 	/**
