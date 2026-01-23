@@ -220,7 +220,7 @@ body{
 
 #hamburger_toggle:checked ~ .hamburger-menu {
 	max-height: 65%;
-	height: 420px;
+	height: 450px;
 	width: 100%;
 	padding-bottom: 15px;
 }
@@ -334,8 +334,10 @@ body{
 	justify-content: center;
 	text-align: center;
 	max-width: 40%;
-	width: 17%;
+	width: auto;
 	margin: 40px;
+	height: auto;
+	padding-bottom: 20px;
 }
 
 .banner-title{
@@ -949,6 +951,14 @@ footer{
 		max-width: 100%;
 		right: 0;
 		margin-top: 32px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		
+	}
+	.hamburger-menu a{
+		font-size: 300%;
 	}
 	
 	.main-box-button-wrapper{
@@ -1039,8 +1049,9 @@ footer{
 	}
 	
 	.main-boxes-section{
-		aspect-ratio: auto;
-		max-height: auto;
+		overflow: none;
+		height: auto;
+		
 	}
 	
 	.main-box-button-wrapper{
