@@ -1,0 +1,75 @@
+<!--/* bare_template.html
+*	Template for other forms.
+*
+*	Author: Sven Gotal
+*	Date of Creation: 2025
+*/-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>BIBLIJA&ja</title>
+	<meta charset="utf-8" />
+	<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"http-equiv="Content-Type"/>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/mainStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}" />
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script th:src="@{/scripts/ajax_script.js}"></script>
+	<script th:src="@{/scripts/javascript.js}"></script>
+	<script th:src="@{/scripts/scrollbutton.js}"></script>
+	<script th:src="@{/scripts/data_transfer_script.js}"></script>
+
+	<!--/*######################################################### Google Fonts #########################################################*/-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<!--/*################################################################################################################################################*/-->
+</head>
+<body>
+	<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
+	<div class="main-wrapper">
+		<!--/*======================================================= Header =======================================================*/-->
+		<div class="header-area">
+			<div class="header-row">							
+				<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+						<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+				</div>				
+				<div class="header-row-dashboard">
+					<div th:replace="~{fragments/BRC-User-Icon}">
+						<!--/* User icon and username here /fragments/BRC-User-Icon.html */-->
+					</div>
+				
+					<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
+						<!--/*======================================================= Hamburger menu =======================================================*/-->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="error-message-container">
+			<h2>oooops! Something went wrong....</h2>
+			
+			<div class="error-message-text" th:text="${ErrorMsg}">
+			
+			
+			</div>
+		
+		
+		</div>
+		
+	</div>
+	<!--/*======================================================= Footer =======================================================*/-->
+	<div th:replace="~{fragments/BRC-Footer.html :: BRC-Footer}">
+		<!--/* Footer fragment */-->
+	</div>
+	<div  th:if="${announcements}" class="announcement-wrapper">
+		<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
+			<div class="announcement-close-button-holder">
+				<button class="announcement-close-button" type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+			</div>
+				<div class="announcement-text-holder" th:utext="${announcement.announcementText}" id="main_welcome_text"></div>						
+		</div>
+	</div>
+</body>
+</html>

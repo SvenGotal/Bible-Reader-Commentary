@@ -1,3 +1,29 @@
+/*Function for updating the option in the select element for chapter on index. Fires when a chapter box is clicked on
+**by the user which in turn calls fetchVersesAndComments from ajax_script. This function is embedded in each chapter box
+**created in the ajax_script. */
+
+/* User mouse tracker: */
+let userMouseX;
+let userMouseY;
+document.addEventListener("mousemove", function(event) {
+	
+	userMouseX = event.clientX;
+	userMouseY = event.clientY;
+	
+});
+
+function updateChapterInChapterBoxes(chapterNumber){
+	
+	var chapterSelection = document.getElementById('chapterSelection');
+	chapterSelection.value = chapterNumber;
+	chapterSelection.text = chapterNumber;
+	
+	/*Make sure the onchange event is fired in the chapterSelection once the value and text are updated.*/
+	chapterSelection.dispatchEvent(new Event('change'));
+	
+}
+
+/*Simple password validation script for comparing whether two passwords are equal. */
 function passwordValidation(){
 	var password = document.getElementById("password");
 	var password_retype = document.getElementById("password_retype");
@@ -12,121 +38,190 @@ function passwordValidation(){
 	}
 }
 
-function commentEdit(){
+function checkUserInputs(){
 	
-	/* get currently selected radio-button */
-	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
-	
-	/* if radio-button is selected */
-	if(selectedRadio){
-		/* Get Commentary id from radio button, each rb is given an id by Commentary id by thymeleaf */
-		var selectedCommentId = selectedRadio.id;
-		/* get editing button */
-		var buttonEdit = document.getElementById("button_edit");
-		/* get deleting button */
-		var buttonDelete = document.getElementById("buttonDelete");
-		/* get text-area element */
-		var textArea = document.getElementById("commentEditingArea");
-		/* get values from table row where radio-button is selected */
-		var selectedComment = selectedRadio.closest('tr');
-		/* prepare an array to store row values */
-		var rowValues = [];
-		
-		/* erase current content from text-area for editing */
-		textArea.textContent = '';
-		
-		/* get hidden input that will store Commentary id */
-		var commentIdHolder = document.getElementById("commentId");
-		
-		/* fill rowValues array with table row values */
-		selectedComment.querySelectorAll('td').forEach( function (td) {
-			
-			rowValues.push(td.textContent);
-		});
-		
-		/* enable smooth scrolling and focus user window to editing area */
-		commentEditingArea.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start'
-		});
-		
-		/* fill text-area with row value from 2nd <td> in table row (Commentary.text) */
-		commentEditingArea.textContent = rowValues[1];
-		/* set hidden label value to Commentary.id (send to controller) */
-		commentIdHolder.value = selectedCommentId;
-		
-		/* enable editing buttons (disabled by default) */
-		buttonEdit.disabled = false;
-		buttonDelete.disabled = false;
-	}
-	
-}
-
-/**Use only in comment editing submission */
-function submitEditedComment(){
-	
-	/* get submission form that calls controller method 'public String editMyComment()' */
-	var formEdit = document.getElementById("formEdit");
-	/* send POST to call the controller */
-	formEdit.submit();
-	
-}
-
-/** */
-function commentDelete(){
-	
-	/* get id holder (hidden <inpu> tag)  */
-	var commentIdHolder = document.getElementById("commentIdDelete");
-	
-	/* get submit form that calls controller method deleteMyComment() */
-	var submitForm = document.getElementById("formDelete");
-	
-	/* get currently selected radio button (id holds the comment Id) */
-	var selectedRadio = document.querySelector('input[name="commentSelect"]:checked');
-	
-	/* if radio button is selected */
-	if(selectedRadio){
-		
-		/* set value of hidden <input> to Commentary id which will be sent to the controller */
-		commentIdHolder.value = selectedRadio.id;
-		/* prompt pop-up to confirm the decision to delete Commentary from persistence */
-		var prompt = window.confirm("Jeste li sigurni da želite obrisati komentar?");
-	
-		/* if user clicked yes/ok */
-		if(prompt){
-			submitForm.submit();
-		}
-		/* if user canceled */
-		else{
-			console.log("user cancelled delete submit...");
-		}
-	}
-	
-	
-}
-
-/* not working adjust later */
-function insertComment(){
+	const messageStart = "Potrebno je:"
+	const messageSelected = "\n*Odabrati knjigu i naslov.";
+	const messageSubject = "\n*Upisati naslov komentara";
+	const messageComment = "\n*Upisati tekst komentara (više od 20 znakova).";
+	const messageSet = new Set();
+	messageSet.add(messageStart);
 	
 	var subject = document.getElementById('commentSubject');
-	var text = document.getElementById('comment_textarea');
-	var submitButton = document.getElementById("submit_button");
+	var text = document.querySelector('#commentContent');
+	text.value = quill.root.innerHTML;
+	var submitCommentButton = document.getElementById("submit_button");
 	
-	if(subject.innerText === '' || text.innerText === ''){
-		submitButton.disabled = true;	
+	var selectedBook = document.getElementById('bookSelection');
+	var selectedChapter = document.getElementById('chapterSelection');
+	
+	var toastMessageBox = document.getElementById("toast_message");
+	
+	const submitCommentButtonPosition = submitCommentButton.getBoundingClientRect();
+	toastMessageBox.style.top = (submitCommentButtonPosition.top - (2* submitCommentButtonPosition.height)) + 'px'; 
+	
+	var hasSelected = true;
+	var hasSubject = true;
+	var hasComment = true;
+	
+	if(selectedBook.value < 0 || selectedChapter.value < 0){
+		hasSelected = false;
+		messageSet.add(messageSelected);
 	}
 	else{
-		submitButton.disabled = false;
+		messageSet.delete(messageSelected);
 	}
+	if(subject.value === ''){
+		hasSubject = false;
+		messageSet.add(messageSubject);
+	}
+	else{
+		messageSet.delete(messageSubject);
+	}
+	if(text.value.length < 20){
+		hasComment = false;
+		messageSet.add(messageComment);
+	}
+	else{
+		messageSet.delete(messageComment);
+	}
+	
+	if( !hasSelected || !hasSubject || !hasComment )
+	{
+		submitCommentButton.disabled = true;
+		var messageBoxText = "";
+		messageSet.forEach( message => {
+			messageBoxText += message;
+		});
+		
+		toastMessageBox.innerText = messageBoxText;
+		toastMessageBox.style.display = "block";
+	}
+	else{
+		toastMessageBox.style.display = "none";
+		submitCommentButton.disabled = false;
+	}
+	
+	toastMessageBox.classList.remove('toast-message-show');
+	void toastMessageBox.offsetWidth;
+	toastMessageBox.classList.add('toast-message-show');
 	
 }
 
+function redirectToIndex(){
+	
+	window.location.href = "/";
+	
+}
 
+function highlightChapterBox(chapterSelection){
+	
+	const chapter_selector = document.getElementById('chapter_selector');
+	const chapterBoxes = Array.from(chapter_selector.children).filter(child => child.tagName === 'DIV');
+	
+	chapterBoxes.forEach( div => {
+		div.className= 'chapter-selector-div';
+	})
+		
 
+	
+	const chapterId = chapterSelection.value;
+	const chapterBoxId = "chapterBox"+ chapterId;
+	
+	var highlightedChapterBox = document.getElementById(chapterBoxId);
+	highlightedChapterBox.className= 'highlight-chapter-box';
+}
 
+function shareThisComment(shareCommentButton){
+	
+	const linkCopiedSuccessMessage = "Link copied!";
+	const linkCopiedErrorMessage = "Error copying link!";
+	const commentId = shareCommentButton.dataset.commentId;
+	const toastMessage = document.getElementById("toast_message");
+	
+	toastMessage.innerText = "";
+	
+	const link = window.location.origin +'/public/comment/' + commentId;
+	
+	if(link !== ""){
+		navigator.clipboard.writeText(link);
+		toastMessage.innerText = linkCopiedSuccessMessage;
+	}
+	else{
+		toastMessage.innerText = linkCopiedErrorMessage;
+	}
+			
+	toastMessage.style.left = userMouseX+10 +"px";
+	toastMessage.style.top = userMouseY+10 +"px";
+		
+	toastMessage.style.display = "inline";
+	toastMessage.classList.remove('toast-message-show');
+	void toastMessage.offsetWidth;
+	toastMessage.classList.add('toast-message-show');
+}
 
+function dismissAnnouncementButton(button){
+	const announcementId = button.dataset.announcementId;
+	const announcementToDismissId = "announcement_" + announcementId;
+	const announcementDiv = document.getElementById(announcementToDismissId);
+		
+	if(!announcementDiv){
+		console.log("announcement not found: " + button.dataset.announcementId);
+		return;
+	}
+	
+	announcementDiv.style.display = "none";
+	
+	let dismissed = getCookie("dismissedAnnouncements");
+	let dismissedIds = dismissed ? dismissed.split(",") : [];
+	
+	if (!dismissedIds.includes(announcementToDismissId)) {
+        dismissedIds.push(announcementToDismissId);
+        announcementDiv.style.display = "none";
+    }
+    document.cookie = `dismissedAnnouncements=${dismissedIds.join(",")}; path=/; max-age=604800`; // cookie lives for 1 week
+}
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+		return parts.pop().split(';').shift();
+	}
+}
 
+document.addEventListener("DOMContentLoaded", function() {
 
+	var announcementsToShow = document.getElementsByClassName("announcement-display");
+	var dismissedAnnouncements = getCookie("dismissedAnnouncements");
+	var dismissedIds = dismissedAnnouncements ? dismissedAnnouncements.split(",") : [];
+	
+	for(const announcement of announcementsToShow){
+		if(!dismissedIds.includes(announcement.id)){
+			announcement.style.display = "block";
+		}
+	}					
+});
 
+function showHideIndexComment(button){
+	
+	var buttonRow = button.parentNode.parentNode;
+	var commentRow = buttonRow.nextElementSibling;
+
+	
+	if(commentRow){
+		
+		if(button.textContent === '+'){
+			commentRow.style.display = "table-row";
+			button.text = '-';
+			button.textContent = '-';
+			commentRow.style.width = "100%";
+		}
+		else if(button.textContent === '-'){
+			commentRow.style.display = "none";
+			button.text = '+';
+			button.textContent = '+';
+		}
+	}
+}
 
