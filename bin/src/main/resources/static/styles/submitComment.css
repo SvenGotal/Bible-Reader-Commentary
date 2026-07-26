@@ -1,46 +1,21 @@
 
-
-body{
-	
-	margin-top: 1px;
-	background-color: #8C2F64;
-	padding-left: 10%;
-	padding-right: 10%;
-	
+.options-div{
+	padding-top: 1%;
 }
 
-.main-wrapper{
-	
-	background-color: white;
-	padding-top: 0px;
-	
-	
-	height: 90%;
-	
-	padding-left:10px;
-	padding-right:10px;
-	padding-bottom: 20px;
-}
-
-.options-div-comment{
-	
-	float: right;
-	margin-top: 1%;
-	
-	
+.selection-comments{
+	width: 70%;
 }
 
 .input-comments{
-	
 	width: 100%;
 }
 
 .comments-title-submit{
-	
 	margin-top: 1%;
 	margin-bottom: 2%;
-
-	width: 95%;
+	max-width: 95%;
+	width: auto;
 	font-size: 100%;
 	background-color: #F6EC6D;
 	height: 50px;
@@ -66,12 +41,10 @@ body{
 }
 
 .comments-make-private{
-	
 	margin-bottom: 2%;
 	font-size: 100%;
 	background-color: #6865A8;
 	height: 50px;
-
 	padding-left: 15px;
 	color: white;
 	border: 2px solid #6865A8;
@@ -90,45 +63,42 @@ body{
 }
 
 .comments-checkbox{
-	
 	width: 15%;
 	height: 60%;
 	padding-top: 10px;
 	float: right;
-	
 }
 
 
 
 #comments_checkbox{
-	
-
 	width: 25px;
 	height: 25px;
-
-	
 }
 
 #comment_textarea{
-	
-	width: 100%;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 98%;
+	max-width: 99%;
+	width: auto;
 	height: 400px;
 	font-size: 16px;
-	
+	resize: none;
+	font-family: Arial;
 }
 
 .comment-logo-div{
-	
 	float: left;
 }
 
 .comment-logo{
 	width: 50%;
 	height: 50%;
-
 }
 
 .comment-insert{
+	
 	font-weight: bold;
 	padding: 6px;
 	margin: 2px;
@@ -141,15 +111,31 @@ body{
 }
 
 .comment-submit{
+	
+	display: flex;
+	justify-content: center;
 	margin-top: 1%;
-	margin-left: 45%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	
+	
+}
+
+#submit_button:disabled{
+	background-color: grey;
+	cursor: not-allowed;
+	border: 1px solid grey;
 }
 
 .comment-submit button:hover{
-	border: 1px solid #6764A7;
-	background-color: #6764A7;
+	border: 1px solid #6FB350;
+	background-color: #6FB350;
 }
 
 .header-area-submit-comment{
 	margin-bottom: 2%;
 }
+
+
+

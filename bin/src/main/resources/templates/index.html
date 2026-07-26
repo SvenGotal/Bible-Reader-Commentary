@@ -1,119 +1,133 @@
+<!--/* index.html
+*	Index View for the index page. Displays John 3:16 as a welcome message (future updates might display radnom Bible verse),
+*	displays two drop-down menus filled by the controller for selecting Book and Chapter, verses are displayed in their separate
+*	section and then comments written on Book-Chapter are displayed. Chapter drop-down menu is filled dynamically via AJAX in
+*	ajax_script.js while Book drop-down is filled statically on page load. Both verses and comments on the Book-Chapter are 
+*	displayed dynamically when user chooses Book and then Chapter.
+*
+*	Author: Sven Gotal
+*	Date of Creation: 2024
+*	Date of last update: 18.04.2025
+*	Dependency: Thymeleaf, index.css, mainStyle.css
+*/-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-	<title>Bible Reader Commentary</title>
+	<title>BIBLIJA&ja</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
-	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.ico}">	
-	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+	<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"http-equiv="Content-Type"/>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/mainStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}" />
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script th:src="@{/scripts/ajax_script.js}"></script>
-	
-	<!-- ######################################################### Google Fonts #########################################################-->	
+	<script th:src="@{/scripts/javascript.js}"></script>
+	<script th:src="@{/scripts/scrollbutton.js}"></script>
+	<script th:src="@{/scripts/data_transfer_script.js}"></script>
+
+	<!--/*######################################################### Google Fonts #########################################################*/-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&family=Lato&display=swap" rel="stylesheet">	
-	<!--################################################################################################################################################-->
-	
-	
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<!--/*################################################################################################################################################*/-->
 </head>
 <body>
+	<button onclick="goToTop()" id="topBtn" title="Go to top">&uarr;</button>
 	<div class="main-wrapper">
-		<!--======================================================= Header =======================================================-->
-		<div class = header-area>
-			<div class="logo-div">
-				<img class="index-logo" th:src="@{/images/BRC logo.jpg}">
+		<!--/*======================================================= Header =======================================================*/-->
+		<div class="header-area">
+			<div class="header-row">							
+				<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+						<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+				</div>				
+				<div class="header-row-dashboard">
+					<div th:replace="~{fragments/BRC-User-Icon}">
+						<!--/* User icon and username here /fragments/BRC-User-Icon.html */-->
+					</div>
+				
+					<div th:replace="~{fragments/BRC-Hamburger-Options :: BRC-Hamburger-Options}">
+						<!--/*======================================================= Hamburger menu =======================================================*/-->
+					</div>
+				</div>
 			</div>
-			<div class="options-div">
+		</div>
 			
-				<table class="options-table">
-					<!--======================================================= Options menu =======================================================-->
-					<tr>
-						<td>
-							<div class="options-list" th:if="${userValidated}">
-								<span th:switch="${userRole}">
-								<!--  
-								ADD MORE OPTIONS FOR ADMIN AND OWNER LATER IN THE PROJECT
-								USER SHOULD ONLY SEE ADD COMMENT FOR NOW, AND USER PAGE FOR LATER 
-								-->
-									<span th:case="USER">
-										<a id="logout_button" href="/logout">Odjava</a> 
-										<a href="/private/myComments">Moji komentari</a>
-									</span>
-									<span th:case="ADMIN">
-										<a id="logout_button" href="/logout">Odjava</a>
-										<a href="/public/submitForm">Novi korisnik</a> 
-										 
-										<a href="/private/myComments">Moji komentari</a> 
-										<a href="/admin/controlCenter">Control Center</a>
-									</span>
-									<span th:case="OWNER"> 
-										<a id="logout_button" href="/logout">Odjava</a>
-										<a href="/public/submitForm">Novi korisnik</a> 
-										<a href="/private/myComments">Moji komentari</a> 
-										<a href="/admin/controlCenter">Control Center</a>
-									</span>		
-								</span>
-							</div>
-							<div class="options-list" th:unless="${userValidated}">
-								<a href="public/submitForm?redirect=/">Izradi profil</a>	
-								<a href="/login?redirect=/">Prijava</a>
-							</div>
-						</td>
-					</tr>
-					<!--======================================================= Book-Chapter Selection =======================================================-->					
-					<tr>
-						<td>
-						<form method="post" th:action="@{/fetchChapters}">
-							<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
-								<option selected disabled th:placeholder="'Odaberite knjigu'">Odaberite knjigu</option>
-								<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
-							</select>
-							<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments()" disabled>
-								<option selected disabled th:placeholder="'Glava'">Glava</option>		
-							</select>	
-						</form>
-						</td>
-					</tr>
-					<!--======================================================================================================================================-->
-				</table>			
+			<!--/*======================================================= Options menu =======================================================*/-->
+			
+		<div class="select-and-separator-container">
+			
+			
+			<!--/*======================================================= /Header ======================================================*/-->
+			<div class="upper-separator">
+				<h2 id="upper_separator_text"></h2>
+				<p class="main-welcome-text" id="main_welcome_text">"Jer Bog tako uzljubi svijet te dade Sina svojega jedinorođenoga da svaki koji vjeruje u njega ne propadne, nego ima život vječni."</p>
+				<p class="main-welcome-quotation" id="main_welcome_quotation"> Evanđelje po Ivanu 3:16
+				</p>
+			</div>
+			
+			<div class="options-div">				
+				<!--/*======================================================= Select Buttons =======================================================*/-->
+				<div class="select-buttons-holder">
+					<form method="post" class="select-buttons-form">
+						<select id="bookSelection" name="selectedBook" onchange="updateIndexChapters()">
+							<option selected disabled th:placeholder="'Odaberite knjigu'" value=0>Odaberite knjigu</option>
+							<!--/* For each Book in a Book list that controller gives creates an option element */-->
+							<option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}" ></option>
+						</select> 
+						<select id="chapterSelection" name="selectedChapter" onchange="fetchVersesAndComments(), highlightChapterBox(this)" disabled >
+							<option selected disabled th:placeholder="'Glava'" value=0>Glava</option>
+						</select>
+						<div class="filter-only-commented-wrapper">
+							<details class="details-size details-center">
+								<summary class="summary-center summary-width">Opcije</summary>
+								<span><a>Prikaži samo komentirani tekst: </a><input type="checkbox" id="filter_only_commented" onchange="updateCommentedBooks()"></span>
+							</details>
+						</div>
+					</form>
+				</div>
+				<!--/*======================================================= /Select Buttons =======================================================*/-->
 			</div>
 		</div>
-		<!--======================================================= /Header ======================================================-->
-		<div class="upper-separator">
-			<h2 id="upper_separator_text"></h2>
-		</div>		
-		<!--=========================================================== Verses ============================================================-->
-		<div class="bible-area" id="bible_display">
-			<div id="bible_text">
-				<!-- This area is autofilled by ajax script with Bible verses -->
+		<!--/*=========================================================== Verses ============================================================*/-->
+		<div id="bible_display">
+			<div class="bible-area" id="bible_text">
+				<!--/* This area is autofilled by ajax_script and IndexController with Bible verses */-->
+			</div>
+			<div class="chapter-selector-boxes-wrapper">
+				<div class="chapter-selector-boxes" id="chapter_selector">
+					<!--/* This area is autofilled by ajax_script with chapter boxes */-->
+				</div>
+			</div>	
+		</div>
+		<div class="lower-separator">
+			<form  method="get">
+				<div class="options-list" th:if="${currentlyLoggedUser}">
+					<a href="#" id="Index_writeCommentButton">Napiši komentar</a>
+				</div>
+			</form>
+			<div class="options-list" th:unless="${currentlyLoggedUser}">
+				<a href="public/submitForm">Izradi profil</a> <a href="/login">Prijava</a>
 			</div>
 		</div>
-		
-		<div class="lower-separator" >
-			<div class="options-list" th:if="${userValidated}">
-				<a href="/private/submitComment">Napiši komentar</a>
-			</div>
-			<div class="options-list" th:unless="${userValidated}">
-				<a href="public/submitForm?redirect=/">Izradi profil</a>	
-				<a href="/login?redirect=/">Prijava</a>
-			</div>
-		</div>
-		
-		<!--============================================================ Comments ===============================================================-->
+		<!--/*============================================================ Comments ===============================================================*/-->
 		<div class="comments-area">
 			<div id="comments_text">
-				<!-- This area is autofilled by ajax script with Bible comments -->
+				<!--/* This area is autofilled by ajax_script and IndexController with user comments */-->
 			</div>
 		</div>
 	</div>
-	
-	<!--======================================================= Footer =======================================================-->
-	<div class="footer-area">		
-		<p>Copyright: <img class="copyright-image" th:src="@{/images/crkva-bijeli-logo.png}" ></p>		
+	<!--/*======================================================= Footer =======================================================*/-->
+	<div th:replace="~{fragments/BRC-Footer.html :: BRC-Footer}">
+		<!--/* Footer fragment */-->
 	</div>
-	<!--======================================================= /Footer ======================================================-->
+	<div  th:if="${announcements}" class="announcement-wrapper">
+		<div th:each="announcement : ${announcements}" th:id="${'announcement_' + announcement.id}" class="announcement-display">
+			<div class="announcement-close-button-holder">
+				<button class="announcement-close-button" type="button" th:id="${'announcement_close_button_' + announcement.id}" th:data-announcement-id="${announcement.id}" onclick="dismissAnnouncementButton(this)">x</button>
+			</div>
+				<div class="announcement-text-holder" th:utext="${announcement.announcementText}" id="main_welcome_text"></div>						
+		</div>
+	</div>
 </body>
 </html>
-
-

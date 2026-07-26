@@ -1,28 +1,81 @@
+<!--/* submitform.html
+*	Page for user creation, nothing much about it except that ADMIN users can create another user and give them
+*	admin privileges. This page is only accessible to unregistered clients and admins. Regular users will have
+*	to logout from the system in order to create another user.
+*
+*	Author: Sven Gotal
+*	Date of Creation: 2024
+*	Date of last update: 18.04.2025
+*	Dependency: Thymeleaf, submitUser.css, mainStyle.css
+*/-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Submit Form</title>
-	<link rel="icon" type="image/x-icon" th:href="@{images/logoico.ico}">
-	<script th:src="@{/scripts/javascript.js}" ></script>
+	<title>BIBLIJA&ja</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/mainStyle.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/submitUser.css}"/>
+	<script th:src="@{/scripts/javascript.js}"></script>
+	
+	<!--/*######################################################### Google Fonts #########################################################*/-->	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<!--/*################################################################################################################################################*/-->
 </head>
 <body>
-	
-	<h1>Submit form</h1>	
-	
-	<form method="post" id="user_creation_form" th:action="@{submitForm}" th:object="${user}">
-		<label>Username: <input type="text" th:field="*{username}" required/></label><br/>
-		<label>Email: <input type="email" th:field="*{email}" /></label><br/>
-		<label>Password: <input type="password" name="password" id="password" th:field="*{password}" required/></label><br/>
-		<label>Retype password: <input type="password" name="password_retype" id="password_retype" /> </label>
-		<div th:switch="${adminRole}">
-			<label th:case="ADMIN">Role: <input type="text" th:field="*{role}" ></label>
-			<label th:case="GUEST">Dobrodošao posjetitelju! Prijavi se i postani dio našeg projekta.</label>		
+	<div class="main-wrapper">
+		<div class="header-area">
+			<div th:replace="~{fragments/BRC-Logo :: BRC-Logo}">
+				<!--/* BRC logo here /fragments/BRC-Logo.html */-->
+			</div>
+			<div th:if="${userAlreadyExistsErrorMessage}" class="greet-div">
+				<h1 th:text="${userAlreadyExistsErrorMessage}"></h1>
+			</div>
+			<div th:unless="${userAlreadyExistsErrorMessage}" class="greet-div">
+				<h1>Dobro došao!</h1>
+			</div>
 		</div>
-		<div>
-			<span id="error_display"></span>
+		<!--/*======================================================= User Creation Area =======================================================*/-->
+		<div class="submit-user-area">
+			<form method="post" id="user_creation_form" th:action="@{submitForm}" th:object="${user}">
+				<table class="submit-user-table">
+					<tr>
+						<td><label>Korisničko ime: </label></td>
+						<td><input type="text" th:field="*{username}" required/></td>
+					</tr>
+					<tr>
+						<td><label>Email: </label></td>
+						<td><input type="email" th:field="*{email}" /></td>
+					</tr>
+					<tr>
+						<td><label>Lozinka: </label></td>
+						<td><input type="password" name="password" id="password" th:field="*{password}" required/></td>
+					</tr>
+					<tr>
+						<td><label>Ponovi Lozinku: </label></td>
+						<td><input type="password" name="password_retype" id="password_retype"/></td>
+					</tr>
+					<tr th:if="${adminRole == 'ADMIN'}">
+						<td><label>Role: </label></td>
+						<td><input type="text" th:field="*{role}" ></td>
+					</tr>		 
+					<tr>
+						<td colspan="2"><button class="submit-user-button" type="submit" onclick="passwordValidation()">Registriraj se</button></td>
+					</tr>
+				</table>
+			</form>
+			<div class="submit-user-back-to-index">
+				<a href="/">Nazad na početnu</a>
+			</div>
 		</div>
-		<button type="submit" onclick="passwordValidation()">Submit</button>
-	</form>
-	<a href="/?redirect=/">Nazad na početnu stranicu</a>
+	</div>
+	<!--/*======================================================= Footer =======================================================*/-->
+	<div th:replace="~{fragments/BRC-Footer.html :: BRC-Footer}">
+		<!--/* Footer fragment */-->
+	</div>
 </body>
 </html>

@@ -33,3 +33,4 @@ build/
 .vscode/
 
 ### User defined ###
+/NotesToSelf.txt
