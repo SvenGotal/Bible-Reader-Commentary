@@ -1,8 +1,10 @@
 package com.java.crv.BibleReaderCommentary.services;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -47,7 +49,14 @@ public class ChapterService {
 	 * @return list of Chapters
 	 * */
 	public List<Chapter> getAllChaptersThatContainComments(){
-		return StreamSupport.stream(chapterRepository.findAll().spliterator(), false).filter(chapter -> !chapter.getComments().isEmpty()).toList();
+		
+		//TODO: sorted still not working properly. List is unsorted.
+		
+		return StreamSupport
+				.stream(chapterRepository.findAll().spliterator(), false)
+				.filter(chapter -> !chapter.getComments().isEmpty())
+				.sorted(Comparator.comparingInt(Chapter::getNumber))
+				.toList();		
 	}
 	
 	/**
