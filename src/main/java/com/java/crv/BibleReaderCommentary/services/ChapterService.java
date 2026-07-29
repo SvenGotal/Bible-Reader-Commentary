@@ -50,7 +50,7 @@ public class ChapterService {
 	public List<Chapter> getAllChaptersThatContainComments(){
 		
 		return StreamSupport
-				.stream(chapterRepository.findAllByOrderByNumberAsc().spliterator(), false)
+				.stream(chapterRepository.findAll().spliterator(), false)
 				.filter(chapter -> !chapter.getComments().isEmpty())
 				.sorted(Comparator.comparingInt(Chapter::getNumber))
 				.toList();
