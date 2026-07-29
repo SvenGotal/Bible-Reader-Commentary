@@ -1,6 +1,5 @@
 package com.java.crv.BibleReaderCommentary.services;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,13 +49,11 @@ public class ChapterService {
 	 * */
 	public List<Chapter> getAllChaptersThatContainComments(){
 		
-		//TODO: sorted still not working properly. List is unsorted.
-		
 		return StreamSupport
-				.stream(chapterRepository.findAll().spliterator(), false)
+				.stream(chapterRepository.findAllByOrderByNumberAsc().spliterator(), false)
 				.filter(chapter -> !chapter.getComments().isEmpty())
 				.sorted(Comparator.comparingInt(Chapter::getNumber))
-				.toList();		
+				.toList();
 	}
 	
 	/**
@@ -66,7 +63,11 @@ public class ChapterService {
 	public List<Chapter> getChaptersThatContainCommentsByBookId(Long bookId){
 		
 		Set<Chapter> setOfChaptersWithComments = new LinkedHashSet<Chapter>();
-		List<Chapter> listOfAllChapters = chapterRepository.findByBookId(bookId).stream().filter(chapter -> !chapter.getComments().isEmpty()).toList();
+		List<Chapter> listOfAllChapters = chapterRepository.findByBookId(bookId)
+				.stream()
+				.filter(chapter -> !chapter.getComments().isEmpty())
+				.sorted(Comparator.comparingInt(Chapter::getNumber))
+				.toList();
 		listOfAllChapters.forEach(chapter -> setOfChaptersWithComments.add(chapter));
 		
 		
@@ -81,7 +82,9 @@ public class ChapterService {
 		return chapterRepository.findByBookId(bookId)
 				.stream()
 				.filter(chapter -> !chapter.getComments().isEmpty())
-				.filter(chapter -> chapter.getComments().stream().anyMatch(comment -> comment.getPublished())).toList();
+				.filter(chapter -> chapter.getComments().stream().anyMatch(comment -> comment.getPublished()))
+				.sorted(Comparator.comparingInt(Chapter::getNumber))
+				.toList();
 	}
 	
 	/**
@@ -99,7 +102,10 @@ public class ChapterService {
 				.filter(chapt -> chapt.getBook().getId() == bookId)
 				.collect(Collectors.toSet());
 								
-		return setOfChapters.stream().collect(Collectors.toList());
+		return setOfChapters
+				.stream()
+				.sorted(Comparator.comparingInt(Chapter::getNumber))
+				.collect(Collectors.toList());
 		
 	}
 }

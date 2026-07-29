@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.services;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class BookService {
 		this.bookRepository = bookRepository;
 		this.chapterService = chapterService;
 	}
-	
+	//
 	/**
 	 * Gets all the book objects in the BookRepository, unfiltered.
 	 * @return List<Book>
@@ -50,10 +51,15 @@ public class BookService {
 	public List<Book> getBooksThatContainComments(Long userId){
 		
 		Set<Book> setOfBooksThatContainComments = new HashSet<Book>();		
-		List<Chapter> allChaptersWithComments = chapterService.getAllChaptersThatContainComments().stream().filter( chapter -> !chapter.getComments().isEmpty()).toList();		
+		List<Chapter> allChaptersWithComments = chapterService.getAllChaptersThatContainComments()
+				.stream()
+				.filter( chapter -> !chapter.getComments().isEmpty())
+				.toList();
 		allChaptersWithComments.forEach(chapter -> setOfBooksThatContainComments.add(chapter.getBook()));
 		
-		return setOfBooksThatContainComments.stream().collect(Collectors.toList());				
+		return setOfBooksThatContainComments.stream()
+				.sorted(Comparator.comparing(Book::getId))
+				.collect(Collectors.toList());	
 	}						
 }
 
