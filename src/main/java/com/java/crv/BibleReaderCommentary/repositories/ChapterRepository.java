@@ -12,4 +12,5 @@ public interface ChapterRepository extends CrudRepository<Chapter, Long>{
 	List<Chapter> findByBookId(Long bookId);
 	List<Chapter> findAllById(Long chapterId);
 	Optional<Chapter> findById(Long chapterId);
+	List<Chapter> findAllByOrderByNumberAsc();
 }
