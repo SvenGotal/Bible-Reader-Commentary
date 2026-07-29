@@ -34,7 +34,7 @@ class ChapterServiceTest {
 		
 		Chapter ch1 = new Chapter();
 		ch1.setId(1l);
-		ch1.setNumber(3);
+		ch1.setNumber(4);
 		ch1.setComments(List.of(cmnt1));	
 		
 		Chapter ch2 = new Chapter();
@@ -54,7 +54,7 @@ class ChapterServiceTest {
 		assertEquals(3, result.size());
 		assertEquals(1, result.get(0).getNumber());
 		assertEquals(2, result.get(1).getNumber());
-		assertEquals(3, result.get(2).getNumber());
+		assertEquals(4, result.get(2).getNumber());
 		
 		verify(chapterRepository).findAll();
 		
