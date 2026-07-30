@@ -202,7 +202,7 @@ async function fetchVersesAndComments() {
 			tdTitle.style.cssText = 'padding-left: 15px;';	
 			richText.innerHTML = comment.text;
 			tdText.style.cssText = 'padding-left: 15px;';
-			tdAuthor.innerText = comment.author + " | " + comment.timestamp;
+			tdAuthor.innerText = comment.author + " | " + comment.dateOfCreation;
 			tdAuthor.style.cssText = 'padding-left: 15px;';
 			
 			if(comment.published == false){
