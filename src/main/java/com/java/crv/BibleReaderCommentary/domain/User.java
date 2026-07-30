@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -28,13 +29,16 @@ public class User {
 	private String username;
 	private String email;
 	private UserRoles role;
+	private LocalDate dateOfRegistration;
 	
 	@OneToMany(mappedBy = "user")
 	@JsonProperty("comments")
 	@JsonBackReference
 	private List<Commentary> comments;
 	
-	
+	public User() {
+		this.dateOfRegistration = LocalDate.now();
+	}
 	
 	public UserRoles getRole() {
 		return role;
