@@ -1,12 +1,13 @@
 package com.java.crv.BibleReaderCommentary.mappers;
 
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
 
+import org.springframework.stereotype.Component;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
 
+@Component
 public class CommentaryMapper {
 
 	private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/uuuu");
