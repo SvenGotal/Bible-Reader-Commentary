@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.domain;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -33,6 +34,7 @@ public class Commentary {
 	@Lob
 	private String text;
 	private String timestamp;
+	private LocalDate dateOfCreation;
 	private String author;
 
 	@ManyToOne
@@ -46,12 +48,15 @@ public class Commentary {
 	@JoinColumn(name = "chapter_id")
 	private Chapter chapter;
 
-	public Commentary() {		
+	public Commentary() {
 		
+		/*Timestamp is a String and is deprecated*/
+		/*
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.timestamp = ldt.format(format);
-		
+		*/
+		this.dateOfCreation = LocalDate.now();		
 	}
 	
 	
