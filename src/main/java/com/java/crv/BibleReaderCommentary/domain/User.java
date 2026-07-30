@@ -30,7 +30,7 @@ public class User {
 	private String email;
 	private UserRoles role;
 	private LocalDate dateOfRegistration;
-	
+
 	@OneToMany(mappedBy = "user")
 	@JsonProperty("comments")
 	@JsonBackReference
@@ -87,6 +87,14 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", email=" + email + "]";
+	}
+	
+	public LocalDate getDateOfRegistration() {
+		return dateOfRegistration;
+	}
+
+	public void setDateOfRegistration(LocalDate dateOfRegistration) {
+		this.dateOfRegistration = dateOfRegistration;
 	}
 		
 }
