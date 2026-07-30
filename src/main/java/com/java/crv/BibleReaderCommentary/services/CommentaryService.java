@@ -1,5 +1,7 @@
 package com.java.crv.BibleReaderCommentary.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
@@ -8,17 +10,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
+import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
+import com.java.crv.BibleReaderCommentary.mappers.CommentaryMapper;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 
 @Service
 public class CommentaryService {
 	
 	private CommentaryRepository commentaryRepository;
+	private CommentaryMapper commentaryMapper;
 	
-	public CommentaryService(CommentaryRepository commentaryRepository) {
+	public CommentaryService(CommentaryRepository commentaryRepository, CommentaryMapper commentaryMapper) {
 		this.commentaryRepository = commentaryRepository;
+		this.commentaryMapper = commentaryMapper;
+		
 	}
 	
 	/**
@@ -78,8 +85,28 @@ public class CommentaryService {
 	 * Filters comments contained by a specific chapter via two predicates.
 	 * @return List of filtered comments
 	 * */
-	public List<Commentary> getFilteredCommentary(Long chapterId, Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
-		return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate1.or(predicate2)).toList();
+	public List<CommentaryDTO> getFilteredCommentary(Long chapterId, Predicate<Commentary> predicate1, Predicate<Commentary> predicate2){
+		
+		//TODO: use DTO instead of direct db extract
+		
+		List <Commentary> dbComments = commentaryRepository
+				.findAllByChapterId(chapterId)
+				.stream()
+				.filter(predicate1.or(predicate2))
+				.toList();
+		
+		List<CommentaryDTO> dbCommentsDTO = new ArrayList<>();
+		
+		for(Commentary comment : dbComments) {
+			dbCommentsDTO.add(commentaryMapper.toDto(comment));
+		}
+		
+		if(dbCommentsDTO.isEmpty())
+			return Collections.emptyList();
+		
+		return dbCommentsDTO;
+		
+		//return commentaryRepository.findAllByChapterId(chapterId).stream().filter(predicate1.or(predicate2)).toList();
 	}
 	
 	/**
