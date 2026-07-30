@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 
 @Controller
@@ -57,7 +58,7 @@ public class CommentaryController {
 	
 	@GetMapping("/public/fetchPublicComments")
 	@ResponseBody
-	public List<Commentary> fetchAllPublicAndUsersComments(
+	public List<CommentaryDTO> fetchAllPublicAndUsersComments(
 			@RequestParam Long chapterId,
 			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){
 		
