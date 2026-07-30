@@ -35,6 +35,8 @@ public class Commentary {
 	private String text;
 	private String timestamp;
 	private LocalDate dateOfCreation;
+	
+
 	private String author;
 
 	@ManyToOne
@@ -57,10 +59,7 @@ public class Commentary {
 		this.timestamp = ldt.format(format);
 		*/
 		this.dateOfCreation = LocalDate.now();		
-	}
-	
-	
-	
+	}			
 	
 	public String getSubject() {
 		return subject;
@@ -105,19 +104,21 @@ public class Commentary {
 		this.published = published;
 	}
 
+	public LocalDate getDateOfCreation() {
+		return dateOfCreation;
+	}
 
+	public void setDateOfCreation(LocalDate dateOfCreation) {
+		this.dateOfCreation = dateOfCreation;
+	}
 
 	public Chapter getChapter() {
 		return chapter;
 	}
 
-
-
 	public void setChapter(Chapter chapter) {
 		this.chapter = chapter;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -126,7 +127,6 @@ public class Commentary {
 	public String getAuthor() {
 		return author;
 	}
-
 
 	public void setAuthor() {
 		this.author = user.getUsername();
