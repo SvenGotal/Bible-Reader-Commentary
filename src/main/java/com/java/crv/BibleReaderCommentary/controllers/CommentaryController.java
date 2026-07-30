@@ -59,7 +59,9 @@ public class CommentaryController {
 	@ResponseBody
 	public List<Commentary> fetchAllPublicAndUsersComments(
 			@RequestParam Long chapterId,
-			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){		
+			@ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser){
+		
+		// TODO: move this logic into a service when time permits
 		
 		try {
 			
