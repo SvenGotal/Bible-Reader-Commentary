@@ -62,10 +62,13 @@ public class UserService {
 		
 		String newUsername = username.trim();
 		String newPassword = passwordEncoder.encode(password);
-		String newEmail = email.trim().toLowerCase();
+		
+		/*TODO: Create an email validation module*/
+		String comparisonEmail = email.trim().toLowerCase();
+		String newEmail = email.trim();
 		
 		/* findByUsername returns User instead of Optional */
-		if(userRepository.findByUsername(newUsername) != null) throw new UserAlreadyExistsException("User already exists...");
+		if(userRepository.findByUsername(newUsername) != null || userRepository.findByEmail(email).getEmail().toLowerCase() == comparisonEmail) throw new UserAlreadyExistsException("User already exists...");
 		
 		User newUser = new User().setUsername(newUsername).setPassword(newPassword).setEmail(newEmail).setRole(userRole);
 		
