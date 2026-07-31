@@ -93,8 +93,9 @@ public class User {
 		return dateOfRegistration;
 	}
 
-	public void setDateOfRegistration(LocalDate dateOfRegistration) {
+	public User setDateOfRegistration(LocalDate dateOfRegistration) {
 		this.dateOfRegistration = dateOfRegistration;
+		return this;
 	}
 		
 }
