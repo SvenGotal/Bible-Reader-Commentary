@@ -27,7 +27,7 @@ public class LoggedUserAdvice {
 	 * */
 	@ModelAttribute
 	public void displayLoggedUser(Model model, Principal principal) {
-		
+		//TODO: use email or id for authentication, usernames can be duplicate
 		try {
 			if(principal != null) {
 				User currentlyLoggedUser = userService.getUserByUsername(principal.getName());
