@@ -50,7 +50,7 @@ public class BootstrapData implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-				
+			
 		System.out.println("Commandline runner running....");
 		//check working dir
 		String working_dir = System.getProperty("user.dir");
@@ -82,6 +82,7 @@ public class BootstrapData implements CommandLineRunner{
 		}
 		
 		/*Insert the first admin user*/
+		
 		if(userRepo.count() == 0) {
 			System.out.println("User database is empty...");
 			User admin = new User();
@@ -94,6 +95,7 @@ public class BootstrapData implements CommandLineRunner{
 		}
 		
 		/* Add simple user for testing */
+		
 		if(userRepo.findByUsername("tester") == null) {
 			User user = new User();
 			user.setUsername("tester");

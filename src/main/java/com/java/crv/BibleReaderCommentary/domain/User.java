@@ -97,5 +97,5 @@ public class User {
 		this.dateOfRegistration = dateOfRegistration;
 		return this;
 	}
-		
+	
 }
