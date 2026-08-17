@@ -9,6 +9,7 @@ import com.java.crv.BibleReaderCommentary.exceptions.BookNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.ChapterNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
+import com.java.crv.BibleReaderCommentary.exceptions.DatabaseIsReadOnlyException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
@@ -61,8 +62,13 @@ public class CustomExceptionHandlerAdvice {
 	@ExceptionHandler(ChapterNotFoundException.class)
 	public String handleChapterNotFoundException(ChapterNotFoundException e, Model model) {
 		model.addAttribute("ErrorMsg", e.getMessage());
-		return "errors/errorViev";
+		return "errors/errorView";
 	}
 	
+	@ExceptionHandler(DatabaseIsReadOnlyException.class)
+	public String handleDatabaseIsReadOnlyException(DatabaseIsReadOnlyException e, Model model) {
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/errorView";
+	}
 	
 }
