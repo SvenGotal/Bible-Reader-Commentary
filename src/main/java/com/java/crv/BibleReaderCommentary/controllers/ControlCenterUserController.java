@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
+import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.repositories.CommentaryRepository;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
 @Controller
 public class ControlCenterUserController {
-	private UserRepository userRepository;
+	private UserRepository userService;
 	private CommentaryRepository commentaryRepository;
 
 	
-	public ControlCenterUserController(UserRepository userRepository, CommentaryRepository commentaryRepository) {
-		this.userRepository = userRepository;
+	public ControlCenterUserController(UserRepository userService, CommentaryRepository commentaryRepository) {
+		this.userService = userService;
 		this.commentaryRepository = commentaryRepository;
 	}
 	
@@ -29,7 +30,7 @@ public class ControlCenterUserController {
 		
 		try {
 			ArrayList<User> allUsersInADatabaseList = new ArrayList<User>();
-			allUsersInADatabaseList = (ArrayList<User>) userRepository.findAll();
+			allUsersInADatabaseList = (ArrayList<User>) userService.findAll();
 			
 			model.addAttribute("allUsersInADatabaseList", allUsersInADatabaseList);
 		}
@@ -47,7 +48,7 @@ public class ControlCenterUserController {
 		String errorDeletingAdminMessage = "Unable to delete Admin.";
 		String errorDeletingUserComments = "Comments could not be deleted.";
 		
-		User userToDelete = userRepository.findById(userId).get();
+		User userToDelete = userService.findById(userId).get();
 		
 		if(userToDelete.getRole() == UserRoles.ADMIN || userToDelete.getRole() == UserRoles.OWNER) {
 			
@@ -72,7 +73,12 @@ public class ControlCenterUserController {
 			}
 
 			try {
-				userRepository.deleteById(userId);
+				userService.deleteById(userId);
+			}
+			catch(UserNotFoundException e) {
+				e.printStackTrace();
+				model.addAttribute("errorDeletingUser", "User does not exist in the database...");
+				return "redirect:/admin/UserControl";
 			}
 			catch(NullPointerException e) {
 				e.printStackTrace();
