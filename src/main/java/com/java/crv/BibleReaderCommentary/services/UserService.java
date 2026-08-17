@@ -51,7 +51,10 @@ public class UserService {
 	
 	/**
 	 * Save user into the database.
-	 * @param
+	 * @param String username
+	 * @param String password
+	 * @param String email
+	 * @param UserRoles userRole
 	 * */
 	public User saveUser(String username, String password, String email, UserRoles userRole) {
 		
@@ -75,6 +78,18 @@ public class UserService {
 		return userRepository.save(newUser);						 
 	}
 	
+	/**
+	 * Delete User from the database. If not found throws UserNotFoundException.
+	 * @param Long userId
+	 * @throws UserNotFoundException
+	 * */
+	public void deleteById(Long userId) {
+		
+		if(userRepository.findById(userId).isEmpty()) {
+			throw new UserNotFoundException("User does not exist...");
+		}
+		userRepository.deleteById(userId);
+	}
 }
 
 
