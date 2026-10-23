@@ -1,13 +1,17 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.services.UserService;
+
+import jakarta.annotation.Resource;
 
 @Controller
 public class UserController {
@@ -28,5 +32,11 @@ public class UserController {
 		userService.saveUser(newUser.getUsername(), newUser.getPassword(), newUser.getEmail(), newUser.getRole());
 			
 		return "redirect:/";
+	}
+	
+	@GetMapping("private/compileCommentary")
+	public ResponseEntity<Resource> compileCommentary(){
+		//TODO: stub for downloading private comments by user
+		return null;
 	}
 }
