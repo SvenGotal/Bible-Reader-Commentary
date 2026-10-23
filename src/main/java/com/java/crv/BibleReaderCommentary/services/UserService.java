@@ -90,6 +90,15 @@ public class UserService {
 		}
 		userRepository.deleteById(userId);
 	}
+	
+	/**
+	 * Fetch all user's comments and compile them into a .pdf.
+	 * @param user
+	 * @return byte[]
+	 */
+	public byte[] compileUserCommentary(User user) {
+		return null;
+	}
 }
 
 
