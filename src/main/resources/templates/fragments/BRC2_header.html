@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/2_0_Style.css}"/>	
+</head>
+<body>
+	<div th:fragment="BRC2_header" class="header-wrapper">
+		
+		<div class="header-upper-layer">
+			
+			<img class="header-logo" th:src="@{images/Biblijaija logo-2.png}" alt="Biblija&ja Logo">
+			
+			<div class="header-user-icon-wrapper">
+				<div th:if="${currentlyLoggedUser}">
+					<img class="user-icon" th:src="@{/images/user-logged.svg}">
+					<a th:text="${currentlyLoggedUser.username}"></a>
+				</div>
+				<div th:unless="${currentlyLoggedUser}">
+					<img class="user-icon" th:src="@{/images/user-unlogged.svg}">
+					<a th:text="guest"></a>
+				</div>
+			</div>
+			
+			<div class="header-main-menu">
+				
+				
+			</div>
+			
+		</div>
+		
+		<div class="header-lower-layer">
+			
+			
+			
+		</div>
+		
+	</div>		
+</body>	
+</html>
