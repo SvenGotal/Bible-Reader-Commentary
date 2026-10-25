@@ -10,15 +10,13 @@
 			
 			<img class="header-logo" th:src="@{images/Biblijaija logo-2.png}" alt="Biblija&ja Logo">
 			
-			<div class="header-user-icon-wrapper">
-				<div th:if="${currentlyLoggedUser}">
-					<img class="user-icon" th:src="@{/images/user-logged.svg}">
-					<a th:text="${currentlyLoggedUser.username}"></a>
-				</div>
-				<div th:unless="${currentlyLoggedUser}">
-					<img class="user-icon" th:src="@{/images/user-unlogged.svg}">
-					<a th:text="guest"></a>
-				</div>
+			<div th:if="${currentlyLoggedUser}" class="header-user-icon-wrapper">
+				<img class="user-icon" th:src="@{/images/user-logged.svg}">
+				<a th:text="${currentlyLoggedUser.username}"></a>
+			</div>
+			<div th:unless="${currentlyLoggedUser}" class="header-user-icon-wrapper">
+				<img class="user-icon" th:src="@{/images/user-unlogged.svg}">
+				<a th:text="guest"></a>
 			</div>
 			
 			<div class="header-main-menu">
