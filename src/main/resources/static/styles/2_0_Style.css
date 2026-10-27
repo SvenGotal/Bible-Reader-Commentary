@@ -6,17 +6,29 @@
 	--text-muted: #626970;
 	--border: #DFE3E6;
 
-	--primary: #365F78;
+	/*--primary: #365F78;
 	--primary-hover: #294A60;
-	--on-primary: #FFFFFF;
+	--on-primary: #FFFFFF;*/
+	
+	--primary: #783B70;
+	--primary-hover: #602D59;
+	--primary-soft: #F1EAF0;
 	
 	--accent: #893172;
+	
+	--font-sans: Noto Sans;
+	--font-serif: Noto;
 }
 
 body{
 	padding: 0;
 	margin: 0;
 	background-color: var(--bg);
+}
+
+main{
+	padding-left: 2%;
+	padding-right: 2%;
 }
 
 /* HAMBURGER */
@@ -33,7 +45,7 @@ body{
 	position: absolute;
 	margin-top: 3%;
 	transition: all 0.7s ease-in-out;
-	
+	font-family: var(--font-sans);	
 
 }
 
@@ -128,7 +140,6 @@ body{
 	max-width: 50%;
 	width: 40%;	
 	justify-content: left;
-	
 }
 
 .header-logo-wrapper img{
@@ -141,6 +152,7 @@ body{
 	flex-direction: row;
 	align-items: center;
 	justify-content: right;
+	font-family: var(--font-sans);
 }
 
 .header-user-icon-wrapper a{
@@ -152,10 +164,34 @@ body{
 }
 
 .header-line-separator{
-	height: 5px;
+	height: 2px;
 	background-color: var(--accent);
 	width: 100%;
 	
+}
+
+.text-area-search-bar-layer{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1%;	
+	font-family: var(--font-sans);
+}
+
+.search-bar-wrapper{
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+
+
+
+.bible-area-search-bar{
+	border: 1px solid;
+	border-color: var(--primary);
+	border-radius: 6px;
+	min-height: 20px;
 }
 
 .footer-area-wrapper{
@@ -166,21 +202,30 @@ body{
 	align-items: center;
 }
 
+.reading-area{
+	column-count: 2;
+	column-gap: 2%;
+	padding-right: 15%;
+	padding-left: 15%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-family: var(--font-serif);
+}
+
 .footer-copyright-image{
 	max-width: 100px;
 }
 
 .footer-copyright-info{
+	font-family: var(--font-sans);
 	color: var(--text);
 }
 
 .footer-version-info{
+	font-family: var(--font-sans);	
 	color: var(--text);
 }
 
-.placeholder{
-	height: 500px;
-}
 
 @media screen and (max-width: 500px){
 	
