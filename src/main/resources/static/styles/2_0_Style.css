@@ -158,6 +158,29 @@ body{
 	
 }
 
+.footer-area-wrapper{
+	display: flex;
+	flex-direction: column;
+	height: 150px;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-copyright-image{
+	max-width: 100px;
+}
+
+.footer-copyright-info{
+	color: var(--text);
+}
+
+.footer-version-info{
+	color: var(--text);
+}
+
+.placeholder{
+	height: 500px;
+}
 
 @media screen and (max-width: 500px){
 	
