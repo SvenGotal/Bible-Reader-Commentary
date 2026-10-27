@@ -283,6 +283,16 @@ main{
 		justify-content: center;
 	}
 	
+	.text-area-search-bar-layer{
+		padding-top: 6%;
+	}
+	
+	.reading-area{
+		padding-left: 3%;
+		padding-right: 3%;
+		column-count: 1;
+	}
+	
 }
 
 
