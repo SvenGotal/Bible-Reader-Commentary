@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.crv.BibleReaderCommentary.domain.Verse;
+import com.java.crv.BibleReaderCommentary.domainDTO.VerseWithChapterAndBookInfoDTO;
 import com.java.crv.BibleReaderCommentary.services.VerseService;
 
 @Controller
@@ -25,5 +26,11 @@ public class VerseController {
 		
 		return verseService.getAllChapterVerses(chapterId);
 		
+	}
+	
+	@GetMapping("/public/fetchSearchVerses")
+	@ResponseBody
+	public List<VerseWithChapterAndBookInfoDTO> fetchSearchedVersesThatMatchString(@RequestParam String match){
+		return verseService.getAllVersesThatMatchString(match);
 	}
 }
