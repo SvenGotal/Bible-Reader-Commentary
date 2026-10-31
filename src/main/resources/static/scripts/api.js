@@ -68,5 +68,70 @@ function fetchSelectedChapterVerses(e){
 		
 }
 
+let databaseQueryTimeout;
 
+function searchVersesThatMatch(element){
+	
+	const searchString = element.value;
+	if(searchString.length < 3){
+		//console.log("return");
+		return;
+	}
+	
+	clearTimeout(databaseQueryTimeout);
+	
+	const readingArea = document.getElementById("bible_text");
+		
+	databaseQueryTimeout = setTimeout( () => {
+		
+		//console.log("sucess");
+		fetch("/public/fetchSearchVerses?match=" +searchString)
+		.then( response => response.json())
+		.then( data => {
+			
+			readingArea.innerHTML = "";
+			
+			if(data.length === 0){
+				const stringNotFoundTitleWrapper = document.createElement("div");
+				const stringNotFoundTitle = document.createElement("h1");
+				stringNotFoundTitle.innerHTML = 'Nije pronađena "' + searchString + '"';
+				stringNotFoundTitleWrapper.append(stringNotFoundTitle);
+				readingArea.append(stringNotFoundTitleWrapper);
+			}
+			
+			data.forEach(DTO => {
+				
+				const verseText = DTO.verseText;
+				
+				const startIndex = verseText.toLowerCase().indexOf(searchString.toLowerCase());
+				if(startIndex !== -1){
+					const endIndex = startIndex + searchString.length;
+
+					const textBefore = verseText.slice(0 , startIndex);
+					const foundMatch = verseText.slice(startIndex, endIndex);
+					const textAfter = verseText.slice(endIndex);
+
+					const markingSpan = document.createElement("span");
+					markingSpan.classList.add("highlight");
+					markingSpan.textContent = foundMatch;
+
+					const verseWrapper = document.createElement("div");
+					const verseTitle = document.createElement("h3");						
+					const verseParagraph = document.createElement("p");
+
+					verseTitle.innerHTML = DTO.bookName + " " + DTO.chapterNumber + ":" + DTO.verseNumber;
+					verseParagraph.replaceChildren(textBefore, markingSpan, textAfter);// innerHTML = textBefore + markingSpan.textContent + textAfter;	
+
+					verseWrapper.append(verseTitle);			
+					verseWrapper.append(verseParagraph);			
+					readingArea.append(verseWrapper);
+				}
+				
+			});
+			
+		});
+		
+	}, 1500);
+	
+}
 

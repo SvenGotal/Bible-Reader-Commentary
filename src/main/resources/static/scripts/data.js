@@ -7,7 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		event.preventDefault();
 		const titleElement = document.getElementById("book_and_chapter_title");
 		var bookId = titleElement.dataset.bookId;
+		if(!bookId){
+			bookId = 1;
+		}
+		
 		var chapterId = titleElement.dataset.chapterId;
+		if(!chapterId){
+			chapterId = 1;
+		}
 		 	 
 		window.location.href = '/private/submitComment?bookId=' + encodeURIComponent(bookId) + '&chapterId=' + encodeURIComponent(chapterId);
 		});	

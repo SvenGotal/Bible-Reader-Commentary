@@ -15,6 +15,8 @@
 	--primary-soft: #F1EAF0;
 	
 	--accent: #893172;
+	--textaccent: #6765A9;
+	--texthighlight: #B62026;
 	
 	--font-sans: Noto Sans;
 	--font-serif: Noto;
@@ -46,6 +48,7 @@ main{
     min-width: 40px;   
     background-color: var(--bg);
 	margin: 10px;
+	font-family: var(--font-sans);
 }
 
 .brc-button:hover{
@@ -64,7 +67,7 @@ main{
 	table-layout: fixed;
 	overflow: hidden;
 	margin-left: -7%;
-	z-index: 1;
+	z-index: 11;
 	-webkit-transition: all 1s ease;
 	position: absolute;
 	margin-top: 3%;
@@ -228,7 +231,7 @@ main{
 
 .reading-area-wrapper{
 	display: flex;
-	flex-direction: row;
+	flex-direction: row;	
 }
 
 .reading-area{
@@ -239,6 +242,11 @@ main{
 	margin-top: 50px;
 	margin-bottom: 50px;
 	font-family: var(--font-serif);
+	max-height: none;
+}
+
+.reading-area div{
+	break-inside: avoid;
 }
 
 .reading-area-intro-text{
@@ -253,8 +261,10 @@ main{
 .book-and-chapter-wrapper{
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	top: 0;
+	align-self: flex-start;
+	position:sticky;
+	z-index: 10
 }
 
 .book-scroll-menu-div{
@@ -274,7 +284,7 @@ main{
 	margin-top: 50px;
 	padding: 15px;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 }
@@ -351,6 +361,10 @@ main{
 	color: var(--text);
 }
 
+.highlight{
+	color: var(--texthighlight);
+	font-weight: bold;
+}
 
 @media screen and (max-width: 500px){
 	

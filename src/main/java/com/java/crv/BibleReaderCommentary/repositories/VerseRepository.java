@@ -13,16 +13,16 @@ public interface VerseRepository extends CrudRepository<Verse, Long>{
 	List<Verse> findByChapterId(Long chapterId);
 	
 	@Query("""
-			select new com.java.crv.BibleReaderCommentary.domainDTO(
+			select new com.java.crv.BibleReaderCommentary.domainDTO.VerseWithChapterAndBookInfoDTO(
 				verse.id,
 				verse.number,
 				verse.text,
 				chapter.number,
 				book.name
 			)
-			from VERSE verse
-			join verse.CHAPTER chapter
-			join chapter.BOOK book
+			from Verse verse
+			join verse.chapter chapter
+			join chapter.book book
 			where lower(verse.text) like lower(concat('%',:match,'%'))
 			order by book.id, chapter.number, verse.number			
 			""")

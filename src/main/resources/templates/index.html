@@ -7,6 +7,7 @@
 	<script th:src="@{/scripts/api.js}" defer></script>
 	<script th:src="@{/scripts/animations.js}" defer></script>
 	<script th:src="@{scripts/data.js}" defer></script>
+	<script th:src="@{scripts/scrollbutton.js}" defer></script>
 </head>
 <body >
 	
@@ -20,8 +21,8 @@
 		<div class="text-area-search-bar-layer">
 			
 			<div class="search-bar-wrapper">
-				<a class="search-bar-info">Pretraži</a>
-				<input class="bible-area-search-bar" id="bible_search_bar" type="text" placeholder="Najmanje 3 znaka...">
+				<a class="search-bar-info">Pretraži: </a>
+				<input class="bible-area-search-bar" id="bible_search_bar" type="text" placeholder="Najmanje 3 znaka..." oninput="searchVersesThatMatch(this)">
 			</div>
 			
 			<div class="search-bar-options">

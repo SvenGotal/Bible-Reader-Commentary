@@ -2,10 +2,18 @@ package com.java.crv.BibleReaderCommentary.domainDTO;
 
 public class VerseWithChapterAndBookInfoDTO {
 	private Long verseId;
-	private Integer verseNumber;
+	private int verseNumber;
 	private String verseText;
-	private Integer chapterNumber;
+	private int chapterNumber;
 	private String bookName;
+	
+	public VerseWithChapterAndBookInfoDTO(Long verseId, int verseNumber, String verseText, int chapterNumber, String bookName) {
+		this.verseId = verseId;
+		this.verseNumber = verseNumber;
+		this.verseText = verseText;
+		this.chapterNumber = chapterNumber;
+		this.bookName = bookName;
+	}
 	
 	public Long getVerseId() {
 		return verseId;
@@ -13,10 +21,10 @@ public class VerseWithChapterAndBookInfoDTO {
 	public void setVerseId(Long verseId) {
 		this.verseId = verseId;
 	}
-	public Integer getVerseNumber() {
+	public int getVerseNumber() {
 		return verseNumber;
 	}
-	public void setVerseNumber(Integer verseNumber) {
+	public void setVerseNumber(int verseNumber) {
 		this.verseNumber = verseNumber;
 	}
 	public String getVerseText() {
@@ -25,10 +33,10 @@ public class VerseWithChapterAndBookInfoDTO {
 	public void setVerseText(String verseText) {
 		this.verseText = verseText;
 	}
-	public Integer getChapterNumber() {
+	public int getChapterNumber() {
 		return chapterNumber;
 	}
-	public void setChapterNumber(Integer chapterNumber) {
+	public void setChapterNumber(int chapterNumber) {
 		this.chapterNumber = chapterNumber;
 	}
 	public String getBookName() {
