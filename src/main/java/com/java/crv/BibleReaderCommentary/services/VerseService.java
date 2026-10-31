@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.java.crv.BibleReaderCommentary.domain.Verse;
+import com.java.crv.BibleReaderCommentary.domainDTO.VerseWithChapterAndBookInfoDTO;
 import com.java.crv.BibleReaderCommentary.repositories.VerseRepository;
 
 @Service
@@ -22,5 +23,9 @@ public class VerseService {
 	 * */
 	public List<Verse> getAllChapterVerses(Long chapterId){
 		return verseRepository.findByChapterId(chapterId);
+	}
+	
+	public List<VerseWithChapterAndBookInfoDTO> getAllVersesThatMatchString(String match){
+		return verseRepository.findByStringMatch(match);
 	}
 }
