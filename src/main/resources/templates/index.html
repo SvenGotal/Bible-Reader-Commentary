@@ -30,16 +30,12 @@
 			</div>
 			
 		</div>
-		
-		<div class="reading-area-wrapper">
-			<div class="reading-area" id="bible_text">
-				<p>
-					16 Sve Pismo, bogoduho, korisno je za poučavanje, uvjeravanje, popravljanje, odgajanje u pravednosti,
-				</p>
-				<p>
-					17 da čovjek Božji bude vrstan, za svako dobro djelo podoban.
-				</p>
 
+		<div class="reading-area-wrapper">
+			
+			<div class="reading-area" id="bible_text">
+				<!--/* John 1 is the current placeholder */-->
+				<p th:each="verse : ${verses}" th:text="|${verse.number}. ${verse.text}|"></p>				
 			</div>
 			<div th:replace="~{fragments/BRC2_book-scroll}">
 				

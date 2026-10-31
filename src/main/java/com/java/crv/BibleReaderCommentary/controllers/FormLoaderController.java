@@ -18,6 +18,7 @@ import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
+import com.java.crv.BibleReaderCommentary.services.VerseService;
 
 @Controller
 public class FormLoaderController {
@@ -26,12 +27,20 @@ public class FormLoaderController {
 	private ChapterService chapterService;
 	private CommentaryService commentaryService;
 	private ServerAnnouncementService serverAnnouncementService;
+	private VerseService verseService;
 	
-	public FormLoaderController (BookService bookService, ChapterService chapterService, CommentaryService commentaryService, ServerAnnouncementService serverAnnouncementService) {
+	public FormLoaderController (
+			BookService bookService, 
+			ChapterService chapterService, 
+			CommentaryService commentaryService, 
+			ServerAnnouncementService serverAnnouncementService,
+			VerseService verseService
+			) {
 		this.bookService = bookService;
 		this.chapterService = chapterService;
 		this.commentaryService = commentaryService;
 		this.serverAnnouncementService = serverAnnouncementService;
+		this.verseService = verseService;
 	}
 	
 	
@@ -43,7 +52,8 @@ public class FormLoaderController {
 	
 		model.addAttribute("books", bookService.getAllBookData());
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
-		
+		/* Currently hardcoded to John 1 */
+		model.addAttribute("verses", verseService.getAllChapterVerses(998l));		
 		return "index";
 	}
 	

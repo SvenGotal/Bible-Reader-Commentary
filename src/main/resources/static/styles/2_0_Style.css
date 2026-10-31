@@ -241,6 +241,15 @@ main{
 	font-family: var(--font-serif);
 }
 
+.reading-area-intro-text{
+	display: flex;
+	flex: 5;
+	justify-content: center;
+	align-items: center;
+	column-count: 1;
+	
+}
+
 .book-and-chapter-wrapper{
 	display: flex;
 	flex-direction: column;
