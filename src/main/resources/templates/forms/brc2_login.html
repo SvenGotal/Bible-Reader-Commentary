@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/2_0_Style.css}"/>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/under_construction.svg}">
+	<script th:src="@{scripts/redirection.js}"></script>
+</head>
+<body>
+	<header>
+		<div class="header-wrapper">			
+			<div class="header-upper-layer">				
+				<div class="header-logo-wrapper-login">
+					<img class="header-logo" th:src="@{images/Bibilijaija-logo.png}" alt="Biblija&ja Logo" onclick="redirectToIndex()">
+				</div>							
+			</div>
+			<div class="header-lower-layer">
+				<div class="header-line-separator"></div>						
+			</div>			
+		</div>								
+	</header>
+	<body>
+		<div class="log-user-area">
+			<div class="login-welcome-title">
+				<h2>Dobro došli.</h2>
+			</div>
+			<div class="log-form-wrapper">
+				<form th:action="@{/login}" method="post" class="log-form">
+			        <input class="login-user-info-boxes" type="text" name="username" placeholder="Korisničko ime" required>
+			        <input class="login-user-info-boxes" type="password" name="password" placeholder="Lozinka" required>
+			        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+					<button class="brc-button" type="submit">Prijavi me</button>
+				</form>
+			</div>
+		</div>		
+	</body>	
+	<footer> <!--/* Footer fragment here*/--> 
+		<div th:replace="~{fragments/BRC2_footer :: BRC2_footer}"></div>
+	</footer>
+</body>
+</html>

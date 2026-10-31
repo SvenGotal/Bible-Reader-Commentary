@@ -24,7 +24,6 @@ function fetchSelectedBookChapters(e){
 				chapterbox.innerHTML = chapter.number;
 				chapterbox.classList.add("chapter-holder-box");
 				chapterbox.dataset.chapterId = chapter.id;
-				//chapterbox.dataset.bookId = bookId;
 				chapterbox.dataset.bookName = e.innerHTML;
 				chapterbox.addEventListener("click", () => {fetchSelectedChapterVerses(chapterbox)});
 				chapterHolder.append(chapterbox);
@@ -74,7 +73,7 @@ function searchVersesThatMatch(element){
 	
 	const searchString = element.value;
 	if(searchString.length < 3){
-		//console.log("return");
+		clearTimeout(databaseQueryTimeout);
 		return;
 	}
 	
@@ -84,7 +83,6 @@ function searchVersesThatMatch(element){
 		
 	databaseQueryTimeout = setTimeout( () => {
 		
-		//console.log("sucess");
 		fetch("/public/fetchSearchVerses?match=" +searchString)
 		.then( response => response.json())
 		.then( data => {
@@ -120,7 +118,7 @@ function searchVersesThatMatch(element){
 					const verseParagraph = document.createElement("p");
 
 					verseTitle.innerHTML = DTO.bookName + " " + DTO.chapterNumber + ":" + DTO.verseNumber;
-					verseParagraph.replaceChildren(textBefore, markingSpan, textAfter);// innerHTML = textBefore + markingSpan.textContent + textAfter;	
+					verseParagraph.replaceChildren(textBefore, markingSpan, textAfter);
 
 					verseWrapper.append(verseTitle);			
 					verseWrapper.append(verseParagraph);			

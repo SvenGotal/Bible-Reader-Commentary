@@ -169,8 +169,17 @@ main{
 	justify-content: left;
 }
 
-.header-logo-wrapper img{
+.header-logo-wrapper-login{
+	display: flex;
+	max-width: 50%;
+	width: 40%;
+	justify-content: center;
+}
+
+.header-logo-wrapper img,
+.header-logo-wrapper-login img{
 	max-width: 40%;
+	cursor: pointer;
 }
 
 .header-user-icon-wrapper{
@@ -265,6 +274,10 @@ main{
 	align-self: flex-start;
 	position:sticky;
 	z-index: 10
+}
+
+.book-and-chapter-title{
+	font-family: var(--font-serif);
 }
 
 .book-scroll-menu-div{
@@ -364,6 +377,60 @@ main{
 .highlight{
 	color: var(--texthighlight);
 	font-weight: bold;
+}
+
+.log-user-area{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+}
+
+.login-welcome-title{
+	font-family: var(--font-serif);
+	padding: 20px;
+}
+
+.log-form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 25px;
+}
+
+.login-user-info-boxes{
+	border: none;
+	background-color: var(--bg);
+	border-bottom: 1px solid var(--accent);
+	/*border-left: 1px solid var(--accent);*/
+	height: 20px;
+	font-family: var(--font-sans);
+}
+
+.logout-user-button{
+	font-family: var(--font-serif);
+	border: none;
+	background-color: var(--bg);
+	cursor: pointer;
+	font-size: 1.5vw;
+	color: var(--text);
+}
+
+.login-user-info-boxes:focus{
+	background-color: var(--primary-soft);
+	border: none;
+}
+
+.login-user-info-boxes:-webkit-autofill,
+.login-user-info-boxes:-webkit-autofill:hover,
+.login-user-info-boxes:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text);
+    caret-color: var(--text);
+
+    -webkit-box-shadow: 0 0 0 1000px var(--primary-soft) inset;
+    box-shadow: 0 0 0 1000px var(--primary-soft) inset;
 }
 
 @media screen and (max-width: 500px){

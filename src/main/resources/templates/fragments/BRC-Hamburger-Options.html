@@ -20,6 +20,11 @@
 							<li><a href="/private/myHomepage">Moja stranica</a></li>
 							<li><a href="/private/submitComment">Napiši komentar</a></li>
 							<li><a id="logout_button" href="/logout">Odjava</a></li>
+							<li>
+								<form th:action="@{/logout}" method="post">
+									<button class="logout-user-button" type="submit">Odjava</button>
+								</form>
+							</li>
 						</ul>
 					</th:block>
 					<th:block th:case="ADMIN">
@@ -30,7 +35,11 @@
 							<li><a href="/private/myHomepage">Moja stranica</a></li>
 							<li><a href="/admin/controlCenter">Control Center</a></li>
 							<li><a href="/private/submitComment">Napiši komentar</a></li>
-							<li><a id="logout_button" href="/logout">Odjava</a></li>
+							<li>
+								<form th:action="@{/logout}" method="post">
+									<button class="logout-user-button" type="submit">Odjava</button>
+								</form>
+							</li>
 						</ul>
 					</th:block>
 				</nav>
