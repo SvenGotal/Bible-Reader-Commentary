@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+
+	</head>
+	
+	<body>
+		
+		<div th:fragment="BRC2_book-scroll" class="book-and-chapter-wrapper">	
+			
+			<div class="book-and-chapter-title">
+				<h1 id="book_and_chapter_title"></h1>
+				
+			</div>
+								
+			<div class="book-scroll-wrapper">															
+				<div class="book-chapter-holder" id="book_chapter_holder">
+					<!--/* This area is populated via api.js script with book chapters */-->				
+				</div>
+				<div class="book-chapter-separator"></div>
+				<div class="book-scroll-menu-div" id="book_scroll_menu_div">
+					<div th:each="book : ${books}" th:data-book-id="${book.id}" th:text="${book.name}" onclick="fetchSelectedBookChapters(this)" class="book-holder-box"></div>				
+				</div>									
+			</div>
+			
+			<div class="book-scroll-options-wrapper">
+				<div class="book-scroll-options">
+					<div class="button-wrapper" th:if="${currentlyLoggedUser}">	
+						<input class="brc-button" id="write_comment_button" type="button" value="Napiši komentar">	
+					</div>
+					<div class="button-wrapper" th:unless="${currentlyLoggedUser}">	
+						<input class="brc-button" id="login_user_button" type="button" value="Prijavi se" onclick="window.location.href='/login'">	
+					</div>
+				</div>								
+			</div>
+		
+		</div>
+		
+	</body>
+	
+</html>
