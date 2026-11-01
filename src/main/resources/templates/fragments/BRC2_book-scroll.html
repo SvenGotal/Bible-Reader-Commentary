@@ -9,8 +9,7 @@
 		<div th:fragment="BRC2_book-scroll" class="book-and-chapter-wrapper">	
 			
 			<div class="book-and-chapter-title">
-				<h1 id="book_and_chapter_title">Ivan 1</h1>
-				
+				<h1 id="book_and_chapter_title">Ivan 1</h1>	
 			</div>
 								
 			<div class="book-scroll-wrapper">															
@@ -31,7 +30,7 @@
 					<div class="button-wrapper" th:unless="${currentlyLoggedUser}">	
 						<input class="brc-button" id="login_user_button" type="button" value="Prijavi se" onclick="window.location.href='/login'">	
 					</div>
-					<div class="button-wrapper">	
+					<div class="button-wrapper go-to-top-button-mobile-hidden">	
 						<input class="brc-button" id="go_to_top_button" onclick="goToTop()" type="button" value="Na vrh">	
 					</div>
 				</div>								

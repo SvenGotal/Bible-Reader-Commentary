@@ -32,17 +32,28 @@
 			</div>
 			
 		</div>
+		
+		
+		
 
 		<div class="reading-area-wrapper">
+
 			
 			<div class="reading-area" id="bible_text">
+				
 				<!--/* John 1 is the current placeholder */-->
 				<p th:each="verse : ${verses}" th:text="|${verse.number}. ${verse.text}|"></p>				
 			</div>
-			<div th:replace="~{fragments/BRC2_book-scroll}">
-				
-				<!--/* Book Scroll is populated from the database */-->
+			<div class="go-to-top-button-wrapper">
+				<input class="brc-button" id="go_to_top_button_upper" onclick="goToTop()" type="button" value="Na vrh">
 			</div>
+			<div class="screen-flank-book-scroll">
+				<div th:replace="~{fragments/BRC2_book-scroll}">
+					
+					<!--/* Book Scroll is populated from the database */-->
+				</div>				
+			</div>
+
 		</div>
 		
 		

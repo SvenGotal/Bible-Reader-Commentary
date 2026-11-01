@@ -80,6 +80,8 @@ function searchVersesThatMatch(element){
 	clearTimeout(databaseQueryTimeout);
 	
 	const readingArea = document.getElementById("bible_text");
+	const optionsTitle = document.getElementById("book_and_chapter_title");
+	const chapterHolder = document.getElementById("book_chapter_holder");
 		
 	databaseQueryTimeout = setTimeout( () => {
 		
@@ -88,6 +90,8 @@ function searchVersesThatMatch(element){
 		.then( data => {
 			
 			readingArea.innerHTML = "";
+			optionsTitle.innerHTML = "";
+			chapterHolder.innerHTML = "";
 			
 			if(data.length === 0){
 				const stringNotFoundTitleWrapper = document.createElement("div");

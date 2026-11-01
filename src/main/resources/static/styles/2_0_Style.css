@@ -206,6 +206,10 @@ main{
 	
 }
 
+.go-to-top-button-wrapper{
+	display: none;
+}
+
 .text-area-search-bar-layer{
 	display: flex;
 	flex-direction: column;
@@ -302,6 +306,10 @@ main{
 	align-items: center;
 }
 
+.mobile-upper-book-scroll{
+	display: none;
+}
+
 .book-chapter-separator{
 	height: 400px;
 	width: 2px;
@@ -313,7 +321,7 @@ main{
 	max-width: 120px;
 	width: 120px;
 	overflow-y: scroll;
-	overflow-x: none;
+
 	max-height: 400px;
 	padding-right: 20px;
 	padding-left: 20px;
@@ -435,7 +443,7 @@ main{
 
 @media screen and (max-width: 500px){
 	
-	
+
 	
 	.menu1{
 		background: rgba(0,0,0,0.0);
@@ -500,11 +508,12 @@ main{
 	}
 	
 	.reading-area-wrapper{
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
 	
 	.book-and-chapter-wrapper{
 		display: block;
+
 	}
 	
 	.book-chapter-separator{
@@ -515,6 +524,19 @@ main{
 	
 	.book-scroll-wrapper{
 		flex-direction: column;
+		margin-top: 0px;
+		max-height: 200px;
+	}
+	
+	.book-scroll-options-wrapper{
+		background-color: var(--bg);
+
+	}
+	
+	.book-scroll-options{
+		margin-top: 0px;
+		padding: 5px;
+		
 	}
 	
 	.book-chapter-holder{
@@ -534,7 +556,13 @@ main{
 		
 		box-sizing: border-box;
 		padding-bottom: 20px;
-		gap: 20px;
+		gap: 5px;
+	}
+	
+	.book-and-chapter-title h1{
+		margin: 0px;
+		margin-top: 10px;
+		padding: 0px;
 	}
 	
 	.book-scroll-menu-div{
@@ -549,15 +577,24 @@ main{
 		
 		max-width: 100%;
 		max-height: 180px;
-		gap: 20px;
+		gap: 10px;
 		
-		margin-top: 15px;
-		margin-bottom: 15px;
+		margin-top: 5px;
+		margin-bottom: 5px;
 
 	}
 	
-
+	.go-to-top-button-mobile-hidden{
+		display: none;
+	}
 	
+	.go-to-top-button-wrapper{
+		display: flex;
+		justify-content: center;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
 }
 
 
