@@ -67,7 +67,6 @@ public class UserService {
 		String newPassword = passwordEncoder.encode(password);
 		
 		/*TODO: Create an email validation module*/
-		String comparisonEmail = email.trim().toLowerCase();
 		String newEmail = email.trim();
 		
 		/* findByUsername returns User instead of Optional */
