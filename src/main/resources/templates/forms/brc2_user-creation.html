@@ -4,16 +4,49 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css"th:href="@{/styles/2_0_Style.css}"/>
 	<link rel="icon" type="image/x-icon" th:href="@{/images/under_construction.svg}">
-	<script th:src="@{scripts/redirection.js}"></script>
+	<script th:src="@{/scripts/redirection.js}" defer></script>
 </head>
 <body>
 	<header>
-		<div class="header-wrapper" th:replace="~{fragments/BRC2_minimalist-header}">			
-		
-		</div>								
+		<div th:replace="~{fragments/BRC2_minimalist-header}"></div>								
 	</header>
 	<body>
-		
+		<div class="user-creation-error-display" id="error_display"></div>
+		<div class="submit-user-area">
+				<form method="post" id="user_creation_form" th:action="@{createProfile}" th:object="${user}">
+					<div class="user-creation-form-div">
+						<div>
+							<label>Korisničko ime: </label>
+							<input class="login-user-info-boxes" type="text" th:field="*{username}" id="username" required/>
+						</div>
+						<div>
+							<label>Email: </label>
+							<input class="login-user-info-boxes" type="email" th:field="*{email}" />	
+						</div>
+						<div>
+							<label>Lozinka: </label>
+							<input class="login-user-info-boxes" type="password" name="password" id="password" th:field="*{password}" required/>				
+						</div>
+						<div>
+							<label>Ponovi Lozinku: </label></td>
+							<input class="login-user-info-boxes" type="password" name="password_retype" id="password_retype"/>
+						</div>	
+						<div th:if="${adminRole == 'ADMIN'}">
+							<label>Role: </label>
+							<input class="login-user-info-boxes" type="text" th:field="*{role}">
+						</div>					
+						<div class="user-creation-submit-button-wrapper">
+							<button class="brc-button" type="submit" onclick="userCreationFormValidation()">Registriraj se</button>
+						</div>
+						
+						
+					</div>
+				</form>
+				<div class="submit-user-back-to-index">
+					<a class="brc-button" href="/">Nazad na početnu</a>
+				</div>
+			</div>
+		</div>
 	</body>	
 	<footer> <!--/* Footer fragment here*/--> 
 		<div th:replace="~{fragments/BRC2_footer :: BRC2_footer}"></div>

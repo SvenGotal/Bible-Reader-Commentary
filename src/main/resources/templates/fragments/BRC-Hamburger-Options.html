@@ -30,7 +30,7 @@
 					<th:block th:case="ADMIN">
 						<ul>
 							<li><a href="/">Početna</a></li>
-							<li><a href="/public/submitForm">Novi korisnik</a></li>
+							<li><a href="/public/createProfile">Novi korisnik</a></li>
 							<li><a href="/private/myComments">Moji komentari</a></li>
 							<li><a href="/private/myHomepage">Moja stranica</a></li>
 							<li><a href="/admin/controlCenter">Control Center</a></li>
@@ -47,7 +47,7 @@
 			<th:block th:unless="${currentlyLoggedUser}">
 				<nav class="menu1">
 					<ul>
-						<li><a href="public/submitForm">Izradi profil</a></li> 
+						<li><a href="public/createProfile">Izradi profil</a></li> 
 						<li><a href="/login">Prijava</a></li>
 					</ul>
 				</nav>
