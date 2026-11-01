@@ -473,10 +473,16 @@ main{
 		gap: 3%;
 	}
 	
-	.header-logo-wrapper{
-		
-		width: 50%;	
-		
+	.header-logo-wrapper{		
+		width: 50%;			
+	}
+	
+	.header-logo-wrapper-login{
+		width: 50%;
+	}
+	
+	.header-logo-wrapper-login img{
+		max-width: 100%;
 	}
 
 	.header-logo-wrapper img{
@@ -594,6 +600,13 @@ main{
 		position: sticky;
 		top: 0;
 		z-index: 10;
+	}
+	
+	.logout-user-button{
+		font-size: 7vw;
+		background-color: white;
+		font-family: var(--font-sans);
+
 	}
 }
 
