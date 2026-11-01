@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css"th:href="@{/styles/2_0_Style.css}"/>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/under_construction.svg}">
+	<script th:src="@{scripts/redirection.js}"></script>
+</head>
+<body>
+	<header>
+		<div class="header-wrapper">			
+			<div class="header-upper-layer">				
+				<div class="header-logo-wrapper-login">
+					<img class="header-logo" th:src="@{images/Bibilijaija-logo.png}" alt="Biblija&ja Logo" onclick="redirectToIndex()">
+				</div>							
+			</div>
+			<div class="header-lower-layer">
+				<div class="header-line-separator"></div>						
+			</div>			
+		</div>								
+	</header>
+	<body>
+		
+	</body>	
+	<footer> <!--/* Footer fragment here*/--> 
+		<div th:replace="~{fragments/BRC2_footer :: BRC2_footer}"></div>
+	</footer>
+</body>
+</html>
