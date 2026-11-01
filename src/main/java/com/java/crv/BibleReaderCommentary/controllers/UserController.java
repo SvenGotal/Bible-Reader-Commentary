@@ -22,7 +22,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@PostMapping("public/submitForm")
+	@PostMapping("public/createProfile")
 	public String submitForm(@ModelAttribute("user") @Validated User newUser, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {		

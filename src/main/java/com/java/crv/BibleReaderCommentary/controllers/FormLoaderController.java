@@ -60,7 +60,7 @@ public class FormLoaderController {
 	/**
 	 * User creation form loader
 	 * */
-	@GetMapping("public/submitForm")
+	@GetMapping("public/createProfile")
 	public String loadUserCreationForm(Model model, @ModelAttribute("currentlyLoggedUser") User currentlyLoggedUser) {
 		if(currentlyLoggedUser != null) {
 			if(currentlyLoggedUser.getRole() != null) {
@@ -72,7 +72,7 @@ public class FormLoaderController {
 		}
 		
 		model.addAttribute("user", new User());
-		return "forms/submitform";
+		return "forms/brc2_user-creation";
 	}
 	
 	/**

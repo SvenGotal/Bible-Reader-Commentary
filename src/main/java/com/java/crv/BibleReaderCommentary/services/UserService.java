@@ -71,7 +71,9 @@ public class UserService {
 		String newEmail = email.trim();
 		
 		/* findByUsername returns User instead of Optional */
-		if(userRepository.findByUsername(newUsername) != null || userRepository.findByEmail(email).getEmail().toLowerCase() == comparisonEmail) throw new UserAlreadyExistsException("User already exists...");
+		if(userRepository.findByUsername(newUsername) != null || userRepository.existsByEmail(email)) {
+			throw new UserAlreadyExistsException("User already exists...");		
+		}
 		
 		User newUser = new User().setUsername(newUsername).setPassword(newPassword).setEmail(newEmail).setRole(userRole);
 		
