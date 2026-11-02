@@ -1,10 +1,11 @@
 :root {
 	--bg: #F5F5F5;
 	--surface: #FFFFFF;
+	--reading: #EDF1F4;
 
 	--text: #292D32;
 	--text-muted: #626970;
-	--border: #DFE3E6;
+	
 
 	/*--primary: #365F78;
 	--primary-hover: #294A60;
@@ -519,6 +520,7 @@ main{
 .user-comments-comment-body{
 	display: flex;
 	flex-direction: column;
+	margin: 15px;
 }
 
 .user-comments-comment-container{
@@ -529,39 +531,40 @@ main{
 	max-width: 100%;
 }
 
-.user-comments-comments-table{
-	background-color: var(--bg);
-}
-
 .user-comments-subject-row{
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);	
-	text-align: center;
-	max-height: 150px;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	font-family: var(--font-sans);	
 }
-/*
-.user-comments-subject-row div{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-}*/
+
+.user-comments-subject-row > div{
+	border-left: 1px solid var(--accent);
+	text-align: center;
+	
+}
 
 .user-comments-comment-row{
 	height: 0px;
-	border: 1px solid var(--accent);
-	transition: all 0.4s ease-in-out;
+	overflow-y: auto;
+	max-width: 60%;
+	border-radius: 25px;
+	background-color: var(--reading);
+	padding: 0px 10px 0px 10px;
+	transition: height 0.4s ease-in-out;
+}
+
+.user-comments-comment-row.is-open{
+	height: 400px;
 }
 
 .user-comments-option-buttons-row{
+	display: none;
 	height: 0px;
 	transition: all 0.4s ease-in-out;
 }
 
-.user-comments-vertical-bar{
-	padding: 0;
-	margin: 0;
-	height: 80px;
-	width: 1px;
-	background-color: var(--accent);
+.user-comment-comment-editing-div{
+	display: none;
 }
 
 .user-comments-go-to-top-button-wrapper{

@@ -63,29 +63,30 @@
 			</div>
 			<div class="user-comments-comments-partition">				
 
-						<div class="user-comments-comment-body" th:each="comment : ${comments}" th:attr="id=${comment.id}">
+						<div class="user-comments-comment-body" th:each="comment : ${comments}" >
 							<div class="user-comments-subject-row">
-								<div class="user-comments-vertical-bar"></div>
 								<div>
 									<label>Datum:</label>
 									<div th:id="${'timestamp_' + comment.id}" th:text="${#temporals.format(comment.dateOfCreation, 'dd.MM.yyyy.')}"></div>
 								</div>
-								<div class="user-comments-vertical-bar"></div>
 								<div>
-									<label>Naslov</label>
+									<label>Naslov:</label>
 									<div th:id="${'subject_' + comment.id}" th:text="${comment.subject}"></div>
 								</div>
-								<div class="user-comments-vertical-bar"></div>						
-								<div th:id="${'book_chapter_' + comment.id}" class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></div>
-								<div class="user-comments-vertical-bar"></div>
-								<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}" class="myComments-is-published word-break">Public</div>							
-								<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}" class="myComments-not-published word-break">Private</div>
-								<div class="user-comments-vertical-bar"></div>
+								<div>
+									<label>Knjiga : Poglavlje</label>					
+									<div th:id="${'book_chapter_' + comment.id}" class="word-break" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></div>
+								</div>
+								<div>
+									<label>Vidljivost:</label>
+									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}" class="myComments-is-published word-break">Public</div>							
+									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}" class="myComments-not-published word-break">Private</div>
+								</div>
 								<div class="user-comments-open-button-wrapper">
-									<button class="brc-button"  th:data-comment-id="${comment.id}" onclick="showHideComment(this)">+</button>																
+									<button class="brc-button"  th:data-comment-id="${comment.id}" onclick="toggleAccordion(this)">+</button>																
 								</div>
 							</div>
-							<div class="user-comments-comment-row" id="myComments_comment_row">
+							<div class="user-comments-comment-row" th:attr="id=${comment.id}">
 								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>											
 							</div>
 							<div class="user-comments-option-buttons-row" id="myComments_delete_button_row">
@@ -106,7 +107,7 @@
 
 
 				<!--/*======================================================= Comments Editing Area =======================================================*/-->
-				<div  id="commentEditingDiv" style="display: none;" class="comment-edit-div">
+				<div  id="user-comment-comment-editing-div" style="display: none;" class="comment-edit-div">
 					<div>
 						<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}" th:object="${comment}">
 							<div class="comment-subject-and-published-wrapper">

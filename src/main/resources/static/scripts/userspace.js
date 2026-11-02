@@ -83,6 +83,20 @@ function commentMakePrivateOrPublic(publishedBoolean){
 	}
 }
 
+function toggleAccordion(button){
+	const accordionElement = document.getElementById(button.dataset.commentId);
+	//console.log(accordionElement.attributes.id);
+	const toggle = accordionElement.classList.toggle("is-open");
+	button.textContent = toggle? "-" : "+";
+	
+	if(button.textContent === "-"){
+		accordionElement.scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	}
+}
+
 function showHideComment(button){
 	
 	var buttonRow = button.parentNode.parentNode;
