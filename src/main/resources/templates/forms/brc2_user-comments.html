@@ -7,7 +7,43 @@
 	<script th:src="@{/scripts/redirection.js}"></script>
 </head>
 <body>
+	<header><div th:replace="~{fragments/BRC2_minimalist-header}" class="header-wrapper"></div></header>
 	
+	<main>
+		<div th:if="${noCommentsFound != null OR serverMessage != null}" class="comments-area myComments-no-comments-found">
+			<div>
+				<h1 th:text="${message}"></h1>
+				<h1 th:text="${noCommentsFound}"></h1>
+				<div class="comment-edit-options">
+					<div class="options-list">
+						<span> 
+							<a class="brc-button" href="/private/submitComment">Napiši komentar</a>
+							<a class="brc-button" th:if="${message}" href="/private/myComments">Natrag na moji komentari</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:unless="${noCommentsFound != null OR serverMessage != null}">
+			<!--/* Lista komentara */-->
+			<div class="user-comments-wrapper">
+				<div class="user-comments-struct">
+					
+					<div class="user-comments-header-row">
+					<div class="user-comments-header-search-row"></div>
+					<div class="user-comments-content-container">
+						<div class="user-comments-main-title"></div>
+						
+					</div>
+					
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</main>
 	
+	<footer><div th:replace="~{fragments/BRC2_footer :: BRC2_footer}"></div></footer>
 </body>
 </html>
