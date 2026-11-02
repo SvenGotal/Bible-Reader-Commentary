@@ -89,23 +89,36 @@ function showHideComment(button){
 	var commentRow = buttonRow.nextElementSibling;
 	var deleteButtonRow = commentRow.nextElementSibling;
 	
+	
+	
 	if(commentRow){
 		
 		if(button.textContent === '+'){
-			commentRow.style.display = "table-row";
-			deleteButtonRow.style.display = "table-row";
+			//commentRow.style.display = "table-row";
+			//deleteButtonRow.style.display = "table-row";
+			commentRow.style.height = "300px"
+			deleteButtonRow.style.height ="300px";
 			button.text = '-';
 			button.textContent = '-';
-			commentRow.style.width = "100%";
-			deleteButtonRow.style.width = "100%";
+			commentRow.style.width = "80%";
+			deleteButtonRow.style.width = "80%";
+			
+			buttonRow.scrollIntoView({
+				behavior: "smooth",
+				block: "start"
+			});
 		}
 		else if(button.textContent === '-'){
-			commentRow.style.display = "none";
-			deleteButtonRow.style.display = "none";
+			//commentRow.style.display = "none";
+			//deleteButtonRow.style.display = "none";
+			commentRow.style.height = "0px;"
+			deleteButtonRow.style.height = "0px;"
 			button.text = '+';
 			button.textContent = '+';
 		}
 	}
+	
+
 }
 
 
