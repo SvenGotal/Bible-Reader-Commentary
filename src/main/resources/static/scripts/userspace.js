@@ -83,14 +83,32 @@ function commentMakePrivateOrPublic(publishedBoolean){
 	}
 }
 
-function toggleAccordion(button){
+//let buttonIsClosed = ;
+
+function toggleAccordionViaButton(button){
+	
+	//event.stopPropagation();
+	
 	const accordionElement = document.getElementById(button.dataset.commentId);
-	//console.log(accordionElement.attributes.id);
 	const toggle = accordionElement.classList.toggle("is-open");
 	button.textContent = toggle? "-" : "+";
 	
 	if(button.textContent === "-"){
 		accordionElement.scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	}
+}
+
+function toggleAccordionViaHeader(element){
+	const buttonElement = document.getElementById(element.dataset.btnid);
+	const accordionElement = document.getElementById(element.dataset.targetId);
+	const toggle = accordionElement.classList.toggle("is-open");
+	buttonElement.textContent = toggle? "-" : "+";
+	
+	if(buttonElement.textContent === "-"){
+		element.scrollIntoView({
 			behavior: "smooth",
 			block: "start"
 		});

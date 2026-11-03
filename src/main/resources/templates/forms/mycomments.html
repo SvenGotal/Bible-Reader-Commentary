@@ -63,7 +63,7 @@
 			</div>
 			<div class="user-comments-comments-partition">				
 
-						<div class="user-comments-comment-body" th:each="comment : ${comments}" >
+						<div class="user-comments-comment-body" th:each="comment : ${comments}" th:data-btnid="${'button_' + comment.id}" th:data-target-id="${comment.id}" th:attr="id=${'commentary_' + comment.id}" onclick="toggleAccordionViaHeader(this)">
 							<div class="user-comments-subject-row">
 								<div>
 									<label>Datum:</label>
@@ -83,7 +83,7 @@
 									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}">Privatno</div>
 								</div>
 								<div class="user-comments-open-button-wrapper">
-									<button class="brc-button"  th:data-comment-id="${comment.id}" onclick="toggleAccordion(this)">+</button>																
+									<button class="brc-button"  th:data-comment-id="${comment.id}" th:attr="id=${'button_' + comment.id}" onclick="toggleAccordionViaButton(this)">+</button>																
 								</div>
 							</div>
 							<div class="user-comments-comment-row" th:attr="id=${comment.id}">
