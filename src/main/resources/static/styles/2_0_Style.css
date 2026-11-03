@@ -316,9 +316,9 @@ main{
 .book-scroll-options{
 	margin-top: 50px;
 	padding: 15px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
 	align-items: center;
 }
 
@@ -551,11 +551,10 @@ main{
 }
 
 .user-comments-comment-row{
-
+	margin-top: 5px;
 	height: 0px;
 	overflow-y: auto;
 	max-width: 60%;
-	border-radius: 25px;
 	background-color: var(--reading);
 	padding: 0px 10px 0px 10px;
 	transition: height 0.4s ease-in-out;
@@ -563,12 +562,15 @@ main{
 
 .user-comments-comment-row.is-open{
 	height: 600px;
+	border-top: 1px solid var(--accent);
+	border-bottom: 3px solid var(--accent);;
 }
 
 .user-comments-option-buttons-row{
-	display: none;
-	height: 0px;
-	transition: all 0.4s ease-in-out;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 .user-comment-comment-editing-div{
