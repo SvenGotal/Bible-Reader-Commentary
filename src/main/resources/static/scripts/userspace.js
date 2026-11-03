@@ -84,7 +84,7 @@ function commentMakePrivateOrPublic(publishedBoolean){
 }
 
 //let buttonIsClosed = ;
-
+/*
 function toggleAccordionViaButton(button){
 	
 	//event.stopPropagation();
@@ -99,20 +99,28 @@ function toggleAccordionViaButton(button){
 			block: "start"
 		});
 	}
-}
+}*/
 
 function toggleAccordionViaHeader(element){
-	const buttonElement = document.getElementById(element.dataset.btnid);
+	//const buttonElement = document.getElementById(element.dataset.btnid);
 	const accordionElement = document.getElementById(element.dataset.targetId);
 	const toggle = accordionElement.classList.toggle("is-open");
-	buttonElement.textContent = toggle? "-" : "+";
+	//buttonElement.textContent = toggle? "-" : "+";
 	
-	if(buttonElement.textContent === "-"){
+	/*if(buttonElement.textContent === "-"){
 		element.scrollIntoView({
 			behavior: "smooth",
 			block: "start"
 		});
-	}
+	}*/
+}
+
+function closeAllOpenAccordionElements(){
+	const allOpenAccordionElements = document.querySelectorAll('.user-comments-comment-row.is-open');
+	
+	allOpenAccordionElements.forEach(accordion => {
+		accordion.classList.remove('is-open');
+	});
 }
 
 function showHideComment(button){

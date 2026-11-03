@@ -60,11 +60,12 @@
 		<div class="user-comments-main-container" th:unless="${noCommentsFound != null OR serverMessage != null}">
 			<div class="user-comments-go-to-top-button-wrapper">
 				<input class="brc-button" id="go_to_top_button_upper" onclick="goToTop()" type="button" value="Na vrh">
+				<input class="brc-button" id="close_all_comments_button" onclick="closeAllOpenAccordionElements()" type="button" value="Zatvori sve komentare">
 			</div>
 			<div class="user-comments-comments-partition">				
 
-						<div class="user-comments-comment-body" th:each="comment : ${comments}" th:data-btnid="${'button_' + comment.id}" th:data-target-id="${comment.id}" th:attr="id=${'commentary_' + comment.id}" onclick="toggleAccordionViaHeader(this)">
-							<div class="user-comments-subject-row">
+						<div class="user-comments-comment-body" th:each="comment : ${comments}"  th:attr="id=${'commentary_' + comment.id}" >
+							<div class="user-comments-subject-row" th:data-target-id="${comment.id}" onclick="toggleAccordionViaHeader(this)">
 								<div>
 									<label>Datum:</label>
 									<div th:id="${'timestamp_' + comment.id}" th:text="${#temporals.format(comment.dateOfCreation, 'dd.MM.yyyy.')}"></div>
@@ -82,9 +83,7 @@
 									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}">Javno</div>							
 									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}">Privatno</div>
 								</div>
-								<div class="user-comments-open-button-wrapper">
-									<button class="brc-button"  th:data-comment-id="${comment.id}" th:attr="id=${'button_' + comment.id}" onclick="toggleAccordionViaButton(this)">+</button>																
-								</div>
+								
 							</div>
 							<div class="user-comments-comment-row" th:attr="id=${comment.id}">
 								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>											
