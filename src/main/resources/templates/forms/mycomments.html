@@ -79,8 +79,8 @@
 								</div>
 								<div>
 									<label>Vidljivost:</label>
-									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}" class="myComments-is-published word-break">Public</div>							
-									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}" class="myComments-not-published word-break">Private</div>
+									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}">Javno</div>							
+									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}">Privatno</div>
 								</div>
 								<div class="user-comments-open-button-wrapper">
 									<button class="brc-button"  th:data-comment-id="${comment.id}" onclick="toggleAccordion(this)">+</button>																
