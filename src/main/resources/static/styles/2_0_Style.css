@@ -682,7 +682,7 @@ main{
 	.book-scroll-wrapper{
 		flex-direction: column;
 		margin-top: 5px;
-		max-height: 200px;
+		max-height: 220px;
 	}
 	
 	.book-scroll-options-wrapper{
