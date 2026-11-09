@@ -576,6 +576,7 @@ main{
 
 .user-comment-comment-editing-div{
 	display: none;
+	width: 0px;
 }
 
 .user-comments-go-to-top-button-wrapper{
