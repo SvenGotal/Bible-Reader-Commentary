@@ -63,51 +63,44 @@
 				<input class="brc-button" id="close_all_comments_button" onclick="closeAllOpenAccordionElements()" type="button" value="Zatvori sve komentare">
 			</div>
 			<div class="user-comments-comments-partition">				
-
-						<div class="user-comments-comment-body" th:each="comment : ${comments}"  th:attr="id=${'commentary_' + comment.id}" >
-							<div class="user-comments-subject-row" th:data-target-id="${comment.id}" onclick="toggleAccordionViaHeader(this)">
-								<div>
-									<label>Datum:</label>
-									<div th:id="${'timestamp_' + comment.id}" th:text="${#temporals.format(comment.dateOfCreation, 'dd.MM.yyyy.')}"></div>
-								</div>
-								<div>
-									<label>Naslov:</label>
-									<div th:id="${'subject_' + comment.id}" th:text="${comment.subject}"></div>
-								</div>
-								<div>
-									<label>Knjiga i Poglavlje</label>					
-									<div th:id="${'book_chapter_' + comment.id}" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></div>
-								</div>
-								<div>
-									<label>Vidljivost:</label>
-									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}">Javno</div>							
-									<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}">Privatno</div>
-								</div>
-								
-							</div>
-							<div class="user-comments-comment-row" th:attr="id=${comment.id}">
-								<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>	
-								<div class="user-comments-option-buttons-row" id="myComments_delete_button_row">
-									<div class="delete-comment-button-wrapper">
-										<form th:action="@{/private/myComments/deleteComment}" method="post" th:id="${'commentDeleteForm_' + comment.id}" >
-											<input type="hidden" th:name="commentId" th:value="${comment.id}" id="commentEditingIdHolder"/>
-											<button class="brc-button" th:id="${comment.id}" onclick="deleteComment(this)">Delete</button>
-										</form>																																
-									</div>
-									<div class="share-comment-button-wrapper">
-										<button class="brc-button" th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">Share</button>
-									</div>
-									<div class="edit-comment-button-wrapper">
-										<button class="brc-button" th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">Edit</button>
-									</div>
-								</div>										
-							</div>
-							
+				<div class="user-comments-comment-body" th:each="comment : ${comments}"  th:attr="id=${'commentary_' + comment.id}" >
+					<div class="user-comments-subject-row" th:data-target-id="${comment.id}" onclick="toggleAccordionViaHeader(this)">
+						<div>
+							<label>Datum:</label>
+							<div th:id="${'timestamp_' + comment.id}" th:text="${#temporals.format(comment.dateOfCreation, 'dd.MM.yyyy.')}"></div>
 						</div>
-
-
+						<div>
+							<label>Naslov:</label>
+							<div th:id="${'subject_' + comment.id}" th:text="${comment.subject}"></div>
+						</div>
+						<div>
+							<label>Knjiga i Poglavlje</label>					
+							<div th:id="${'book_chapter_' + comment.id}" th:text="${comment.chapter.book.name + ' ' + comment.chapter.number}"></div>
+						</div>
+						<div>
+							<label>Vidljivost:</label>
+							<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:if="${comment.published}">Javno</div>							
+							<div th:id="${'published_' + comment.id}" th:data-is-published="${comment.published}" th:unless="${comment.published}">Privatno</div>
+						</div>							
+					</div>
+						<div class="user-comments-comment-row" th:attr="id=${comment.id}">
+							<div th:id="${'text_' + comment.id}" th:utext="${comment.text}"></div>	
+							<div class="user-comments-option-buttons-row" id="myComments_delete_button_row">
+								<div class="delete-comment-button-wrapper">
+									<form th:action="@{/private/myComments/deleteComment}" method="post" th:id="${'commentDeleteForm_' + comment.id}" >
+										<input type="hidden" th:name="commentId" th:value="${comment.id}" id="commentEditingIdHolder"/>									<button class="brc-button" th:id="${comment.id}" onclick="deleteComment(this)">Delete</button>
+									</form>																																
+								</div>
+								<div class="share-comment-button-wrapper">
+									<button class="brc-button" th:data-comment-id="${comment.id}" onclick="shareThisComment(this)">Share</button>
+								</div>
+								<div class="edit-comment-button-wrapper">									<button class="brc-button" th:data-comment-id="${comment.id}" onclick="modifyThisComment(this)">Edit</button>
+							</div>
+						</div>										
+					</div>	
+				</div>
 				<!--/*======================================================= Comments Editing Area =======================================================*/-->
-				<div  id="user-comment-comment-editing-div" style="display: none;" class="comment-edit-div">
+				<div class="user-comment-comment-editing-div" id="comment_edit_div">
 					<div>
 						<form method="post" id="formEdit" th:action="@{/private/myCommentsEdit}" th:object="${comment}">
 							<div class="comment-subject-and-published-wrapper">
