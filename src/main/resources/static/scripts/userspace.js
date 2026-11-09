@@ -3,6 +3,36 @@ const PUBLISHED_SLOT = 1;
 const TEXT_SLOT = 0;
 const SUBJECT_SLOT = 3;
 
+const commentEditorDiv = document.getElementById("comment_edit_div");
+
+function modifyComment(button){
+	
+	const commentId = button.dataset.commentId;
+	const commentText = button.dataset.commentText;
+	const commentSubject = button.dataset.commentSubject;
+	const commentIsPublished = button.dataset.commentPublished;
+	
+	const commentIdHolder = document.getElementById("comment_id_holder");
+	const commentTextHolder = document.getElementById("commentContent");
+	const commentSubjectHolder = document.getElementById("comment_subject_content");
+	const commentPublishedHolder = document.getElementById("comment_published_content");
+	
+	commentIdHolder.value = commentId;
+	window.quill.root.innerHTML = commentText;
+	commentSubjectHolder.value = commentSubject;
+	commentPublishedHolder.checked = commentIsPublished === "true" ? true : false;
+	
+	commentEditorDiv.style.display = "flex";
+	//commentEditorDiv.style.width = "500px";
+	commentEditorDiv.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+	});
+	
+	
+	
+}
+
 function modifyThisComment(modifyButton){
 	
 	const selectedCommentId = modifyButton.dataset.commentId;
@@ -94,6 +124,9 @@ function toggleAccordionViaHeader(element){
 			block: "start"
 		});
 	}
+	else{
+		commentEditorDiv.style.display = "none";
+	}
 }
 
 function closeAllOpenAccordionElements(){
@@ -102,6 +135,7 @@ function closeAllOpenAccordionElements(){
 	allOpenAccordionElements.forEach(accordion => {
 		accordion.classList.remove('is-open');
 	});
+	commentEditorDiv.style.display = "none";
 }
 
 
