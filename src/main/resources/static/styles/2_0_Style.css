@@ -548,6 +548,7 @@ main{
 .user-comments-subject-row:hover{
 	transition: all 0.3s ease-in-out;
 	background-color: var(--primary-soft);
+	cursor: pointer;
 }
 
 .user-comments-comment-row{
