@@ -427,16 +427,17 @@ main{
 .login-user-info-boxes{
 	
 	/* Info box general style 1.0 */
-	/*border: none;
+	border: none;
 	background-color: var(--bg);
-	border-bottom: 1px solid var(--accent);	*/
+	border-bottom: 1px solid var(--accent);	
 	
 	/* version 2.0 */
+	/*
 	box-sizing: border-box;
 	border: 1px solid var(--primary-hover);
 	background-color: var(--primary-soft);
 	border-radius: 15px;
-	padding: 3px 10px 2px 10px;
+	padding: 3px 10px 2px 10px;*/
 	
 	
 	
@@ -520,7 +521,8 @@ main{
 .user-comments-comments-partition{
 	display: flex;
 	flex-direction: column;
-	flex: 1;
+	flex: 1.5;
+	max-width: 50%;
 }
 
 .user-comments-comment-body{
@@ -607,7 +609,7 @@ main{
 	top: 60px;;
 	display: none;
 	transition: width 0.4s ease-in-out;
-	flex: 2;
+	flex: 1.5;
 	height: 400px;
 
 }
