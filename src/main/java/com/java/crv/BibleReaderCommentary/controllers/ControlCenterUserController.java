@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,5 +90,5 @@ public class ControlCenterUserController {
 		}		
 		return "redirect:/admin/usercontrol";
 	}
-
+	
 }
