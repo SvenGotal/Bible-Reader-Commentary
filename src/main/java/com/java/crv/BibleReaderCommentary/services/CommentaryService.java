@@ -8,6 +8,8 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
@@ -160,6 +162,17 @@ public class CommentaryService {
 			return false;
 		}
 		return true;
+	}
+	
+	@PostMapping("/admin/deleteCommentFromDatabase")
+	public void adminDeleteCommentaryById(@RequestParam Long commentId) {
+		
+		if(!commentaryRepository.existsById(commentId)) {
+			throw new CommentaryNotFoundException("Commentary was not found in the database...");
+		}
+					
+		commentaryRepository.deleteById(commentId);			
+		
 	}
 	
 	public void deleteAllCommentaryByUserId(Long userId) {
