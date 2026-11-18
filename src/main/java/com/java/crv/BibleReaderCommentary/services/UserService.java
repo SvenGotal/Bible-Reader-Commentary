@@ -15,6 +15,8 @@ import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 	
@@ -100,7 +102,11 @@ public class UserService {
 	}
 	
 	//TODO: stub for changing user password function
-	public void updatePassword(Long id) {
+	@Transactional
+	public void updatePasswordByUserID(Long id, String newPassword) {
+		
+		String encryptedPassword = passwordEncoder.encode(newPassword);
+		userRepository.updatePasswordById(id, encryptedPassword);
 		
 	}
 	
