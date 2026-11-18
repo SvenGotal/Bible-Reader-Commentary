@@ -55,8 +55,8 @@ main{
     font: inherit;
     font-weight: 600;
     cursor: pointer;    
-    min-height: 20px;
-    min-width: 40px;   
+    /*min-height: 20px;
+    min-width: 40px;*/   
     
 	
 	margin: 10px;
@@ -522,7 +522,7 @@ main{
 	display: flex;
 	flex-direction: column;
 	flex: 1.5;
-	max-width: 50%;
+
 }
 
 .user-comments-comment-body{
@@ -544,13 +544,14 @@ main{
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	font-family: var(--font-sans);	
 	align-items: center;
+
 	/*justify-items: center;*/
 }
 
 .user-comments-subject-row > div{
 	border-left: 1px solid var(--accent);
 	text-align: center;
-	
+	padding: 10px;
 }
 
 .user-comments-subject-row:hover{
