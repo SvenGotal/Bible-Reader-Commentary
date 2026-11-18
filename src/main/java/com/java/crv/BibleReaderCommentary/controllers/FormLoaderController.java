@@ -57,8 +57,8 @@ public class FormLoaderController {
 	
 		model.addAttribute("books", bookService.getAllBookData());
 		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
-		/* Currently hardcoded to John 1 */
-		model.addAttribute("verses", verseService.getAllChapterVerses(998l));		
+
+		model.addAttribute("verse-of-the-day", verseService.getVerseOfTheDay());		
 		return "index";
 	}
 	
