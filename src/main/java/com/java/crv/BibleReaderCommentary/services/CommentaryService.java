@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
+import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryRecord;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
 import com.java.crv.BibleReaderCommentary.mappers.CommentaryMapper;
@@ -180,6 +181,10 @@ public class CommentaryService {
 		//TODO: add checks before deleting all user comments
 		
 		commentaryRepository.deleteByUser_Id(userId);
+	}
+	
+	public List<CommentaryRecord> getAllPublicCommentsByBookId(Long bookId){
+		return commentaryRepository.getAllOnlyPublicCommentaryRecordsByBookId(bookId);
 	}
 	
 	private List<Commentary> getAllCommentaryFromRepository(){

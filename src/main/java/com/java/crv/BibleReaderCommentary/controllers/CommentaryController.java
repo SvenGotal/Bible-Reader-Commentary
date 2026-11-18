@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.java.crv.BibleReaderCommentary.domain.Commentary;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryDTO;
+import com.java.crv.BibleReaderCommentary.domainDTO.CommentaryRecord;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 
 @Controller
@@ -207,5 +208,12 @@ public class CommentaryController {
 		return "redirect:/admin/commentcontrol";
 		
 	}
+	
+	@GetMapping("/fetchAllPublicComments")
+	@ResponseBody
+	public List<CommentaryRecord> getAllPublicCommentaryRecordsByBookId(@RequestParam Long bookId){
+		return commentaryService.getAllPublicCommentsByBookId(bookId);
+	}
+	
 	
 }
