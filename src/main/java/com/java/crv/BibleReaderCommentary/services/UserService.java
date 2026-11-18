@@ -92,6 +92,11 @@ public class UserService {
 		userRepository.deleteById(userId);
 	}
 	
+	public void updatePassword(Long id) {
+		
+	}
+	
+	//TODO: add user ability to print their work
 	/**
 	 * Fetch all user's comments and compile them into a .pdf.
 	 * @param user
