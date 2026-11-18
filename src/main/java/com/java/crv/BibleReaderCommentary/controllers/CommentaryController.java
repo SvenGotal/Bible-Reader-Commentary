@@ -200,9 +200,7 @@ public class CommentaryController {
 	}
 	
 	@PostMapping("/admin/deleteCommentFromDatabase")
-	public String deleteCommentFromDatabase(@RequestParam Long commentId, Model model) {
-		
-		String errorDeletingCommentMessage = "Error encountered while deleting commentary";
+	public String deleteCommentFromDatabase(@RequestParam Long commentId, Model model) {		
 					
 		commentaryService.adminDeleteCommentaryById(commentId);
 			
