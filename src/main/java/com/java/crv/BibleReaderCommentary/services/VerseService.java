@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,17 @@ public class VerseService {
 	
 	public List<VerseWithChapterAndBookInfoDTO> getAllVersesThatMatchString(String match){
 		return verseRepository.findByStringMatch(match);
+	}
+	
+	/**
+	 * Finds a random verse for the date and returns a single verse
+	 * */
+	public VerseWithChapterAndBookInfoDTO getVerseOfTheDay(Long id) {
+		
+		Optional<VerseWithChapterAndBookInfoDTO> optVerseOfTheDay = verseRepository.findVerseOfTheDay(id);
+		if(optVerseOfTheDay.isEmpty()) {
+			
+		}
+		return optVerseOfTheDay.get();
 	}
 }

@@ -42,6 +42,9 @@ function fetchSelectedChapterVerses(e){
 	
 	const chapterId = e.dataset.chapterId;
 	const title = document.getElementById("book_and_chapter_title");
+	
+	const indexWelcomeDisplay = document.getElementById("index_welcome_display");
+	const bibleTextArea = document.getElementById("bible_text");
 
 	fetch("/public/fetchChapterVerses?chapterId="+chapterId)
 	.then( response => response.json())
@@ -50,6 +53,9 @@ function fetchSelectedChapterVerses(e){
 
 		title.innerHTML = e.dataset.bookName + "    " + e.innerHTML;
 		title.dataset.chapterId = chapterId;
+		
+		indexWelcomeDisplay.style.display = "none";
+		bibleTextArea.style.display = "block";
 		
 		const readingArea = document.getElementById("bible_text");
 		readingArea.innerHTML = "";

@@ -56,9 +56,7 @@ public class FormLoaderController {
 	public String loadIndexPage(Model model) {				
 	
 		model.addAttribute("books", bookService.getAllBookData());
-		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());
-
-		model.addAttribute("verse-of-the-day", verseService.getVerseOfTheDay());		
+		model.addAttribute("announcements", serverAnnouncementService.getAllActiveServerAnnouncementMessages());		
 		return "index";
 	}
 	

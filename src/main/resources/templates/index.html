@@ -7,58 +7,53 @@
 	<script th:src="@{/scripts/api.js}" defer></script>
 	<script th:src="@{/scripts/animations.js}" defer></script>
 	<script th:src="@{scripts/data.js}" defer></script>
-	<script th:src="@{scripts/scrollbutton.js}" defer></script>
 	<script th:src="@{scripts/redirection.js}" defer></script>
 </head>
 <body >
 	
 	<header> <!--/* Header fragent here */--> 
 		<div th:replace="~{fragments/BRC2_header :: BRC2_header}"></div>
-	</header>
-		
-	<main>
-		
-		
+	</header>		
+	<main>	
+<!--/*============================================ Search Bar Layer ============================================*/-->	
+	
 		<div class="text-area-search-bar-layer">
 			
 			<div class="search-bar-wrapper">
 				<a class="search-bar-info">Pretraži: </a>
 				<input class="login-user-info-boxes" id="bible_search_bar" type="text" placeholder="Najmanje 3 znaka..." oninput="searchVersesThatMatch(this)">
-			</div>
-			
-			<div class="search-bar-options">
-				
-				
-			</div>
-			
-		</div>
+			</div>			
+			<div class="search-bar-options">								
+			</div>			
+		</div>	
 		
-		
-		
-
+<!--/*============================================ Verses and Book-Chapter options Layer ============================================*/-->
+								
 		<div class="reading-area-wrapper">
-
-			
-			<div class="reading-area" id="bible_text">
-											
-			</div>
-
+			<div class="index-welcome-display" id="index_welcome_display" >
+				<div class="verse-of-the-day-declaration"><h2>Stih dana:</h2></div>
+				<h4 th:text="${verseOfTheDay.bookName + ' ' + verseOfTheDay.chapterNumber}"></h4>
+				<p th:text="${verseOfTheDay.verseNumber + ' ' + verseOfTheDay.verseText}"></p>
+			</div>			
+			<div class="reading-area" id="bible_text"></div>
 			<div class="screen-flank-book-scroll">
-				<div th:replace="~{fragments/BRC2_book-scroll}">
-					
+				<div th:replace="~{fragments/BRC2_book-scroll}">	
 					<!--/* Book Scroll is populated from the database */-->
 				</div>				
 			</div>
-
 		</div>
-		
-		
+			
+<!--/*============================================ Comments display layer ============================================*/-->	
+				
+		<div class="comments-area-wrapper">
+			<div th:replace="~{fragments/BRC2_commentary_display :: BRC2_commentary_display}"></div>													
+		</div>
+			
+<!--/*============================================ END OF MAIN ============================================*/-->					
 	</main>
-	
 	<footer> <!--/* Footer fragment here*/--> 
 		<div th:replace="~{fragments/BRC2_footer :: BRC2_footer}"></div>
-	</footer>
-	
+	</footer>	
 </body>
 </html>
 	

@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -28,5 +29,19 @@ public interface VerseRepository extends CrudRepository<Verse, Long>{
 			""")
 	List<VerseWithChapterAndBookInfoDTO> findByStringMatch(@Param("match") String match);
 		
-
+	@Query("""
+			select new com.java.crv.BibleReaderCommentary.domainDTO.VerseWithChapterAndBookInfoDTO(
+				verse.id,
+				verse.number,
+				verse.text,
+				chapter.number,
+				book.name
+			)
+			from Verse verse
+			join verse.chapter chapter
+			join chapter.book book
+			where verse.id=:verseId
+			""")
+	Optional<VerseWithChapterAndBookInfoDTO> findVerseOfTheDay(@Param("verseId") Long verseId);
+	
 }

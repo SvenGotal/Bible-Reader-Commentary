@@ -260,7 +260,8 @@ main{
 
 .reading-area-wrapper{
 	display: flex;
-	flex-direction: row;	
+	flex-direction: row;
+	justify-content: right;
 }
 
 .reading-area{
@@ -272,6 +273,17 @@ main{
 	margin-bottom: 50px;
 	font-family: var(--font-serif);
 	max-height: none;
+	display: none;
+}
+
+.index-welcome-display{
+	margin: 5%;
+}
+
+.verse-of-the-day-declaration{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .reading-area div{
@@ -291,7 +303,6 @@ main{
 	display: flex;
 	flex-direction: column;
 	top: 0;
-	align-self: flex-start;
 	position:sticky;
 	z-index: 10
 }
