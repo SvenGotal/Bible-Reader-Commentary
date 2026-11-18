@@ -104,9 +104,8 @@ public class UserService {
 	@Transactional
 	public void updatePasswordByUserID(Long id, String newPassword) {
 		
-		String encryptedPassword = passwordEncoder.encode(newPassword);
-		userRepository.updatePasswordById(id, encryptedPassword);
-		
+		String encryptedPassword = passwordEncoder.encode(newPassword);	
+		userRepository.updatePasswordById(id, encryptedPassword);		
 	}
 	
 	//TODO: add user ability to print their work
