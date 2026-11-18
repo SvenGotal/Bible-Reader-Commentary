@@ -9,5 +9,5 @@ public interface CommentaryRepository extends CrudRepository<Commentary, Long> {
 	List<Commentary> findAllCommentaryById(Long commentaryId);
 	List<Commentary> findAllByUserId(Long userId);
 	List<Commentary> findAllByChapterId(Long chapterId);
-	void deleteAllByUserId(Long userId);
+	void deleteByUser_Id(Long userId);
 }
