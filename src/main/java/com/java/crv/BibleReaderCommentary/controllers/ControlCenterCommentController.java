@@ -22,22 +22,7 @@ public class ControlCenterCommentController {
 		this.commentaryRepository = commentaryRepository;
 	}
 	
-	@GetMapping("/admin/commentcontrol")
-	public String getControlCenterCommentsForm(Model model) {
-		
-		try {
-			ArrayList<Commentary> allCommentsInADatabaseList = new ArrayList<Commentary>();
-			allCommentsInADatabaseList = (ArrayList<Commentary>) commentaryRepository.findAll();
-			
-			model.addAttribute("allCommentsInADatabaseList", allCommentsInADatabaseList);
-		}
-		catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		
-		return "forms/controlcenter_commentspage";
-		
-	}
+	
 	
 	@PostMapping("/admin/deleteCommentFromDatabase")
 	public String deleteCommentFromDatabase(@RequestParam Long commentId, Model model) {

@@ -166,6 +166,26 @@ public class FormLoaderController {
 	}
 	
 	/**
+	 * Admin Commentary control form
+	 * */
+	@GetMapping("/admin/commentcontrol")
+	public String getControlCenterCommentsForm(Model model) {
+		
+		try {
+			List<Commentary> allCommentsInADatabaseList = new ArrayList<Commentary>();
+			allCommentsInADatabaseList = commentaryService.getAllPublicAndPrivateCommentary();
+			
+			model.addAttribute("allCommentsInADatabaseList", allCommentsInADatabaseList);
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return "forms/controlcenter_commentspage";
+		
+	}
+	
+	/**
 	 * User Homepage loader
 	 * */
 	@GetMapping("/private/myHomepage")
