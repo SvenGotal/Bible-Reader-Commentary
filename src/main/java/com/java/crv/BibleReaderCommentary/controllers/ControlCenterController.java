@@ -1,6 +1,8 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
 
+//TODO: This controller needs complete rework. Some methods do not work properly for now.
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
