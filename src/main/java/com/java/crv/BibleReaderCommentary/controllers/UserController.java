@@ -57,10 +57,26 @@ public class UserController {
 	
 	@Transactional
 	@PostMapping("/admin/changeUserPassword")
-	public String changeUserPassword(@RequestParam Long userId, @RequestParam String newPassword) {
+	public String adminChangeUserPassword(@RequestParam Long userId, @RequestParam String newPassword) {
 		
 		
 		userService.updatePasswordByUserID(userId, newPassword);
 		return "redirect:/admin/usercontrol";
 	}
+	
+	@Transactional
+	@PostMapping("/private/changeUserPassword")
+	public String privateChangeUserPassword(@RequestParam Long userId, @RequestParam String newPassword) {
+		
+		
+		userService.updatePasswordByUserID(userId, newPassword);
+		return "redirect:/private/myHomepage";
+	}
+	
+	
 }
+
+
+
+
+
