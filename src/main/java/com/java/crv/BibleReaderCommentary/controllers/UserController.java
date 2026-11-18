@@ -8,7 +8,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.java.crv.BibleReaderCommentary.domain.User;
+import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.UserService;
 
 import jakarta.annotation.Resource;
@@ -17,9 +20,11 @@ import jakarta.annotation.Resource;
 public class UserController {
 	
 	private UserService userService;
+	private CommentaryService commentaryService;
 	
-	public UserController(UserService userService) {
+	public UserController(UserService userService, CommentaryService commentaryService) {
 		this.userService = userService;
+		this.commentaryService = commentaryService;
 	}
 
 	@PostMapping("public/createProfile")
@@ -38,5 +43,14 @@ public class UserController {
 	public ResponseEntity<Resource> compileCommentary(){
 		//TODO: stub for downloading private comments by user
 		return null;
+	}
+	
+	@PostMapping("/admin/deleteUserFromDatabase")
+	public String deleteUserFromDatabase (@RequestParam Long userId){
+
+		userService.deleteById(userId);
+		commentaryService.deleteAllCommentaryByUserId(userId);
+		
+		return "redirect:/admin/usercontrol";
 	}
 }

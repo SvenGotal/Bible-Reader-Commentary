@@ -1,7 +1,6 @@
 package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
