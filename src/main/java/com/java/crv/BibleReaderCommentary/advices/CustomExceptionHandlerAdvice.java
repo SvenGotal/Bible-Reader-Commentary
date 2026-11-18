@@ -11,6 +11,7 @@ import com.java.crv.BibleReaderCommentary.exceptions.CommentaryNotFoundException
 import com.java.crv.BibleReaderCommentary.exceptions.CommentaryParameterBindingException;
 import com.java.crv.BibleReaderCommentary.exceptions.DatabaseIsReadOnlyException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
+import com.java.crv.BibleReaderCommentary.exceptions.UserIsAdminException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
 
@@ -39,6 +40,12 @@ public class CustomExceptionHandlerAdvice {
 	public String handleUserAlreadyExists(UserAlreadyExistsException e, Model model) {
 		model.addAttribute("ErrorMsg", e.getMessage());
 		return "errors/errorView";
+	}
+	
+	@ExceptionHandler(UserIsAdminException.class)
+	public String handleUserIsAdminException(UserIsAdminException e, Model model){
+		model.addAttribute("ErrorMsg", e.getMessage());
+		return "errors/erroeView";
 	}
 	
 	@ExceptionHandler(AnnouncementMessageNotFoundException.class)
