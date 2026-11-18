@@ -146,6 +146,9 @@ public class FormLoaderController {
 		return "forms/submitcomment";		
 	}
 	
+	/**
+	 * Admin user control form
+	 * */
 	@GetMapping("/admin/usercontrol")
 	public String getControlCenterUsersForm(Model model) {
 		
