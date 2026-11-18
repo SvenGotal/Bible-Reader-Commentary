@@ -55,5 +55,33 @@ function saveDataFromQuill(){
 	
 }
 
+function changeUserPassword(thisButton){
+	
+	const userId = thisButton.dataset.userId;
+	
+	const userPasswordElement = document.getElementById("userPasswordElement_" + userId);
+	const userPassword = userPasswordElement.value;
+	
+	const changeUserPasswordForm = document.getElementById("updateUserPasswordForm_" + userId);
+	
+	var prompt = window.confirm("Jeste li sigurni da želite promijeniti lozinku?");
+
+	if(prompt){
+		
+		if(userId || userPassword){
+			changeUserPasswordForm.submit();
+		}
+		else{
+			event.preventDefault();
+			console.log("Password or Id missing...");
+		}
+		
+	}
+	else{
+		event.preventDefault();
+		console.log("cancelled password change...");
+	}
+}
+
 
 
