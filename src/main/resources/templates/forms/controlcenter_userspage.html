@@ -7,6 +7,7 @@
 		<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
 		<link rel="icon" type="image/x-icon" th:href="@{/images/logoico.png}">	
 		<link rel="stylesheet" type="text/css" th:href="@{/styles/control_panel.css}"/>	
+		<link rel="stylesheet" type="text/css" th:href="@{/styles/2_0_style.css}" defer/>	
 		<script th:src="@{/scripts/javascript.js}"></script>
 		<script th:src="@{/scripts/control_center_script.js}"></script>
 		<!--/*######################################################### Google Fonts #########################################################*/-->	
@@ -20,7 +21,7 @@
 		<div th:replace="~{fragments/BRC-CC-Menu :: BRC-CC-Menu}">>
 				<!--/* BRC CC menu here /fragments/BRC-CC-Menu.html */-->
 		</div>
-		<div class="users-display-wrapper">
+		<div class="CC-users-display-wrapper">
 			<div th:if="${errorDeletingUser}" class="users-display-overhead statistics-overview">
 				<a class="statistics-label">Error message: </a>
 				<a class="statistics-number" th:text="${errorDeletingUser}"></a>
@@ -29,40 +30,43 @@
 				<a class="statistics-label">Broj korisnika u bazi podataka: </a>
 				<a class="statistics-number" th:text="${allUsersInADatabaseList.size()}"></a>
 			</div>
-				<table class="data-display-table">
-					<tbody>
-						<tr>
-							<th>#</th>
-							<th>User ID:</th>
-							<th>User name:</th>
-							<th>Email:</th>
-							<th>Role:</th>
-							<th>Number of posts:</th>
-							<th>Delete user:</th>
-						</tr>
-						<tr th:each="user, iterstat : ${allUsersInADatabaseList}">
-							<td th:text="${iterstat.count}"></td>
-							<td th:text="${user.id}"></td>
-							<td th:text="${user.username}"></td>
-							<td th:text="${user.email}"></td>
-							<td th:text="${user.role}"></td>
-							<td th:text="${user.comments.size()}"></td>
-							<td>
-								<div th:if="${(user.role.name() == 'ADMIN') || (user.role.name() == 'OWNER')}">
-									<a th:text="${user.role.name()}"></a>
-								
-								</div>
-								<div th:unless="${(user.role.name() == 'ADMIN') || (user.role.name() == 'OWNER')}">
-									<form  th:id="'deleteUserForm' + ${user.id}" method="post" th:action="@{/admin/deleteUserFromDatabase}"> 
-										<input id="hiddenInput" type="hidden" name="userId" th:value="${user.id}">
-										<input name="userId" id="deleteUserButton" type="button" value="Delete" th:data-user-id="${user.id}" onclick="deleteUser(this)"> 
-									</form>							
-								</div> 
-								
-							</td>
-						</tr>
-				</tbody>									
-			</table>				
+			<div class="CC-data-display-table">
+
+				<div>
+					<label>#</label>
+					<label>User ID:</label>
+					<label>User name:</label>
+					<label>Email:</label>
+					<label>Role:</label>
+					<label>Number of posts:</label>
+					<label>Delete user:</label>
+					<label>Change password:</label>
+				</div>
+				<div th:each="user, iterstat : ${allUsersInADatabaseList}">
+					<label th:text="${iterstat.count}"></label>
+					<label th:text="${user.id}"></label>
+					<label th:text="${user.username}"></label>
+					<label th:text="${user.email}"></label>
+					<label th:text="${user.role}"></label>
+					<label th:text="${user.comments.size()}"></label>
+					<div th:if="${(user.role.name() == 'ADMIN') || (user.role.name() == 'OWNER')}">
+						<a th:text="${user.role.name()}"></a>				
+					</div>
+					<div th:unless="${(user.role.name() == 'ADMIN') || (user.role.name() == 'OWNER')}">
+						<form  th:id="'deleteUserForm' + ${user.id}" method="post" th:action="@{/admin/deleteUserFromDatabase}"> 
+							<input id="hiddenInput" type="hidden" name="userId" th:value="${user.id}">
+							<input name="userId" id="deleteUserButton" type="button" value="Delete" th:data-user-id="${user.id}" onclick="deleteUser(this)"> 
+						</form>							
+					</div> 
+					<div class="cc-grid-container">
+						<form th:id="'updateUserPasswordForm_' + ${user.id}" method="post" th:action="@{/admin/changeUserPassword}">
+							<input th:id="'hiddenIdInput_'+${user.id}" type="hidden" name="userId" th:value="${user.id}">
+							<input th:id="'userPasswordElement_' + ${user.id}" type="text" class="login-user-info-boxes" name="newPassword">
+							<input type="button" class="brc-button" th:data-user-id="${user.id}" onclick="changeUserPassword(this)" value="change password">
+						</form>
+					</div>																	
+				</div>				
+			</div>
 		</div>
 	</div>
 </body>
