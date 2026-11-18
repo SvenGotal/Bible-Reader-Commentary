@@ -166,7 +166,7 @@ public class CommentaryService {
 		
 		//TODO: add checks before deleting all user comments
 		
-		commentaryRepository.deleteAllByUserId(userId);
+		commentaryRepository.deleteByUser_Id(userId);
 	}
 	
 	private List<Commentary> getAllCommentaryFromRepository(){
