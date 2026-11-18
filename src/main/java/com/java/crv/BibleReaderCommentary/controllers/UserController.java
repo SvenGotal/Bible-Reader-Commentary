@@ -54,4 +54,11 @@ public class UserController {
 		
 		return "redirect:/admin/usercontrol";
 	}
+	
+	@PostMapping("admin/changeUserPassword")
+	public void changeUserPassword(@RequestParam Long userId, @RequestParam String newPassword) {
+		
+		userService.updatePasswordByUserID(userId, newPassword);
+		
+	}
 }
