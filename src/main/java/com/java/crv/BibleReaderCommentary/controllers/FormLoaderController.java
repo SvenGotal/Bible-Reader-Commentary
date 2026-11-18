@@ -150,8 +150,8 @@ public class FormLoaderController {
 	public String getControlCenterUsersForm(Model model) {
 		
 		try {
-			ArrayList<User> allUsersInADatabaseList = new ArrayList<User>();
-			allUsersInADatabaseList = (ArrayList<User>) userService.getAllUsers();
+			List<User> allUsersInADatabaseList = new ArrayList<User>();
+			allUsersInADatabaseList = userService.getAllUsers();
 			
 			model.addAttribute("allUsersInADatabaseList", allUsersInADatabaseList);
 		}
