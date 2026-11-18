@@ -199,4 +199,15 @@ public class CommentaryController {
 		return "redirect:/private/myComments";
 	}
 	
+	@PostMapping("/admin/deleteCommentFromDatabase")
+	public String deleteCommentFromDatabase(@RequestParam Long commentId, Model model) {
+		
+		String errorDeletingCommentMessage = "Error encountered while deleting commentary";
+					
+		commentaryService.adminDeleteCommentaryById(commentId);
+			
+		return "redirect:/admin/commentcontrol";
+		
+	}
+	
 }

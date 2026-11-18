@@ -24,23 +24,5 @@ public class ControlCenterCommentController {
 	
 	
 	
-	@PostMapping("/admin/deleteCommentFromDatabase")
-	public String deleteCommentFromDatabase(@RequestParam Long commentId, Model model) {
-		
-		String errorDeletingCommentMessage = "Error encountered while deleting commentary";
-		
-		try {
-			
-			commentaryRepository.deleteById(commentId);
-			
-		}
-		catch (NullPointerException e) {
-			e.printStackTrace();
-			model.addAttribute("errorDeletingCommentMessage", errorDeletingCommentMessage);
-		}
-		
-		
-		return "redirect:/admin/commentcontrol";
-		
-	}
+	
 }
