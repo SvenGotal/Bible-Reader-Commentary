@@ -1,6 +1,7 @@
 package com.java.crv.BibleReaderCommentary.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.util.StringUtils;
 import com.java.crv.BibleReaderCommentary.domain.User;
 import com.java.crv.BibleReaderCommentary.domain.UserRoles;
 import com.java.crv.BibleReaderCommentary.exceptions.UserAlreadyExistsException;
+import com.java.crv.BibleReaderCommentary.exceptions.UserIsAdminException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserNotFoundException;
 import com.java.crv.BibleReaderCommentary.exceptions.UserParameterValidationException;
 import com.java.crv.BibleReaderCommentary.repositories.UserRepository;
@@ -85,10 +87,16 @@ public class UserService {
 	 * @throws UserNotFoundException
 	 * */
 	public void deleteById(Long userId) {
-		
-		if(userRepository.findById(userId).isEmpty()) {
+			
+		if(!userRepository.existsById(userId)) {
 			throw new UserNotFoundException("User does not exist...");
 		}
+		User userToDelete = userRepository.findById(userId).get();
+		
+		if(userToDelete.getRole() == UserRoles.ADMIN || userToDelete.getRole() == UserRoles.OWNER) {
+			throw new UserIsAdminException("User cannot be deleted due to their status...");
+		}
+								
 		userRepository.deleteById(userId);
 	}
 	
