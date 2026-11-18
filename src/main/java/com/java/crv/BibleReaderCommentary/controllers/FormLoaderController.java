@@ -1,5 +1,6 @@
 package com.java.crv.BibleReaderCommentary.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import com.java.crv.BibleReaderCommentary.services.BookService;
 import com.java.crv.BibleReaderCommentary.services.ChapterService;
 import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.ServerAnnouncementService;
+import com.java.crv.BibleReaderCommentary.services.UserService;
 import com.java.crv.BibleReaderCommentary.services.VerseService;
 
 @Controller
@@ -28,19 +30,22 @@ public class FormLoaderController {
 	private CommentaryService commentaryService;
 	private ServerAnnouncementService serverAnnouncementService;
 	private VerseService verseService;
+	private UserService userService;
 	
 	public FormLoaderController (
 			BookService bookService, 
 			ChapterService chapterService, 
 			CommentaryService commentaryService, 
 			ServerAnnouncementService serverAnnouncementService,
-			VerseService verseService
+			VerseService verseService,
+			UserService userService
 			) {
 		this.bookService = bookService;
 		this.chapterService = chapterService;
 		this.commentaryService = commentaryService;
 		this.serverAnnouncementService = serverAnnouncementService;
 		this.verseService = verseService;
+		this.userService = userService;
 	}
 	
 	
@@ -139,6 +144,22 @@ public class FormLoaderController {
 
 		
 		return "forms/submitcomment";		
+	}
+	
+	@GetMapping("/admin/usercontrol")
+	public String getControlCenterUsersForm(Model model) {
+		
+		try {
+			ArrayList<User> allUsersInADatabaseList = new ArrayList<User>();
+			allUsersInADatabaseList = (ArrayList<User>) userService.getAllUsers();
+			
+			model.addAttribute("allUsersInADatabaseList", allUsersInADatabaseList);
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
+		
+		return "forms/controlcenter_userspage";
 	}
 	
 	/**

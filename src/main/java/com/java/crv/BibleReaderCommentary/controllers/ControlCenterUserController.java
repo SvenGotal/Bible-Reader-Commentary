@@ -26,21 +26,7 @@ public class ControlCenterUserController {
 		this.commentaryRepository = commentaryRepository;
 	}
 	
-	@GetMapping("/admin/usercontrol")
-	public String getControlCenterUsersForm(Model model) {
-		
-		try {
-			ArrayList<User> allUsersInADatabaseList = new ArrayList<User>();
-			allUsersInADatabaseList = (ArrayList<User>) userService.findAll();
-			
-			model.addAttribute("allUsersInADatabaseList", allUsersInADatabaseList);
-		}
-		catch(NullPointerException e){
-			e.printStackTrace();
-		}
-		
-		return "forms/controlcenter_userspage";
-	}
+	
 	
 	@PostMapping("/admin/deleteUserFromDatabase")
 	public String deleteUserFromDatabase (@RequestParam Long userId, Model model){
