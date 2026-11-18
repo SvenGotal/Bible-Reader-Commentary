@@ -24,15 +24,16 @@
 			
 			<div class="book-scroll-options-wrapper">
 				<div class="book-scroll-options">
+					<div class="button-wrapper go-to-top-button-mobile-hidden">	
+						<input class="brc-button" id="go_to_top_button" onclick="goToTop()" type="button" value="Na vrh">	
+					</div>
 					<div class="button-wrapper" th:if="${currentlyLoggedUser}">	
 						<input class="brc-button" id="write_comment_button" type="button" value="Napiši komentar">	
 					</div>
 					<div class="button-wrapper" th:unless="${currentlyLoggedUser}">	
 						<input class="brc-button" id="login_user_button" type="button" value="Prijavi se" onclick="window.location.href='/login'">	
 					</div>
-					<div class="button-wrapper go-to-top-button-mobile-hidden">	
-						<input class="brc-button" id="go_to_top_button" onclick="goToTop()" type="button" value="Na vrh">	
-					</div>
+					
 				</div>								
 			</div>
 		
