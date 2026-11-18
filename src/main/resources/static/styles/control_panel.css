@@ -1,5 +1,30 @@
 @charset "US-ASCII";
 
+:root {
+	--bg: #F5F5F5;
+	--surface: #FFFFFF;
+	--reading: #EDF1F4;
+
+	--text: #292D32;
+	--text-muted: #626970;
+	
+
+	/*--primary: #365F78;
+	--primary-hover: #294A60;
+	--on-primary: #FFFFFF;*/
+	
+	--primary: #783B70;
+	--primary-hover: #602D59;
+	--primary-soft: #F1EAF0;
+	
+	--accent: #893172;
+	--textaccent: #6765A9;
+	--texthighlight: #B62026;
+	
+	--font-sans: Noto Sans;
+	--font-serif: Noto;
+}
+
 body{
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 400;
@@ -157,10 +182,35 @@ body{
 	max-width:60%;
 }
 
+.CC-users-display-wrapper{
+	display: flex;
+	flex-direction: column;
+}
 
+.CC-data-display-table{
+	margin: 15px;
+	display: flex;
+	flex-direction: column;
+}
 
+.CC-data-display-table > div{
+	display: grid;
+	grid-template-columns: max-content repeat(8, 1fr);
+	gap: 10px;
+	margin: 10px;
+	border-bottom: 2px solid var(--accent);
+	align-items: center;
+	
+}
 
-
+.cc-grid-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+	gap: 5px;
+}
 
 
 
