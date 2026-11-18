@@ -15,6 +15,7 @@ import com.java.crv.BibleReaderCommentary.services.CommentaryService;
 import com.java.crv.BibleReaderCommentary.services.UserService;
 
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 
 @Controller
 public class UserController {
@@ -45,11 +46,11 @@ public class UserController {
 		return null;
 	}
 	
+	@Transactional
 	@PostMapping("/admin/deleteUserFromDatabase")
-	public String deleteUserFromDatabase (@RequestParam Long userId){
-
-		userService.deleteById(userId);
+	public String deleteUserFromDatabase (@RequestParam Long userId){	
 		commentaryService.deleteAllCommentaryByUserId(userId);
+		userService.deleteById(userId);
 		
 		return "redirect:/admin/usercontrol";
 	}
