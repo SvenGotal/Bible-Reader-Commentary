@@ -92,6 +92,7 @@ public class UserService {
 		userRepository.deleteById(userId);
 	}
 	
+	//TODO: stub for changing user password function
 	public void updatePassword(Long id) {
 		
 	}
