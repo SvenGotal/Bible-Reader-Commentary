@@ -28,53 +28,6 @@ public class ControlCenterUserController {
 	
 	
 	
-	@PostMapping("/admin/deleteUserFromDatabase")
-	public String deleteUserFromDatabase (@RequestParam Long userId, Model model){
-
-		String errorDeletingUser = "User deletion error!";
-		String errorDeletingAdminMessage = "Unable to delete Admin.";
-		String errorDeletingUserComments = "Comments could not be deleted.";
-		
-		User userToDelete = userService.findById(userId).get();
-		
-		if(userToDelete.getRole() == UserRoles.ADMIN || userToDelete.getRole() == UserRoles.OWNER) {
-			
-			model.addAttribute("errorDeletingAdminMessage", errorDeletingAdminMessage);
-			return "redirect:/admin/usercontrol";
-		}
-		/* Try deleting all comments before user can be removed from the database */
-
-		if(userToDelete != null) {
-
-			try {
-
-				for(Commentary comment : userToDelete.getComments()) {
-					commentaryRepository.deleteById(comment.getId());
-				}
-
-			}
-			catch(NullPointerException e) {
-				e.printStackTrace();
-				model.addAttribute("errorDeletingUserComments", errorDeletingUserComments);
-				return "redirect:/admin/usercontrol";
-			}
-
-			try {
-				userService.deleteById(userId);
-			}
-			catch(UserNotFoundException e) {
-				e.printStackTrace();
-				model.addAttribute("errorDeletingUser", "User does not exist in the database...");
-				return "redirect:/admin/UserControl";
-			}
-			catch(NullPointerException e) {
-				e.printStackTrace();
-				model.addAttribute("errorDeletingUser", errorDeletingUser);
-				return "redirect:/admin/usercontrol";
-			}
-
-		}		
-		return "redirect:/admin/usercontrol";
-	}
+	
 	
 }
