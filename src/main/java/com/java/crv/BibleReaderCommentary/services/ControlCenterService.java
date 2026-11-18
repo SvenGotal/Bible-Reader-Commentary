@@ -13,6 +13,8 @@ public class ControlCenterService {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	
+	public void adminChangeUserPassword(Long id) {
+		userService.updatePassword(id);
+	}
 	
 }
