@@ -162,6 +162,13 @@ public class CommentaryService {
 		return true;
 	}
 	
+	public void deleteAllCommentaryByUserId(Long userId) {
+		
+		//TODO: add checks before deleting all user comments
+		
+		commentaryRepository.deleteAllByUserId(userId);
+	}
+	
 	private List<Commentary> getAllCommentaryFromRepository(){
 		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).toList();
 	}
@@ -170,6 +177,7 @@ public class CommentaryService {
 		return StreamSupport.stream(commentaryRepository.findAll().spliterator(), false).filter(comment -> comment.getChapter().getBook().getId() == bookId).toList();
 	}
 	
+
 }
 
 
