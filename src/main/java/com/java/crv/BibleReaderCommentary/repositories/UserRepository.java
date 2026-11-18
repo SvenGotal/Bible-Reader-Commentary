@@ -19,5 +19,5 @@ public interface UserRepository extends CrudRepository<User, Long>{
 	
 	@Modifying
 	@Query("UPDATE User u SET u.password = :newPassword WHERE u.id = :userId")
-	Boolean updatePasswordById(@Param("userId") Long userId, @Param("newPassword") String newPassword);
+	int updatePasswordById(@Param("userId") Long userId, @Param("newPassword") String newPassword);
 }
