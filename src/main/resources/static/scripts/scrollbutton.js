@@ -8,10 +8,8 @@ function scrollFunction(){
 	try{
 		var topbtn = document.getElementById('go_to_top_button');	
 		var topbtn2 = document.getElementById('go_to_top_button_upper');	
-	
-		
-	
-		if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
+				
+		if(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100){
 			if(topbtn !== null) topbtn.style.display = "block";
 			topbtn2.style.display = "block";
 		}
