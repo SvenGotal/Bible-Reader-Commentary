@@ -101,7 +101,6 @@ public class UserService {
 		userRepository.deleteById(userId);
 	}
 	
-	//TODO: stub for changing user password function
 	@Transactional
 	public void updatePasswordByUserID(Long id, String newPassword) {
 		
