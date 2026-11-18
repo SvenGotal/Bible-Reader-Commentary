@@ -55,6 +55,7 @@ public class UserController {
 		return "redirect:/admin/usercontrol";
 	}
 	
+	@Transactional
 	@PostMapping("/admin/changeUserPassword")
 	public String changeUserPassword(@RequestParam Long userId, @RequestParam String newPassword) {
 		
